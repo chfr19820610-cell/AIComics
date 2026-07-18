@@ -1,0 +1,38 @@
+name: 每日升级 Daily Upgrade
+
+on:
+  schedule:
+    - cron: "0 2 * * *"  # 每天 UTC 2:00 (北京时间 10:00)
+  workflow_dispatch:      # 可手动触发
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      
+      - name: Run tests
+        run: |
+          pip install -r requirements-lock.txt
+          PYTHONPATH=src pytest tests/ -v -q
+      
+      - name: Check outdated deps
+        run: |
+          pip install pip-outdated
+          pip-outdated --format=columns || true
+      
+      - name: Lint check
+        run: |
+          pip install ruff
+          PYTHONPATH=src ruff check src/ || true
+      
+      - name: Summary
+        run: |
+          echo "## 每日升级报告" >> $GITHUB_STEP_SUMMARY
+          echo "测试: ✅ 通过" >> $GITHUB_STEP_SUMMARY
+          echo "仓库: https://github.com/chfr19820610-cell/AIComics" >> $GITHUB_STEP_SUMMARY
