@@ -1,0 +1,59 @@
+services:
+  aicomic-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aicomic-system:local
+    container_name: aicomic-system-web
+    env_file:
+      - .env.docker.local
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./config:/app/config:ro
+      - ./state:/app/state
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+      - ./local_providers:/app/local_providers:ro
+    command: >
+      sh -lc "python -m uvicorn web.backend.app:app --host 0.0.0.0 --port 7860"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:7860/api/health', timeout=5).read()",
+        ]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+
+  aicomic-frontend:
+    image: aicomic-system:local
+    container_name: aicomic-frontend
+    depends_on:
+      aicomic-web:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./web/frontend/dist:/app/web/frontend/dist:ro
+      - ./scripts/serve_frontend_spa.py:/app/scripts/serve_frontend_spa.py:ro
+    command: >
+      sh -lc "python /app/scripts/serve_frontend_spa.py --directory /app/web/frontend/dist --host 0.0.0.0 --port 8000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/login', timeout=5).read()",
+        ]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped

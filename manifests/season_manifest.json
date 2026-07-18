@@ -1,0 +1,24 @@
+{
+  "project_id": "aicomic_system",
+  "season": 1,
+  "season_title": "职场逆袭第一季",
+  "theme": "隐藏身份的实习生在职场压迫中逐步反击，并揭开母亲旧案真相",
+  "status": "planning",
+  "episodes": [
+    {
+      "episode_code": "E01",
+      "title": "被当众刁难的实习生",
+      "status": "script_ready",
+      "shot_count": 4,
+      "priority": "high"
+    },
+    {
+      "episode_code": "E02",
+      "title": "总裁第一次公开撑腰",
+      "status": "shotlist_ready",
+      "shot_count": 3,
+      "priority": "medium"
+    }
+  ]
+}
+

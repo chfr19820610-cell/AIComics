@@ -1,0 +1,2 @@
+[console_scripts]
+aicomic = aicomic.cli.main:main

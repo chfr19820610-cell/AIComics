@@ -1,0 +1,16 @@
+edition:
+  name: creator
+  single_user_mode: true
+  multi_user_enabled: false
+  auth_enabled: true
+  oidc_enabled: false
+  rbac_enabled: false
+  audit_enabled: false
+  batch_enabled: true
+  distributed_queue_enabled: false
+  enterprise_storage_enabled: false
+  cost_control_enabled: false
+  default_database: sqlite
+  default_storage: local_filesystem
+  deployment_mode: windows_single_machine
+  default_entry: frontend_spa

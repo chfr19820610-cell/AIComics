@@ -1,0 +1,31 @@
+server:
+  host: 127.0.0.1
+  port: 7860
+  cors_allow_origins: *
+
+frontend:
+  framework: ant-design-pro
+  api_base_url: http://127.0.0.1:7860
+
+safety:
+  command_execution_enabled: false
+  openai_live_run_default_limit: 1
+  openai_live_run_default_max_failures: 1
+  require_confirm_live: true
+
+auth:
+  auth_enabled: true
+  password_login_enabled: true
+  jwt_secret: aicomic-dev-secret-change-me
+  jwt_issuer: aicomic-web
+  jwt_audience: aicomic-users
+  access_token_minutes: 60
+  refresh_token_days: 7
+  access_token_cookie_name: aicomic_access_token
+  refresh_token_cookie_name: aicomic_refresh_token
+  default_role: creator
+  password_user_username: creator
+  password_user_display_name: 个人创作者
+  password_user_email: creator@aicomic.local
+  password_user_role: creator
+  password_user_password: ${AICOMIC_NORMAL_USER_PASSWORD}

@@ -1,0 +1,16 @@
+{
+  "project_id": "aicomic_system",
+  "project_name": "AI漫剧自动生成系统",
+  "genre": "现代职场逆袭",
+  "target_platforms": [
+    "抖音",
+    "快手",
+    "视频号",
+    "小红书",
+    "B站短视频"
+  ],
+  "season_count": 1,
+  "default_aspect_ratio": "9:16",
+  "status": "mvp_bootstrap"
+}
+

@@ -1,0 +1,12 @@
+preview:
+  width: 720
+  height: 1280
+  fps: 6
+  background_color: "#141414"
+  text_color: "#ffffff"
+  fallback_mode: placeholder_frame
+
+paths:
+  preview_output_dir: G:\AIComics\10_System\state\preview_outputs
+  render_report_dir: G:\AIComics\10_System\reports
+

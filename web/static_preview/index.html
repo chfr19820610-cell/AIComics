@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI漫剧 Creator 控制台 - 静态预览</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">AI漫剧 Creator</div>
+        <nav>
+          <a href="#dashboard">总览</a>
+          <a href="#creator">创作台</a>
+          <a href="#episodes">剧集</a>
+          <a href="#jobs">任务</a>
+          <a href="#batches">批次</a>
+          <a href="#provider">Provider</a>
+          <a href="#review">复盘</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="header">
+          <h1>AI漫剧 Creator 控制台</h1>
+          <div class="header-actions">
+            <div id="userBadge" class="badge badge-user">未登录</div>
+            <button id="refreshAllButton" class="action-button">刷新</button>
+            <button id="logoutButton" class="action-button action-button-secondary">退出</button>
+            <div id="healthBadge" class="badge">正在连接后端...</div>
+          </div>
+        </header>
+
+        <section id="dashboard" class="panel">
+          <h2>生产总览</h2>
+          <div id="metricGrid" class="metric-grid"></div>
+          <div class="grid-two">
+            <div class="card">
+              <h3>下一步建议</h3>
+              <ul id="nextActions"></ul>
+            </div>
+            <div class="card">
+              <h3>状态摘要</h3>
+              <pre id="dashboardSummary"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="creator" class="panel">
+          <h2>创作台</h2>
+          <div class="grid-two">
+            <div class="card">
+              <h3>当前项目</h3>
+              <pre id="creatorProjectSummary"></pre>
+            </div>
+            <div class="card">
+              <h3>可执行动作</h3>
+              <ul id="creatorActions"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="episodes" class="panel">
+          <h2>剧集</h2>
+          <div id="episodesTable"></div>
+        </section>
+
+        <section id="jobs" class="panel">
+          <h2>任务</h2>
+          <div id="jobsTable"></div>
+        </section>
+
+        <section id="batches" class="panel">
+          <h2>批次</h2>
+          <div class="grid-two">
+            <div class="card">
+              <h3>运行态摘要</h3>
+              <pre id="batchRuntimeSummary"></pre>
+            </div>
+            <div class="card">
+              <h3>批次建议</h3>
+              <ul id="batchActions"></ul>
+            </div>
+          </div>
+          <div id="batchesTable"></div>
+        </section>
+
+        <section id="provider" class="panel">
+          <h2>Provider</h2>
+          <div id="providerTable"></div>
+        </section>
+
+        <section id="review" class="panel">
+          <h2>复盘</h2>
+          <div class="grid-two">
+            <div class="card">
+              <h3>指标</h3>
+              <pre id="reviewMetrics"></pre>
+            </div>
+            <div class="card">
+              <h3>风险与建议</h3>
+              <pre id="reviewRisks"></pre>
+              <pre id="reviewRecommendations"></pre>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

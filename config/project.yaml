@@ -1,0 +1,7 @@
+project_id: aicomic_system
+project_name: AI漫剧自动生成系统
+genre: 现代职场逆袭
+default_episode_code: E01
+demo_asset_root: G:\AIComics\10_System\state\demo_assets
+preview_output_dir: G:\AIComics\10_System\state\preview_outputs
+

@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py,cover
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual env
+.venv/
+.venv-fw/
+venv/
+env/
+
+# Node
+web/frontend/node_modules/
+web/frontend/node_modules_corrupt_*/
+web/frontend/dist/
+web/frontend/src/.umi/
+web/frontend/src/.umi-production/
+node_modules/
+
+# Local config
+.env*.local
+.env.docker.local
+config/*.local.yaml
+
+# State (generated at runtime)
+state/
+logs/
+reports/*.json
+reports/money_report_*.md
+reports/publish_*.md
+
+# Generated jobs
+jobs/*.json
+
+# Local providers (not needed for source)
+local_providers/
+
+# Docker
+deploy/*.local.yaml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temp
+tmp/
+temp/
+*.pid
+*.exit
+
+# Hermes
+.hermes/
+
+# Secrets
+.secrets/
+*.pem
+*.key

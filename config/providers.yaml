@@ -1,0 +1,81 @@
+image_providers:
+  default: manual_web
+  available:
+    - manual_web
+    - local_comfyui_image
+    - openai_image
+
+video_providers:
+  default: manual_web
+  available:
+    - manual_web
+    - local_comfyui_video
+    - sora
+
+tts_providers:
+  default: windows_tts
+  available:
+    - windows_tts
+    - local_piper_tts
+    - openai_tts
+
+openai_api:
+  base_url: https://api.openai.com
+  timeout_seconds: 120
+
+openai_image:
+  model: gpt-image-1.5
+  size: 1024x1536
+  quality: medium
+  output_format: png
+
+openai_tts:
+  model: gpt-4o-mini-tts
+  voice: alloy
+  response_format: wav
+  speed: 1.0
+  instructions: 冷静、克制、都市职场动漫语气
+
+local_comfyui_image:
+  base_url: http://127.0.0.1:8188
+  workflow_path: ../local_providers/comfyui/workflows/image_workflow.json
+  model_root: ../local_providers/comfyui/models
+  model_manifest_path: ../local_providers/comfyui/model_requirements.json
+  timeout_seconds: 60
+  poll_timeout_seconds: 3600
+  poll_interval_seconds: 2
+  width: 512
+  height: 768
+  seed: 123456789
+  steps: 4
+  cfg: 1
+  output_prefix: aicomic
+  negative_prompt: low quality, blurry, watermark, distorted hands, text, subtitles, captions, Chinese characters, letters, logo, readable talisman script, calligraphy, glyphs, symbols on paper, printed markings, signage, stamps, seals, labels, posted notices, inscriptions on stone, writing on bowls
+
+local_comfyui_video:
+  base_url: http://127.0.0.1:8188
+  workflow_path: ../local_providers/comfyui/workflows/video_workflow.json
+  model_root: ../local_providers/comfyui/models
+  model_manifest_path: ../local_providers/comfyui/model_requirements.json
+  timeout_seconds: 60
+  poll_timeout_seconds: 7200
+  poll_interval_seconds: 5
+  width: 320
+  height: 192
+  seed: 123456789
+  steps: 4
+  cfg: 4
+  video_length: 9
+  fps: 8
+  output_prefix: aicomic_video
+  negative_prompt: low quality, blurry, watermark, flicker, distorted hands, text, subtitles, captions, Chinese characters, letters, logo
+
+local_piper_tts:
+  base_url: null
+  command: "{{python_executable}} scripts/run_local_piper.py"
+  model_path: ../local_providers/piper/models/zh_CN-huayan-medium.onnx
+  config_path: ../local_providers/piper/models/zh_CN-huayan-medium.onnx.json
+  model_card_path: ../local_providers/piper/models/MODEL_CARD
+  speaker_id: null
+  timeout_seconds: 120
+  extra_args: null

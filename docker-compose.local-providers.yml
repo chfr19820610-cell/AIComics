@@ -1,0 +1,75 @@
+services:
+  aicomic-web:
+    depends_on:
+      aicomic-comfyui:
+        condition: service_healthy
+      aicomic-piper:
+        condition: service_healthy
+    environment:
+      AICOMIC_COMFYUI_BASE_URL: http://aicomic-comfyui:8188
+      AICOMIC_PIPER_BASE_URL: http://aicomic-piper:5002
+
+  aicomic-comfyui:
+    build:
+      context: .
+      dockerfile: Dockerfile.comfyui-sidecar
+    image: aicomic-comfyui-sidecar:local
+    container_name: aicomic-comfyui-sidecar
+    environment:
+      AICOMIC_PROJECT_ROOT: /app
+      AICOMIC_COMFYUI_ROOT: /opt/comfyui
+      AICOMIC_COMFYUI_HOST: 0.0.0.0
+      AICOMIC_COMFYUI_PORT: 8188
+      AICOMIC_COMFYUI_DEVICE_MODE: cpu
+      AICOMIC_COMFYUI_EXTRA_ARGS: "--cache-none --mmap-torch-files --fp8_e4m3fn-unet --fp8_e4m3fn-text-enc"
+    ports:
+      - "8188:8188"
+    volumes:
+      - ./local_providers:/app/local_providers:ro
+      - ./state:/app/state
+      - ./reports:/app/reports
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8188/system_stats', timeout=5).read()",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  aicomic-piper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aicomic-system:local
+    container_name: aicomic-piper-sidecar
+    environment:
+      AICOMIC_PROJECT_ROOT: /app
+      AICOMIC_PIPER_HTTP_HOST: 0.0.0.0
+      AICOMIC_PIPER_HTTP_PORT: 5002
+    command: >
+      sh -lc "python /app/scripts/run_piper_http_server.py --host 0.0.0.0 --port 5002"
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./local_providers:/app/local_providers:ro
+      - ./state:/app/state
+      - ./reports:/app/reports
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5002/health', timeout=5).read()",
+        ]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped

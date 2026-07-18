@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI漫剧 Creator 控制台 - 登录</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="login-page">
+    <div class="login-card">
+      <section class="login-hero">
+        <div class="brand">AI漫剧 Creator</div>
+        <h1>个人创作者登录</h1>
+        <p class="tip">
+          这是 creator-only 静态预览入口，只保留个人账号、创作台、批量生产和复盘能力。
+        </p>
+        <div id="authStatusBadge" class="badge">正在检查后端状态...</div>
+        <ul id="providerList" class="provider-list"></ul>
+        <ul class="login-tips">
+          <li>只支持个人账号密码登录。</li>
+          <li>登录成功后会保存本地访问令牌与刷新令牌。</li>
+          <li>企业 SSO、成员中心和安全治理入口已移除。</li>
+        </ul>
+      </section>
+
+      <section class="login-form-panel">
+        <h2>进入控制台</h2>
+        <form id="loginForm" class="login-form">
+          <label>
+            用户名
+            <input id="usernameInput" name="username" value="creator" required />
+          </label>
+          <label>
+            密码
+            <input id="passwordInput" name="password" type="password" required />
+          </label>
+          <div class="login-actions">
+            <button id="loginButton" class="action-button" type="submit">登录</button>
+          </div>
+          <div id="loginMessage" class="login-message"></div>
+        </form>
+        <p id="authNote" class="auth-note"></p>
+      </section>
+    </div>
+
+    <script src="./login.js"></script>
+  </body>
+</html>

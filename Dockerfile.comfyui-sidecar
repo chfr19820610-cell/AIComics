@@ -1,0 +1,22 @@
+FROM python:3.12.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+RUN printf 'Acquire::Retries "5";\n' > /etc/apt/apt.conf.d/80-retries \
+    && sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list.d/debian.sources \
+    && apt-get update \
+    && apt-get install -y --fix-missing --no-install-recommends ffmpeg libgl1 libglib2.0-0 libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY local_providers/comfyui/runtime/ComfyUI /opt/comfyui
+
+RUN python -m pip install --upgrade pip \
+    && python -m pip install -r /opt/comfyui/requirements.txt
+
+COPY scripts/run_comfyui_sidecar.py /app/scripts/run_comfyui_sidecar.py
+
+CMD ["python", "/app/scripts/run_comfyui_sidecar.py"]

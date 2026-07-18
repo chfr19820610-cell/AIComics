@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>AI漫剧批量生产 Dashboard</title>
+  <style>
+    body { margin: 0; font-family: "Microsoft YaHei", Arial, sans-serif; background: #111827; color: #f9fafb; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px; }
+    h1 { margin: 0 0 8px; font-size: 30px; }
+    .status { color: #fbbf24; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 24px 0; }
+    .card { background: #1f2937; border: 1px solid #374151; border-radius: 14px; padding: 18px; }
+    .value { font-size: 30px; font-weight: 800; }
+    .label { color: #9ca3af; margin-top: 6px; }
+    section.panel { background: #111827; border: 1px solid #374151; border-radius: 14px; padding: 18px; margin: 18px 0; }
+    table { width: 100%; border-collapse: collapse; }
+    td, th { border-bottom: 1px solid #374151; padding: 10px; text-align: left; vertical-align: top; }
+    th { color: #93c5fd; }
+    code { color: #bfdbfe; }
+    li { margin: 8px 0; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>AI漫剧批量生产 Dashboard</h1>
+  <div class="status">当前状态：<strong>ready</strong></div>
+  <div class="grid"><section class='card'><div class='value'>1</div><div class='label'>项目</div></section>
+<section class='card'><div class='value'>2</div><div class='label'>剧集</div></section>
+<section class='card'><div class='value'>16</div><div class='label'>任务</div></section>
+<section class='card'><div class='value'>16</div><div class='label'>成功任务</div></section>
+<section class='card'><div class='value'>1</div><div class='label'>批次</div></section>
+<section class='card'><div class='value'>4</div><div class='label'>批次步骤</div></section>
+<section class='card'><div class='value'>16</div><div class='label'>导入成功</div></section>
+<section class='card'><div class='value'>0</div><div class='label'>重试任务</div></section></div>
+  <section class="panel">
+    <h2>下一步建议</h2>
+    <ul><li>Piper TTS 已可本地执行；ComfyUI 图片/视频仍需启动服务并补齐 `model_requirements.json` 中的模型权重后做小批量验证。</li>
+<li>上线前必须处理 `production_risk_register.json` 中的 blocking 风险；OpenAI live provider 已按本轮范围排除。</li></ul>
+  </section>
+  <section class="panel">
+    <h2>剧集状态</h2>
+    <table><tr><th>剧集</th><th>状态</th><th>完成任务</th><th>总任务</th></tr><tr><td>E01</td><td>assets_ready</td><td>10</td><td>10</td></tr>
+<tr><td>E02</td><td>assets_ready</td><td>6</td><td>6</td></tr></table>
+  </section>
+  <section class="panel">
+    <h2>任务分布</h2>
+    <table><tr><th>剧集</th><th>状态分布</th></tr><tr><td>E01</td><td colspan='3'><code>{&quot;succeeded&quot;: 10}</code></td></tr>
+<tr><td>E02</td><td colspan='3'><code>{&quot;succeeded&quot;: 6}</code></td></tr></table>
+  </section>
+  <section class="panel">
+    <h2>来源报告</h2>
+    <table><tr><th>类型</th><th>路径</th></tr><tr><td>validation</td><td>/Users/eric/Desktop/herness/AIComics/10_System/reports/demo_validation_report.json</td></tr>
+<tr><td>batch_summary</td><td>/Users/eric/Desktop/herness/AIComics/10_System/reports/season1_batch_summary.json</td></tr>
+<tr><td>season_summary</td><td>/Users/eric/Desktop/herness/AIComics/10_System/reports/season1_summary.json</td></tr>
+<tr><td>manual_import</td><td>/Users/eric/Desktop/herness/AIComics/10_System/reports/manual_import_report.json</td></tr>
+<tr><td>retry_batch</td><td>/Users/eric/Desktop/herness/AIComics/10_System/reports/retry_batch_report.json</td></tr></table>
+  </section>
+</main>
+</body>
+</html>

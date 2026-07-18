@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aicomic-system"
+version = "0.1.0"
+description = "AI漫剧自动生成系统 MVP 骨架"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.115,<1",
+    "uvicorn>=0.30,<1",
+    "httpx>=0.28,<1",
+    "pyyaml>=6.0,<7",
+]
+
+[project.optional-dependencies]
+web = []
+validation = [
+    "imageio>=2.37,<3",
+    "imageio-ffmpeg>=0.6,<1",
+    "numpy>=2,<3",
+    "pillow>=12,<13",
+    "pip-audit>=2.10,<3",
+    "websocket-client>=1.9,<2",
+]
+local-providers = [
+    "piper-tts==1.4.2",
+]
+
+[project.scripts]
+aicomic = "aicomic.cli.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

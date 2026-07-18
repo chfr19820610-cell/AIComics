@@ -1,0 +1,7 @@
+project_name: AI漫剧自动生成系统
+project_root: G:\AIComics\10_System
+default_database: G:\AIComics\10_System\state\aicomic_demo.db
+default_encoding: utf-8
+default_aspect_ratio: 9:16
+default_language: zh-CN
+
