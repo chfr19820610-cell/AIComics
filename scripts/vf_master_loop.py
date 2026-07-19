@@ -97,7 +97,7 @@ log = logging.getLogger("vf_loop")
 EPISODES = {"E01":6,"E02":6,"E03":6,"E04":6,"E05":6}
 
 def http_ok(url):
-    try: import urllib.request; return urllib.request.urlopen(url,timeout=5).getcode()==200
+    try: import urllib.request; return urllib.request.urlopen(url,timeout=3).getcode()==200
     except: return False
 
 def count(kind):
@@ -1321,34 +1321,15 @@ def main(preview_mode: bool = False, single_run: bool = False):
 
     while True:
         cycle += 1
+        _cycle_start = time.monotonic()
         timestamp = datetime.now()
         log.info(f"\n--- 第{cycle}轮 [{timestamp:%H:%M}] ---")
 
         if not http_ok("http://localhost:7860/api/health"):
-            log.error("Backend DOWN, 等5分钟")
-            time.sleep(300); continue
+            log.error("Backend DOWN, 等3秒后重试")
+            time.sleep(3); continue
         if not http_ok("http://localhost:8188/system_stats"):
-            log.error("ComfyUI DOWN, 尝试重启...")
-            # Resolve ComfyUI workspace: env var → providers.yaml → PATH fallback
-            _comfy_ws = os.environ.get("COMFYUI_ROOT", "")
-            if not _comfy_ws:
-                try:
-                    import yaml
-                    if PROVIDERS_CONFIG.exists():
-                        _data = yaml.safe_load(PROVIDERS_CONFIG.read_text())
-                        if _data and isinstance(_data, dict):
-                            _comfy_ws = _data.get("comfyui_workspace", "") or ""
-                except Exception:
-                    pass
-            if _comfy_ws:
-                subprocess.run(["comfy", f"--workspace={_comfy_ws}", "launch", "--background"],
-                               capture_output=True, timeout=30)
-            elif shutil.which("comfy"):
-                subprocess.run(["comfy", "launch", "--background"],
-                               capture_output=True, timeout=30)
-            else:
-                log.warning("ComfyUI CLI not found in PATH (set COMFYUI_ROOT env var or install comfy CLI)")
-            time.sleep(60)
+            log.warning("ComfyUI not reachable — proceeding without compose restart")
 
         phase_production(preview_mode=preview_mode)
 
@@ -1370,8 +1351,10 @@ def main(preview_mode: bool = False, single_run: bool = False):
             log.info("单次运行模式完成，退出循环")
             break
 
-        log.info(f"下一轮: {datetime.fromtimestamp(time.time()+1800):%H:%M}")
-        time.sleep(1800)
+        _elapsed = time.monotonic() - _cycle_start
+        _next_sleep = min(max(1800 - int(_elapsed), 30), 1800)
+        log.info(f"本轮耗时 {_elapsed:.0f}s, 下一轮: {datetime.fromtimestamp(time.time()+_next_sleep):%H:%M} (休眠 {_next_sleep}s)")
+        time.sleep(_next_sleep)
 
 if __name__ == "__main__":
     import argparse
