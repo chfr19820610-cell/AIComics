@@ -130,8 +130,8 @@ class TestAssGeneration:
         assert "[Events]" in content
         assert "第一句台词" in content
         assert "第二句台词" in content
-        assert "PlayResX: 1280" in content
-        assert "PlayResY: 720" in content
+        assert "PlayResX: 1920" in content
+        assert "PlayResY: 1080" in content
 
     def test_build_ass_custom_resolution(self, sample_durations, sample_subtitles):
         content = build_ass(sample_durations, sample_subtitles,
@@ -209,7 +209,7 @@ class TestSceneUtils:
 
     def test_ken_burns_zoom_expr(self):
         """Verify the zoom expression math."""
-        frames = int(5.0 * FPS)  # 125 frames at 25fps
+        frames = int(5.0 * FPS)  # 150 frames at 30fps
         # zoom = 1 + 0.05 * frame / total_frames
         zoom_start = 1.0  # at frame 0
         zoom_end = 1.0 + 0.05 * frames / frames  # at last frame
@@ -230,7 +230,11 @@ class TestPipeline:
         assert "duration" in info
         assert "video" in info
         assert "audio" in info
-        assert "1280x720" in info.get("video", "") or "720x1280" in info.get("video", "")
+        # Accept both 720p (old spike) and 1080p (new pipeline)
+        vid_info = info.get("video", "")
+        has_720p = "1280x720" in vid_info or "720x1280" in vid_info
+        has_1080p = "1920x1080" in vid_info or "1080x1920" in vid_info
+        assert has_720p or has_1080p, f"Expected 720p or 1080p, got: {vid_info}"
 
     def test_synthesize_episode_with_mock(self, tmp_path, sample_scenes):
         """Test pipeline logic with mocked subprocess calls."""
@@ -273,7 +277,7 @@ class TestPipeline:
             mock_result.returncode = 0
             mock_result.stderr = (
                 "Duration: 00:00:05.00, start: 0.0, bitrate: 128 kb/s\n"
-                "Stream #0:0: Video: h264, 1280x720\n"
+                "Stream #0:0: Video: h264, 1920x1080\n"
                 "Stream #0:1: Audio: aac, 44100 Hz\n"
             )
             mock_result.stdout = ""
@@ -361,7 +365,7 @@ class TestBatch:
             mock_result.returncode = 0
             mock_result.stderr = (
                 "Duration: 00:00:05.00, start: 0.0, bitrate: 128 kb/s\n"
-                "Stream #0:0: Video: h264, 1280x720\n"
+                "Stream #0:0: Video: h264, 1920x1080\n"
                 "Stream #0:1: Audio: aac, 44100 Hz\n"
             )
             mock_result.stdout = ""
@@ -397,7 +401,7 @@ class TestConfig:
             assert "ffmpeg" in result.stdout.lower()
 
     def test_video_bitrate_set(self):
-        assert VIDEO_BITRATE == "1500k", "Video bitrate should be 1500k"
+        assert VIDEO_BITRATE == "4000k", "Video bitrate should be 4000k for 1080p"
 
     def test_episode_subtitles_not_empty(self):
         assert len(EPISODE_SUBTITLES) > 0

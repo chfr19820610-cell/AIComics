@@ -11,6 +11,7 @@ from typing import Any
 
 from aicomic.video_synthesis.config import (
     SUBTITLE_BORDER_SIZE,
+    SUBTITLE_FONT,
     SUBTITLE_FONT_SIZE,
 )
 
@@ -82,10 +83,11 @@ def write_srt(path: Path, scene_durations: list[float], subtitles: list[str]) ->
 def build_ass(
     scene_durations: list[float],
     subtitles: list[str],
-    video_width: int = 1280,
-    video_height: int = 720,
+    video_width: int = 1920,
+    video_height: int = 1080,
     font_size: int = SUBTITLE_FONT_SIZE,
     border_size: int = SUBTITLE_BORDER_SIZE,
+    font_name: str | None = None,
 ) -> str:
     """
     Build ASS subtitle content with styled formatting.
@@ -134,8 +136,10 @@ def build_ass(
     # Style: white text, black outline, no shadow, centered bottom
     primary = "&H00FFFFFF"    # white
     outline = "&H00000000"     # black
+    # Choose font: explicit > config > auto-detect
+    chosen_font = font_name or SUBTITLE_FONT or _FontResolver._font_name()
     lines.append(
-        f"Style: Default,{_FontResolver._font_name()},{font_size},"
+        f"Style: Default,{chosen_font},{font_size},"
         f"{primary},{primary},"
         f"{outline},{outline},"
         f"0,0,0,0,"    # bold, italic, underline, strikeout
@@ -170,7 +174,7 @@ def build_ass(
 
 
 def write_ass(path: Path, scene_durations: list[float], subtitles: list[str],
-              video_width: int = 1280, video_height: int = 720) -> Path:
+              video_width: int = 1920, video_height: int = 1080) -> Path:
     """Write ASS file and return path."""
     path.parent.mkdir(parents=True, exist_ok=True)
     content = build_ass(scene_durations, subtitles, video_width, video_height)

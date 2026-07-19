@@ -9,6 +9,10 @@ import sys
 from pathlib import Path
 
 from aicomic.video_synthesis.config import (
+    BGM_ENABLED,
+    BGM_FADE_IN,
+    BGM_FADE_OUT,
+    BGM_VOLUME,
     CRF,
     DEFAULT_SCENE_DURATION,
     FFMPEG,
@@ -90,7 +94,7 @@ def phase_concat(clip_paths: list[Path], output_path: Path) -> bool:
     concat_file = TEMP_DIR / "concat.txt"
     with open(concat_file, "w") as f:
         for clip in clip_paths:
-            f.write(f"file '{clip.absolute()}'\n")
+            f.write(f"file '{clip.absolute()}'\\n")
 
     cmd = [
         str(FFMPEG), "-y",
@@ -101,6 +105,80 @@ def phase_concat(clip_paths: list[Path], output_path: Path) -> bool:
         str(output_path),
     ]
     return run_cmd(cmd, "Concat scenes")
+
+
+def phase_bgm_mix(
+    input_video: Path,
+    output_video: Path,
+    episode_code: str,
+    episode_duration: float,
+) -> bool:
+    """
+    Mix background music (BGM) into the video's audio track.
+
+    Selects BGM based on episode mood, then:
+    1. Loops the BGM to match video duration
+    2. Applies fade-in/out on BGM
+    3. Mixes BGM at configured volume behind the original audio
+
+    Args:
+        input_video: Path to concatenated video (no BGM yet)
+        output_video: Output path with BGM mixed in
+        episode_code: e.g. "E01" — used to select mood-appropriate BGM
+        episode_duration: Total duration in seconds
+
+    Returns:
+        True on success
+    """
+    from aicomic.video_synthesis.audio_mix import (
+        BGM_DIR,
+        select_bgm_for_episode,
+    )
+
+    bgm_path = select_bgm_for_episode(episode_code)
+    if bgm_path is None:
+        log(f"  ⚠ No BGM track available for {episode_code}, skipping BGM mix")
+        import shutil
+        shutil.copy2(input_video, output_video)
+        return True
+
+    log(f"  🎵 BGM: {bgm_path.name} for {episode_code}")
+    log(f"  🎛 Volume: voice=1.0, bgm={BGM_VOLUME}  |  Fade: in={BGM_FADE_IN}s out={BGM_FADE_OUT}s")
+
+    # Extract the original audio from the concat video
+    # Then mix with BGM using FFmpeg's amix filter
+    cmd = [
+        str(FFMPEG), "-y",
+        # Input 0: concat video (has voiceover audio)
+        "-i", str(input_video),
+        # Input 1: BGM (will be looped)
+        "-i", str(bgm_path),
+        "-filter_complex",
+        (
+            # Loop BGM to cover full duration, fade in/out
+            f"[1:a]aloop=loop=-1:size=44100,"
+            f"atrim=duration={episode_duration},"
+            f"volume={BGM_VOLUME},"
+            f"afade=t=in:d={BGM_FADE_IN},"
+            f"afade=t=out:st={max(0, episode_duration - BGM_FADE_OUT)}:d={BGM_FADE_OUT}"
+            f"[bgm];"
+            # Mix: original voice (unchanged) + BGM
+            f"[0:a]volume=1.0[voice];"
+            f"[voice][bgm]amix=inputs=2:duration=first:dropout_transition=2"
+            f"[out]"
+        ),
+        # Copy video stream as-is
+        "-map", "0:v:0",
+        "-map", "[out]",
+        "-c:v", "copy",
+        "-c:a", "aac",
+        "-ar", "44100",
+        "-b:a", "192k",
+        "-ac", "2",        # Stereo for richer sound
+        str(output_video),
+    ]
+
+    return run_cmd(cmd, f"BGM mix ({bgm_path.name})")
 
 
 def phase_burn_subtitles(
@@ -126,7 +204,7 @@ def phase_burn_subtitles(
         "-vf", filter_expr,
         "-c:v", "libx264",
         "-preset", "medium",
-        "-crf", "18",
+        "-crf", str(CRF),
         "-maxrate", VIDEO_BITRATE,
         "-bufsize", "3000k",
         "-pix_fmt", "yuv420p",

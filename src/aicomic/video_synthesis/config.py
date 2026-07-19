@@ -16,27 +16,44 @@ DEMO_ASSETS_DIR = SYSTEM_ROOT / "state" / "demo_assets"
 OUTPUT_DIR = SYSTEM_ROOT / "state" / "releases"
 TEMP_DIR = Path("/tmp") / "video_synthesis"
 
-# ── Video quality ─────────────────────────────────────────────────────────
-FPS = 25
-VIDEO_WIDTH = 1280
-VIDEO_HEIGHT = 720
+# ── Video quality — 1080p @ 30fps ─────────────────────────────────────────
+FPS = 30
+VIDEO_WIDTH = 1920
+VIDEO_HEIGHT = 1080
 VIDEO_SIZE = f"{VIDEO_WIDTH}:{VIDEO_HEIGHT}"
 VIDEO_SIZE_X = f"{VIDEO_WIDTH}x{VIDEO_HEIGHT}"
 
-# Bitrate
-VIDEO_BITRATE = "1500k"       # up from spike's ~636k (review recommendation)
-AUDIO_SAMPLE_RATE = 44100     # up from spike's 22050 (review recommendation)
+# Bitrate — increased for 1080p
+VIDEO_BITRATE = "4000k"       # 1080p 30fps (up from 1500k @ 720p)
+AUDIO_SAMPLE_RATE = 44100
 AUDIO_BITRATE = "128k"
 CRF = 23                      # H.264 quality (lower = better, 18-28 typical)
+
+# ── Audio Enhancement ──────────────────────────────────────────────────────
+# Enable voice audio enhancement (compression + EQ + normalization)
+AUDIO_ENHANCE_ENABLED = True
+# Debug output directory for enhanced audio (None = disabled)
+AUDIO_ENHANCE_DEBUG_DIR = None  # set to SYSTEM_ROOT / "state" / "enhanced_audio" for debug
+
+# BGM settings
+BGM_ENABLED = True
+BGM_VOLUME = 0.35       # BGM volume relative to voice (0.0-1.0, 0.35 ≈ 7:3 voice:bgm)
+BGM_FADE_IN = 2.0       # BGM fade-in duration (seconds)
+BGM_FADE_OUT = 3.0      # BGM fade-out duration (seconds)
+
+# ── LUT color grading ─────────────────────────────────────────────────────
+# Path to .cube LUT file for cinematic color grading.
+# Set to None to skip LUT application.
+LUT_PATH = SYSTEM_ROOT / "assets" / "luts" / "cinematic_warm.cube"
 
 # ── Ken Burns ─────────────────────────────────────────────────────────────
 KEN_BURNS_ZOOM_MAX = 1.05     # 100% → 105%
 DEFAULT_SCENE_DURATION = 5.0  # fallback when no audio and no explicit duration
 
-# ── Subtitle styling ──────────────────────────────────────────────────────
-SUBTITLE_FONT_SIZE = 28
-SUBTITLE_BORDER_SIZE = 2
-SUBTITLE_FONT = ""            # empty = system default (sans-serif)
+# ── Subtitle styling — 1080p enhanced ─────────────────────────────────────
+SUBTITLE_FONT_SIZE = 36       # 1080p: larger text (was 28 @ 720p)
+SUBTITLE_BORDER_SIZE = 3      # thicker stroke for readability (was 2)
+SUBTITLE_FONT = "PingFang SC" # macOS Chinese system font
 
 # ── Episode definitions ───────────────────────────────────────────────────
 # Subtitles for each episode's scenes (empty string = no subtitle)
