@@ -4,6 +4,7 @@ __pycache__/
 *.pyo
 *.pyd
 *.py,cover
+.coverage
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
@@ -56,6 +57,8 @@ Thumbs.db
 # Temp
 tmp/
 temp/
+build/
+dist/
 *.pid
 *.exit
 
