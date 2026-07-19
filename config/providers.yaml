@@ -20,7 +20,7 @@ tts_providers:
     - local_piper_tts
 
 openai_api:
-  base_url: https://api.openai.com
+  base_url: https://api.jieyouai.it.com/v1
   timeout_seconds: 120
 
 openai_image:
