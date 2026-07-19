@@ -10,6 +10,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics)
 [![Last Commit](https://img.shields.io/github/last-commit/chfr19820610-cell/AIComics)](https://github.com/chfr19820610-cell/AIComics/commits/main)
 [![Validation](https://img.shields.io/badge/Validation-39%2F39%20(100%25)-success)](tests/)
+[![Version](https://img.shields.io/badge/Version-v0.3.0-blue)](CHANGELOG.md)
 
 ---
 
@@ -18,10 +19,12 @@
 | Painterly 3D Noir 风格 (E01) | Painterly 3D Noir 风格 (E03) |
 |---|---|
 | ![E01 预览](assets/screenshots/preview_e01.jpg) | ![E03 预览](assets/screenshots/preview_e03.jpg) |
-| E01 · 00:24 · 1280×720 | E03 · 01:31 · 1280×720 |
+|| E01 · 00:33 · 1280×720 | E03 · 01:31 · 1280×720 |
 
 > 🎥 **5 集完整漫剧已产出** — 《我变成僵尸后全校跪求我别死》全 5 集，每集 6 个分镜，总计 **4 分 24 秒** 完整视频内容。
-> 风格: **Painterly 3D Noir** (`#1A1A2E` `#16213E` `#E94560` `#0F3460` `#FFD700`)
+> 风格: **Painterly 3D Noir** + **Hybrid Comic Pop** 双风格轮换
+> 色板: `#1A1A2E` `#16213E` `#E94560` `#0F3460` `#FFD700` / `#FF6B35` `#004E64` `#F2C14E` `#5C4D7D` `#00A5CF`
+> 视频品质: **1080p/30fps** (HQ) | **720p/24fps** (标准)
 > 产出路径: [`state/releases/`](state/releases/) · [`state/produced_videos/`](state/produced_videos/)
 
 ---
@@ -33,10 +36,12 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。你只需要有
 | 环节 | 说明 | 技术 |
 |------|------|------|
 | 📝 **写剧本** | 设定世界观、角色、剧情，自动生成分镜脚本 | 大语言模型 |
-| 🎨 **出画面** | 每个分镜生成动漫风格的关键帧图片 | ComfyUI + SDXL |
-| 🔊 **配配音** | 每个分镜生成中文语音旁白 | Piper TTS |
-| 🎬 **做视频** | 图片+配音合成完整剧集 | FFmpeg |
+| 🎨 **出画面** | 每个分镜生成动漫风格的关键帧图片 | ComfyUI / OpenAI DALL·E |
+| 🔊 **配配音** | 每个分镜生成中文语音旁白 | Piper TTS / OpenAI TTS |
+| 🎬 **做视频** | 图片+配音合成完整剧集，支持 AI 动态帧 / 视频生成 | FFmpeg / AnimateDiff / Seedance / Kling |
 | 📡 **发平台** | 一键发布到小红书/B站/抖音 | social-auto-upload |
+| 🔄 **自动循环** | vf_master_loop 后台守护，自动补充资产+风格轮换 | Python 后台进程 |
+| 🎨 **多 Provider** | 云端+本地混合架构，故障自动降级 | OpenAI / Seedance / Kling / ComfyUI |
 
 **当前成品示例：** 《我变成僵尸后全校跪求我别死》E01-E05（30 张关键帧 + 30 段配音 + 5 集完整视频）
 
@@ -67,10 +72,11 @@ graph TB
     end
 
     subgraph Providers["🔌 Provider 插件"]
-        COMFY["ComfyUI<br/>✨ 图片生成"]
+        COMFY["ComfyUI<br/>✨ 图片/视频生成"]
         PIPER["Piper TTS<br/>🔊 中文配音"]
-        OPENAI["OpenAI/DALL·E<br/>🎨 备选生图"]
+        OPENAI["OpenAI/DALL·E<br/>🎨 云端备选生图"]
         SEEDANCE["Seedance<br/>🎬 云视频合成"]
+        KLING["Kling (可灵)<br/>🎬 AI 视频生成"]
         MANUAL["手动模式<br/>📁 本地资产导入"]
     end
 
@@ -208,8 +214,12 @@ docker compose logs -f
 | 测试通过率 | **640/640** (100%) |
 | 验证脚本 | **39/39** (100%) |
 | API 端点 | **52** 个 |
-| 视频产出 | **5 集完整漫剧**（4 分 24 秒） |
+| 视频产出 | **5 集完整漫剧**（4 分 24 秒）+ 双风格轮换 |
 | 资产完整度 | **60/60**（30 图 + 30 配音） |
+| 视频品质 | **1080p/30fps** (HQ 重制版) + **720p/24fps** (标准版) |
+| 视频 Provider | **7** 个 (ComfyUI / OpenAI / Seedance / Kling / Piper / OpenAI TTS / 手动) |
+| 风格主题 | **2** 种 (Painterly 3D Noir + Hybrid Comic Pop) |
+| 最新版本 | **v0.3.0** |
 | Python 版本 | **3.12** |
 | 许可证 | **Apache 2.0** |
 
@@ -255,7 +265,7 @@ tail -f logs/vf_loop.log
 
 | 功能 | 说明 |
 |------|------|
-| **🧩 供应商抽象层** | 统一的 Provider 接口，支持 ComfyUI / OpenAI / Seedance / 手动 等多种图片生成后端，可热切换 |
+| **🧩 供应商抽象层** | 统一的 Provider 接口，支持 ComfyUI / OpenAI / Seedance / Kling / 手动等多种图片/视频生成后端，云端+本地混合架构，故障自动降级 |
 | **👤 角色系统** | 角色定义、一致性检测、提示词注入、参考图管理，让同一角色在不同分镜中保持外形统一 |
 | **📋 分镜版本管理** | 分镜可创建多个版本，对比选择最佳效果，支持回滚 |
 | **🎬 视频合成管线** | 端到端视频合成：图片→场景→字幕→配音→合成，支持批量处理 |
@@ -309,21 +319,40 @@ graph LR
 
 ---
 
+## 🆕 v0.3.0 新功能
+
+| 功能 | 说明 |
+|------|------|
+| **🎬 1080p/30fps 高清输出** | 视频品质从 720p 升级至全高清，添加 LUT 色彩校正，修复 CRF 不一致 |
+| **🎨 双风格轮换** | Painterly 3D Noir + Hybrid Comic Pop 自动切换，每轮自动生成不同风格视频 |
+| **🔌 Kling (快手可灵) Provider** | `text2video` + `image2video` + JWT 认证，快手 SOTA 视频生成 |
+| **⚡ ComfyUI 加速模式** | `local_comfyui_video_fast` 新 workflow，预览速度提升 2-2.5x |
+| **🔒 安全审计** | strix + pentest 全量扫描，9 项安全检视，修复 .gitignore / CORS / 认证问题 |
+| **📋 20+ Agent 产出整合** | 视频导演审查 / 品质 Prompt 模板 / 视频工作流指南 / Blender 可行性 / 竞品分析 / UX 审计等 |
+| **🌐 社区基础设施** | CI/CD 自动化 + Issue/PR 模板 + 每日升级检测 |
+| **🎬 AIComics demo_reel** | 精选演示短片 MP4，展示系统能力 |
+
+---
+
 ## 🛤️ 路线图
 
 - [x] 基础漫剧管线 (故事→分镜→图片→配音)
 - [x] CLI + Web API + SPA 三端入口
 - [x] 640 测试全通过
-- [x] 供应商抽象层 (ComfyUI/Piper/OpenAI/Seedance)
+- [x] 供应商抽象层 (ComfyUI/Piper/OpenAI/Seedance/Kling)
 - [x] 角色系统 (定义/一致性/提示词注入/参考图)
 - [x] 分镜版本管理
 - [x] 自动风格轮换引擎 + 无限自循环
+- [x] 1080p/30fps 高清视频输出
+- [x] 云端+本地混合 Provider 架构
+- [x] 安全审计 + 基础设施 (CI/CD + 模板)
 - [ ] 漫剧专用模板系统
 - [ ] 小说→漫剧一站式管道
 - [ ] 多语言配音 & 字幕
 - [ ] 发布平台自动集成（小红书/B站/抖音一键发布）
 - [ ] 云端轻量模式
 - [ ] 社区模板市场
+- [ ] Blender 三渲二 Provider
 
 ---
 

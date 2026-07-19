@@ -1,0 +1,161 @@
+{
+  "cycle": 5,
+  "time": "2026-07-19T15:12:54.403367",
+  "episodes": {
+    "E01": {
+      "assets": {
+        "images": 6,
+        "audio": 6,
+        "img_files": [
+          "E01_S01_key.png",
+          "E01_S02_key.png",
+          "E01_S03_key.png",
+          "E01_S04_key.png",
+          "E01_S05_key.png",
+          "E01_S06_key.png"
+        ],
+        "aud_files": [
+          "E01_S03_dub.wav",
+          "E01_S04_dub.wav",
+          "E01_S05_dub.wav",
+          "E01_S05_tts.wav",
+          "E01_S06_dub.wav",
+          "E01_S06_tts.wav"
+        ],
+        "img_total_kb": 6227,
+        "aud_total_kb": 1479
+      },
+      "review": {
+        "status": "PASS",
+        "time": "2026-07-19T13:12:54.130470",
+        "total_files": 12,
+        "issues": []
+      },
+      "published": "2026-07-19T13:12:54.152865"
+    },
+    "E02": {
+      "assets": {
+        "images": 6,
+        "audio": 6,
+        "img_files": [
+          "E02_S01_key.png",
+          "E02_S02_key.png",
+          "E02_S03_key.png",
+          "E02_S04_key.png",
+          "E02_S05_key.png",
+          "E02_S06_key.png"
+        ],
+        "aud_files": [
+          "E02_S01_dub.wav",
+          "E02_S01_tts.wav",
+          "E02_S02_dub.wav",
+          "E02_S04_tts.wav",
+          "E02_S05_tts.wav",
+          "E02_S06_tts.wav"
+        ],
+        "img_total_kb": 5891,
+        "aud_total_kb": 1846
+      },
+      "review": {
+        "status": "PASS",
+        "time": "2026-07-19T13:12:54.205009",
+        "total_files": 12,
+        "issues": []
+      },
+      "published": "2026-07-19T13:12:54.227769"
+    },
+    "E03": {
+      "assets": {
+        "images": 6,
+        "audio": 6,
+        "img_files": [
+          "E03_S01_key.png",
+          "E03_S02_key.png",
+          "E03_S03_key.png",
+          "E03_S04_key.png",
+          "E03_S05_key.png",
+          "E03_S06_key.png"
+        ],
+        "aud_files": [
+          "E03_S01_tts.wav",
+          "E03_S02_tts.wav",
+          "E03_S03_tts.wav",
+          "E03_S04_dub.wav",
+          "E03_S05_dub.wav",
+          "E03_S06_dub.wav"
+        ],
+        "img_total_kb": 5107,
+        "aud_total_kb": 2286
+      },
+      "review": {
+        "status": "PASS",
+        "time": "2026-07-19T13:12:54.237065",
+        "total_files": 12,
+        "issues": []
+      },
+      "published": "2026-07-19T13:12:54.257072"
+    },
+    "E04": {
+      "assets": {
+        "images": 6,
+        "audio": 6,
+        "img_files": [
+          "E04_S01_key.png",
+          "E04_S02_key.png",
+          "E04_S03_key.png",
+          "E04_S04_key.png",
+          "E04_S05_key.png",
+          "E04_S06_key.png"
+        ],
+        "aud_files": [
+          "E04_S01_tts.wav",
+          "E04_S02_tts.wav",
+          "E04_S03_tts.wav",
+          "E04_S04_tts.wav",
+          "E04_S05_tts.wav",
+          "E04_S06_tts.wav"
+        ],
+        "img_total_kb": 8236,
+        "aud_total_kb": 2268
+      },
+      "review": {
+        "status": "PASS",
+        "time": "2026-07-19T13:12:54.265218",
+        "total_files": 12,
+        "issues": []
+      },
+      "published": "2026-07-19T13:12:54.293131"
+    },
+    "E05": {
+      "assets": {
+        "images": 6,
+        "audio": 6,
+        "img_files": [
+          "E05_S01_key.png",
+          "E05_S02_key.png",
+          "E05_S03_key.png",
+          "E05_S04_key.png",
+          "E05_S05_key.png",
+          "E05_S06_key.png"
+        ],
+        "aud_files": [
+          "E05_S01_tts.wav",
+          "E05_S02_tts.wav",
+          "E05_S03_tts.wav",
+          "E05_S04_tts.wav",
+          "E05_S05_tts.wav",
+          "E05_S06_tts.wav"
+        ],
+        "img_total_kb": 9135,
+        "aud_total_kb": 2468
+      },
+      "review": {
+        "status": "PASS",
+        "time": "2026-07-19T13:12:54.301480",
+        "total_files": 12,
+        "issues": []
+      },
+      "published": "2026-07-19T13:12:54.345120"
+    }
+  }
+}

@@ -54,6 +54,12 @@ Thumbs.db
 *.swp
 *.swo
 
+# Build artifacts
+.coverage
+build/
+dist/
+*.egg-info/
+
 # Temp
 tmp/
 temp/

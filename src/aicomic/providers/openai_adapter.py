@@ -31,11 +31,17 @@ def get_openai_timeout(settings: dict[str, dict[str, object]]) -> int:
 
 def resolve_image_body(payload: dict[str, Any], settings: dict[str, dict[str, object]]) -> dict[str, Any]:
     image_settings = settings.get("openai_image", {})
+    default_size = str(image_settings.get("size", "1024x1536"))
+    # Preview mode: use smaller resolution for faster generation
+    if payload.get("preview"):
+        size = str(image_settings.get("preview_size", "512x768"))
+    else:
+        size = default_size
     return {
         "model": str(image_settings.get("model", "gpt-image-1.5")),
         "prompt": str(payload["prompt"]),
         "n": 1,
-        "size": str(image_settings.get("size", "1024x1536")),
+        "size": size,
         "quality": str(image_settings.get("quality", "medium")),
         "output_format": str(image_settings.get("output_format", "png")),
     }

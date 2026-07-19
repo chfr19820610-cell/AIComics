@@ -4,10 +4,21 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aicomic-system"
-version = "0.1.0"
-description = "AI漫剧自动生成系统 MVP 骨架"
+version = "0.3.0"
+description = "AI漫剧自动生成系统 — 一人公司视频工厂"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
+authors = [
+    {name = "Eric", email = "eric@aicomics.dev"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+license = "MIT"
 dependencies = [
     "fastapi>=0.115,<1",
     "uvicorn>=0.30,<1",
