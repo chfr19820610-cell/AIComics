@@ -94,7 +94,7 @@ def phase_concat(clip_paths: list[Path], output_path: Path) -> bool:
     concat_file = TEMP_DIR / "concat.txt"
     with open(concat_file, "w") as f:
         for clip in clip_paths:
-            f.write(f"file '{clip.absolute()}'\\n")
+            f.write(f"file '{clip.absolute()}'\n")
 
     cmd = [
         str(FFMPEG), "-y",
@@ -263,11 +263,12 @@ def synthesize_episode(
 
     Pipeline phases:
     1. Determine scene durations (from audio or defaults)
-    2. Build each scene (image + Ken Burns + audio)
+    2. Build each scene (image + Ken Burns + enhanced audio)
     3. Create subtitle file (ASS with styling)
     4. Concatenate scenes
-    5. Burn subtitles into final video
-    6. Verify output
+    5. Mix background music (BGM) into voiceover audio
+    6. Burn subtitles into final video
+    7. Verify output
 
     Args:
         episode_code: e.g. "E01"
@@ -332,15 +333,25 @@ def synthesize_episode(
     if not phase_concat(clip_paths, concat_temp):
         return None
 
+    # ── Phase 3b: BGM Mix ──
+    bgm_mixed = concat_temp  # default: same file if BGM disabled
+    if BGM_ENABLED:
+        log(f"\n── Phase 3b: BGM Mix ──")
+        total_duration = sum(durations)
+        bgm_mixed = temp_ep_dir / "episode_bgm.mp4"
+        if not phase_bgm_mix(concat_temp, bgm_mixed, episode_code, total_duration):
+            log("  ⚠ BGM mix failed, continuing without BGM")
+            bgm_mixed = concat_temp
+
     # ── Phase 4: Burn subtitles ──
     log(f"\n── Phase 4: Burn Subtitles ──")
     if sub_count > 0:
-        if not phase_burn_subtitles(concat_temp, sub_path, output_path, subtitle_format):
+        if not phase_burn_subtitles(bgm_mixed, sub_path, output_path, subtitle_format):
             return None
     else:
-        # No subtitles — just copy concat output
+        # No subtitles — just copy bgm_mixed output
         import shutil
-        shutil.copy2(concat_temp, output_path)
+        shutil.copy2(bgm_mixed, output_path)
         log("  (no subtitles to burn)")
 
     # ── Phase 5: Verify ──
