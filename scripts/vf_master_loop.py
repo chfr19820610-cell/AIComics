@@ -153,6 +153,168 @@ def _save_style_cycle(idx: int, name: str):
     _STYLE_CYCLE_PATH.write_text(json.dumps({"index": idx, "style": name}))
 
 
+# ── AI 编剧引擎集成 ──────────────────────────────────────────────────────────
+
+
+def _write_skeleton_manifest(project_dir: Path, project_name: str,
+                              genre: str, palette: dict) -> None:
+    """Write a basic skeleton manifest when script engine is unavailable."""
+    from aicomic.core.manifest import write_json
+
+    (project_dir / "manifests").mkdir(parents=True, exist_ok=True)
+
+    skeleton = {
+        "project_id": project_name,
+        "season": 1,
+        "episodes": [
+            {
+                "episode_code": "E01",
+                "title": "第一集",
+                "genre": genre,
+                "style": palette["name"],
+                "status": "idea",
+                "shots": [],
+            }
+        ],
+    }
+    write_json(project_dir / "manifests" / "episode_manifest.json", skeleton)
+
+    project_manifest = {
+        "project_id": project_name,
+        "project_name": project_name,
+        "genre": genre,
+        "style_profile": palette["name"],
+        "status": "initialized",
+        "target_platforms": ["douyin", "kuaishou", "bilibili"],
+    }
+    write_json(project_dir / "project_manifest.json", project_manifest)
+
+
+def _ensure_manifest_for_style(palette: dict) -> str | None:
+    """Ensure a generated project manifest exists for the current style.
+
+    Checks ``state/generated_projects/`` for a project matching the style slug.
+    If none exists with filled shots, creates one using the AI script engine
+    (LLMScreenplayEngine → generate_screenplay → expand_to_shotlist →
+    write_screenplay_to_episode_manifest).
+
+    Returns:
+        Project name (directory name) if manifest exists or was created,
+        ``None`` on failure.
+
+    Logged outcomes:
+        ✓ Manifest already exists — no action needed
+        ✓ Manifest generated via AI script engine — full shot data
+        ⚠ Script engine not ready — skeleton (empty shots) created instead
+        ⚠ Generation failed — None returned, Phase D uses existing fallback
+    """
+    style_slug = palette["slug"]
+    generated_dir = STATE / "generated_projects"
+    generated_dir.mkdir(parents=True, exist_ok=True)
+
+    # ── 1. Check existing projects for this style ────────────────────────
+    existing = sorted(generated_dir.glob(f"*{style_slug}*"))
+    for d in existing:
+        manifest_path = d / "manifests" / "episode_manifest.json"
+        if manifest_path.exists():
+            try:
+                data = json.loads(manifest_path.read_text(encoding="utf-8"))
+                episodes = data.get("episodes", [])
+                if episodes and episodes[0].get("shots"):
+                    log.info(f"  ✓ Manifest already for style [{style_slug}]: {d.name}")
+                    return d.name
+            except (json.JSONDecodeError, OSError):
+                continue
+
+    # ── 2. Create new project directory ──────────────────────────────────
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    project_name = f"auto_{style_slug}_{timestamp}"
+    project_dir = generated_dir / project_name
+
+    genres = [
+        "现代职场逆袭", "校园僵尸喜剧", "古风仙侠", "都市悬疑", "奇幻冒险",
+        "赛博朋克", "重生逆袭", "甜宠搞笑", "科幻末世", "民国谍战",
+        "蒸汽朋克童话", "丧尸末世生存", "穿越古言", "未来机甲", "魔法校园",
+    ]
+    genre = random.choice(genres)
+
+    log.info(f"📝 Manifest: creating project [{project_name}] with AI script engine")
+    log.info(f"   genre={genre}, style={palette['name']}")
+
+    (project_dir / "manifests").mkdir(parents=True, exist_ok=True)
+
+    # ── 3. Try AI script engine ─────────────────────────────────────────
+    try:
+        from aicomic.script_engine.registry import get_script_engine
+        from aicomic.script_engine.manifest_writer import (
+            write_screenplay_to_episode_manifest,
+        )
+
+        engine = get_script_engine()
+        if not engine.is_ready():
+            log.warning("  ⚠ Script engine not ready (no API key) — skeleton manifest")
+            _write_skeleton_manifest(project_dir, project_name, genre, palette)
+            return project_name
+
+        # 3a. Generate screenplay
+        logline = f"一个关于{genre}的故事，{palette['description']}"
+        log.info(f"  🎬 Generating screenplay...")
+        screenplay = engine.generate_screenplay(
+            genre=genre,
+            style=palette["name"],
+            logline=logline,
+        )
+        log.info(f"  ✓ Screenplay: {screenplay.title}")
+
+        # 3b. Expand to shotlist
+        num_shots = 6
+        log.info(f"  🎬 Expanding to shotlist ({num_shots} shots)...")
+        scenes = engine.expand_to_shotlist(screenplay, num_shots=num_shots)
+        log.info(f"  ✓ Shotlist: {len(scenes)} shots")
+
+        # 3c. Write manifest
+        write_screenplay_to_episode_manifest(
+            project_root=project_dir,
+            project_id=project_name,
+            season=1,
+            episode_code="E01",
+            screenplay=screenplay,
+            scenes=scenes,
+        )
+
+        # 3d. Write project manifest
+        project_manifest = {
+            "project_id": project_name,
+            "project_name": f"auto_{style_slug}_{timestamp}",
+            "genre": genre,
+            "style_profile": palette["name"],
+            "status": "script_engine_ready",
+            "target_platforms": ["douyin", "kuaishou", "bilibili"],
+            "default_providers": {
+                "image": "manual_web",
+                "video": "manual_web",
+                "tts": "windows_tts",
+            },
+        }
+        (project_dir / "project_manifest.json").write_text(
+            json.dumps(project_manifest, ensure_ascii=False, indent=2)
+        )
+
+        log.info(
+            f"  ✓ Manifest written: manifests/episode_manifest.json "
+            f"({len(scenes)} shots)"
+        )
+        return project_name
+
+    except ImportError as exc:
+        log.warning(f"  ⚠ Script engine import failed: {exc} — skeleton")
+        _write_skeleton_manifest(project_dir, project_name, genre, palette)
+        return project_name
+    except Exception as exc:
+        log.warning(f"  ⚠ Manifest generation failed: {exc}")
+        return None
+
+
 def _resolve_audio(audio_dir: Path, ep_code: str, scene_num: int) -> tuple[Path | None, str]:
     """Resolve best audio file for a scene — prefer _tts.wav over _dub.wav."""
     tts = audio_dir / f"{ep_code}_S{scene_num:02d}_tts.wav"
@@ -967,6 +1129,9 @@ def phase_self_produce():
     log.info(f"🎨 Style: {palette['name']} [{current_idx + 1}/{len(STYLE_PALETTES)}]")
     log.info(f"   Palette: {', '.join(palette['colors'])}")
     log.info(f"   Description: {palette['description']}")
+
+    # ── 1.5. Ensure AI-generated manifest for this style ─────────────
+    _ensure_manifest_for_style(palette)
 
     # ── 2. Prepare output directories ─────────────────────────────────
     produced_dir = STATE / "produced_videos"
