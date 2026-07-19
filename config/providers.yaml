@@ -1,23 +1,23 @@
 image_providers:
-  default: manual_web
+  default: openai_image
   available:
+    - openai_image
     - manual_web
     - local_comfyui_image
-    - openai_image
 
 video_providers:
-  default: manual_web
+  default: seedance
   available:
+    - seedance
     - manual_web
     - local_comfyui_video
-    - sora
 
 tts_providers:
-  default: windows_tts
+  default: openai_tts
   available:
+    - openai_tts
     - windows_tts
     - local_piper_tts
-    - openai_tts
 
 openai_api:
   base_url: https://api.openai.com
@@ -35,6 +35,13 @@ openai_tts:
   response_format: wav
   speed: 1.0
   instructions: 冷静、克制、都市职场动漫语气
+
+seedance:
+  base_url: https://ark.cn-beijing.volces.com
+  timeout_seconds: 120
+  poll_interval_seconds: 5
+  poll_timeout_seconds: 600
+  mode: text2video
 
 local_comfyui_image:
   base_url: http://127.0.0.1:8188
