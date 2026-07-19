@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AIComics - AI-powered manga & animation video generation pipeline. Write stories, generate frames, dub, and publish automatically.">
+  <title>AIComics — AI Manga & Animation Generator</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #14141e;
+      --border: #2a2a3e;
+      --accent: #6c5ce7;
+      --accent2: #00cec9;
+      --text: #e8e8f0;
+      --muted: #8888a0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem; }
+
+    /* Hero */
+    header {
+      text-align: center;
+      padding: 4rem 0 2rem;
+    }
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .tagline {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Badges */
+    .badges {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .badge.primary { border-color: var(--accent); color: var(--accent); }
+
+    /* Cards */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--accent); }
+    .card h3 { font-size: 1.1rem; margin-bottom: 0.6rem; }
+    .card p { color: var(--muted); font-size: 0.9rem; }
+
+    /* Sections */
+    section { margin: 3rem 0; }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent2);
+    }
+
+    .quick-start {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.9rem;
+      color: var(--accent2);
+    }
+    pre {
+      background: #0e0e18;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    pre code { color: #c0c0d0; }
+
+    .links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn.primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn.primary:hover { background: #5a4bd1; }
+    .btn.outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn.outline:hover { border-color: var(--accent); }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2.2rem; }
+      .container { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AIComics</h1>
+      <p class="tagline">
+        🎬 AI-powered manga &amp; animation video generation pipeline.
+        Write a story → auto-split into scenes → AI-generate frames → dub → publish.
+        Runs entirely on open-source models via ComfyUI.
+      </p>
+      <div class="badges">
+        <span class="badge primary">⚡ Zero API Cost</span>
+        <span class="badge">🎨 ComfyUI</span>
+        <span class="badge">🔊 Piper TTS</span>
+        <span class="badge">🐳 Docker</span>
+        <span class="badge">🆓 MIT License</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/chfr19820610-cell/AIComics" class="btn primary">View on GitHub</a>
+        <a href="https://github.com/chfr19820610-cell/AIComics/blob/main/README.md" class="btn outline">Documentation</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>✨ Features</h2>
+      <div class="features">
+        <div class="card">
+          <h3>📖 Story-to-Video</h3>
+          <p>Write any story or prompt. The system automatically splits it into scenes, generates manga-style frames, and assembles them into a video.</p>
+        </div>
+        <div class="card">
+          <h3>🎙️ Auto Dubbing</h3>
+          <p>Zero-cost text-to-speech via Piper TTS. Each character gets distinct voice lines synced to the animation timeline.</p>
+        </div>
+        <div class="card">
+          <h3>🐳 One-Click Deploy</h3>
+          <p>Docker Compose brings up the entire pipeline — ComfyUI sidecar, web interface, and job runner — with a single command.</p>
+        </div>
+        <div class="card">
+          <h3>🔄 Batch Production</h3>
+          <p>Designed for content factories. Queue multiple stories, process them in parallel, and publish results automatically.</p>
+        </div>
+        <div class="card">
+          <h3>🔧 Fully Customizable</h3>
+          <p>Swap models, change art styles, add new workflows — everything is driven by ComfyUI workflows and config files.</p>
+        </div>
+        <div class="card">
+          <h3>📦 One-Person Studio</h3>
+          <p>Built for solo creators. No subscriptions, no API fees, no hidden costs. Your hardware, your content.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🚀 Quick Start</h2>
+      <div class="quick-start">
+        <pre><code># Clone
+git clone https://github.com/chfr19820610-cell/AIComics.git
+cd AIComics
+
+# Launch
+docker compose up -d
+
+# Open http://localhost:8080 and start creating!</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>📊 Pipeline Overview</h2>
+      <div class="quick-start">
+        <pre><code> Story Input (text or prompt)
+    │
+    ▼
+ Scene Splitter ──► Frame Generator (ComfyUI)
+    │                               │
+    ▼                               ▼
+ Script Writer               Image Assembler
+    │                               │
+    ▼                               ▼
+ TTS (Piper) ──► Audio Sync ──► Video Export
+    │
+    ▼
+ Publish / Share</code></pre>
+      </div>
+    </section>
+
+    <footer>
+      <p>Built with ❤️ by <a href="https://github.com/chfr19820610-cell">chfr19820610-cell</a></p>
+      <p style="margin-top: 0.5rem;">MIT Licensed · Free &amp; Open Source</p>
+    </footer>
+  </div>
+</body>
+</html>
