@@ -325,14 +325,14 @@ def build_batch_pipeline():
 
     steps = [
         ("build-season-jobs", [
-            str(VENV_PY), "main.py", "build-season-jobs",
+            str(VENV_PY), "-m", "aicomic.cli.main", "build-season-jobs",
             "--project-id", "我变成僵尸后全校跪求我别死",
         ]),
         ("build-provider-requests", [
-            str(VENV_PY), "main.py", "build-provider-requests",
+            str(VENV_PY), "-m", "aicomic.cli.main", "build-provider-requests",
         ]),
         ("execute-provider-requests", [
-            str(VENV_PY), "main.py", "execute-provider-requests",
+            str(VENV_PY), "-m", "aicomic.cli.main", "execute-provider-requests",
             "--confirm-live",
         ]),
     ]
