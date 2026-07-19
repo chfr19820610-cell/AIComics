@@ -156,6 +156,217 @@ def _run_synthesis(ep_code: str, scenes: list[dict],
         return None
 
 
+# ── Seedance integration helpers ──────────────────────────────────────────
+
+
+def _check_seedance_ready() -> bool:
+    """Quick check: is SEEDANCE_API_KEY configured?"""
+    return bool(os.environ.get("SEEDANCE_API_KEY", "").strip())
+
+
+def _get_character_ref_map() -> dict[str, list[str]]:
+    """Load character name → reference image paths from the character DB.
+
+    Queries the character_views table for primary / front-view images
+    that can be passed to Seedance as character consistency references.
+    """
+    char_db = STATE / "character.db"
+    if not char_db.exists():
+        return {}
+    try:
+        import sqlite3
+
+        conn = sqlite3.connect(str(char_db))
+        conn.row_factory = sqlite3.Row
+        ref_map: dict[str, list[str]] = {}
+
+        chars = conn.execute(
+            "SELECT c.id, c.name FROM characters c "
+            "WHERE c.id IN (SELECT DISTINCT character_id FROM character_views)"
+        ).fetchall()
+        for row in chars:
+            cid = row["id"]
+            name = row["name"]
+            view = conn.execute(
+                "SELECT image_path FROM character_views "
+                "WHERE character_id = ? AND is_primary = 1 LIMIT 1",
+                (cid,),
+            ).fetchone()
+            if not view:
+                view = conn.execute(
+                    "SELECT image_path FROM character_views "
+                    "WHERE character_id = ? AND angle = 'front' LIMIT 1",
+                    (cid,),
+                ).fetchone()
+            if view is not None:
+                path = view["image_path"]
+                if path and Path(path).exists():
+                    ref_map.setdefault(name, []).append(path)
+        conn.close()
+        if ref_map:
+            log.info(f"  角色参考图: {len(ref_map)} characters")
+        return ref_map
+    except Exception as exc:
+        log.warning(f"  ⚠ character DB query failed: {exc}")
+        return {}
+
+
+def _run_seedance_synthesis(
+    ep_code: str,
+    scenes: list[dict],
+    image_dir: Path,
+    audio_dir: Path,
+    output_path: Path,
+) -> dict | None:
+    """Synthesize episode by generating each scene via Seedance, then
+    layering TTS audio and burning subtitles via FFmpeg.
+
+    Pipeline:
+      1. For each scene → call SeedanceProvider (text+image → video clip)
+      2. Overlay TTS audio on each Seedance clip
+      3. Concatenate all scene clips
+      4. Burn subtitles (ASS)
+      5. Verify output
+
+    Returns report dict with model_type='seedance', or None on failure.
+    """
+    try:
+        from aicomic.providers.seedance_provider import SeedanceProvider
+    except ImportError:
+        log.warning("  ⚠ SeedanceProvider not available")
+        return None
+
+    provider = SeedanceProvider()
+    if not provider.is_ready():
+        log.warning("  ⚠ Seedance provider not ready (no API key?)")
+        return None
+
+    from aicomic.video_synthesis.config import FFMPEG, TEMP_DIR
+    from aicomic.video_synthesis.pipeline import phase_concat, phase_burn_subtitles, verify_video
+    from aicomic.video_synthesis.scene import get_audio_duration, reencode_audio
+    from aicomic.video_synthesis.subtitles import write_ass
+
+    import shutil
+
+    temp_ep_dir = TEMP_DIR / ep_code
+    temp_scenes_dir = temp_ep_dir / "scenes"
+    temp_ep_dir.mkdir(parents=True, exist_ok=True)
+    temp_scenes_dir.mkdir(exist_ok=True)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    providers_config = BASE / "providers.yaml"
+    if not providers_config.exists():
+        providers_config = TEMP_DIR / "_empty_providers.yaml"
+        providers_config.write_text("# empty\n", encoding="utf-8")
+
+    # ── Phase 0: Resolve durations ─────────────────────────────────────
+    durations: list[float] = []
+    for s in scenes:
+        audio_path = audio_dir / s["audio_name"]
+        ad = get_audio_duration(audio_path) if audio_path.exists() else 5.0
+        durations.append(max(5.0, ad))
+
+    # ── Phase 1: Generate each scene via Seedance ───────────────────────
+    clip_paths: list[Path] = []
+    for i, (scene, dur) in enumerate(zip(scenes, durations)):
+        img_path = image_dir / scene["image_name"]
+        if not img_path.exists():
+            log.warning(f"  ✗ S{scene['num']:02d}: image missing {img_path}")
+            return None
+
+        prompt = scene.get("subtitle", "")
+        if not prompt:
+            prompt = f"Scene {scene['num']}, cinematic motion, smooth camera movement"
+
+        clip_path = temp_scenes_dir / f"scene_{scene['num']:02d}.mp4"
+
+        request_item = {
+            "payload": {
+                "prompt": prompt,
+                "first_frame": str(img_path),
+                "output_path": str(clip_path),
+                "duration": dur,
+            }
+        }
+
+        try:
+            log.info(f"  🎬 S{scene['num']:02d}: Seedance generating ({dur:.1f}s)...")
+            result = provider.execute_request(request_item, providers_config)
+            if result and result.get("output_path"):
+                clip_paths.append(clip_path)
+                size_kb = clip_path.stat().st_size / 1024
+                log.info(f"  ✓ S{scene['num']:02d}: {size_kb:.0f} KB")
+            else:
+                log.warning(f"  ✗ S{scene['num']:02d}: Seedance returned no output")
+                return None
+        except Exception as exc:
+            log.warning(f"  ✗ S{scene['num']:02d}: Seedance failed: {exc}")
+            return None
+
+    # ── Phase 2: Overlay TTS audio on each Seedance clip ────────────────
+    audio_clips: list[Path] = []
+    for i, (scene, dur) in enumerate(zip(scenes, durations)):
+        video_path = clip_paths[i]
+        audio_path = audio_dir / scene["audio_name"]
+        if not audio_path.exists():
+            audio_clips.append(video_path)
+            continue
+
+        aac_temp = temp_scenes_dir / f"audio_{scene['num']:02d}.aac"
+        if not reencode_audio(audio_path, aac_temp):
+            log.warning(f"  ⚠ S{scene['num']:02d}: audio re-encode failed, using raw clip")
+            audio_clips.append(video_path)
+            continue
+
+        mixed = temp_scenes_dir / f"scene_{scene['num']:02d}_mixed.mp4"
+        cmd = [
+            str(FFMPEG), "-y",
+            "-i", str(video_path),
+            "-i", str(aac_temp),
+            "-c:v", "copy",
+            "-c:a", "aac",
+            "-map", "0:v:0",
+            "-map", "1:a:0",
+            "-shortest",
+            str(mixed),
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode == 0 and mixed.stat().st_size > 0:
+            audio_clips.append(mixed)
+        else:
+            log.warning(f"  ⚠ S{scene['num']:02d}: audio overlay failed, using raw clip")
+            audio_clips.append(video_path)
+
+    # ── Phase 3: Concatenate all scene clips ───────────────────────────
+    log.info("  Concat scenes...")
+    concat_path = temp_ep_dir / "episode_concat.mp4"
+    if not phase_concat(audio_clips, concat_path):
+        log.warning("  ✗ Concat failed")
+        return None
+
+    # ── Phase 4: Burn subtitles ────────────────────────────────────────
+    subtitles = [s.get("subtitle", "") for s in scenes]
+    sub_count = sum(1 for t in subtitles if t)
+    if sub_count > 0:
+        sub_path = temp_ep_dir / "episode.ass"
+        write_ass(sub_path, durations, subtitles)
+        if not phase_burn_subtitles(concat_path, sub_path, output_path, "ass"):
+            return None
+    else:
+        shutil.copy2(concat_path, output_path)
+
+    # ── Phase 5: Verify ────────────────────────────────────────────────
+    info = verify_video(output_path)
+    info["model_type"] = "seedance"
+    if info["size_mb"] > 1.0:
+        info["status"] = "ok"
+    else:
+        info["status"] = "small_output"
+
+    log.info(f"  ✓ {ep_code}: Seedance video complete — {info.get('duration', '?')}, {info['size_mb']:.2f} MB")
+    return info
+
+
 def phase_production():
     """每30分钟: 检查资产状态 + 记录日志"""
     total_img,total_aud=count("images"),count("audio")
@@ -251,12 +462,28 @@ def phase_self_produce():
         # Also create a stable symlink-style label for the latest per-episode
         latest_link = produced_dir / f"{ep_code}_latest_{style_slug}.mp4"
 
-        log.info(f"  🎬 Synthesizing {ep_code} ({len(scenes)} scenes, {palette['name']}) → {output_name}")
+        # ── Determine synthesis engine: Seedance (cloud) or FFmpeg (local) ──
+        seedance_available = _check_seedance_ready()
+        model_type = "seedance" if seedance_available else "ffmpeg"
 
-        report = _run_synthesis(
-            ep_code, scenes, image_dir, audio_dir,
-            output_path, subtitle_format="ass",
-        )
+        log.info(f"  🎬 Synthesizing {ep_code} ({len(scenes)} scenes, {palette['name']}) → {output_name}")
+        log.info(f"  🔧 Engine: {model_type}")
+
+        report = None
+        if seedance_available:
+            report = _run_seedance_synthesis(
+                ep_code, scenes, image_dir, audio_dir,
+                output_path,
+            )
+            if report is None:
+                log.info(f"  ⚠ Seedance failed, falling back to FFmpeg")
+                model_type = "ffmpeg"
+
+        if report is None:
+            report = _run_synthesis(
+                ep_code, scenes, image_dir, audio_dir,
+                output_path, subtitle_format="ass",
+            )
 
         if report and report.get("status") in ("ok", "small_output"):
             label_data = {
@@ -271,6 +498,7 @@ def phase_self_produce():
                 "duration": report.get("duration", "?"),
                 "size_mb": report.get("size_mb", 0),
                 "status": report.get("status", "ok"),
+                "model_type": model_type,
             }
             label_path.write_text(json.dumps(label_data, ensure_ascii=False, indent=2))
             # Symlink the latest — use copy if symlinks fail
@@ -282,11 +510,13 @@ def phase_self_produce():
                 pass
 
             synthesis_results.append({"ep_code": ep_code, "status": "ok",
-                                      "path": str(output_path), "size_mb": report.get("size_mb", 0)})
+                                      "path": str(output_path), "size_mb": report.get("size_mb", 0),
+                                      "model_type": model_type})
             log.info(f"  ✓ {ep_code} → {output_path.name}  ({report.get('duration', '?'):s}, {report.get('bitrate', '?')})")
         else:
-            synthesis_results.append({"ep_code": ep_code, "status": "failed"})
-            log.warning(f"  ✗ {ep_code} synthesis failed")
+            synthesis_results.append({"ep_code": ep_code, "status": "failed",
+                                      "model_type": model_type})
+            log.warning(f"  ✗ {ep_code} synthesis failed ({model_type})")
 
     # ── 5. Write per-round summary ────────────────────────────────────
     round_data = {
@@ -299,10 +529,12 @@ def phase_self_produce():
         "ok_count": sum(1 for r in synthesis_results if r["status"] == "ok"),
         "failed_count": sum(1 for r in synthesis_results if r["status"] == "failed"),
         "skipped_count": len(EPISODES) - len(synthesis_results),
+        "models_used": sorted({r.get("model_type", "ffmpeg") for r in synthesis_results}),
     }
     round_log_path = produced_dir / f"round_{style_slug}_{timestamp}.json"
     round_log_path.write_text(json.dumps(round_data, ensure_ascii=False, indent=2))
-    log.info(f"📝 Round summary: {round_log_path.name} — {round_data['ok_count']} ok, {round_data['failed_count']} failed")
+    model_summary = ", ".join(round_data["models_used"])
+    log.info(f"📝 Round summary: {round_log_path.name} — {round_data['ok_count']} ok, {round_data['failed_count']} failed [{model_summary}]")
 
     # ── 6. Self-production: create new project for next cycle ─────────
     # Pick a random genre from the expanded list
