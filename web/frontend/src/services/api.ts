@@ -32,6 +32,7 @@ import type {
   VersionBoardPayload,
   VersionDiffPayload,
   VersionRollbackResult,
+  VideoListPayload,
 } from '@/types/api';
 
 const apiBaseUrl =
@@ -519,4 +520,14 @@ export async function getVersionBoard(episodeCode: string): Promise<VersionBoard
   return fetchJson<VersionBoardPayload>(
     `/api/creator/versions/board?episode_code=${encodeURIComponent(episodeCode)}`,
   );
+}
+
+// ── Video preview API ──────────────────────────────────────────────────
+
+export async function getVideos(): Promise<VideoListPayload> {
+  return fetchJson<VideoListPayload>('/api/videos');
+}
+
+export function buildVideoStreamUrl(filename: string): string {
+  return `${apiBaseUrl}/api/videos/stream/${encodeURIComponent(filename)}`;
 }

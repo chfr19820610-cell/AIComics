@@ -61,6 +61,7 @@ const PAGE_TITLES: Record<string, string> = {
   '/batches': '批次监控',
   '/provider': '服务商执行',
   '/review': '数据复盘',
+  '/videos': '视频库',
   '/creator': '创作台',
   '/login': '登录',
 };

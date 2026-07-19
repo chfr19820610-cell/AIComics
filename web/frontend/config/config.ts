@@ -22,6 +22,7 @@ export default defineConfig({
     { name: '批次', path: '/batches', component: './Batches' },
     { name: '服务商', path: '/provider', component: './Provider' },
     { name: '复盘', path: '/review', component: './Review' },
+    { name: '视频库', path: '/videos', component: './VideoLibrary' },
   ],
   npmClient: 'npm',
   proxy: {

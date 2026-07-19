@@ -1025,3 +1025,18 @@ export type AuthSessionPayload = {
   login_source?: string;
   detail?: string;
 };
+
+// ── Video preview types ────────────────────────────────────────────────
+
+export type VideoRecord = {
+  filename: string;
+  size_bytes: number;
+  mtime: number;
+  is_symlink: boolean;
+  real_filename: string | null;
+};
+
+export type VideoListPayload = {
+  items: VideoRecord[];
+  count: number;
+};

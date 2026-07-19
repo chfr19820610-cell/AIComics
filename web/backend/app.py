@@ -2,9 +2,12 @@ from __future__ import annotations
 
 from typing import Any
 
+import os
+from pathlib import Path
+
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, Response
 from pydantic import BaseModel
 
 from web.backend.auth.auth_middleware import get_request_user, register_auth_middleware
@@ -737,6 +740,52 @@ def batches_execution_archives_cleanup(
 @app.get("/api/providers/executions")
 def provider_executions() -> dict[str, Any]:
     return load_provider_executions(settings)
+
+
+# ── Video preview API ─────────────────────────────────────────────────────
+
+
+def _resolve_videos_dir() -> Path:
+    """Resolve produced_videos/ under the state directory."""
+    return settings.state_dir / "produced_videos"
+
+
+@app.get("/api/videos")
+def list_videos() -> dict[str, Any]:
+    """List all MP4 files in produced_videos/ with metadata."""
+    videos_dir = _resolve_videos_dir()
+    if not videos_dir.is_dir():
+        return {"items": [], "count": 0}
+
+    items: list[dict[str, Any]] = []
+    for entry in sorted(videos_dir.iterdir(), key=lambda p: p.stat().st_mtime, reverse=True):
+        if entry.suffix.lower() == ".mp4" and not entry.name.startswith("."):
+            stat = entry.stat()
+            # Resolve symlinks so the stream endpoint gets the real file
+            real_path = entry.resolve()
+            items.append({
+                "filename": entry.name,
+                "size_bytes": stat.st_size,
+                "mtime": stat.st_mtime,
+                "is_symlink": entry.is_symlink(),
+                "real_filename": real_path.name if entry.is_symlink() else None,
+            })
+
+    return {"items": items, "count": len(items)}
+
+
+@app.get("/api/videos/stream/{filename:path}")
+def stream_video(filename: str) -> Response:
+    """Stream a single MP4 file from produced_videos/ with byte-range support."""
+    videos_dir = _resolve_videos_dir()
+    # Prevent directory traversal
+    safe_path = (videos_dir / filename).resolve()
+    if not str(safe_path).startswith(str(videos_dir.resolve())):
+        raise HTTPException(status_code=400, detail="Invalid path")
+    if not safe_path.is_file() or safe_path.suffix.lower() != ".mp4":
+        raise HTTPException(status_code=404, detail="Video not found")
+
+    return FileResponse(str(safe_path), media_type="video/mp4")
 
 
 def ensure_permission(request: Request) -> None:
