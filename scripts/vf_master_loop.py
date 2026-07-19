@@ -693,6 +693,18 @@ def _generate_missing_assets_parallel(
         from aicomic.video_synthesis.config import EPISODE_SUBTITLES
     except ImportError:
         EPISODE_SUBTITLES = {}
+
+    # Load current style description for Phase A image prompt injection
+    # Phase D saves the style cycle; Phase A reads it to influence image generation
+    current_style_desc = ""
+    try:
+        style_idx = _get_style_cycle()
+        if STYLE_PALETTES:
+            palette = STYLE_PALETTES[style_idx % len(STYLE_PALETTES)]
+            current_style_desc = palette["description"]
+            log.info(f"  🎨 Style-aware prompt: injecting '{palette['name']}' into image generation")
+    except Exception:
+        pass
     
     for ep_code, scene_count in EPISODES.items():
         img_dir = STATE / "demo_assets" / ep_code / "images"
@@ -713,7 +725,7 @@ def _generate_missing_assets_parallel(
             if img_missing:
                 # Build a prompt for this scene
                 dialogue = subtitles[i - 1] if i - 1 < len(subtitles) else ""
-                prompt = f"动漫插画风，剧集{ep_code}，场景{i}。{dialogue}。高对比、强戏剧张力、短剧封面级质感。"
+                prompt = f"动漫插画风，剧集{ep_code}，场景{i}。{dialogue}。高对比、强戏剧张力、短剧封面级质感。{current_style_desc}"
                 tasks.append({
                     "type": "image",
                     "ep_code": ep_code,

@@ -22,6 +22,9 @@ BGM_DIR = SYSTEM_ROOT / "assets" / "bgm"
 # Each entry: (filename, mood_tags, description)
 # Mood tags help auto-select BGM per episode
 BGM_TRACKS = [
+    # Demo / Universal (fallback)
+    ("demo_bgm.wav", ["ambient", "calm", "universal", "dramatic", "cinematic"], "Universal ambient demo BGM — falls back for any episode"),
+
     # Dramatic / Cinematic
     ("bgm_dramatic_01.mp3", ["dramatic", "cinematic", "narrative"], "A Bizarre Diary — dramatic orchestral cinematic"),
     ("bgm_dramatic_02.mp3", ["dramatic", "cinematic", "subtle"], "A Bizarre Diary UnderscoreMix — softer dramatic underscore"),

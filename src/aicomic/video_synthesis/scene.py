@@ -7,6 +7,7 @@ Each scene is a combination of:
 - Audio track (44100 Hz re-encoded, with optional voice enhancement)
 """
 
+import random
 import subprocess
 from pathlib import Path
 
@@ -106,10 +107,12 @@ def build_scene_video(
     Build a single scene video clip.
 
     Applies:
-    - Ken Burns zoom (100% → 105%) via zoompan filter
+    - Ken Burns zoom (random 103% → 108%) via zoompan filter
+    - Random camera pan (30% chance horizontal/vertical)
     - Centered crop to maintain 1280:720 aspect ratio
     - Audio at 44100 Hz AAC (with optional voice enhancement)
     - LUT color grading (if configured)
+    - Fade in/out 0.3s on each scene
 
     Args:
         clip_path: Output MP4 path for this scene.
@@ -122,7 +125,16 @@ def build_scene_video(
         True on success, False on failure.
     """
     frames = int(duration * FPS)
-    zoom_expr = f"1+0.05*on/{frames}"  # 100% → 105% over scene duration
+    # Random Ken Burns zoom: 103% to 108% (was fixed 105%)
+    zoom_max = random.uniform(1.03, 1.08)
+    zoom_expr = f"1+({zoom_max}-1)*on/{frames}"
+
+    # Random pan starting offset for lens movement diversity
+    # 30% chance each of horizontal/vertical pan
+    has_pan_x = random.random() > 0.7
+    has_pan_y = random.random() > 0.7
+    pan_x = random.uniform(50, 200) if has_pan_x else 0
+    pan_y = random.uniform(30, 100) if has_pan_y else 0
 
     # Re-encode audio with optional voice enhancement
     aac_temp = clip_path.with_suffix(".aac")
@@ -138,10 +150,14 @@ def build_scene_video(
             shutil.copy2(aac_temp, debug_path)
 
     # Build video filter chain
+    FADE_DURATION = 0.3
     vf_parts = [
         f"scale={VIDEO_SIZE}:force_original_aspect_ratio=increase",
         f"crop={VIDEO_SIZE}",
-        f"zoompan=z='{zoom_expr}':d={frames}:s={VIDEO_SIZE_X}:fps={FPS}",
+        f"zoompan=z='{zoom_expr}':d={frames}:s={VIDEO_SIZE_X}:fps={FPS}:x='{pan_x}+(iw/2-{pan_x})*on/{frames}':y='{pan_y}+(ih/2-{pan_y})*on/{frames}'",
+        # Fade in/out 0.3s for professional look (only if duration is long enough)
+        f"fade=t=in:st=0:d={FADE_DURATION}",
+        f"fade=t=out:st={max(0, duration - FADE_DURATION)}:d={min(FADE_DURATION, duration / 2)}",
     ]
 
     # Apply LUT color grading if LUT file exists

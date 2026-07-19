@@ -224,6 +224,7 @@ def verify_video(video_path: Path) -> dict:
         "path": str(video_path),
         "size_bytes": video_path.stat().st_size,
         "size_mb": video_path.stat().st_size / (1024 * 1024),
+        "duration": "?",  # default, updated below if FFmpeg returns Duration info
     }
     for line in result.stderr.split("\n"):
         if "Duration" in line:
