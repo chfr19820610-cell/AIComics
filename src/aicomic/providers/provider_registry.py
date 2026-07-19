@@ -112,6 +112,64 @@ class ProviderRegistry:
             return self.get(mapped)
         return None
 
+    # ── Cloud-first with local fallback ────────────────────────────────
+
+    FALLBACK_MAP: dict[str, str] = {
+        "openai_image": "local_comfyui_image",
+        "openai_tts": "local_piper_tts",
+        "seedance": "local_comfyui_video",
+        "openai": "comfyui",
+    }
+
+    def resolve_with_fallback(
+        self,
+        provider_name: str,
+    ) -> tuple[IProvider | None, str | None]:
+        """Try cloud provider first, fall back to local if unavailable.
+
+        Returns (provider, actual_name_used).
+        - If cloud provider is ready → use it
+        - If cloud provider needs auth/key → fall back to local
+        - If no fallback available → return the cloud provider anyway (dry-run)
+
+        The caller should call provider.validate_config() to check readiness
+        before dispatching a job.
+        """
+        # Try primary
+        primary = self.resolve_for_job(provider_name)
+        if primary is not None:
+            cfg = primary.validate_config()
+            if cfg.get("ready", False):
+                return primary, provider_name
+
+        # Try fallback
+        fallback_name = self.FALLBACK_MAP.get(provider_name)
+        if fallback_name is None:
+            # Also check remapped name
+            NAME_MAP: dict[str, str] = {
+                "openai_image": "openai",
+                "openai_tts": "openai",
+                "local_comfyui_image": "comfyui",
+                "local_comfyui_video": "comfyui",
+                "local_piper_tts": "piper_tts",
+                "manual_web": "manual",
+                "windows_tts": "manual",
+                "sora": "openai",
+            }
+            remapped = NAME_MAP.get(provider_name)
+            if remapped:
+                fallback_name = self.FALLBACK_MAP.get(remapped)
+            if fallback_name is None:
+                # No fallback, return primary (will dry-run)
+                return primary, provider_name
+
+        fallback = self.resolve_for_job(fallback_name)
+        if fallback is not None:
+            return fallback, fallback_name
+
+        # Fallback not registered either, return primary
+        return primary, provider_name
+
     def set_project_root(self, root: Path) -> None:
         """Set project root for providers that need it."""
         self._project_root = root
