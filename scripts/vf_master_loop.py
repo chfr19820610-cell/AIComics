@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🏭 视频工厂主循环 v2.1 — 无限生产+发布+赚钱+自生产
+🏭 视频工厂主循环 v2.2 — 无限生产+视频合成+风格轮换+自生产
 
 工作原理:
   while True:
@@ -15,10 +15,17 @@
     Phase C - 赚钱 (每6小时)
       扫描 bounty, 检查收款
 
-    Phase D - 自生产 (每轮, 30/30就绪时激活)
-      1. 检查 generated_projects/ 中是否有待生产项目
-      2. 有→按时间顺序派发 build-season-jobs
-      3. 全部清空→用随机参数 init-project 创建新演示内容
+    Phase D - 自生产+视频合成 (每轮, 30/30就绪时激活)
+      1. 风格轮换: Painterly 3D Noir → Hybrid Comic Pop → Cinematic Liquid Glass
+      2. 用 state/demo_assets/ 下的图片+配音合成视频 (FFmpeg)
+      3. 产出存到 state/produced_videos/, 带有色板标签和元数据
+      4. 每轮产出后写 round_<style>_<timestamp>.json 到 produced_videos/
+      5. 通过 init-project CLI 创建新项目进入下一生产周期
+
+风格色板来自 aicg-handbook (峰哥AICG动画创作手册):
+  - Painterly 3D Noir: 油画质感·暗黑氛围·#E94560锈红
+  - Hybrid Comic Pop: 漫画弹入风·高对比·#FF3366霓虹
+  - Cinematic Liquid Glass: 液态玻璃·梦幻渐变·#7EB8D8冰蓝
 
 一切自动化, 日志在 logs/vf_loop.log
 """
@@ -58,6 +65,97 @@ def run(*a):
     if r.returncode!=0: log.warning(f"⚠️ exit {r.returncode}: {r.stderr[:200]}")
     return r.returncode
 
+# ── Style rotation palettes from aicg-handbook ────────────────────────────
+STYLE_PALETTES = [
+    {
+        "name": "Painterly 3D Noir",
+        "slug": "painterly-3d-noir",
+        "colors": ["#1A1A2E", "#16213E", "#E94560", "#0F3460", "#FFD700"],
+        "description": "oil painting texture, dramatic noir lighting, deep shadows, moody atmosphere, rich dark tones",
+    },
+    {
+        "name": "Hybrid Comic Pop",
+        "slug": "hybrid-comic-pop",
+        "colors": ["#FF3366", "#00D4AA", "#FFD700", "#1A1A2E", "#FFFFFF"],
+        "description": "bold comic style, pop art colors, cel-shaded, dynamic angular lines, high contrast",
+    },
+    {
+        "name": "Cinematic Liquid Glass",
+        "slug": "cinematic-liquid-glass",
+        "colors": ["#E8F4F8", "#B8D4E3", "#7EB8D8", "#4A90A4", "#F0FFF0"],
+        "description": "translucent glass textures, refractive light, liquid flow, dreamy gradient, ethereal glow",
+    },
+]
+
+_STYLE_CYCLE_PATH = STATE / "produced_videos" / ".style_cycle.json"
+
+def _get_style_cycle() -> int:
+    """Load or init the style rotation index."""
+    if _STYLE_CYCLE_PATH.exists():
+        try:
+            return json.loads(_STYLE_CYCLE_PATH.read_text()).get("index", 0)
+        except Exception:
+            return 0
+    return 0
+
+def _save_style_cycle(idx: int, name: str):
+    """Persist style rotation index."""
+    _STYLE_CYCLE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    _STYLE_CYCLE_PATH.write_text(json.dumps({"index": idx, "style": name}))
+
+
+def _resolve_audio(audio_dir: Path, ep_code: str, scene_num: int) -> tuple[Path | None, str]:
+    """Resolve best audio file for a scene — prefer _tts.wav over _dub.wav."""
+    tts = audio_dir / f"{ep_code}_S{scene_num:02d}_tts.wav"
+    if tts.exists():
+        return tts, tts.name
+    dub = audio_dir / f"{ep_code}_S{scene_num:02d}_dub.wav"
+    if dub.exists():
+        return dub, dub.name
+    return None, ""
+
+
+def _build_scene_list(image_dir: Path, audio_dir: Path, ep_code: str,
+                      scene_count: int,
+                      subtitles: list[str] | None = None) -> list[dict]:
+    """Build scene dicts for one episode, probing both _tts.wav and _dub.wav."""
+    scenes = []
+    for i in range(1, scene_count + 1):
+        img = image_dir / f"{ep_code}_S{i:02d}_key.png"
+        if not img.exists():
+            break
+        aud_path, aud_name = _resolve_audio(audio_dir, ep_code, i)
+        if aud_path is None:
+            break
+        sub = subtitles[i - 1] if subtitles and i - 1 < len(subtitles) else ""
+        scenes.append({
+            "num": i,
+            "image_name": img.name,
+            "audio_name": aud_name,
+            "subtitle": sub,
+            "duration": None,
+        })
+    return scenes
+
+
+def _run_synthesis(ep_code: str, scenes: list[dict],
+                   image_dir: Path, audio_dir: Path,
+                   output_path: Path,
+                   subtitle_format: str = "ass") -> dict | None:
+    """Run video synthesis with safe import + error handling."""
+    try:
+        from aicomic.video_synthesis.pipeline import synthesize_episode as _synth
+    except ImportError:
+        log.warning("  ⚠ aicomic.video_synthesis not available — skip synthesis")
+        return None
+    try:
+        return _synth(ep_code, scenes, image_dir, audio_dir,
+                      output_path, subtitle_format)
+    except Exception as e:
+        log.warning(f"  ⚠ synthesis exception: {e}")
+        return None
+
+
 def phase_production():
     """每30分钟: 检查资产状态 + 记录日志"""
     total_img,total_aud=count("images"),count("audio")
@@ -95,71 +193,144 @@ def phase_publish():
         log.info("暂无发布包")
 
 def phase_self_produce():
-    """Phase D: 当 30/30 全部就绪时, 自动创建新内容"""
+    """Phase D: when 30/30 ready → synthesize videos + style rotation + self-production"""
     total_img, total_aud = count("images"), count("audio")
     expected = sum(EPISODES.values())
 
-    # 只有当前资产全部就绪时才激活
+    # Only activate when all assets are ready
     if total_img < expected or total_aud < expected:
         return False
 
-    log.info("🎯 Phase D: 30/30全部就绪，检查自生产机会")
+    log.info("🎯 Phase D: 30/30 all assets ready — running video synthesis pipeline")
 
-    # 1) 优先检查 generated_projects/ 中的待生产项目
-    generated_root = STATE / "generated_projects"
-    if generated_root and generated_root.exists():
-        for proj_dir in sorted(generated_root.iterdir(), key=lambda p: p.stat().st_mtime):
-            if not proj_dir.is_dir():
-                continue
-            manifest_file = proj_dir / "manifests" / "episode_manifest.json"
-            if not manifest_file.exists():
-                continue
+    # ── 1. Style rotation ─────────────────────────────────────────────
+    current_idx = _get_style_cycle()
+    palette = STYLE_PALETTES[current_idx % len(STYLE_PALETTES)]
+    next_idx = (current_idx + 1) % len(STYLE_PALETTES)
+    _save_style_cycle(next_idx, palette["name"])
+
+    log.info(f"🎨 Style: {palette['name']} [{current_idx + 1}/{len(STYLE_PALETTES)}]")
+    log.info(f"   Palette: {', '.join(palette['colors'])}")
+    log.info(f"   Description: {palette['description']}")
+
+    # ── 2. Prepare output directories ─────────────────────────────────
+    produced_dir = STATE / "produced_videos"
+    produced_dir.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    # ── 3. Build subtitles map from config ────────────────────────────
+    try:
+        from aicomic.video_synthesis.config import EPISODE_SUBTITLES
+    except ImportError:
+        EPISODE_SUBTITLES = {}
+
+    # ── 4. Discover episodes with complete assets and synthesize ──────
+    style_slug = palette["slug"]
+    synthesis_results = []
+    for ep_code in sorted(EPISODES.keys()):
+        image_dir = STATE / "demo_assets" / ep_code / "images"
+        audio_dir = STATE / "demo_assets" / ep_code / "audio"
+        scene_count = EPISODES[ep_code]
+
+        if not image_dir.exists() or not audio_dir.exists():
+            log.info(f"  {ep_code}: asset dirs missing, skipping")
+            continue
+
+        subtitles = EPISODE_SUBTITLES.get(ep_code, [""] * scene_count)
+        scenes = _build_scene_list(image_dir, audio_dir, ep_code, scene_count, subtitles)
+
+        if len(scenes) < scene_count:
+            log.info(f"  {ep_code}: only {len(scenes)}/{scene_count} scenes ready, skipping")
+            continue
+
+        # Output path with style label
+        output_name = f"{ep_code}_{style_slug}_{timestamp}.mp4"
+        output_path = produced_dir / output_name
+        label_path = output_path.with_suffix(".label.json")
+
+        # Also create a stable symlink-style label for the latest per-episode
+        latest_link = produced_dir / f"{ep_code}_latest_{style_slug}.mp4"
+
+        log.info(f"  🎬 Synthesizing {ep_code} ({len(scenes)} scenes, {palette['name']}) → {output_name}")
+
+        report = _run_synthesis(
+            ep_code, scenes, image_dir, audio_dir,
+            output_path, subtitle_format="ass",
+        )
+
+        if report and report.get("status") in ("ok", "small_output"):
+            label_data = {
+                "episode": ep_code,
+                "style": palette["name"],
+                "style_slug": style_slug,
+                "style_index": current_idx % len(STYLE_PALETTES),
+                "palette": palette["colors"],
+                "timestamp": timestamp,
+                "synthesized_at": datetime.now().isoformat(),
+                "scenes": len(scenes),
+                "duration": report.get("duration", "?"),
+                "size_mb": report.get("size_mb", 0),
+                "status": report.get("status", "ok"),
+            }
+            label_path.write_text(json.dumps(label_data, ensure_ascii=False, indent=2))
+            # Symlink the latest — use copy if symlinks fail
             try:
-                with open(manifest_file) as f:
-                    manifest = json.load(f)
-                project_id = manifest.get("project_id", proj_dir.name)
-                episodes = manifest.get("episodes", [])
-                incomplete = [ep for ep in episodes
-                              if ep.get("status") in ("idea", "script_ready", "shotlist_ready")]
-                if incomplete:
-                    log.info(f"📦 发现待生产项目 [{project_id}]: {len(incomplete)}集待生产")
-                    code = run("build-season-jobs", "--episode-manifest", str(manifest_file))
-                    if code == 0:
-                        log.info(f"✅ Phase D: [{project_id}] 任务已派发")
-                    else:
-                        log.warning(f"⚠️ Phase D: [{project_id}] build-season-jobs 失败 ({code})")
-                    return True
-            except Exception as e:
-                log.warning(f"⚠️ Phase D: 读取 {manifest_file} 出错: {e}")
+                if latest_link.exists() or latest_link.is_symlink():
+                    latest_link.unlink()
+                latest_link.symlink_to(output_path.name)
+            except (OSError, NotImplementedError):
+                pass
 
-    # 2) 全部清空 — 用随机参数创建新演示项目
-    log.info("🎲 Phase D: 全部清空，创建新演示内容")
+            synthesis_results.append({"ep_code": ep_code, "status": "ok",
+                                      "path": str(output_path), "size_mb": report.get("size_mb", 0)})
+            log.info(f"  ✓ {ep_code} → {output_path.name}  ({report.get('duration', '?'):s}, {report.get('bitrate', '?')})")
+        else:
+            synthesis_results.append({"ep_code": ep_code, "status": "failed"})
+            log.warning(f"  ✗ {ep_code} synthesis failed")
+
+    # ── 5. Write per-round summary ────────────────────────────────────
+    round_data = {
+        "timestamp": timestamp,
+        "style": palette["name"],
+        "style_index": current_idx % len(STYLE_PALETTES),
+        "palette": palette["colors"],
+        "total_episodes": len(EPISODES),
+        "synthesis_results": synthesis_results,
+        "ok_count": sum(1 for r in synthesis_results if r["status"] == "ok"),
+        "failed_count": sum(1 for r in synthesis_results if r["status"] == "failed"),
+        "skipped_count": len(EPISODES) - len(synthesis_results),
+    }
+    round_log_path = produced_dir / f"round_{style_slug}_{timestamp}.json"
+    round_log_path.write_text(json.dumps(round_data, ensure_ascii=False, indent=2))
+    log.info(f"📝 Round summary: {round_log_path.name} — {round_data['ok_count']} ok, {round_data['failed_count']} failed")
+
+    # ── 6. Self-production: create new project for next cycle ─────────
+    # Pick a random genre from the expanded list
     genres = [
         "现代职场逆袭", "校园僵尸喜剧", "古风仙侠", "都市悬疑", "奇幻冒险",
         "赛博朋克", "重生逆袭", "甜宠搞笑", "科幻末世", "民国谍战",
+        "蒸汽朋克童话", "丧尸末世生存", "穿越古言", "未来机甲", "魔法校园",
     ]
-    styles = [
-        "日系青春动画", "古风水墨", "赛博朋克", "复古手绘", "厚涂油画",
-        "3D卡通渲染", "美式漫画", "水彩风格", "像素艺术", "浮世绘",
-    ]
-
     genre = random.choice(genres)
-    style = random.choice(styles)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    project_name = f"auto_{timestamp}"
+    project_name = f"auto_{palette['slug']}_{timestamp}"
 
-    log.info(f"🎨 参数: genre={genre}, style={style}, name={project_name}")
+    log.info(f"🎲 Phase D: Creating new project for next cycle → {project_name}")
+    log.info(f"   genre={genre}, style={palette['name']}")
+
+    # Use the current style's name as the project style parameter
     code = run(
         "init-project",
         "--project-name", project_name,
         "--genre", genre,
-        "--style", style,
+        "--style", palette["name"],
         "--episode-target-count", "3",
     )
     if code == 0:
-        log.info(f"✅ Phase D: 新项目 [{project_name}] ({genre}/{style}) 创建成功")
+        log.info(f"✅ Phase D: New project [{project_name}] ({genre}/{palette['name']}) created")
+        log.info(f"   Next round will use style: {STYLE_PALETTES[next_idx]['name']}")
     else:
-        log.warning(f"⚠️ Phase D: 新建项目失败 (exit={code})")
+        log.warning(f"⚠️ Phase D: init-project failed (exit={code})")
+
     return True
 
 def main():
