@@ -12,6 +12,7 @@ video_providers:
     - kling
     - manual_web
     - local_comfyui_video
+    - local_comfyui_video_fast
 
 tts_providers:
   default: openai_tts
@@ -26,8 +27,10 @@ openai_api:
 
 openai_image:
   model: gpt-image-1.5
+  # 竖屏 9:16 漫画帧最佳分辨率。gpt-image-1.5 支持: 1024x1024, 1024x1536, 1536x1024
   size: 1024x1536
-  quality: medium
+  # quality=high 启用最高质量渲染（每张约 $0.20，4× medium 价格）
+  quality: high
   output_format: png
 
 openai_tts:
@@ -87,6 +90,24 @@ local_comfyui_video:
   video_length: 9
   fps: 8
   output_prefix: aicomic_video
+  negative_prompt: low quality, blurry, watermark, flicker, distorted hands, text, subtitles, captions, Chinese characters, letters, logo
+
+local_comfyui_video_fast:
+  base_url: http://127.0.0.1:8188
+  workflow_path: ../local_providers/comfyui/workflows/video_workflow_fast.json
+  model_root: ../local_providers/comfyui/models
+  model_manifest_path: ../local_providers/comfyui/model_requirements.json
+  timeout_seconds: 60
+  poll_timeout_seconds: 1800
+  poll_interval_seconds: 2
+  width: 256
+  height: 144
+  seed: 123456789
+  steps: 4
+  cfg: 4
+  video_length: 12
+  fps: 6
+  output_prefix: aicomic_video_fast
   negative_prompt: low quality, blurry, watermark, flicker, distorted hands, text, subtitles, captions, Chinese characters, letters, logo
 
 local_piper_tts:

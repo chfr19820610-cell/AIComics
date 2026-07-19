@@ -57,11 +57,103 @@ def resolve_endpoint(provider: str, job_type: str) -> str:
     return f"/providers/{provider}/{job_type}"
 
 
+def _build_quality_suffix(shot: dict[str, Any]) -> str:
+    """根据镜头类型选择构图+光影+风格指令"""
+    scene = str(shot.get("scene", ""))
+    camera = str(shot.get("camera", ""))
+    emotion = str(shot.get("emotion", ""))
+
+    # ── 构图策略 ──
+    # 近景/特写 → 浅景深构图
+    if any(k in camera for k in ("特写", "近景", "close", "极近")):
+        composition = (
+            "构图：浅景深主体突出，三分法将角色眼睛置于上三分线；"
+            "背景虚化柔焦。"
+        )
+    # 中景/双人对话 → 中景构图，引导线
+    elif any(k in camera for k in ("中景", "medium", "双人")):
+        composition = (
+            "构图：中景双人对称/斜线构图，视线引导利用角色目光方向；"
+            "前景留呼吸空间。"
+        )
+    # 远景/全景 → 框架构图+引导线
+    elif any(k in camera for k in ("远景", "全景", "wide", "远")):
+        composition = (
+            "构图：环境主导，运用引导线（道路/建筑/自然轮廓）牵引视线至主体；"
+            "前景框架（门框/窗/树枝）增加层次纵深。"
+        )
+    else:
+        composition = (
+            "构图：三分法主体偏离中心，运用引导线强化视觉流向；"
+            "前景/背景层次分明。"
+        )
+
+    # ── 光影策略 ──
+    # 恐怖/紧张情绪 → 低调+伦勃朗光
+    if any(k in emotion for k in ("恐惧", "紧张", "诡异", "阴", "dark", "恐惧", "惊")):
+        lighting = (
+            "光影：低调戏剧光，伦勃朗式侧光勾勒面部轮廓；"
+            "背光边缘光分离主体与背景；暗部保留细节不漆黑。"
+        )
+    # 浪漫/温柔 → 柔光+逆光
+    elif any(k in emotion for k in ("温柔", "浪漫", "温馨", "平静", "柔和")):
+        lighting = (
+            "光影：柔光漫射照明，逆光金色边缘轮廓光；"
+            "面部补光柔和，高光扩散，阴影柔和过渡。"
+        )
+    # 激烈/动作 → 硬光+高对比
+    elif any(k in emotion for k in ("愤怒", "激烈", "战斗", "紧张", "爆发")):
+        lighting = (
+            "光影：硬光高对比，三点布光（主光+侧逆光+补光）提升立体感；"
+            "强阴影增加戏剧张力，高光区域提示细节。"
+        )
+    # 默认 → 三点布光+层次
+    else:
+        lighting = (
+            "光影：专业三点布光，主光塑造主体形态，侧逆光勾勒轮廓边缘，"
+            "补光保留暗部细节；整体光比适中，层次丰富不扁平。"
+        )
+
+    # ── 风格强化 ──
+    # 夜景
+    if any(k in scene for k in ("夜", "暗", "黑暗", "室内暗")):
+        style = (
+            "画风：高精度动漫插画，夜间场景注意色温偏冷（蓝紫调），"
+            "光源色温偏暖（橙黄调）形成色彩对比；"
+            "暗部保留细节不漆黑，避免AI常见噪点和色块。"
+        )
+    # 白天/户外
+    elif any(k in scene for k in ("白天", "户外", "阳光", "外景")):
+        style = (
+            "画风：高精度动漫插画，日光场景注意色温偏暖，"
+            "高光不过曝，阴影有色彩倾向（冷蓝反射）；"
+            "天空渐变平滑，无带状色阶。"
+        )
+    else:
+        style = (
+            "画风：高精度动漫插画，色彩和谐统一，光影过渡细腻，"
+            "线条干净利落，背景细节丰富不杂乱。"
+        )
+
+    # ── 通用负项（嵌入 prompt 内，因为 gpt-image-1.5 不支持独立 negative_prompt 参数） ──
+    negative = (
+        "注意：画面中不要出现文字、字幕、标题、气泡对话框、logo、水印；"
+        "不要出现扭曲的手部、多余的手指或脚趾；"
+        "不要出现畸形面部、错位五官；"
+        "不要出现模糊、像素化、色块噪点、带状色阶；"
+        "不要出现镜像翻转或画面切割失调；"
+        "角色面容、发色、服装等关键特征在本集内保持一致。"
+    )
+
+    return f"{composition}{lighting}{style}{negative}"
+
+
 def build_image_prompt(episode_title: str, shot: dict[str, Any]) -> str:
     if is_horror_shot(shot):
         return build_horror_visual_prompt(shot, motion=False)
     characters = "、".join(str(item) for item in shot.get("characters", []))
     horror_context = build_horror_prompt_context(shot)
+    quality_suffix = _build_quality_suffix(shot)
     return (
         f"动漫插画风，剧集《{episode_title}》，场景：{shot['scene']}。"
         f"人物：{characters}。"
@@ -70,6 +162,7 @@ def build_image_prompt(episode_title: str, shot: dict[str, Any]) -> str:
         f"情绪：{shot['emotion']}。"
         f"镜头：{shot['camera']}。"
         f"{horror_context}"
+        f"{quality_suffix}"
         "高对比、强戏剧张力、短剧封面级质感。"
     )
 
