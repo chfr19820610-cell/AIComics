@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkaicomic_web_console=self.webpackChunkaicomic_web_console||[]).push([[390],{96390:function(s,n,t){t.r(n),t.d(n,{default:function(){return c}});var E=t(67294),u=t(76772),o=t(85893);function c(){var e=(0,u.useOutletContext)();return(0,o.jsx)(u.Outlet,{context:e})}}}]);

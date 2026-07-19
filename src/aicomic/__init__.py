@@ -1,2 +1,0 @@
-"""AI comic system package."""
-
