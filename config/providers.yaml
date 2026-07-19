@@ -6,7 +6,7 @@ image_providers:
     - local_comfyui_image
 
 video_providers:
-  default: seedance
+  default: local_comfyui_video
   available:
     - seedance
     - kling
