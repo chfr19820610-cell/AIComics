@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-🏭 视频工厂主循环 v3.0 — 并行生产+缓存跳过+预览模式
+🏭 视频工厂主循环 v3.1 — 并行生产+缓存跳过+预览模式+热修改保护
+
+热修改保护: 检测到从原始路径运行时自动复制到 /tmp/ 执行,
+避免 agent 修改脚本导致运行中进程崩溃。
 
 工作原理:
   while True:
@@ -35,6 +38,22 @@
 
 一切自动化, 日志在 logs/vf_loop.log
 """
+
+# ── 热修改保护: 自动复制到 /tmp/ 运行 ──────────────────────────────
+# 检测: 如果我们正在 scripts/ 目录下运行 (原始路径), 就复制到 /tmp/
+# 并重新 exec, 这样 agent 后续修改原文件不会影响运行中进程
+import sys as _sys
+_TMP_COPY = "/tmp/vf_master_loop.py"
+_SCRIPT_SRC = _sys.argv[0] if _sys.argv[0] else __file__
+if "scripts" in _SCRIPT_SRC and _SCRIPT_SRC != _TMP_COPY:
+    import shutil as _shutil, os as _os
+    # 只复制一次, 避免递归
+    if not _os.path.exists(_TMP_COPY) or _os.path.getmtime(_SCRIPT_SRC) > _os.path.getmtime(_TMP_COPY):
+        _shutil.copy2(_SCRIPT_SRC, _TMP_COPY)
+        _os.chmod(_TMP_COPY, 0o755)
+    # 重新 exec 副本, 带原参数
+    _os.execv(_sys.executable, [_sys.executable, _TMP_COPY] + _sys.argv[1:])
+# ── 热修改保护结束 ──────────────────────────────────────────────────
 
 # Add shutil to imports
 import os, sys, time, json, subprocess, logging, random, shutil

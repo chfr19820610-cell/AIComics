@@ -136,7 +136,7 @@ def enhance_voice_audio(input_wav: Path, output_wav: Path) -> bool:
     filter_chain = (
         "highpass=f=80,"
         "lowpass=f=8000,"
-        "compand=attacks=0.3:decays=0.5:points=-80/-105|-62/-62|-40/-30|-20/-12|0/-3:gain=3:volume=0.8,"
+        "compand=attacks=0.3:decays=0.5:points=-80/-105|-62/-62|-40/-30|-20/-12|0/-3:gain=3,"
         "equalizer=f=3000:t=q:w=1:g=3,"
         "equalizer=f=200:t=q:w=1:g=-2,"
         "loudnorm=I=-16:LRA=11:TP=-1.5"

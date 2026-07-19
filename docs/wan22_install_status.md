@@ -29,12 +29,11 @@
 
 | 项目 | 状态 | 详情 |
 |------|------|------|
-| **模型文件** | ⏳ **下载中** | `wan2.2_ti2v_5B_fp16.safetensors` (~9.5GB) |
+| **模型文件** | ✅ **已下载** | `wan2.2_ti2v_5B_fp16.safetensors` (9.3GB) |
 | **来源** | — | `Comfy-Org/Wan_2.2_ComfyUI_Repackaged` |
 | **下载 URL** | — | `https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_ti2v_5B_fp16.safetensors` |
-| **目标路径** | — | `ComfyUI/models/diffusion_models/wan2.2_ti2v_5B_fp16.safetensors` |
-| **下载速度** | — | ~48 MB/s (预计剩余 ~4 分钟) |
-| **如果下载中断** | — | 使用 `curl -L -o /Users/eric/Documents/comfy/ComfyUI/models/diffusion_models/wan2.2_ti2v_5B_fp16.safetensors "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_ti2v_5B_fp16.safetensors"` |
+| **目标路径** | ✅ | `ComfyUI/models/diffusion_models/wan2.2_ti2v_5B_fp16.safetensors` |
+| **下载速度** | — | ~45 MB/s, 完成耗时 3.5 分钟 |
 
 ### 额外所需模型 (尚未下载)
 
@@ -64,9 +63,9 @@
 
 ## 4. 下一步 (根据迁移方案)
 
-1. ✅ **完成**: WanVideoWrapper 节点安装 + 依赖
-2. ⏳ **进行中**: 下载 5B 扩散模型 (~9.5GB, ~48MB/s)
-3. ❌ **待办**: 下载 VAE + Text Encoder 辅助模型
+1. ✅ **已完成**: WanVideoWrapper 节点安装 + 依赖
+2. ✅ **已完成**: 下载 5B 扩散模型 (~9.3GB, ~45 MB/s)
+3. ❌ **待办**: 下载 VAE + Text Encoder 辅助模型 (Wan2_2_VAE_bf16.safetensors, umt5-xxl-enc-bf16.safetensors)
 4. ❌ **待办**: 创建 Wan2.2 workflow JSON (替代 AnimateDiff workflow)
 5. ❌ **待办**: 更新 `model_requirements.json` 和 `Dockerfile.comfyui-sidecar`
 6. ❌ **待办**: 启动 ComfyUI 验证节点加载
