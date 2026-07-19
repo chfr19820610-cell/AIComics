@@ -53,6 +53,17 @@ function applyMenuTooltipPolicy(items: MenuDataItem[] = []): MenuDataItem[] {
 }
 
 const DEFAULT_APP_NAME = 'AI漫剧创作者控制台';
+const PAGE_TITLES: Record<string, string> = {
+  '/dashboard': '总控板',
+  '/projects': '项目队列',
+  '/episodes': '剧集管理',
+  '/jobs': '任务管理',
+  '/batches': '批次监控',
+  '/provider': '服务商执行',
+  '/review': '数据复盘',
+  '/creator': '创作台',
+  '/login': '登录',
+};
 const DEFAULT_INITIAL_STATE: InitialState = {
   name: DEFAULT_APP_NAME,
   authEnabled: false,
@@ -115,10 +126,12 @@ export const layout = ({ initialState, setInitialState }: LayoutRuntimeContext) 
     menu: {
       locale: false,
     },
+    selectedKeys: [pathname],
     menuDataRender: (menuData: MenuDataItem[]) => applyMenuTooltipPolicy(menuData),
     layout: 'mix',
     onPageChange: () => {
       const activePathname = currentPathname();
+      document.title = `${PAGE_TITLES[activePathname] || 'AI漫剧'} - ${DEFAULT_APP_NAME}`;
       const authEnabled = Boolean(initialState?.authEnabled);
       const hasUser = Boolean(initialState?.currentUser);
 

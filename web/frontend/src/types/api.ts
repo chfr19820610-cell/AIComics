@@ -931,6 +931,57 @@ export type ReviewMetricsPayload = {
   recommendations?: string[];
 };
 
+// Shot versioning types
+export type ShotVersionRecord = {
+  version_id: string;
+  episode_code: string;
+  shot_id: string;
+  version_number: number;
+  parent_version_id: string | null;
+  label: string;
+  description: string;
+  snapshot_json: string;
+  created_at: string;
+};
+
+export type VersionDiffPayload = {
+  version_id_a: string;
+  version_id_b: string;
+  has_changes: boolean;
+  fields_changed: Record<string, { old: unknown; new: unknown }>;
+  fields_added: Record<string, unknown>;
+  fields_removed: string[];
+  changed_count: number;
+  added_count: number;
+  removed_count: number;
+};
+
+export type VersionBoardPayload = {
+  episode_code: string;
+  shots: Record<string, Array<{
+    version_id: string;
+    version_number: number;
+    parent_version_id: string | null;
+    label: string;
+    description: string;
+    created_at: string;
+    snapshot: Record<string, unknown>;
+    tags: string[];
+  }>>;
+  shot_count: number;
+  total_versions: number;
+};
+
+export type VersionRollbackResult = {
+  version_id: string;
+  episode_code: string;
+  shot_id: string;
+  version_number: number;
+  label: string;
+  description: string;
+  created_at: string;
+};
+
 export type AuthUser = {
   user_id: string;
   username: string;

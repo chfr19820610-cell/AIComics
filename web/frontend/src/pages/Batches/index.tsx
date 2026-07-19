@@ -1400,8 +1400,8 @@ export default function BatchesPage() {
             <Alert
               type="info"
               showIcon
-              message="批次页已切到紧凑空态"
-              description="待生成任务包、创建批次或产生执行历史后，会自动展开批次摘要、运行监控、执行编排与归档历史。"
+              message="暂无批次数据"
+              description="生成任务包、创建批次或产生执行历史后，这里会自动展开批次摘要、运行监控、执行编排与归档历史。"
             />
           </ProCard>
         )}

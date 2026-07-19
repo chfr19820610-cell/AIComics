@@ -1,12 +1,12 @@
 import { PageContainer, ProCard } from '@ant-design/pro-components';
-import { Alert, Button, Col, List, Row, Skeleton, Space, Tag, Typography } from 'antd';
+import { Alert, Button, Col, Descriptions, Input, List, Popconfirm, Row, Select, Skeleton, Space, Tag, Typography } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import CompactFactGrid from '@/components/CompactFactGrid';
 import MetricCard from '@/components/MetricCard';
-import { getReviewMetrics } from '@/services/api';
-import type { ReviewMetricsPayload } from '@/types/api';
+import { compareShotVersions, getReviewMetrics, listShotVersions, rollbackShotVersion } from '@/services/api';
+import type { ReviewMetricsPayload, ShotVersionRecord, VersionDiffPayload, VersionRollbackResult } from '@/types/api';
 import { displayBoolean, displayFieldLabel, displayStatus, displayText } from '@/utils/display';
 
 const { Text } = Typography;
@@ -69,6 +69,17 @@ function SummaryCard({ title, source }: { title: string; source?: Record<string,
 export default function ReviewPage() {
   const [data, setData] = useState<ReviewMetricsPayload>();
   const [loading, setLoading] = useState(true);
+  // Shot versioning state
+  const [versionEpisodeCode, setVersionEpisodeCode] = useState('E01');
+  const [versionShotId, setVersionShotId] = useState('');
+  const [versions, setVersions] = useState<ShotVersionRecord[]>([]);
+  const [versionsLoading, setVersionsLoading] = useState(false);
+  const [selectedVersionA, setSelectedVersionA] = useState('');
+  const [selectedVersionB, setSelectedVersionB] = useState('');
+  const [versionDiff, setVersionDiff] = useState<VersionDiffPayload | null>(null);
+  const [diffLoading, setDiffLoading] = useState(false);
+  const [rollbackResult, setRollbackResult] = useState<VersionRollbackResult | null>(null);
+  const [rollbackLoading, setRollbackLoading] = useState(false);
 
   const loadData = useCallback(async () => {
     setLoading(true);
@@ -83,6 +94,54 @@ export default function ReviewPage() {
   useEffect(() => {
     void loadData();
   }, [loadData]);
+
+  const handleLoadVersions = useCallback(async () => {
+    if (!versionEpisodeCode) return;
+    setVersionsLoading(true);
+    setVersionDiff(null);
+    setRollbackResult(null);
+    try {
+      const result = await listShotVersions(versionEpisodeCode, versionShotId);
+      setVersions(result.items);
+    } finally {
+      setVersionsLoading(false);
+    }
+  }, [versionEpisodeCode, versionShotId]);
+
+  const handleCompareVersions = useCallback(async () => {
+    if (!selectedVersionA || !selectedVersionB) return;
+    setDiffLoading(true);
+    try {
+      const result = await compareShotVersions(selectedVersionA, selectedVersionB);
+      setVersionDiff(result);
+    } finally {
+      setDiffLoading(false);
+    }
+  }, [selectedVersionA, selectedVersionB]);
+
+  const handleRollback = useCallback(async () => {
+    if (!selectedVersionA || !versionEpisodeCode) return;
+    setRollbackLoading(true);
+    try {
+      const result = await rollbackShotVersion({
+        episode_code: versionEpisodeCode,
+        version_id: selectedVersionA,
+        label: 'frontend_rollback',
+        description: `回滚到版本 ${selectedVersionA}`,
+      });
+      setRollbackResult(result);
+      await handleLoadVersions();
+    } finally {
+      setRollbackLoading(false);
+    }
+  }, [selectedVersionA, versionEpisodeCode, handleLoadVersions]);
+
+  const versionOptions = useMemo(() => {
+    return versions.map((v) => ({
+      label: `v${v.version_number} - ${v.label || v.version_id} (${new Date(v.created_at).toLocaleString('zh-CN')})`,
+      value: v.version_id,
+    }));
+  }, [versions]);
 
   const metrics = data?.metrics ?? {};
   const counts = data?.counts ?? {};
@@ -280,6 +339,140 @@ export default function ReviewPage() {
             </Col>
           </Row>
         )}
+
+        {/* Shot version compare / rollback */}
+        <ProCard
+          title="镜头版本对比与回滚"
+          bordered
+          collapsible
+          defaultCollapsed
+          className="aicomic-compact-card"
+        >
+          <Space direction="vertical" size={12} style={{ width: '100%' }}>
+            <Space wrap>
+              <Input
+                style={{ width: 120 }}
+                size="small"
+                placeholder="剧集 E01"
+                value={versionEpisodeCode}
+                onChange={(e) => setVersionEpisodeCode(e.target.value)}
+              />
+              <Input
+                style={{ width: 180 }}
+                size="small"
+                placeholder="镜头编号（留空查全部）"
+                value={versionShotId}
+                onChange={(e) => setVersionShotId(e.target.value)}
+              />
+              <Button size="small" icon={<ReloadOutlined />} loading={versionsLoading} onClick={() => void handleLoadVersions()}>
+                加载版本
+              </Button>
+            </Space>
+
+            {versions.length > 0 ? (
+              <>
+                <Space wrap>
+                  <Select
+                    style={{ minWidth: 280 }}
+                    size="small"
+                    placeholder="选择版本 A（对比基准）"
+                    options={versionOptions}
+                    value={selectedVersionA || undefined}
+                    onChange={setSelectedVersionA}
+                  />
+                  <Select
+                    style={{ minWidth: 280 }}
+                    size="small"
+                    placeholder="选择版本 B（对比目标）"
+                    options={versionOptions}
+                    value={selectedVersionB || undefined}
+                    onChange={setSelectedVersionB}
+                  />
+                  <Button
+                    size="small"
+                    type="primary"
+                    loading={diffLoading}
+                    disabled={!selectedVersionA || !selectedVersionB}
+                    onClick={() => void handleCompareVersions()}
+                  >
+                    对比
+                  </Button>
+                  <Popconfirm
+                    title="确认回滚？"
+                    description={`将创建基于 ${selectedVersionA} 的新版本`}
+                    onConfirm={() => void handleRollback()}
+                  >
+                    <Button
+                      size="small"
+                      danger
+                      loading={rollbackLoading}
+                      disabled={!selectedVersionA}
+                    >
+                      回滚到版本 A
+                    </Button>
+                  </Popconfirm>
+                </Space>
+
+                {versionDiff ? (
+                  <ProCard title={`对比结果：${versionDiff.version_id_a} ↔ ${versionDiff.version_id_b}`} bordered size="small">
+                    <Space direction="vertical" size={8} style={{ width: '100%' }}>
+                      <Space wrap>
+                        <Tag color={versionDiff.has_changes ? 'gold' : 'green'}>
+                          {versionDiff.has_changes ? '有变更' : '无变更'}
+                        </Tag>
+                        <Tag>变更字段 {versionDiff.changed_count}</Tag>
+                        <Tag>新增字段 {versionDiff.added_count}</Tag>
+                        <Tag>移除字段 {versionDiff.removed_count}</Tag>
+                      </Space>
+                      {versionDiff.changed_count > 0 ? (
+                        <Descriptions size="small" column={1} bordered>
+                          {Object.entries(versionDiff.fields_changed).map(([field, change]) => (
+                            <Descriptions.Item key={field} label={field}>
+                              <Text type="warning" delete>{String(change.old)}</Text>
+                              <Text> → </Text>
+                              <Text type="success">{String(change.new)}</Text>
+                            </Descriptions.Item>
+                          ))}
+                        </Descriptions>
+                      ) : (
+                        <Text type="secondary">两个版本之间没有字段差异。</Text>
+                      )}
+                      {versionDiff.fields_added && Object.keys(versionDiff.fields_added).length > 0 && (
+                        <Space direction="vertical" size={2}>
+                          <Text strong>新增字段：</Text>
+                          {Object.entries(versionDiff.fields_added).map(([field, value]) => (
+                            <Text key={field} type="success">{field} = {String(value)}</Text>
+                          ))}
+                        </Space>
+                      )}
+                      {versionDiff.fields_removed && versionDiff.fields_removed.length > 0 && (
+                        <Space direction="vertical" size={2}>
+                          <Text strong>移除字段：</Text>
+                          {versionDiff.fields_removed.map((field) => (
+                            <Text key={field} type="warning" delete>{field}</Text>
+                          ))}
+                        </Space>
+                      )}
+                    </Space>
+                  </ProCard>
+                ) : null}
+
+                {rollbackResult ? (
+                  <Alert
+                    type="success"
+                    showIcon
+                    message="回滚成功"
+                    description={`已创建新版本 ${rollbackResult.version_id} (v${rollbackResult.version_number})`}
+                  />
+                ) : null}
+              </>
+            ) : (
+              <Text type="secondary" style={{ display: versionsLoading ? 'none' : 'block' }}>
+                {versionsLoading ? '' : '点击"加载版本"查看当前剧集的版本历史。'}
+              </Text>
+            )}
+          </Space>
+        </ProCard>
       </Space>
       )}
     </PageContainer>

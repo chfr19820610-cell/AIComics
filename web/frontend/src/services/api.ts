@@ -28,6 +28,10 @@ import type {
   ProviderExecutionRecord,
   ProjectsPayload,
   ReviewMetricsPayload,
+  ShotVersionRecord,
+  VersionBoardPayload,
+  VersionDiffPayload,
+  VersionRollbackResult,
 } from '@/types/api';
 
 const apiBaseUrl =
@@ -484,4 +488,35 @@ export async function getProviderExecutions(): Promise<ListPayload<ProviderExecu
 
 export async function getReviewMetrics(): Promise<ReviewMetricsPayload> {
   return fetchJson<ReviewMetricsPayload>('/api/review-metrics');
+}
+
+// Shot versioning API
+export async function listShotVersions(episodeCode: string, shotId: string): Promise<ListPayload<ShotVersionRecord>> {
+  return fetchJson<ListPayload<ShotVersionRecord>>(
+    `/api/creator/versions?episode_code=${encodeURIComponent(episodeCode)}&shot_id=${encodeURIComponent(shotId)}`,
+  );
+}
+
+export async function compareShotVersions(versionIdA: string, versionIdB: string): Promise<VersionDiffPayload> {
+  return fetchJson<VersionDiffPayload>(
+    `/api/creator/versions/compare?version_id_a=${encodeURIComponent(versionIdA)}&version_id_b=${encodeURIComponent(versionIdB)}`,
+  );
+}
+
+export async function rollbackShotVersion(payload: {
+  episode_code: string;
+  version_id: string;
+  label?: string;
+  description?: string;
+}): Promise<VersionRollbackResult> {
+  return fetchJson<VersionRollbackResult>('/api/creator/versions/rollback', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function getVersionBoard(episodeCode: string): Promise<VersionBoardPayload> {
+  return fetchJson<VersionBoardPayload>(
+    `/api/creator/versions/board?episode_code=${encodeURIComponent(episodeCode)}`,
+  );
 }
