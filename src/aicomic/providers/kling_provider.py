@@ -7,13 +7,13 @@ import time
 from pathlib import Path
 from typing import Any, ClassVar
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
+from aicomic.providers._vidgen_mixin import _VidGenProviderMixin
 from aicomic.providers.base import IProvider, ProviderCapability, ProviderInfo
 
 
-class KlingProvider(IProvider):
+class KlingProvider(IProvider, _VidGenProviderMixin):
     """Provider adapter for Kling AI (快手可灵) video generation.
 
     Supports text-to-video and image-to-video modes via the Kling API.
@@ -205,23 +205,14 @@ class KlingProvider(IProvider):
 
     # ── Execution ───────────────────────────────────────────────────────
 
-    def execute_request(
+    def _submit_task(
         self,
-        request_item: dict[str, Any],
-        providers_config_path: Path,
-    ) -> dict[str, Any]:
-        if not self._access_key or not self._secret_key:
-            raise RuntimeError("KLING_ACCESS_KEY / KLING_SECRET_KEY are not configured")
-
-        settings = self._load_settings(providers_config_path)
-        payload = request_item.get("payload", {})
-        output_path = Path(str(payload.get("output_path", "")))
-
-        # Phase 1: Submit task
-        preview = self.build_request(request_item, providers_config_path)
-        token = self._generate_jwt(self._access_key, self._secret_key)
+        preview: dict[str, Any],
+        token: str,
+        settings: dict[str, dict[str, object]],
+    ) -> str:
+        """Submit a task to Kling API and return the task_id."""
         submit_body = json.dumps(preview["body"], ensure_ascii=False).encode("utf-8")
-
         submit_request = Request(
             str(preview["url"]),
             data=submit_body,
@@ -231,7 +222,6 @@ class KlingProvider(IProvider):
             },
             method="POST",
         )
-
         try:
             with urlopen(
                 submit_request,
@@ -254,22 +244,34 @@ class KlingProvider(IProvider):
         task_id = str(task_data.get("task_id", ""))
         if not task_id:
             raise RuntimeError(f"Kling submit did not return a task_id: {submit_result}")
+        return task_id
+
+    def execute_request(
+        self,
+        request_item: dict[str, Any],
+        providers_config_path: Path,
+    ) -> dict[str, Any]:
+        if not self._access_key or not self._secret_key:
+            raise RuntimeError("KLING_ACCESS_KEY / KLING_SECRET_KEY are not configured")
+
+        settings = self._load_settings(providers_config_path)
+        payload = request_item.get("payload", {})
+        output_path = Path(str(payload.get("output_path", "")))
+
+        # Phase 1: Submit task
+        preview = self.build_request(request_item, providers_config_path)
+        token = self._generate_jwt(self._access_key, self._secret_key)
+        task_id = self._submit_task(preview, token, settings)
 
         # Phase 2: Poll for completion
         video_url = self._poll_for_result(task_id, token, settings)
 
         # Phase 3: Download video
-        video_request = Request(
-            video_url,
-            method="GET",
-        )
-        with urlopen(video_request, timeout=60) as response:
-            video_bytes = response.read()
-
+        video_bytes = self._download_video(video_url)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_bytes(video_bytes)
 
-        result: dict[str, Any] = {
+        return {
             "provider": "kling_video",
             "output_path": str(output_path),
             "content_type": "video/mp4",
@@ -280,56 +282,13 @@ class KlingProvider(IProvider):
             },
         }
 
-        return result
-
     # ── Private helpers ─────────────────────────────────────────────────
 
-    def _resolve_setting(
-        self,
-        settings: dict[str, dict[str, object]],
-        section: str,
-        key: str,
-        default: str,
-    ) -> str:
-        value = settings.get(section, {}).get(key)
-        if value is not None:
-            return str(value).strip()
-        return default
-
-    def _resolve_int(
-        self,
-        settings: dict[str, dict[str, object]],
-        section: str,
-        key: str,
-        default: int,
-    ) -> int:
-        value = settings.get(section, {}).get(key)
-        if value is not None:
-            raw = str(value).strip()
-            if raw.isdigit():
-                return int(raw)
-        return default
-
-    def _resolve_image_path(self, path_or_url: str) -> str:
-        """Convert a local file path to a data URL if needed."""
-        parsed = urlparse(path_or_url)
-        if parsed.scheme in ("http", "https", "data"):
-            return path_or_url
-
-        resolved = Path(path_or_url)
-        if resolved.exists() and resolved.is_file():
-            ext = resolved.suffix.lower()
-            mime_map = {
-                ".jpg": "image/jpeg",
-                ".jpeg": "image/jpeg",
-                ".png": "image/png",
-                ".webp": "image/webp",
-            }
-            mime = mime_map.get(ext, "image/png")
-            data = base64.b64encode(resolved.read_bytes()).decode("ascii")
-            return f"data:{mime};base64,{data}"
-
-        return path_or_url
+    def _download_video(self, video_url: str) -> bytes:
+        """Download video bytes from a URL."""
+        video_request = Request(video_url, method="GET")
+        with urlopen(video_request, timeout=60) as response:
+            return response.read()
 
     def _poll_for_result(
         self,
