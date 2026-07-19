@@ -1017,10 +1017,13 @@ def phase_self_produce():
         # Also create a stable symlink-style label for the latest per-episode
         latest_link = produced_dir / f"{ep_code}_latest_{style_slug}.mp4"
 
-        # ── Determine synthesis engine: ComfyUI AnimateDiff (local) → Seedance (cloud) → FFmpeg (local) ──
+        # ── Determine synthesis engine: Wan2.2 (local) → AnimateDiff (local) → Seedance (cloud) → FFmpeg (local) ──
         comfyui_available = _check_comfyui_ready()
         seedance_available = _check_seedance_ready()
-        if comfyui_available:
+        wan22_models = (BASE / ".venv" / ".." / ".." / "Documents" / "comfy" / "ComfyUI" / "models" / "diffusion_models" / "wan2.2_ti2v_5B_fp16.safetensors").exists()
+        if comfyui_available and wan22_models:
+            model_type = "comfyui_video_wan22"
+        elif comfyui_available:
             model_type = "comfyui_video"
         elif seedance_available:
             model_type = "seedance"

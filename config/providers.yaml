@@ -6,8 +6,9 @@ image_providers:
     - local_comfyui_image
 
 video_providers:
-  default: local_comfyui_video
+  default: local_comfyui_video_wan22
   available:
+    - local_comfyui_video_wan22
     - seedance
     - kling
     - manual_web
@@ -94,6 +95,24 @@ local_comfyui_video:
   fps: 8
   output_prefix: aicomic_video
   negative_prompt: low quality, blurry, watermark, flicker, distorted hands, text, subtitles, captions, Chinese characters, letters, logo
+
+local_comfyui_video_wan22:
+  base_url: http://127.0.0.1:8188
+  workflow_path: ../local_providers/comfyui/workflows/wan22_workflow.json
+  model_root: ../local_providers/comfyui/models
+  model_manifest_path: ../local_providers/comfyui/model_requirements.json
+  timeout_seconds: 120
+  poll_timeout_seconds: 7200
+  poll_interval_seconds: 5
+  width: 832
+  height: 480
+  seed: 123456789
+  steps: 30
+  cfg: 6.0
+  video_length: 81
+  fps: 16
+  output_prefix: aicomic_wan22
+  negative_prompt: low quality, blurry, watermark, flicker, distorted hands, text, subtitles, captions, Chinese characters, letters, logo, deformed, ugly, disfigured
 
 local_comfyui_video_fast:
   base_url: http://127.0.0.1:8188

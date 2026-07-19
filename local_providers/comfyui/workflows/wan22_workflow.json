@@ -1,0 +1,87 @@
+{
+  "1": {
+    "class_type": "WanVideoModelLoader",
+    "inputs": {
+      "model": "wan2.2_ti2v_5B_fp16.safetensors",
+      "base_precision": "bf16",
+      "quantization": "disabled",
+      "load_device": "offload_device"
+    }
+  },
+  "2": {
+    "class_type": "WanVideoVAELoader",
+    "inputs": {
+      "model_name": "wan2.2_vae.safetensors",
+      "precision": "bf16"
+    }
+  },
+  "3": {
+    "class_type": "LoadWanVideoT5TextEncoder",
+    "inputs": {
+      "model_name": "umt5_xxl_fp16.safetensors",
+      "precision": "bf16",
+      "load_device": "offload_device",
+      "quantization": "disabled"
+    }
+  },
+  "4": {
+    "class_type": "WanVideoTextEncode",
+    "inputs": {
+      "positive_prompt": "{{prompt}}",
+      "negative_prompt": "{{negative_prompt}}",
+      "t5": ["3", 0],
+      "force_offload": true,
+      "use_disk_cache": false,
+      "device": "gpu"
+    }
+  },
+  "5": {
+    "class_type": "WanVideoEmptyEmbeds",
+    "inputs": {
+      "width": "{{width}}",
+      "height": "{{height}}",
+      "num_frames": "{{video_length}}"
+    }
+  },
+  "6": {
+    "class_type": "WanVideoSampler",
+    "inputs": {
+      "model": ["1", 0],
+      "image_embeds": ["5", 0],
+      "text_embeds": ["4", 0],
+      "steps": "{{steps}}",
+      "cfg": "{{cfg}}",
+      "shift": 5.0,
+      "seed": "{{seed}}",
+      "force_offload": true,
+      "scheduler": "unipc",
+      "riflex_freq_index": 0,
+      "denoise_strength": 1.0,
+      "batched_cfg": false
+    }
+  },
+  "7": {
+    "class_type": "WanVideoDecode",
+    "inputs": {
+      "vae": ["2", 0],
+      "samples": ["6", 0],
+      "enable_vae_tiling": false,
+      "tile_x": 272,
+      "tile_y": 272,
+      "tile_stride_x": 144,
+      "tile_stride_y": 128,
+      "normalization": "default"
+    }
+  },
+  "8": {
+    "class_type": "VHS_VideoCombine",
+    "inputs": {
+      "frame_rate": "{{fps}}",
+      "loop_count": 1,
+      "filename_prefix": "{{output_prefix}}",
+      "pingpong": false,
+      "format": "video/h264-mp4",
+      "images": ["7", 0]
+    }
+  }
+}

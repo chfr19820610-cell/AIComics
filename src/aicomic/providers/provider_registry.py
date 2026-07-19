@@ -103,6 +103,7 @@ class ProviderRegistry:
             "openai_tts": "openai",
             "local_comfyui_image": "comfyui",
             "local_comfyui_video": "comfyui",
+            "local_comfyui_video_wan22": "comfyui",
             "local_piper_tts": "piper_tts",
             "manual_web": "manual",
             "windows_tts": "manual",
@@ -118,8 +119,8 @@ class ProviderRegistry:
     FALLBACK_MAP: dict[str, str] = {
         "openai_image": "local_comfyui_image",
         "openai_tts": "local_piper_tts",
-        "seedance": "local_comfyui_video",
-        "kling": "local_comfyui_video",
+        "seedance": "local_comfyui_video_wan22",
+        "kling": "local_comfyui_video_wan22",
         "openai": "comfyui",
     }
 
@@ -153,6 +154,7 @@ class ProviderRegistry:
                 "openai_tts": "openai",
                 "local_comfyui_image": "comfyui",
                 "local_comfyui_video": "comfyui",
+                "local_comfyui_video_wan22": "comfyui",
                 "local_piper_tts": "piper_tts",
                 "manual_web": "manual",
                 "windows_tts": "manual",
