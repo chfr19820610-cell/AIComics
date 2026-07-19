@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.12%2B-brightgreen)](.python-version)
-[![Tests](https://img.shields.io/badge/Tests-314%2F314-passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/Tests-640%2F640-passing-brightgreen)]()
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-v0.26.0-important)]()
 [![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux-lightgrey)]()
 
@@ -52,7 +52,7 @@ pip install -r requirements-lock.txt
 # 编辑 config/aicomic_comfyui_paths.yaml，指向你的 ComfyUI models 目录
 
 # 5. 初始化
-PYTHONPATH="src:.venv/lib/python3.12/site-packages" .venv/bin/python -m aicomic.cli.main init-demo-db
+PYTHONPATH="src" .venv/bin/python -m aicomic.cli.main init-demo-db
 
 # 6. 启动
 bash scripts/start.sh
@@ -74,15 +74,17 @@ bash scripts/start.sh
 AIComics/
 ├── src/aicomic/           ← 核心引擎
 │   ├── cli/               ← CLI 入口
-│   ├── core/              ← 业务逻辑 (项目/剧集/分镜)
-│   ├── providers/         ← Provider 抽象层 (ComfyUI/Piper)
+│   ├── core/              ← 业务逻辑 (项目/剧集/分镜/分镜版本)
+│   ├── providers/         ← Provider 抽象层 (ComfyUI/Piper/OpenAI/Seedance)
+│   ├── characters/        ← 角色系统 (定义/一致性/提示词注入)
+│   ├── video_synthesis/   ← 视频合成管线
 │   └── utils/             ← 工具函数
 ├── web/                   ← Web 服务
 │   ├── backend/           ← FastAPI 后端
 │   └── frontend/          ← React SPA 前端
 ├── config/                ← 配置文件
 ├── scripts/               ← 运维脚本
-├── tests/                 ← 314 个测试用例
+├── tests/                 ← 640 个测试用例
 ├── local_providers/       ← Provider 运行目录
 └── pyproject.toml         ← 项目配置
 ```
@@ -101,9 +103,9 @@ AIComics/
 
 | 指标 | 值 |
 |------|----|
-| 测试通过率 | **314/314** (100%) |
-| 验证脚本 | **37/39** (94.9%) |
-| API 端点 | **48** 个 |
+| 测试通过率 | **640/640** (100%) |
+| 验证脚本 | **39/39** (100%) |
+| API 端点 | **52** 个 |
 | Python 版本 | **3.12** |
 | 许可证 | **Apache 2.0** |
 
@@ -112,7 +114,7 @@ AIComics/
 ## 🧪 运行测试
 
 ```bash
-PYTHONPATH="src:.venv/lib/python3.12/site-packages" .venv/bin/python -m pytest tests/ -v
+PYTHONPATH="src" .venv/bin/python -m pytest tests/ -v
 ```
 
 ---
@@ -123,10 +125,22 @@ PYTHONPATH="src:.venv/lib/python3.12/site-packages" .venv/bin/python -m pytest t
 
 ```bash
 # 启动生产 + 赚钱循环
-PYTHONPATH="src:.venv/lib/python3.12/site-packages" .venv/bin/python scripts/vf_master_loop.py &
+PYTHONPATH="src" .venv/bin/python scripts/vf_master_loop.py &
 ```
 
 定时任务会被自动发现和补充，无需手动干预。
+
+---
+
+## ✨ v0.2.0 新功能
+
+| 功能 | 说明 |
+|------|------|
+| **🧩 供应商抽象层** | 统一的 Provider 接口，支持 ComfyUI / OpenAI / Seedance / 手动 等多种图片生成后端，可热切换 |
+| **👤 角色系统** | 角色定义、一致性检测、提示词注入、参考图管理，让同一角色在不同分镜中保持外形统一 |
+| **📋 分镜版本管理** | 分镜可创建多个版本，对比选择最佳效果，支持回滚 |
+| **🎬 视频合成管线** | 端到端视频合成：图片→场景→字幕→配音→合成，支持批量处理 |
+| **✅ 640 测试覆盖** | 从 314 提升至 640 测试，新增 Provider 抽象层、角色系统、分镜版本管理等专项测试，验证脚本 39/39 全通过 |
 
 ---
 
@@ -134,8 +148,10 @@ PYTHONPATH="src:.venv/lib/python3.12/site-packages" .venv/bin/python scripts/vf_
 
 - [x] 基础漫剧管线 (故事→分镜→图片→配音)
 - [x] CLI + Web API + SPA 三端入口
-- [x] 314 测试全通过
-- [ ] 角色一致性系统 (LoRA 参考图)
+- [x] 640 测试全通过
+- [x] 供应商抽象层 (ComfyUI/Piper/OpenAI/Seedance)
+- [x] 角色系统 (定义/一致性/提示词注入/参考图)
+- [x] 分镜版本管理
 - [ ] 漫剧专用模板系统
 - [ ] 小说→漫剧一站式管道
 - [ ] 多语言配音 & 字幕
@@ -155,5 +171,5 @@ Apache 2.0 © 2026 [Eric Chen](https://github.com/chfr19820610-cell)
 Issues 和 PR 都欢迎！提交前请确保测试通过。
 
 ```bash
-PYTHONPATH="src:.venv/lib/python3.12/site-packages" .venv/bin/python -m pytest tests/ -q
+PYTHONPATH="src" .venv/bin/python -m pytest tests/ -q
 ```

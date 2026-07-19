@@ -64,6 +64,7 @@ from web.backend.services.report_service import (
     load_validation_report,
 )
 from web.backend.settings import load_web_settings
+from aicomic.characters.routes import build_character_router
 
 
 app = FastAPI(title="AI漫剧自动生成系统 Web API", version="0.1.0")
@@ -77,6 +78,10 @@ app.add_middleware(
 )
 register_auth_middleware(app)
 app.include_router(auth_router)
+
+# Character management API
+character_router = build_character_router(state_dir=settings.state_dir)
+app.include_router(character_router)
 
 
 # ── Global exception handlers ──────────────────────────────────────────────

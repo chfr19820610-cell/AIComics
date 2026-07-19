@@ -60,7 +60,7 @@ def count_assets(ep: str, kind: str) -> int:
 
 
 def run_cli(*args: str) -> tuple[int, str]:
-    cmd = [str(VENV_PYTHON), "main.py"] + list(args)
+    cmd = [str(VENV_PYTHON), "-m", "aicomic.cli.main"] + list(args)
     log.info(f"RUN: {' '.join(cmd)}")
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
     if r.returncode != 0:
@@ -70,7 +70,7 @@ def run_cli(*args: str) -> tuple[int, str]:
 
 def health_check() -> bool:
     ok = True
-    if not http_ok("http://localhost:7860/api/health"):
+    if not http_ok("http://localhost:7861/api/health"):
         log.error("Backend DOWN")
         ok = False
     if not http_ok("http://localhost:8188/system_stats"):

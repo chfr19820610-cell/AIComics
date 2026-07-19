@@ -91,7 +91,10 @@ def build_video_prompt(episode_title: str, shot: dict[str, Any]) -> str:
 
 
 def is_horror_shot(shot: dict[str, Any]) -> bool:
-    return bool(str(shot.get("horror_beat", "")).strip())
+    horror_beat = shot.get("horror_beat")
+    if horror_beat is None:
+        return False
+    return bool(str(horror_beat).strip())
 
 
 def build_horror_visual_prompt(shot: dict[str, Any], motion: bool) -> str:
