@@ -11,17 +11,17 @@
   },
   "dependencies": {
     "@ant-design/charts": "^2.2.7",
-    "@ant-design/icons": "^5.3.7",
+    "@ant-design/icons": "^5.6.1",
     "@ant-design/pro-components": "^2.8.10",
-    "@umijs/max": "^4.6.55",
-    "antd": "^5.18.3",
-    "echarts": "^5.5.1",
+    "@umijs/max": "^4.6.79",
+    "antd": "^5.29.3",
+    "echarts": "^5.6.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^24.3.0",
-    "@types/react": "^18.3.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.0",
     "less": "^4.2.0",
     "typescript": "^5.5.4"

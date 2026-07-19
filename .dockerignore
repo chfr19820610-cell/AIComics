@@ -1,33 +1,44 @@
+# Version control
 .git
-.venv
+.gitignore
+
+# Python
 __pycache__/
-*.pyc
-.DS_Store
-.pytest_cache/
-.mypy_cache/
-.env*
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+pip-wheel-metadata/
+.coverage
+htmlcov/
 
+# Node
 node_modules/
-node_modules*/
 web/frontend/node_modules/
-web/frontend/.umi/
-web/frontend/.umi-production/
-web/frontend/dist/
+web/frontend/node_modules_corrupt_*
 
-logs/*
-!logs/README.md
-reports/*
-!reports/README.md
-state/*
-!state/README.md
+# Docker
+.dockerignore
+Dockerfile
+Dockerfile.*
 
-local_providers/comfyui/models/
-local_providers/comfyui/runtime/*
-!local_providers/comfyui/runtime/ComfyUI/
-!local_providers/comfyui/runtime/ComfyUI/**
-local_providers/comfyui/runtime/.venv/
-local_providers/comfyui/source_templates/
-local_providers/piper/bin/
-local_providers/piper/python/
-local_providers/piper/piper_macos_aarch64.tar.gz
-local_providers/piper/models/voice-*.tar.gz
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Remotion (maintained separately)
+remotion_assets/node_modules/
+
+# Local state (should be volumes, not baked in)
+state/
+reports/
+logs/

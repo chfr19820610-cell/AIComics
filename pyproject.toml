@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aicomic-system"
-version = "0.3.0"
+version = "0.4.0"
 description = "AI漫剧自动生成系统 — 一人公司视频工厂"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -20,8 +20,8 @@ classifiers = [
 ]
 license = "MIT"
 dependencies = [
-    "fastapi>=0.115,<1",
-    "uvicorn>=0.30,<1",
+    "fastapi>=0.139,<1",
+    "uvicorn>=0.51,<1",
     "httpx>=0.28,<1",
     "pyyaml>=6.0,<7",
 ]
@@ -32,12 +32,12 @@ validation = [
     "imageio>=2.37,<3",
     "imageio-ffmpeg>=0.6,<1",
     "numpy>=2,<3",
-    "pillow>=12,<13",
-    "pip-audit>=2.10,<3",
+    "pillow>=12.3,<13",
+    "pip-audit>=2.10.1,<3",
     "websocket-client>=1.9,<2",
 ]
 local-providers = [
-    "piper-tts==1.4.2",
+    "piper-tts==1.5.0",
 ]
 
 [project.scripts]

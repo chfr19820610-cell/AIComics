@@ -836,13 +836,81 @@ def phase_money():
     except: pass
 
 def phase_publish():
-    """检查发布包"""
-    publish_dir=Path("/Users/eric/Desktop/herness/AI漫剧发布包")
-    if publish_dir.exists():
-        files=list(publish_dir.rglob("*"))
-        log.info(f"发布包: {len(files)}个文件")
-    else:
-        log.info("暂无发布包")
+    """验证完成的新资产 → 打包发布包 → 触发n8n发布管线"""
+    import json, subprocess, urllib.request
+    from datetime import datetime
+
+    status_path = BASE / "status.json"
+    if not status_path.exists():
+        log.info("暂无 status.json — 跳过发布")
+        return
+
+    status = json.loads(status_path.read_text())
+    to_publish = []
+
+    for ep_code, ep_data in status.get("episodes", {}).items():
+        review = ep_data.get("review", {})
+        if review.get("status") == "PASS":
+            ts = ep_data.get("published")
+            # Only publish if not yet published
+            if not ts:
+                to_publish.append(ep_code)
+
+    if not to_publish:
+        log.info("没有待发布的剧集")
+        return
+
+    log.info(f"📦 待发布: {to_publish}")
+
+    for ep in to_publish:
+        # 1. Build publish pack via CLI
+        manifest = BASE / "reports" / "season_manifest.json"
+        if manifest.exists():
+            r = subprocess.run([
+                str(VENV_PYTHON), "-m", "aicomic.cli.main",
+                "build-publish-pack",
+                "--episode-manifest", str(manifest),
+                "--episode-code", ep,
+            ], capture_output=True, text=True, timeout=60)
+            if r.returncode == 0:
+                log.info(f"  → {ep} 发布包构建完成")
+            else:
+                log.warning(f"  ⚠ {ep} 发布包构建失败: {r.stderr[:200]}")
+
+        # 2. Trigger n8n webhook with episode info
+        pack_path = BASE / "reports" / f"publish_pack_{ep}.json"
+        try:
+            payload = json.dumps({
+                "episode": ep,
+                "pack_path": str(pack_path) if pack_path.exists() else "",
+                "trigger": "vf_master_loop_phase_b",
+                "timestamp": datetime.now().isoformat(),
+            }).encode()
+            req = urllib.request.Request(
+                "http://localhost:5678/webhook/aicomics-publish",
+                data=payload,
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            resp = urllib.request.urlopen(req, timeout=10)
+            log.info(f"  → n8n webhook triggered for {ep} (HTTP {resp.getcode()})")
+        except Exception as e:
+            log.warning(f"  ⚠ n8n webhook failed for {ep}: {e}")
+
+        # 3. Update status.json with publish timestamp
+        status["episodes"][ep]["published"] = datetime.now().isoformat()
+
+    # Write updated status.json
+    # Sync to n8n-stack shared dir so Docker container sees it
+    status_path.write_text(json.dumps(status, ensure_ascii=False, indent=2))
+    try:
+        n8n_shared = Path("/Users/eric/Desktop/herness/n8n-stack/shared/status.json")
+        n8n_shared.parent.mkdir(parents=True, exist_ok=True)
+        n8n_shared.write_text(json.dumps(status, ensure_ascii=False, indent=2))
+    except Exception as e:
+        log.warning(f"  ⚠ n8n-stack sync failed: {e}")
+
+    log.info(f"✅ 发布: {len(to_publish)} 集")
 
 def phase_self_produce():
     """Phase D: when 30/30 ready → synthesize videos + style rotation + self-production"""

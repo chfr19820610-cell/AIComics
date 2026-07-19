@@ -1,22 +1,45 @@
-FROM python:3.12.13-slim
+# ===== Stage 1: Builder =====
+FROM python:3.12.13-slim AS builder
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PIP_NO_CACHE_DIR=1
 
+WORKDIR /build
+
+# Install build system
+RUN python -m pip install --no-cache-dir --upgrade pip setuptools wheel
+
+# Copy and install ComfyUI requirements
+COPY local_providers/comfyui/runtime/ComfyUI /opt/comfyui
+RUN python -m pip install --no-cache-dir \
+    --target /build/site-packages \
+    -r /opt/comfyui/requirements.txt
+
+# ===== Stage 2: Runtime =====
+FROM python:3.12.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PIP_NO_CACHE_DIR=1
+ENV PYTHONPATH=/build/site-packages
+
 WORKDIR /app
 
+# System dependencies for ComfyUI (ffmpeg, OpenGL, etc.)
 RUN printf 'Acquire::Retries "5";\n' > /etc/apt/apt.conf.d/80-retries \
     && sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list.d/debian.sources \
     && apt-get update \
     && apt-get install -y --fix-missing --no-install-recommends ffmpeg libgl1 libglib2.0-0 libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-COPY local_providers/comfyui/runtime/ComfyUI /opt/comfyui
+# Copy dependencies from builder
+COPY --from=builder /build/site-packages /build/site-packages
 
-RUN python -m pip install --upgrade pip \
-    && python -m pip install -r /opt/comfyui/requirements.txt
+# Copy ComfyUI runtime
+COPY --from=builder /opt/comfyui /opt/comfyui
 
+# Copy the sidecar launcher script
 COPY scripts/run_comfyui_sidecar.py /app/scripts/run_comfyui_sidecar.py
 
 CMD ["python", "/app/scripts/run_comfyui_sidecar.py"]
