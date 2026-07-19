@@ -14,6 +14,7 @@ video_providers:
     - manual_web
     - local_comfyui_video
     - local_comfyui_video_fast
+    - blender_local
 
 tts_providers:
   default: openai_tts
@@ -131,6 +132,19 @@ local_comfyui_video_fast:
   fps: 6
   output_prefix: aicomic_video_fast
   negative_prompt: low quality, blurry, watermark, flicker, distorted hands, text, subtitles, captions, Chinese characters, letters, logo
+
+blender_local:
+  blender_path: /Applications/Blender.app/Contents/MacOS/Blender
+  scripts_path: ../local_providers/blender/scripts/
+  engine: EEVEE
+  resolution_x: 1280
+  resolution_y: 720
+  fps: 24
+  output_prefix: blender_scene
+  scene_outdir: ../local_providers/blender/outputs/
+  timeout_seconds: 600
+  render_samples: 64
+  use_freestyle: true
 
 local_piper_tts:
   base_url: null

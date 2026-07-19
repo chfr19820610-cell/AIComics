@@ -81,7 +81,8 @@
       "filename_prefix": "{{output_prefix}}",
       "pingpong": false,
       "format": "video/h264-mp4",
-      "images": ["7", 0]
+      "images": ["7", 0],
+      "save_output": true
     }
   }
 }

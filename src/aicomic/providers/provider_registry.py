@@ -9,6 +9,7 @@ from aicomic.providers.seedance_provider import SeedanceProvider
 from aicomic.providers.kling_provider import KlingProvider
 from aicomic.providers.comfyui_provider import ComfyUIProvider
 from aicomic.providers.manual_provider import ManualProvider, PiperTTSProvider
+from aicomic.providers.blender_render import BlenderRenderProvider
 
 
 # ── Registry ─────────────────────────────────────────────────────────────
@@ -108,6 +109,7 @@ class ProviderRegistry:
             "manual_web": "manual",
             "windows_tts": "manual",
             "sora": "openai",
+            "blender_local": "blender",
         }
         mapped = NAME_MAP.get(provider_name)
         if mapped is not None:
@@ -204,6 +206,7 @@ def _create_default_registry() -> ProviderRegistry:
     registry.register(ComfyUIProvider)
     registry.register(ManualProvider)
     registry.register(PiperTTSProvider)
+    registry.register(BlenderRenderProvider)
     return registry
 
 

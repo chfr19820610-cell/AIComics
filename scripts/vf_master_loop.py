@@ -96,6 +96,12 @@ log = logging.getLogger("vf_loop")
 
 EPISODES = {"E01":6,"E02":6,"E03":6,"E04":6,"E05":6}
 
+# ── Concurrency: env AiComics_CONCURRENCY or dynamic CPU count ────────────
+_AICOMICS_CONCURRENCY = int(os.environ.get(
+    "AiComics_CONCURRENCY",
+    str(os.cpu_count() or 12)
+))
+
 def http_ok(url):
     try: import urllib.request; return urllib.request.urlopen(url,timeout=3).getcode()==200
     except: return False
@@ -618,6 +624,8 @@ def _run_comfyui_synthesis(
         log.warning("  ⚠ ComfyUI provider not ready (server unreachable?)")
         return None
 
+    log.info(f"  🔧 ComfyUI synthesis — concurrency={_AICOMICS_CONCURRENCY} (AiComics_CONCURRENCY env)")
+
     from aicomic.video_synthesis.config import FFMPEG, TEMP_DIR
     from aicomic.video_synthesis.pipeline import phase_concat, phase_burn_subtitles, verify_video
     from aicomic.video_synthesis.scene import get_audio_duration, reencode_audio
@@ -761,7 +769,7 @@ def phase_production(preview_mode: bool = False):
     
     generated = _generate_missing_assets_parallel(
         preview=preview_mode,
-        max_workers=6,
+        max_workers=_AICOMICS_CONCURRENCY,
         skip_existing=True,
     )
     
@@ -1109,6 +1117,110 @@ def phase_publish():
 
     log.info(f"✅ 发布: {len(to_publish)} 集")
 
+def _synthesize_one_episode(
+    ep_code: str,
+    palette: dict,
+    style_slug: str,
+    timestamp: str,
+    current_idx: int,
+    produced_dir: Path,
+    state_path: Path,
+    base_path: Path,
+    episode_subtitles: dict,
+    asset_sources: dict,
+    episodes: dict,
+) -> dict:
+    """Synthesize one episode — extracted for parallel execution.
+
+    Returns a result dict with keys: ep_code, status, path?, size_mb?, model_type?.
+    """
+    source_dir = asset_sources.get(ep_code, state_path / "demo_assets")
+    image_dir = source_dir / ep_code / "images"
+    audio_dir = source_dir / ep_code / "audio"
+    scene_count = episodes[ep_code]
+
+    subtitles = episode_subtitles.get(ep_code, [""] * scene_count)
+    scenes = _build_scene_list(image_dir, audio_dir, ep_code, scene_count, subtitles)
+
+    if len(scenes) < scene_count:
+        return {"ep_code": ep_code, "status": "skipped",
+                "reason": f"only {len(scenes)}/{scene_count} scenes ready"}
+
+    output_name = f"{ep_code}_{style_slug}_{timestamp}.mp4"
+    output_path = produced_dir / output_name
+    label_path = output_path.with_suffix(".label.json")
+    latest_link = produced_dir / f"{ep_code}_latest_{style_slug}.mp4"
+
+    # ── Determine synthesis engine: Wan2.2 → AnimateDiff → Seedance → FFmpeg ──
+    comfyui_available = _check_comfyui_ready()
+    seedance_available = _check_seedance_ready()
+    wan22_path = (base_path / ".venv" / ".." / ".." / "Documents" / "comfy" / "ComfyUI"
+                  / "models" / "diffusion_models" / "wan2.2_ti2v_5B_fp16.safetensors")
+    wan22_models = wan22_path.exists()
+    if comfyui_available and wan22_models:
+        model_type = "comfyui_video_wan22"
+    elif comfyui_available:
+        model_type = "comfyui_video"
+    elif seedance_available:
+        model_type = "seedance"
+    else:
+        model_type = "ffmpeg"
+
+    log.info(f"  🎬 [{ep_code}] Synthesizing ({len(scenes)} scenes, {palette['name']}) → {output_name}")
+    log.info(f"  🔧 [{ep_code}] Engine: {model_type}")
+
+    report = None
+    if comfyui_available:
+        report = _run_comfyui_synthesis(ep_code, scenes, image_dir, audio_dir, output_path)
+        if report is None:
+            log.info(f"  ⚠ [{ep_code}] ComfyUI failed, falling back")
+            if seedance_available:
+                model_type = "seedance"
+            else:
+                model_type = "ffmpeg"
+
+    if report is None and seedance_available:
+        report = _run_seedance_synthesis(ep_code, scenes, image_dir, audio_dir, output_path)
+        if report is None:
+            log.info(f"  ⚠ [{ep_code}] Seedance failed, falling back to FFmpeg")
+            model_type = "ffmpeg"
+
+    if report is None:
+        report = _run_synthesis(ep_code, scenes, image_dir, audio_dir,
+                                output_path, subtitle_format="ass")
+
+    if report and report.get("status") in ("ok", "small_output"):
+        label_data = {
+            "episode": ep_code,
+            "style": palette["name"],
+            "style_slug": style_slug,
+            "style_index": current_idx % len(STYLE_PALETTES),
+            "palette": palette["colors"],
+            "timestamp": timestamp,
+            "synthesized_at": datetime.now().isoformat(),
+            "scenes": len(scenes),
+            "duration": report.get("duration", "?"),
+            "size_mb": report.get("size_mb", 0),
+            "status": report.get("status", "ok"),
+            "model_type": model_type,
+        }
+        label_path.write_text(json.dumps(label_data, ensure_ascii=False, indent=2))
+        try:
+            if latest_link.exists() or latest_link.is_symlink():
+                latest_link.unlink()
+            latest_link.symlink_to(output_path.name)
+        except (OSError, NotImplementedError):
+            pass
+
+        log.info(f"  ✓ [{ep_code}] → {output_path.name}  ({report.get('duration', '?'):s}, {report.get('bitrate', '?')})")
+        return {"ep_code": ep_code, "status": "ok",
+                "path": str(output_path), "size_mb": report.get("size_mb", 0),
+                "model_type": model_type}
+    else:
+        log.warning(f"  ✗ [{ep_code}] synthesis failed ({model_type})")
+        return {"ep_code": ep_code, "status": "failed", "model_type": model_type}
+
+
 def phase_self_produce():
     """Phase D: when 30/30 ready → synthesize videos + style rotation + self-production"""
     total_img, total_aud = count("images"), count("audio")
@@ -1144,7 +1256,7 @@ def phase_self_produce():
     except ImportError:
         EPISODE_SUBTITLES = {}
 
-    # ── 4. Discover episodes with complete assets and synthesize ──────
+    # ── 4. Discover episodes with complete assets and synthesize (PARALLEL) ──
     style_slug = palette["slug"]
     synthesis_results = []
 
@@ -1157,107 +1269,50 @@ def phase_self_produce():
         "E05": STATE / "demo_assets",
     }
 
+    # Pre-flight: check which episodes are ready
+    ready_episodes = []
     for ep_code in sorted(EPISODES.keys()):
         source_dir = ASSET_SOURCES.get(ep_code, STATE / "demo_assets")
         image_dir = source_dir / ep_code / "images"
         audio_dir = source_dir / ep_code / "audio"
-        scene_count = EPISODES[ep_code]
-
         if not image_dir.exists() or not audio_dir.exists():
             log.info(f"  {ep_code}: asset dirs missing, skipping")
             continue
-
+        scene_count = EPISODES[ep_code]
         subtitles = EPISODE_SUBTITLES.get(ep_code, [""] * scene_count)
         scenes = _build_scene_list(image_dir, audio_dir, ep_code, scene_count, subtitles)
-
         if len(scenes) < scene_count:
             log.info(f"  {ep_code}: only {len(scenes)}/{scene_count} scenes ready, skipping")
             continue
+        ready_episodes.append(ep_code)
 
-        # Output path with style label
-        output_name = f"{ep_code}_{style_slug}_{timestamp}.mp4"
-        output_path = produced_dir / output_name
-        label_path = output_path.with_suffix(".label.json")
-
-        # Also create a stable symlink-style label for the latest per-episode
-        latest_link = produced_dir / f"{ep_code}_latest_{style_slug}.mp4"
-
-        # ── Determine synthesis engine: Wan2.2 (local) → AnimateDiff (local) → Seedance (cloud) → FFmpeg (local) ──
-        comfyui_available = _check_comfyui_ready()
-        seedance_available = _check_seedance_ready()
-        wan22_models = (BASE / ".venv" / ".." / ".." / "Documents" / "comfy" / "ComfyUI" / "models" / "diffusion_models" / "wan2.2_ti2v_5B_fp16.safetensors").exists()
-        if comfyui_available and wan22_models:
-            model_type = "comfyui_video_wan22"
-        elif comfyui_available:
-            model_type = "comfyui_video"
-        elif seedance_available:
-            model_type = "seedance"
-        else:
-            model_type = "ffmpeg"
-
-        log.info(f"  🎬 Synthesizing {ep_code} ({len(scenes)} scenes, {palette['name']}) → {output_name}")
-        log.info(f"  🔧 Engine: {model_type}")
-
-        report = None
-        if comfyui_available:
-            report = _run_comfyui_synthesis(
-                ep_code, scenes, image_dir, audio_dir,
-                output_path,
-            )
-            if report is None:
-                log.info(f"  ⚠ ComfyUI failed, falling back to Seedance if available, else FFmpeg")
-                if seedance_available:
-                    model_type = "seedance"
-                else:
-                    model_type = "ffmpeg"
-
-        if report is None and seedance_available:
-            report = _run_seedance_synthesis(
-                ep_code, scenes, image_dir, audio_dir,
-                output_path,
-            )
-            if report is None:
-                log.info(f"  ⚠ Seedance failed, falling back to FFmpeg")
-                model_type = "ffmpeg"
-
-        if report is None:
-            report = _run_synthesis(
-                ep_code, scenes, image_dir, audio_dir,
-                output_path, subtitle_format="ass",
-            )
-
-        if report and report.get("status") in ("ok", "small_output"):
-            label_data = {
-                "episode": ep_code,
-                "style": palette["name"],
-                "style_slug": style_slug,
-                "style_index": current_idx % len(STYLE_PALETTES),
-                "palette": palette["colors"],
-                "timestamp": timestamp,
-                "synthesized_at": datetime.now().isoformat(),
-                "scenes": len(scenes),
-                "duration": report.get("duration", "?"),
-                "size_mb": report.get("size_mb", 0),
-                "status": report.get("status", "ok"),
-                "model_type": model_type,
+    # Parallel synthesis with up to 3 concurrent workers
+    if ready_episodes:
+        log.info(f"  🚀 Parallel synthesis: {len(ready_episodes)} episodes with up to 3 workers")
+        with ThreadPoolExecutor(max_workers=3) as executor:
+            future_map = {
+                executor.submit(
+                    _synthesize_one_episode,
+                    ep_code, palette, style_slug, timestamp, current_idx,
+                    produced_dir, STATE, BASE, EPISODE_SUBTITLES, ASSET_SOURCES, EPISODES,
+                ): ep_code
+                for ep_code in ready_episodes
             }
-            label_path.write_text(json.dumps(label_data, ensure_ascii=False, indent=2))
-            # Symlink the latest — use copy if symlinks fail
-            try:
-                if latest_link.exists() or latest_link.is_symlink():
-                    latest_link.unlink()
-                latest_link.symlink_to(output_path.name)
-            except (OSError, NotImplementedError):
-                pass
-
-            synthesis_results.append({"ep_code": ep_code, "status": "ok",
-                                      "path": str(output_path), "size_mb": report.get("size_mb", 0),
-                                      "model_type": model_type})
-            log.info(f"  ✓ {ep_code} → {output_path.name}  ({report.get('duration', '?'):s}, {report.get('bitrate', '?')})")
-        else:
-            synthesis_results.append({"ep_code": ep_code, "status": "failed",
-                                      "model_type": model_type})
-            log.warning(f"  ✗ {ep_code} synthesis failed ({model_type})")
+            for future in as_completed(future_map):
+                ep_code = future_map[future]
+                try:
+                    result = future.result()
+                    if result:
+                        synthesis_results.append(result)
+                    else:
+                        synthesis_results.append({"ep_code": ep_code, "status": "failed",
+                                                  "model_type": "?"})
+                except Exception as e:
+                    log.warning(f"  ✗ [{ep_code}] parallel synthesis exception: {e}")
+                    synthesis_results.append({"ep_code": ep_code, "status": "failed",
+                                              "model_type": "?"})
+    else:
+        log.info("  No episodes ready for synthesis")
 
     # ── 5. Write per-round summary ────────────────────────────────────
     round_data = {

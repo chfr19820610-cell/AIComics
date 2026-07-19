@@ -101,6 +101,18 @@ PROVIDER_PROFILES: dict[str, ProviderProfile] = {
         required_env=["OPENAI_API_KEY"],
         notes="适合后续高质量旁白和角色音色；当前只做路由规划。",
     ),
+    "blender_local": ProviderProfile(
+        provider="blender_local",
+        supported_job_types=["video", "image"],
+        dispatch_channel="local",
+        queue_name="video_local",
+        run_mode="本地 Blender 三渲二渲染",
+        auth_required=False,
+        required_env=[],
+        notes="基于 Blender Python API 的本地 3D 渲染 Provider。"
+              "支持 EEVEE / CYCLES 引擎、Freestyle 线稿、精确摄像机控制。"
+              "适合三渲二动画风格视频和静帧渲染。",
+    ),
 }
 
 

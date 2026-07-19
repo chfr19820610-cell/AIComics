@@ -6,6 +6,7 @@ from aicomic.providers.seedance_provider import SeedanceProvider
 from aicomic.providers.kling_provider import KlingProvider
 from aicomic.providers.comfyui_provider import ComfyUIProvider
 from aicomic.providers.manual_provider import ManualProvider, PiperTTSProvider
+from aicomic.providers.blender_render import BlenderRenderProvider
 from aicomic.providers.provider_registry import (
     ProviderRegistry,
     get_provider_registry,
@@ -25,6 +26,7 @@ __all__ = [
     "ComfyUIProvider",
     "ManualProvider",
     "PiperTTSProvider",
+    "BlenderRenderProvider",
     # Registry
     "ProviderRegistry",
     "get_provider_registry",
