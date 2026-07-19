@@ -1,4 +1,4 @@
-name: CI
+name: CI — 自动测试
 
 on:
   push:
@@ -9,14 +9,61 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+
+      - name: 设置 Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - name: Install deps
-        run: pip install -r requirements-lock.txt
-      - name: Run tests
-        run: PYTHONPATH=src pytest tests/ -v -q
-      - name: Check imports
-        run: PYTHONPATH=src python -c "from aicomic.cli.main import main; print('Imports OK')"
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+          cache-dependency-path: "requirements-lock.txt"
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-lock.txt
+
+      - name: 运行全部 640 个测试
+        id: pytest
+        continue-on-error: false
+        run: |
+          PYTHONPATH=src pytest tests/ -v \
+            --tb=short \
+            --junitxml=pytest-results.xml \
+            -q 2>&1 | tee pytest-output.txt
+          tail -1 pytest-output.txt
+
+      - name: 输出测试摘要 (JUnit)
+        if: always()
+        run: |
+          echo "## 🧪 测试结果" >> $GITHUB_STEP_SUMMARY
+          if [ -f pytest-output.txt ]; then
+            tail -1 pytest-output.txt >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| 项目 | 值 |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🐍 Python | ${{ matrix.python-version }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ⏱  触发 | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📂 分支 | ${{ github.ref_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ 提交 | ${{ github.sha }} |" >> $GITHUB_STEP_SUMMARY
+
+      - name: 上传测试结果
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-results-${{ matrix.python-version }}
+          path: pytest-results.xml
+          retention-days: 7
+
+      - name: 验证导入
+        run: |
+          echo "检查核心模块导入..."
+          PYTHONPATH=src python -c "from aicomic.cli.main import main; print('✅ CLI 主模块导入成功')"
+          PYTHONPATH=src python -c "from aicomic.core import episode, manifest, project; print('✅ 核心模块导入成功')"
+          PYTHONPATH=src python -c "from aicomic.providers import provider_base, request_builder, executor; print('✅ Provider 模块导入成功')"

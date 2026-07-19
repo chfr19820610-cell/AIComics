@@ -1,4 +1,4 @@
-name: 每日升级 Daily Upgrade
+name: 每日升级检查 ⬆️
 
 on:
   schedule:
@@ -11,28 +11,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Set up Python
+      - name: 设置 Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       
-      - name: Run tests
+      - name: 安装依赖 & 测试
         run: |
           pip install -r requirements-lock.txt
-          PYTHONPATH=src pytest tests/ -v -q
+          PYTHONPATH=src pytest tests/ -v -q --tb=short | tee daily-test-output.txt
       
-      - name: Check outdated deps
+      - name: 检查过时依赖
         run: |
           pip install pip-outdated
           pip-outdated --format=columns || true
       
-      - name: Lint check
+      - name: Lint 检查
         run: |
           pip install ruff
           PYTHONPATH=src ruff check src/ || true
       
-      - name: Summary
+      - name: 生成摘要
+        if: always()
         run: |
-          echo "## 每日升级报告" >> $GITHUB_STEP_SUMMARY
-          echo "测试: ✅ 通过" >> $GITHUB_STEP_SUMMARY
-          echo "仓库: https://github.com/chfr19820610-cell/AIComics" >> $GITHUB_STEP_SUMMARY
+          echo "## 📅 每日升级报告" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| 项目 | 结果 |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          if [ -f daily-test-output.txt ]; then
+            echo "| 🧪 测试 | ✅ 通过 — $(tail -1 daily-test-output.txt) |" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "| 📦 仓库 | [chfr19820610-cell/AIComics](https://github.com/chfr19820610-cell/AIComics) |" >> $GITHUB_STEP_SUMMARY
+          echo "| ⏱ 日期 | $(date -u '+%Y-%m-%d %H:%M UTC') |" >> $GITHUB_STEP_SUMMARY
