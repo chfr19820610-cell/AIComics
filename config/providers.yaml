@@ -9,6 +9,7 @@ video_providers:
   default: seedance
   available:
     - seedance
+    - kling
     - manual_web
     - local_comfyui_video
 
@@ -42,6 +43,17 @@ seedance:
   poll_interval_seconds: 5
   poll_timeout_seconds: 600
   mode: text2video
+
+kling:
+  base_url: https://api.klingai.com
+  timeout_seconds: 120
+  poll_interval_seconds: 5
+  poll_timeout_seconds: 600
+  model: kling-v2-master
+  duration: 5
+  aspect_ratio: 16:9
+  mode: standard
+  cfg_scale: 0.5
 
 local_comfyui_image:
   base_url: http://127.0.0.1:8188

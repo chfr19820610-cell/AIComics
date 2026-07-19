@@ -6,6 +6,7 @@ from typing import Any
 from aicomic.providers.base import IProvider
 from aicomic.providers.openai_provider import OpenAIProvider, DALL_EProvider
 from aicomic.providers.seedance_provider import SeedanceProvider
+from aicomic.providers.kling_provider import KlingProvider
 from aicomic.providers.comfyui_provider import ComfyUIProvider
 from aicomic.providers.manual_provider import ManualProvider, PiperTTSProvider
 
@@ -118,6 +119,7 @@ class ProviderRegistry:
         "openai_image": "local_comfyui_image",
         "openai_tts": "local_piper_tts",
         "seedance": "local_comfyui_video",
+        "kling": "local_comfyui_video",
         "openai": "comfyui",
     }
 
@@ -196,6 +198,7 @@ def _create_default_registry() -> ProviderRegistry:
     registry.register(OpenAIProvider)
     registry.register(DALL_EProvider)
     registry.register(SeedanceProvider)
+    registry.register(KlingProvider)
     registry.register(ComfyUIProvider)
     registry.register(ManualProvider)
     registry.register(PiperTTSProvider)
