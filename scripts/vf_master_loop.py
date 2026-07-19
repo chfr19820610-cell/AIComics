@@ -47,12 +47,17 @@ _TMP_COPY = "/tmp/vf_master_loop.py"
 _SCRIPT_SRC = _sys.argv[0] if _sys.argv[0] else __file__
 if "scripts" in _SCRIPT_SRC and _SCRIPT_SRC != _TMP_COPY:
     import shutil as _shutil, os as _os
+    from pathlib import Path as _Path
+    # 解析真实项目根目录 (exec前算好, 因为 exec 后 __file__ 会变)
+    _PROJECT_ROOT = str(_Path(_SCRIPT_SRC).resolve().parent.parent)
     # 只复制一次, 避免递归
     if not _os.path.exists(_TMP_COPY) or _os.path.getmtime(_SCRIPT_SRC) > _os.path.getmtime(_TMP_COPY):
         _shutil.copy2(_SCRIPT_SRC, _TMP_COPY)
         _os.chmod(_TMP_COPY, 0o755)
-    # 重新 exec 副本, 带原参数
-    _os.execv(_sys.executable, [_sys.executable, _TMP_COPY] + _sys.argv[1:])
+    # 重新 exec 副本, 带原参数 + 设置 AICOMICS_ROOT 确保 /tmp/ 副本能找到项目根
+    _env = _os.environ.copy()
+    _env["AICOMICS_ROOT"] = _PROJECT_ROOT
+    _os.execve(_sys.executable, [_sys.executable, _TMP_COPY] + _sys.argv[1:], _env)
 # ── 热修改保护结束 ──────────────────────────────────────────────────
 
 # Add shutil to imports
@@ -62,12 +67,20 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-# Resolve project root — env var AICOMICS_ROOT or auto-detect from script location
+# Resolve project root — env var AICOMICS_ROOT or auto-detect
 _BASE_ENV = os.environ.get("AICOMICS_ROOT")
 if _BASE_ENV:
     BASE = Path(_BASE_ENV)
 else:
-    BASE = Path(__file__).resolve().parent.parent
+    # Auto-detect: walk up from cwd or script dir looking for pyproject.toml
+    _candidates = [Path(__file__).resolve().parent.parent, Path.cwd()]
+    BASE = Path("/")
+    for _c in _candidates:
+        if (_c / "pyproject.toml").exists() or (_c / "scripts" / "vf_master_loop.py").exists():
+            BASE = _c
+            break
+    if BASE == Path("/"):
+        BASE = Path(__file__).resolve().parent.parent  # fallback
 VENV_PYTHON = BASE / ".venv" / "bin" / "python3"
 STATE = BASE / "state"
 LOG = BASE / "logs" / "vf_loop.log"
