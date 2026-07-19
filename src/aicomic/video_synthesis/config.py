@@ -6,7 +6,7 @@ from pathlib import Path
 
 # ── System paths ──────────────────────────────────────────────────────────
 SYSTEM_ROOT = Path("/Users/eric/Desktop/herness/AIComics/10_System")
-FFMPEG = Path("/Users/eric/bin/ffmpeg")
+FFMPEG = Path("/Users/eric/.local/bin/ffmpeg")
 
 # Asset directories — each episode has images/ and audio/ subdirectories
 LOCAL_PROVIDER_DIR = SYSTEM_ROOT / "state" / "local_provider_output"
