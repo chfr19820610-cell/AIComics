@@ -25,6 +25,9 @@ openai_api:
   base_url: https://api.jieyouai.it.com/v1
   timeout_seconds: 120
 
+# ComfyUI workspace root directory (overridable by COMFYUI_ROOT env var)
+comfyui_workspace: /Users/eric/Documents/comfy/ComfyUI
+
 openai_image:
   model: gpt-image-1.5
   # 竖屏 9:16 漫画帧最佳分辨率。gpt-image-1.5 支持: 1024x1024, 1024x1536, 1536x1024

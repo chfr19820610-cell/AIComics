@@ -36,18 +36,27 @@
 一切自动化, 日志在 logs/vf_loop.log
 """
 
-import os, sys, time, json, subprocess, logging, random
+# Add shutil to imports
+import os, sys, time, json, subprocess, logging, random, shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-BASE = Path("/Users/eric/Desktop/herness/AIComics/10_System")
+# Resolve project root — env var AICOMICS_ROOT or auto-detect from script location
+_BASE_ENV = os.environ.get("AICOMICS_ROOT")
+if _BASE_ENV:
+    BASE = Path(_BASE_ENV)
+else:
+    BASE = Path(__file__).resolve().parent.parent
 VENV_PYTHON = BASE / ".venv" / "bin" / "python3"
 STATE = BASE / "state"
 LOG = BASE / "logs" / "vf_loop.log"
 os.chdir(str(BASE))
 os.environ["PYTHONPATH"] = "src"
+
+# Unified providers config path (single source of truth, used everywhere)
+PROVIDERS_CONFIG = BASE / "config" / "providers.yaml"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s",
                     handlers=[logging.FileHandler(LOG), logging.StreamHandler()])
@@ -272,7 +281,7 @@ def _run_seedance_synthesis(
     temp_scenes_dir.mkdir(exist_ok=True)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    providers_config = BASE / "providers.yaml"
+    providers_config = PROVIDERS_CONFIG
     if not providers_config.exists():
         providers_config = TEMP_DIR / "_empty_providers.yaml"
         providers_config.write_text("# empty\n", encoding="utf-8")
@@ -428,9 +437,7 @@ def _run_comfyui_synthesis(
     temp_scenes_dir.mkdir(exist_ok=True)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    providers_config = BASE / "config" / "providers.yaml"
-    if not providers_config.exists():
-        providers_config = BASE / "providers.yaml"
+    providers_config = PROVIDERS_CONFIG
     if not providers_config.exists():
         log.warning("  ⚠ providers.yaml not found")
         return None
@@ -578,9 +585,7 @@ def _generate_one_image(ep_code: str, scene_num: int, output_dir: Path,
                          prompt: str, preview: bool = False) -> bool:
     """Generate a single image using OpenAI DALL-E, respecting cache and preview."""
     from aicomic.providers.executor import perform_provider_request
-    providers_config = BASE / "config" / "providers.yaml"
-    if not providers_config.exists():
-        providers_config = BASE / "providers.yaml"
+    providers_config = PROVIDERS_CONFIG
     if not providers_config.exists():
         log.warning(f"  ⚠ providers.yaml not found, cannot generate {ep_code}_S{scene_num:02d}")
         return False
@@ -623,9 +628,7 @@ def _generate_one_tts(ep_code: str, scene_num: int, output_dir: Path,
                        text: str) -> bool:
     """Generate a single TTS audio using OpenAI TTS, respecting cache."""
     from aicomic.providers.executor import perform_provider_request
-    providers_config = BASE / "config" / "providers.yaml"
-    if not providers_config.exists():
-        providers_config = BASE / "providers.yaml"
+    providers_config = PROVIDERS_CONFIG
     if not providers_config.exists():
         log.warning(f"  ⚠ providers.yaml not found, cannot generate TTS {ep_code}_S{scene_num:02d}")
         return False
@@ -1103,7 +1106,7 @@ def phase_self_produce():
 
     return True
 
-def main(preview_mode: bool = False):
+def main(preview_mode: bool = False, single_run: bool = False):
     log.info("="*60)
     log.info("🏭 视频工厂主循环 v3.0 启动")
     if preview_mode:
@@ -1126,8 +1129,25 @@ def main(preview_mode: bool = False):
             time.sleep(300); continue
         if not http_ok("http://localhost:8188/system_stats"):
             log.error("ComfyUI DOWN, 尝试重启...")
-            subprocess.run(["comfy","--workspace=/Users/eric/Documents/comfy/ComfyUI","launch","--background"],
-                         capture_output=True,timeout=30)
+            # Resolve ComfyUI workspace: env var → providers.yaml → PATH fallback
+            _comfy_ws = os.environ.get("COMFYUI_ROOT", "")
+            if not _comfy_ws:
+                try:
+                    import yaml
+                    if PROVIDERS_CONFIG.exists():
+                        _data = yaml.safe_load(PROVIDERS_CONFIG.read_text())
+                        if _data and isinstance(_data, dict):
+                            _comfy_ws = _data.get("comfyui_workspace", "") or ""
+                except Exception:
+                    pass
+            if _comfy_ws:
+                subprocess.run(["comfy", f"--workspace={_comfy_ws}", "launch", "--background"],
+                               capture_output=True, timeout=30)
+            elif shutil.which("comfy"):
+                subprocess.run(["comfy", "launch", "--background"],
+                               capture_output=True, timeout=30)
+            else:
+                log.warning("ComfyUI CLI not found in PATH (set COMFYUI_ROOT env var or install comfy CLI)")
             time.sleep(60)
 
         phase_production(preview_mode=preview_mode)
@@ -1146,10 +1166,14 @@ def main(preview_mode: bool = False):
             log.info(f"📊 状态变化: {last_summary} → {summary}")
             last_summary = summary
 
+        if single_run:
+            log.info("单次运行模式完成，退出循环")
+            break
+
         log.info(f"下一轮: {datetime.fromtimestamp(time.time()+1800):%H:%M}")
         time.sleep(1800)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="🏭 视频工厂主循环 v3.0")
     parser.add_argument("--preview", action="store_true",
@@ -1160,8 +1184,8 @@ if __name__=="__main__":
     try:
         if args.single_run:
             # Single run: do one round without the infinite loop
-            main(preview_mode=args.preview)
+            main(preview_mode=args.preview, single_run=True)
         else:
-            main(preview_mode=args.preview)
+            main(preview_mode=args.preview, single_run=False)
     except KeyboardInterrupt: log.info("停止")
     except Exception as e: log.exception(f"崩溃: {e}")

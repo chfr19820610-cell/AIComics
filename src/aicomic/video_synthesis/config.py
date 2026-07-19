@@ -2,11 +2,24 @@
 Configuration constants for the video synthesis pipeline.
 """
 
+import os
+import shutil
 from pathlib import Path
 
 # ── System paths ──────────────────────────────────────────────────────────
-SYSTEM_ROOT = Path("/Users/eric/Desktop/herness/AIComics/10_System")
-FFMPEG = Path("/Users/eric/.local/bin/ffmpeg")
+_SYSTEM_ROOT = os.environ.get("AICOMICS_ROOT")
+if _SYSTEM_ROOT:
+    SYSTEM_ROOT = Path(_SYSTEM_ROOT)
+else:
+    # Dynamic resolution from module location (src/aicomic/video_synthesis/config.py → project root)
+    SYSTEM_ROOT = Path(__file__).resolve().parents[3]
+
+_FFMPEG_PATH = os.environ.get("FFMPEG_PATH")
+if _FFMPEG_PATH:
+    FFMPEG = Path(_FFMPEG_PATH)
+else:
+    _which = shutil.which("ffmpeg")
+    FFMPEG = Path(_which) if _which else Path("ffmpeg")
 
 # Asset directories — each episode has images/ and audio/ subdirectories
 LOCAL_PROVIDER_DIR = SYSTEM_ROOT / "state" / "local_provider_output"
