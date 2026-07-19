@@ -30,7 +30,7 @@
 一切自动化, 日志在 logs/vf_loop.log
 """
 
-import os, sys, time, json, subprocess, logging, random
+import os, sys, time, json, subprocess, logging, random, shutil
 from datetime import datetime
 from pathlib import Path
 
@@ -395,13 +395,87 @@ def phase_money():
     except: pass
 
 def phase_publish():
-    """检查发布包"""
-    publish_dir=Path("/Users/eric/Desktop/herness/AI漫剧发布包")
-    if publish_dir.exists():
-        files=list(publish_dir.rglob("*"))
-        log.info(f"发布包: {len(files)}个文件")
-    else:
-        log.info("暂无发布包")
+    """Phase B: 自动发布 — 扫描最新产出并发布到社交平台"""
+    # ── Check social-auto-upload availability ──────────────────────────
+    SAU = shutil.which("social-auto-upload")
+    if SAU is None:
+        log.info("📋 TODO: social-auto-upload 未安装 — 跳过自动发布")
+        log.info("  安装: pip install social-auto-upload 或 https://github.com/xxx/social-auto-upload")
+        return
+
+    # ── Scan produced_videos/ for the latest episode mp4 ───────────────
+    produced_dir = STATE / "produced_videos"
+    if not produced_dir.exists():
+        log.info("📋 TODO: state/produced_videos/ 不存在 — 暂无内容可发布")
+        return
+
+    videos = sorted(produced_dir.glob("E*_*.mp4"), key=lambda p: p.stat().st_mtime, reverse=True)
+    if not videos:
+        log.info("📋 state/produced_videos/ 暂无 mp4 文件 — 跳过发布")
+        return
+
+    latest = videos[0]
+    latest_label = latest.with_suffix(".label.json")
+    label_info = {}
+    if latest_label.exists():
+        try:
+            label_info = json.loads(latest_label.read_text())
+        except Exception as e:
+            log.warning(f"无法解析标签文件 {latest_label.name}: {e}")
+
+    ep = label_info.get("episode", latest.stem.split("_")[0])
+    style = label_info.get("style", "unknown")
+    log.info(f"📤 准备发布: {latest.name}  (ep={ep}, style={style})")
+
+    # ── Publish to 小红书 (xiaohongshu) ────────────────────────────────
+    title = f"AI漫剧 {ep} | {style}"
+    description = (
+        f"🎬 AI漫剧 {ep} — 风格: {style}\n"
+        f"#AI漫剧 #{ep} #{style.replace(' ', '')}"
+    )
+    publish_log = []
+
+    for platform, plat_flag in [("小红书", "xiaohongshu"), ("抖音", "douyin")]:
+        try:
+            cmd = [
+                SAU, "upload",
+                "--platform", plat_flag,
+                "--title", title,
+                "--description", description,
+                "--file", str(latest),
+            ]
+            log.info(f"  → {platform}: {' '.join(cmd)}")
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+            if r.returncode == 0:
+                publish_log.append({"platform": plat_flag, "status": "ok", "output": r.stdout.strip()})
+                log.info(f"  ✓ {platform}: 发布成功")
+            else:
+                publish_log.append({"platform": plat_flag, "status": "failed", "error": r.stderr.strip()[:200]})
+                log.warning(f"  ✗ {platform}: 发布失败 (exit={r.returncode}) — {r.stderr.strip()[:200]}")
+        except Exception as e:
+            publish_log.append({"platform": plat_flag, "status": "error", "error": str(e)})
+            log.warning(f"  ⚠ {platform}: 调用异常 — {e}")
+
+    # ── Write publish log ──────────────────────────────────────────────
+    publish_record = {
+        "timestamp": datetime.now().isoformat(),
+        "video": latest.name,
+        "episode": ep,
+        "style": style,
+        "results": publish_log,
+    }
+    publish_log_path = produced_dir / "publish_log.json"
+    records = []
+    if publish_log_path.exists():
+        try:
+            records = json.loads(publish_log_path.read_text())
+        except Exception:
+            records = []
+    records.append(publish_record)
+    # Keep last 50 records
+    publish_log_path.write_text(json.dumps(records[-50:], ensure_ascii=False, indent=2))
+    log.info(f"📝 发布日志写入: {publish_log_path}")
+    log.info(f"📊 Phase B 发布结果: {sum(1 for r in publish_log if r['status']=='ok')}/{len(publish_log)} ok")
 
 def phase_self_produce():
     """Phase D: when 30/30 ready → synthesize videos + style rotation + self-production"""
