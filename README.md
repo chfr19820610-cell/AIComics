@@ -356,6 +356,31 @@ graph LR
 
 ---
 
+## 🛠️ CLI 工具
+
+项目附带独立命令行工具 `aicomics`，无需启动 Web 服务即可调用 ComfyUI：
+
+```bash
+# 安装 CLI
+cd ai-comics-cli && pip install -e .
+
+# 单张漫画图生成
+aicomics render "一个动漫少女站在樱花树下，日系风格"
+
+# 批量生成（从文本文件读取提示词）
+aicomics batch prompts.txt
+
+# 合成短视频
+aicomics video
+
+# 查看帮助
+aicomics --help
+```
+
+详见 [`ai-comics-cli/README.md`](ai-comics-cli/README.md)
+
+---
+
 ## 💖 支持项目
 
 AIComics 完全开源免费，如果你觉得这个项目有用，欢迎通过以下方式支持：

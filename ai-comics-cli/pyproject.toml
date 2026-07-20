@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-comics-cli"
+version = "0.1.0"
+description = "AIComics 命令行工具 — 一人公司漫画短视频工厂 CLI"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "峰哥一人公司", email = "eric@aicomics.dev"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+license = "MIT"
+dependencies = [
+    "click>=8.0",
+    "httpx>=0.28,<1",
+    "pyyaml>=6.0,<7",
+    "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+comfyui = [
+    "websocket-client>=1.9,<2",
+]
+video = [
+    "imageio>=2.37,<3",
+    "imageio-ffmpeg>=0.6,<1",
+    "numpy>=2,<3",
+]
+
+[project.scripts]
+aicomics = "aicomics.cli:cli"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

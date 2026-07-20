@@ -1,0 +1,7 @@
+# AIComics CLI
+aicomics_output/
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
