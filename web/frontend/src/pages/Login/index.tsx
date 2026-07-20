@@ -20,6 +20,8 @@ function navigateTo(path: string) {
   }
 }
 
+const BTC_ADDRESS = '1JDmYgWRJipA5ZHDmoVPfpfW8n3Gtbb92c';
+
 export default function LoginPage() {
   const [messageApi, contextHolder] = message.useMessage();
   const [submitting, setSubmitting] = useState(false);
@@ -183,6 +185,13 @@ export default function LoginPage() {
               </Card>
             </Col>
           </Row>
+          <div style={{ textAlign: 'center', marginTop: 24, paddingTop: 16, borderTop: '1px solid #f0f0f0' }}>
+            <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+              AIComics 完全开源免费 · 
+              <a href="https://github.com/chfr19820610-cell/AIComics" target="_blank" rel="noopener noreferrer"> GitHub</a> · 
+              捐赠 BTC: <code style={{ fontSize: 11 }}>{BTC_ADDRESS}</code>
+            </Typography.Text>
+          </div>
         </div>
       </div>
     </>

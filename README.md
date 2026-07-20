@@ -356,6 +356,25 @@ graph LR
 
 ---
 
+## 💖 支持项目
+
+AIComics 完全开源免费，如果你觉得这个项目有用，欢迎通过以下方式支持：
+
+| 方式 | 地址 / 链接 |
+|------|-------------|
+| ⭐ **GitHub Star** | 点右上角 ⭐，帮助项目被更多人发现 |
+| 🔗 **分享推荐** | 转发给做 AI / 视频 / 漫画的朋友 |
+| 🐦 **X (Twitter)** | [@chfr19820610](https://x.com/chfr19820610) 关注获取更新 |
+| ₿ **BTC 捐赠** | `1JDmYgWRJipA5ZHDmoVPfpfW8n3Gtbb92c` |
+
+```
+BTC: 1JDmYgWRJipA5ZHDmoVPfpfW8n3Gtbb92c
+```
+
+每一份支持都能让我花更多时间打磨这个项目 ❤️
+
+---
+
 ## 📄 许可证
 
 Apache 2.0 © 2026 [Eric Chen](https://github.com/chfr19820610-cell)
