@@ -400,6 +400,67 @@ BTC: 1JDmYgWRJipA5ZHDmoVPfpfW8n3Gtbb92c
 
 ---
 
+## ❓ What is AI漫剧 (AI Donghua)?
+
+AI漫剧（AI Comic / AI Donghua）是一种全新的内容形态：用 AI 模型代替传统动画工作室，从故事脚本到画面生成到配音合成，全流程自动化完成。每一集都是一组连贯的分镜画面配上语音旁白，最终合成 MP4 视频。
+
+与传统动画的区别：
+- **速度**: 数小时 vs 数月
+- **成本**: 仅需 GPU 算力 vs 数十万制作费
+- **人数**: 一人即可操作 vs 20+ 人团队
+- **风格**: AI 模型可以生成无限多风格，不像工作室受限于特定美术
+
+AIComics 是这类工具中**唯一全本地运行、完全开源的端到端系统**。不同于在线 AI 视频工具（如 Runway/Pika）需要上传素材到云端，AIComics 的一切处理都在你自己的电脑上完成。
+
+## ❓ FAQ
+
+<details>
+<summary><b>Q: AIComics 免费吗？有付费墙吗？</b></summary>
+
+完全免费。Apache 2.0 许可证，无任何付费功能。代码就在这，你可以自己跑，也可以 fork 修改。
+</details>
+
+<details>
+<summary><b>Q: 和 Runway / Pika / Sora 有什么区别？</b></summary>
+
+| 维度 | AIComics | Runway / Pika / Sora |
+|------|----------|---------------------|
+| 运行方式 | 本地运行 | 云端 SaaS |
+| 素材隐私 | 不离开你的电脑 | 上传到厂商服务器 |
+| 成本 | 免费（仅电费+GPU） | 订阅/按次收费 |
+| 定制性 | 完全可改（开源） | 只能用官方功能 |
+| 目标形态 | 漫剧/动画连续剧 | 短视频片段 |
+
+AIComics 是做 **完整剧集** 的工厂，不是 5 秒短视频生成器。
+</details>
+
+<details>
+<summary><b>Q: 需要什么硬件？</b></summary>
+
+- **最低**: 任何能跑 Python 3.12 + FFmpeg 的机器
+- **图片生成**: 推荐 NVIDIA GPU（6GB+ VRAM）用于 ComfyUI + SDXL
+- **视频合成**: CPU 即可，FFmpeg 处理
+- Mac M4 实测完全可用（我们就是在 M4 Mac 上开发的）
+</details>
+
+<details>
+<summary><b>Q: 支持哪些语言配音？</b></summary>
+
+当前 5 集成品均为中文配音。系统支持 Piper TTS 的所有语言（中文/英文/日文/韩文等）。OpenAI TTS provider 可提供更多语言和更自然的语音。
+</details>
+
+<details>
+<summary><b>Q: 如何发布到抖音/B站/小红书？</b></summary>
+
+系统内置 `social-auto-upload` 集成，合成完成后可一键发布。需要先在目标平台登录授权。
+</details>
+
+<details>
+<summary><b>Q: 能用于商业用途吗？</b></summary>
+
+可以。Apache 2.0 许可证允许商业使用，无 copyleft 限制。你用自己的 AIComics 生成的视频内容版权归你所有。
+</details>
+
 ## 📄 许可证
 
 Apache 2.0 © 2026 [Eric Chen](https://github.com/chfr19820610-cell)
