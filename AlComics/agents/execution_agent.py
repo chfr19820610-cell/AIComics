@@ -146,8 +146,11 @@ def execute_tts(task: dict, dry_run: bool):
     t0 = time.time()
     try:
         ensure_dir(output_path.parent)
+        env = os.environ.copy()
+        for k in ["HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy"]:
+            env.pop(k, None)
         subprocess.run([EDGE_TTS, "--voice", task.get("voice", "zh-CN-XiaoxiaoNeural"), "--text", text, "--write-media", str(output_path)],
-            capture_output=True, text=True, timeout=120)
+            capture_output=True, text=True, timeout=120, env=env)
         if output_path.exists() and output_path.stat().st_size > 0: return make_result(task, "completed", str(output_path), elapsed=time.time()-t0)
         raise RuntimeError("edge-tts empty")
     except Exception as e: return make_result(task, "failed", error=str(e), elapsed=time.time()-t0)

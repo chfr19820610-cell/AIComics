@@ -3,7 +3,7 @@
 # 验证所有20个已修复的审查问题
 set -euo pipefail
 
-BASE="/Users/eric/Desktop/hermes/AlComics"
+BASE="$(cd "$(dirname "$0")" && pwd)"
 PASS=0
 FAIL=0
 TOTAL=0
@@ -25,13 +25,26 @@ check; python3 -c "import py_compile; py_compile.compile('$BASE/backend/main.py'
 echo "📦 Agent 语法检查"
 for f in decision_agent.py execution_agent.py supervision_agent.py; do
   check
-  python3 -c "import py_compile; py_compile.compile('$BASE/$f', doraise=True)" 2>/dev/null && ok "$f 语法正确" || fail "$f 语法错误"
+  if [ -f "$BASE/$f" ]; then
+    python3 -c "import py_compile; py_compile.compile('$BASE/$f', doraise=True)" 2>/dev/null && ok "$f 语法正确" || fail "$f 语法错误"
+  elif [ -f "$BASE/agents/$f" ]; then
+    python3 -c "import py_compile; py_compile.compile('$BASE/agents/$f', doraise=True)" 2>/dev/null && ok "$f (agents/) 语法正确" || fail "$f (agents/) 语法错误"
+  else
+    fail "$f 文件不存在 (root 或 agents/ 均未找到)"
+  fi
 done
 
 # ── 3. Shell 语法 ────────────────────────────────
 echo "📦 Shell 语法检查"
 for f in aicomic-3layer.sh run.sh docker-entrypoint.sh; do
-  check; bash -n "$BASE/$f" 2>/dev/null && ok "$f 语法正确" || fail "$f 语法错误"
+  check
+  if [ -f "$BASE/$f" ]; then
+    bash -n "$BASE/$f" 2>/dev/null && ok "$f 语法正确" || fail "$f 语法错误"
+  elif [ -f "$BASE/agents/$f" ]; then
+    bash -n "$BASE/agents/$f" 2>/dev/null && ok "$f (agents/) 语法正确" || fail "$f (agents/) 语法错误"
+  else
+    fail "$f 文件不存在"
+  fi
 done
 
 # ── 4. nginx 配置检查 ────────────────────────────
@@ -195,7 +208,14 @@ FILES=(
 )
 ALL_EXIST=true
 for f in "${FILES[@]}"; do
-  [ -f "$BASE/$f" ] || { echo "   缺失: $f"; ALL_EXIST=false; }
+  if [ -f "$BASE/$f" ]; then
+    true # exists at root
+  elif [ -f "$BASE/agents/$f" ]; then
+    true # exists in agents/
+  else
+    echo "   缺失: $f"
+    ALL_EXIST=false
+  fi
 done
 $ALL_EXIST && ok "全部 21 文件存在" || fail "有文件缺失"
 

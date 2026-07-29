@@ -15,13 +15,12 @@ PROJECT_DIR = AGENT_DIR.parent
 SYSTEM_PROMPT = """你是一个AI漫剧决策Agent。分析输入的剧本，生成结构化任务清单。
 
 任务类型列表（仅限以下类型）：
-- analyze_script: 剧本分析（角色、场景、节奏、高潮）
-- frame_gen: 生图任务（参数：prompt, style, count）
-- ken_burns: 动画任务（参数：duration, zoom, pan）
-- audio_tts: 配音任务（参数：lines, voice, speed）
-- bgm: 背景音乐（参数：mood, duration）
-- render: 合成渲染（参数：resolution, fps, output）
-- subtitle: 字幕生成（参数：lines, style, position）
+- generate_image: 生图任务（参数：prompt, style, count）
+- generate_video: 视频生成（参数：prompt, duration, size）
+- generate_tts: 配音任务（参数：text, voice, speed）
+- render_3d: 3D渲染（参数：fbx, shot_type, duration）
+- compose_scene: 合成渲染（参数：inputs, resolution, fps, output）
+- analyze_script: 剧本分析（参数：characters, scenes, rhythm）
 
 输出格式：纯JSON数组，每个元素含：
 {{
@@ -60,21 +59,28 @@ def read_script(path: str) -> str:
     return text
 
 
-def call_ollama(prompt: str) -> str:
+def call_ollama(prompt: str, num_predict: int = 16384, retry: int = 0) -> str:
     payload = json.dumps({
         "model": OLLAMA_MODEL,
         "prompt": prompt,
         "system": SYSTEM_PROMPT,
         "stream": False,
-        "options": {"temperature": 0.3, "num_predict": 8192, "num_ctx": 8192},
+        "options": {"temperature": 0.3, "num_predict": num_predict, "num_ctx": 16384},
     }).encode()
     req = urllib.request.Request(OLLAMA_URL, data=payload, headers={"Content-Type": "application/json"})
     try:
         with urllib.request.urlopen(req, timeout=300) as resp:
             data = json.loads(resp.read())
-            return data.get("response", "")
+            raw = data.get("response", "")
+            if not raw and retry < 2:
+                print(json.dumps({"warn": f"Ollama返回空响应, 重试第{retry+1}次"}), file=sys.stderr)
+                return call_ollama(prompt, num_predict + 4096, retry + 1)
+            return raw
     except (urllib.error.URLError, urllib.error.HTTPError, OSError, json.JSONDecodeError) as e:
-        print(json.dumps({"error": f"Ollama调用失败: {e}"}), file=sys.stderr)
+        if retry < 2:
+            print(json.dumps({"warn": f"Ollama调用失败({e}), 重试第{retry+1}次"}), file=sys.stderr)
+            return call_ollama(prompt, num_predict + 4096, retry + 1)
+        print(json.dumps({"error": f"Ollama调用失败({e}) after {retry+1} retries"}), file=sys.stderr)
         sys.exit(1)
 
 
@@ -137,16 +143,36 @@ def main():
     args = parse_args()
     script_text = read_script(args.script)
 
-    # 构造分析请求
-    user_prompt = (
+    # 构造分析请求（基础版）
+    base_prompt = (
         f"请分析以下剧本，生成 {args.episodes} 集×{args.duration}分钟/集的制作任务清单。\n"
         f"视觉风格：{args.style}\n\n"
         f"【剧本内容】\n{script_text}\n\n"
         f"输出JSON任务数组。"
     )
 
-    raw = call_ollama(user_prompt)
-    tasks = parse_tasks(raw)
+    # 重试逻辑：最多3次，每次增加num_predict并提示模型输出JSON
+    MAX_RETRIES = 3
+    tasks = None
+    for attempt in range(MAX_RETRIES):
+        if attempt == 0:
+            prompt = base_prompt
+        else:
+            # 重试时添加更明确的指示
+            prompt = base_prompt + (
+                f"\n\n⚠️ 第{attempt+1}次尝试：务必只输出纯JSON数组，不要markdown、不要解释。"
+                f"确保JSON完整闭合，数组长度≥2个任务。"
+            )
+        raw = call_ollama(prompt, num_predict=16384 + attempt * 4096, retry=attempt)
+        try:
+            tasks = parse_tasks(raw)
+            break  # 成功解析则退出循环
+        except SystemExit:
+            if attempt < MAX_RETRIES - 1:
+                print(json.dumps({"warn": f"JSON解析失败，重试第{attempt+1}次"}), file=sys.stderr)
+                continue
+            print(json.dumps({"error": f"JSON解析失败，已达最大重试次数({MAX_RETRIES})"}), file=sys.stderr)
+            sys.exit(1)
 
     output = {
         "meta": {

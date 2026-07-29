@@ -168,6 +168,7 @@ async def list_projects(user: dict = Depends(get_current_user)):
 @app.post("/api/projects")
 async def create_project(body: ProjectCreate, user: dict = Depends(get_current_user)):
     async with aiosqlite.connect(DB_PATH) as db:
+        db.row_factory = aiosqlite.Row
         cur = await db.execute(
             "INSERT INTO projects (user_id, title, script) VALUES (?, ?, ?)",
             (user["id"], body.title, body.script)

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """AIComics 监督层 Agent — 验证产出质量，R1-R4红线+A/B/C/D评分，输出 verdict.json+report.md"""
 import argparse, difflib, json, os, re, sys
+from typing import Optional
 from datetime import datetime
 from pathlib import Path
 
@@ -163,7 +164,7 @@ def check_redlines(target: Path, assets_dir: Path, l1_passed: bool) -> tuple[str
     return grade, rec, redlines
 
 
-def write_output(target: Path, l1_passed: bool, l1_checks: list, grade: str, rec: str, redlines: list, verdict_path: Path | None = None):
+def write_output(target: Path, l1_passed: bool, l1_checks: list, grade: str, rec: str, redlines: list, verdict_path: Optional[Path] = None):
     out = target / "supervision"
     out.mkdir(parents=True, exist_ok=True)
     final = "PASS" if l1_passed and grade in ("A", "B") else "FAIL"
