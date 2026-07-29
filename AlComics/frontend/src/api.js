@@ -46,4 +46,13 @@ export const episodes = {
   generate: (projectId) => api.post(`/api/projects/${projectId}/generate`),
 }
 
+/* ── Graph ── */
+export const graph = {
+  list: () => api.get('/api/graph'),
+  get: (gid) => api.get(`/api/graph/${gid}`),
+  create: (data) => api.post('/api/graph', data),
+  run: (gid) => api.post(`/api/graph/${gid}/run`),
+  nodes: (gid) => api.get(`/api/graph/${gid}/nodes/status`),
+}
+
 export default api

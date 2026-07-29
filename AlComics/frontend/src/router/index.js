@@ -11,6 +11,8 @@ const routes = [
   { path: '/', component: Dashboard, meta: { requiresAuth: true } },
   { path: '/projects/:id', component: ProjectDetail, meta: { requiresAuth: true } },
   { path: '/episodes/:id', component: EpisodePlayer, meta: { requiresAuth: true } },
+  { path: '/graph', component: () => import('../views/GraphDashboard.vue'), meta: { requiresAuth: true } },
+  { path: '/graph/:gid', component: () => import('../views/GraphDashboard.vue'), meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({

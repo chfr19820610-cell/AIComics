@@ -20,6 +20,13 @@ from fastapi.responses import FileResponse, StreamingResponse
 from jose import JWTError, jwt
 from pydantic import BaseModel
 
+# ── Graph Engine ──────────────────────────────────
+try:
+    from graph.engine import PipelineGraph, GraphNode, GraphEdge, NodeType, ExecutionEngine, RunRecord
+    GRAPH_ENGINE_AVAILABLE = True
+except ImportError:
+    GRAPH_ENGINE_AVAILABLE = False
+
 # ── Config ────────────────────────────────────────
 DB_PATH = Path(os.getenv("AICOMICS_DB", "/app/data/aicomics.db"))
 DATA_DIR = Path(os.getenv("AICOMICS_DATA", "/app/data"))
@@ -74,6 +81,45 @@ async def init_db():
                 thumbnail TEXT DEFAULT '',
                 created_at TEXT DEFAULT (datetime('now')),
                 FOREIGN KEY (project_id) REFERENCES projects(id)
+            );
+            CREATE TABLE IF NOT EXISTS graphs (
+                id TEXT PRIMARY KEY,
+                user_id INTEGER NOT NULL,
+                name TEXT NOT NULL,
+                config TEXT DEFAULT '{}',
+                status TEXT DEFAULT 'idle',
+                run_count INTEGER DEFAULT 0,
+                created_at TEXT DEFAULT (datetime('now')),
+                updated_at TEXT DEFAULT (datetime('now')),
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            );
+            CREATE TABLE IF NOT EXISTS graph_nodes (
+                id TEXT PRIMARY KEY,
+                graph_id TEXT NOT NULL,
+                type TEXT NOT NULL,
+                label TEXT NOT NULL,
+                status TEXT DEFAULT 'idle',
+                config TEXT DEFAULT '{}',
+                result TEXT DEFAULT NULL,
+                duration REAL DEFAULT 0,
+                FOREIGN KEY (graph_id) REFERENCES graphs(id)
+            );
+            CREATE TABLE IF NOT EXISTS graph_edges (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                graph_id TEXT NOT NULL,
+                from_node TEXT NOT NULL,
+                to_node TEXT NOT NULL,
+                schema_constraint TEXT DEFAULT '{}',
+                FOREIGN KEY (graph_id) REFERENCES graphs(id)
+            );
+            CREATE TABLE IF NOT EXISTS graph_runs (
+                id TEXT PRIMARY KEY,
+                graph_id TEXT NOT NULL,
+                status TEXT DEFAULT 'running',
+                node_count INTEGER DEFAULT 0,
+                started_at TEXT DEFAULT (datetime('now')),
+                completed_at TEXT DEFAULT NULL,
+                FOREIGN KEY (graph_id) REFERENCES graphs(id)
             );
         """)
         await db.commit()
@@ -293,6 +339,201 @@ async def view_episode(episode_id: int, user: dict = Depends(get_current_user)):
     if not path.exists():
         raise HTTPException(404, "File not found")
     return FileResponse(str(path), media_type="video/mp4")
+
+# ── Graph API ─────────────────────────────────────
+class GraphCreate(BaseModel):
+    name: str
+    nodes: list[dict] = []
+    edges: list[dict] = []
+
+@app.get("/api/graph")
+async def list_graphs(user: dict = Depends(get_current_user)):
+    async with aiosqlite.connect(DB_PATH) as db:
+        db.row_factory = aiosqlite.Row
+        cur = await db.execute(
+            "SELECT * FROM graphs WHERE user_id = ? ORDER BY updated_at DESC LIMIT 20",
+            (user["id"],)
+        )
+        rows = await cur.fetchall()
+    result = []
+    for r in rows:
+        g = dict(r)
+        g["config"] = json.loads(g.get("config", "{}"))
+        # Get node types
+        async with aiosqlite.connect(DB_PATH) as db:
+            db.row_factory = aiosqlite.Row
+            nc = await db.execute(
+                "SELECT DISTINCT type FROM graph_nodes WHERE graph_id = ?", (g["id"],)
+            )
+            g["nodes"] = [n["type"] for n in await nc.fetchall()]
+        result.append(g)
+    return {"graphs": result}
+
+@app.post("/api/graph")
+async def create_graph(body: GraphCreate, user: dict = Depends(get_current_user)):
+    gid = str(uuid.uuid4())
+    config = {"nodes": body.nodes, "edges": body.edges}
+    async with aiosqlite.connect(DB_PATH) as db:
+        await db.execute(
+            "INSERT INTO graphs (id, user_id, name, config) VALUES (?, ?, ?, ?)",
+            (gid, user["id"], body.name, json.dumps(config))
+        )
+        for n in body.nodes:
+            await db.execute(
+                "INSERT INTO graph_nodes (id, graph_id, type, label, config) VALUES (?, ?, ?, ?, ?)",
+                (n.get("id", str(uuid.uuid4())), gid, n["type"], n.get("label", n["type"]),
+                 json.dumps(n.get("config", {})))
+            )
+        for e in body.edges:
+            await db.execute(
+                "INSERT INTO graph_edges (graph_id, from_node, to_node, schema_constraint) VALUES (?, ?, ?, ?)",
+                (gid, e["from"], e["to"], json.dumps(e.get("schema_constraint", {})))
+            )
+        await db.commit()
+    return {"id": gid, "name": body.name}
+
+@app.get("/api/graph/{gid}")
+async def get_graph(gid: str, user: dict = Depends(get_current_user)):
+    async with aiosqlite.connect(DB_PATH) as db:
+        db.row_factory = aiosqlite.Row
+        cur = await db.execute("SELECT * FROM graphs WHERE id = ? AND user_id = ?", (gid, user["id"]))
+        row = await cur.fetchone()
+        if not row:
+            raise HTTPException(404, "Graph not found")
+        graph = dict(row)
+        graph["config"] = json.loads(graph.get("config", "{}"))
+        nc = await db.execute("SELECT * FROM graph_nodes WHERE graph_id = ?", (gid,))
+        nodes = {}
+        for n in await nc.fetchall():
+            nd = dict(n)
+            nd["config"] = json.loads(nd.get("config", "{}"))
+            nd["result"] = json.loads(nd.get("result", "null")) if nd.get("result") else None
+            nodes[nd["id"]] = nd
+        ec = await db.execute("SELECT * FROM graph_edges WHERE graph_id = ?", (gid,))
+        edges = [dict(e) for e in await ec.fetchall()]
+        graph["nodes"] = nodes
+        graph["edges"] = edges
+    # Get recent runs
+    async with aiosqlite.connect(DB_PATH) as db:
+        db.row_factory = aiosqlite.Row
+        rc = await db.execute(
+            "SELECT * FROM graph_runs WHERE graph_id = ? ORDER BY started_at DESC LIMIT 10",
+            (gid,)
+        )
+        runs = [dict(r) for r in await rc.fetchall()]
+    return {"graph": graph, "runs": runs}
+
+@app.post("/api/graph/{gid}/run")
+async def run_graph(gid: str, user: dict = Depends(get_current_user)):
+    async with aiosqlite.connect(DB_PATH) as db:
+        db.row_factory = aiosqlite.Row
+        cur = await db.execute("SELECT * FROM graphs WHERE id = ? AND user_id = ?", (gid, user["id"]))
+        row = await cur.fetchone()
+        if not row:
+            raise HTTPException(404, "Graph not found")
+    if not GRAPH_ENGINE_AVAILABLE:
+        raise HTTPException(503, "Graph engine not available (graph/engine.py not found)")
+    # Load graph data
+    async with aiosqlite.connect(DB_PATH) as db:
+        db.row_factory = aiosqlite.Row
+        nc = await db.execute("SELECT * FROM graph_nodes WHERE graph_id = ?", (gid,))
+        nodes = {n["id"]: GraphNode(
+            id=n["id"], type=NodeType(n["type"]), label=n["label"],
+            config=json.loads(n.get("config", "{}"))
+        ) for n in await nc.fetchall()}
+        ec = await db.execute("SELECT * FROM graph_edges WHERE graph_id = ?", (gid,))
+        edges = [GraphEdge(
+            from_id=e["from_node"], to_id=e["to_node"],
+            schema_constraint=json.loads(e.get("schema_constraint", "{}"))
+        ) for e in await ec.fetchall()]
+    # Build pipeline graph
+    pipe = PipelineGraph(id=gid, name=row["name"], nodes=nodes, edges=edges)
+    engine = ExecutionEngine()
+    # Execute DAG — engine generates its own run_id
+    try:
+        record = await engine.execute(pipe)
+        final_status = "completed" if record.status.value == "completed" else "failed"
+        # Persist run record
+        async with aiosqlite.connect(DB_PATH) as db:
+            await db.execute(
+                "INSERT INTO graph_runs (id, graph_id, status, node_count, started_at, completed_at) VALUES (?, ?, ?, ?, ?, ?)",
+                (record.id, gid, final_status, len(nodes), record.started_at, record.completed_at)
+            )
+            # Update node statuses from RunRecord.nodes
+            for nid, nr in record.nodes.items():
+                dur = 0
+                if nr.started_at and nr.completed_at:
+                    try:
+                        s = datetime.fromisoformat(nr.started_at)
+                        e = datetime.fromisoformat(nr.completed_at)
+                        dur = (e - s).total_seconds()
+                    except (ValueError, TypeError):
+                        pass
+                await db.execute(
+                    "UPDATE graph_nodes SET status = ?, result = ?, duration = ? WHERE id = ? AND graph_id = ?",
+                    (nr.status.value, json.dumps(nr.result) if nr.result is not None else None,
+                     dur, nid, gid)
+                )
+            await db.execute(
+                "UPDATE graphs SET status = ?, run_count = run_count + 1, updated_at = datetime('now') WHERE id = ?",
+                (final_status, gid)
+            )
+            await db.commit()
+        return {"run_id": record.id, "status": final_status, "nodes": {
+            nid: {"status": nr.status.value, "result": nr.result, "error": nr.error}
+            for nid, nr in record.nodes.items()
+        }}
+    except Exception as e:
+        async with aiosqlite.connect(DB_PATH) as db:
+            await db.execute(
+                "UPDATE graphs SET status = 'failed', updated_at = datetime('now') WHERE id = ?", (gid,)
+            )
+            await db.commit()
+        raise HTTPException(500, f"Graph execution failed: {e}")
+
+@app.get("/api/graph/{gid}/nodes/status")
+async def graph_nodes_status(gid: str, user: dict = Depends(get_current_user)):
+    """Return real-time node statuses for front-end polling."""
+    async with aiosqlite.connect(DB_PATH) as db:
+        db.row_factory = aiosqlite.Row
+        cur = await db.execute("SELECT id, graph_id, type, label, status, duration, result FROM graph_nodes WHERE graph_id = ?", (gid,))
+        rows = await cur.fetchall()
+    return {
+        "nodes": {
+            r["id"]: {
+                "id": r["id"],
+                "type": r["type"],
+                "label": r["label"],
+                "status": r["status"],
+                "duration": r["duration"],
+                "result": json.loads(r["result"]) if r["result"] else None,
+            }
+            for r in rows
+        }
+    }
+
+@app.get("/api/graph/{gid}/runs")
+async def graph_runs_history(gid: str, user: dict = Depends(get_current_user)):
+    """Return run history for a graph."""
+    async with aiosqlite.connect(DB_PATH) as db:
+        db.row_factory = aiosqlite.Row
+        cur = await db.execute(
+            "SELECT * FROM graph_runs WHERE graph_id = ? ORDER BY started_at DESC LIMIT 50",
+            (gid,)
+        )
+        rows = await cur.fetchall()
+    return {"runs": [dict(r) for r in rows]}
+
+@app.get("/api/graph/{gid}/nodes/status")
+async def get_graph_node_status(gid: str, user: dict = Depends(get_current_user)):
+    async with aiosqlite.connect(DB_PATH) as db:
+        db.row_factory = aiosqlite.Row
+        nc = await db.execute(
+            "SELECT id, status, duration FROM graph_nodes WHERE graph_id = ?",
+            (gid,)
+        )
+        rows = await nc.fetchall()
+    return {"nodes": {r["id"]: {"status": r["status"], "duration": r["duration"]} for r in rows}}
 
 # ── WebSocket ─────────────────────────────────────
 active_connections: dict[int, list[WebSocket]] = {}
