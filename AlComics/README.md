@@ -28,16 +28,72 @@
 
 ---
 
-## 📸 游戏截图
+## 🚀 生产管线部署 (v2.0)
 
-<!-- 截图占位符 — 请替换为实际游戏截图/GIF -->
-<!-- 建议尺寸：1280×720，GIF 或 PNG，上传到 assets/ 目录 -->
+> AIComics 生产管线包括：3层Agent编排系统 + Seedance 2.0 AI视频生成 + TTS配音 + 视频合成。
 
-| 游戏主界面 | 角色对话 | 场景探索 |
-|:---:|:---:|:---:|
-| `![游戏主界面](assets/screenshot-01.png)` | `![角色对话](assets/screenshot-02.png)` | `![场景探索](assets/screenshot-03.png)` |
+### 前置要求
 
-> 💡 **提示：** 截图是 GitHub 仓库 star 转化率的第一要素。建议录制 5-10 秒的 GIF 动图，展示点击角色触发对话的交互过程。可使用 [ScreenToGif](https://www.screentogif.com/) 或 macOS 自带录屏工具。
+- Docker & Docker Compose v2+
+- NVIDIA GPU (ComfyUI 可选，不强制)
+- 至少 8GB 可用磁盘空间
+
+### 快速启动
+
+```bash
+# 1. 克隆仓库
+git clone https://github.com/chfr19820610-cell/ai-vn-game.git
+cd ai-vn-game
+
+# 2. 配置环境变量
+cp .env.example .env
+# 编辑 .env，填入 SEEDANCE_API_KEY
+
+# 3. 一键启动
+./run.sh up
+
+# 4. 查看日志
+./run.sh logs
+
+# 5. 执行 EP01 管线
+./run.sh episode 01
+```
+
+### 环境变量
+
+详见 [.env.example](.env.example)，关键变量：
+
+| 变量 | 说明 | 默认值 |
+|------|------|--------|
+| `SEEDANCE_API_KEY` | Seedance 2.0 API Key | **(必填)** |
+| `OLLAMA_BASE_URL` | Ollama 服务地址 | `http://ollama:11434` |
+| `COMFY_URL` | ComfyUI 服务地址 | `http://comfyui:8188` |
+| `BLENDER_BIN` | Blender 可执行路径 | `/usr/bin/blender` |
+
+### 架构
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   AIComics      │────▶│    Ollama       │     │    ComfyUI      │
+│   (Python 3.11) │     │    (LLM 推理)   │     │  (图像/视频生成) │
+│                 │     │    port 11434   │     │    port 8188     │
+│   port 8080     │     └─────────────────┘     └─────────────────┘
+│                 │
+│  3层Agent系统   │
+│  决策→执行→监督 │
+└─────────────────┘
+```
+
+### 命令参考
+
+```bash
+./run.sh              # 默认启动
+./run.sh build        # 重新构建
+./run.sh episode 02   # 执行 EP02
+./run.sh logs         # 查看日志
+./run.sh stop         # 停止
+./run.sh cleanup      # 清理数据卷
+```
 
 ---
 
@@ -68,18 +124,73 @@
 | 技术 | 说明 |
 |:---|:---|
 | **游戏引擎** | [Kaboom.js](https://kaboomjs.com/) v2000 — 轻量级 JavaScript 游戏编程库 |
-| **AI 剧情** | AI 生成对话脚本与分支叙事 |
-| **渲染** | HTML5 Canvas + DOM Overlay |
-| **部署** | GitHub Pages（GitHub Actions 自动 CI/CD） |
-| **字体** | [Noto Sans SC](https://fonts.google.com/noto/specimen/Noto+Sans+SC)（Google Fonts 开源中文字体） |
+| **AI 剧情** | 3层Agent编排 (决策→执行→监督) + Ollama 本地LLM |
+| **视频生成** | Seedance 2.0 API (doubao-seedance) |
+| **图像生成** | ComfyUI (可选 GPU 加速) |
+| **TTS 配音** | edge-tts (中文旁白) |
+| **视频合成** | ffmpeg + imageio-ffmpeg |
+| **容器化** | Docker Compose (AIComics + Ollama + ComfyUI) |
+| **部署** | GitHub Pages (前端) + Docker (生产管线) |
 | **协议** | Apache License 2.0 |
 
 ---
 
-## 🚀 快速开始
+## 🚀 快速开始（前端开发）
 
 ### 在线游玩
 
 直接访问 **[在线体验地址](https://chfr19820610-cell.github.io/ai-vn-game/)**，无需安装任何环境。
 
 ### 本地开发
+
+```bash
+# 无需构建步骤，直接打开
+open index.html
+```
+
+---
+
+## 📂 项目结构 (v2.0)
+
+```
+ai-vn-game/
+├── index.html              # 前端游戏入口
+├── README.md               # 本文档
+├── .env.example            # 环境变量模板
+├── Dockerfile              # Docker 构建文件
+├── docker-compose.yaml     # 服务编排 (AIComics+Ollama+ComfyUI)
+├── docker-entrypoint.sh    # 容器入口
+├── requirements.txt        # Python 依赖
+├── run.sh                  # 一键启动脚本
+│
+├── aicomic-3layer.sh       # 三层Agent编排器
+├── decision_agent.py       # 决策层 Agent
+├── execution_agent.py      # 执行层 Agent
+├── supervision_agent.py    # 监督层 Agent
+│
+├── seedance_client.py      # Seedance 2.0 API 客户端
+├── batch_generate.py       # 批量视频生成器
+├── compose_video.py        # 视频合成管线 (v3.0, 全3D)
+├── compose_video_seedance.py # Seedance 视频合成管线
+│
+├── agents/                 # Agent 副本目录
+│   ├── aicomic-3layer.sh
+│   ├── decision_agent.py
+│   ├── execution_agent.py
+│   └── supervision_agent.py
+│
+├── episodes/               # 播出剧本/发布文案
+├── manifests/              # 分镜 JSON 文件
+├── output/                 # 最终成品输出
+├── source_frames/          # 生成的视频素材
+├── audio/                  # TTS 音频
+├── tasks/                  # Agent 任务清单
+├── supervision/            # Agent 监督裁决
+└── local_providers/        # ComfyUI/Blender 脚本
+```
+
+---
+
+## 📝 许可证
+
+[Apache License 2.0](LICENSE)

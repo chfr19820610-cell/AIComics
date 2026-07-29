@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment
+.env
+.venv/
+venv/
+
+# Docker
+docker-compose.override.yml
+
+# Output directories
+output/
+outputs/
+source_frames/
+audio/
+temp/
+tasks/
+supervision/
+manifests/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Media large files
+*.mp4
+*.mp3
+*.wav
+*.png
+*.jpg
+!assets/*.png
+!assets/*.jpg
+node_modules/

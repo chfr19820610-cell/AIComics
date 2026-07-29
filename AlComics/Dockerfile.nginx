@@ -1,0 +1,27 @@
+# ───────────────────────────────────────────────
+# AIComics v2.0 — Dockerfile.nginx
+# Build frontend + serve with nginx
+# ───────────────────────────────────────────────
+
+# ── Stage 1: Build Frontend ──────────────────────
+FROM node:20-alpine AS frontend-builder
+
+WORKDIR /build
+COPY frontend/package.json frontend/package-lock.json* ./
+RUN npm ci --only=production --no-fund --no-audit 2>/dev/null || npm install --no-fund --no-audit
+
+COPY frontend/ ./
+RUN npm run build
+
+# ── Stage 2: nginx ──────────────────────────────
+FROM nginx:alpine
+
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=frontend-builder /build/dist /usr/share/nginx/html
+
+EXPOSE 8080
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD wget -qO- http://localhost:8080/health || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,93 @@
+{
+  "project": "星灯",
+  "episode": 1,
+  "title": "第1话：雨中的校园",
+  "series_total": 12,
+  "target_duration": 120,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 24,
+  "visual_style": "painterly_3d_noir",
+  "bgm": "sad_piano.mp3",
+  "scenes": [
+    {
+      "scene_id": 1,
+      "shot_type": "EW",
+      "narrative": "雨滴打在教学楼的窗户上，远处钟楼时针指向下午四点。灰色的天空下，整个校园笼罩在安静的氛围中。",
+      "narration": "那个雨天的下午四点，一切都还那么平静。",
+      "duration_sec": 8,
+      "prompt_sd": "rainy school campus, wide establishing shot, dark gray sky, clock tower at 4pm, wet windows, painterly style, cinematic noir lighting, deep shadows, moody atmosphere, rain droplets on glass, 9:16 vertical",
+      "camera": "slow_zoom_in",
+      "generator": "seedance",
+      "transition": "fade_in"
+    },
+    {
+      "scene_id": 2,
+      "shot_type": "WS",
+      "narrative": "空旷的走廊里，只有林晓一个人靠在窗边，手里捏着一封皱巴巴的信。",
+      "narration": "林晓独自站在走廊尽头，手里捏着一封信。",
+      "duration_sec": 7,
+      "prompt_sd": "empty school corridor, girl leaning against window, holding crumpled letter, backlit by gray window light, painterly 3D noir style, dramatic shadows, melancholy atmosphere, 9:16 vertical",
+      "camera": "ken_burns",
+      "generator": "comfyui",
+      "transition": "cut"
+    },
+    {
+      "scene_id": 3,
+      "shot_type": "CU",
+      "narrative": "特写：信纸上写着'你的父母不是意外身亡'。林晓的手指微微发抖。",
+      "narration": "信上只有一句话——你的父母不是意外身亡。",
+      "duration_sec": 6,
+      "prompt_sd": "extreme close-up of handwritten letter, words 'not an accident', ink on paper, girl's trembling fingers holding letter edge, dramatic lighting, film noir aesthetic, deep shadows, 9:16 vertical",
+      "camera": "ken_burns",
+      "generator": "comfyui",
+      "transition": "cut"
+    },
+    {
+      "scene_id": 4,
+      "shot_type": "MS",
+      "narrative": "林晓抬起头，雨水顺着窗户滑落，她的倒影在玻璃上扭曲。",
+      "narration": "她抬起头，看着雨水在玻璃上扭曲了自己的倒影。",
+      "duration_sec": 6,
+      "prompt_sd": "medium shot of girl looking up, reflection in rain-streaked window, distorted reflection, melancholy expression, dark interior with window light, painterly noir style, cinematic composition, 9:16 vertical",
+      "camera": "ken_burns",
+      "generator": "comfyui",
+      "transition": "cut"
+    },
+    {
+      "scene_id": 5,
+      "shot_type": "WS",
+      "narrative": "闪回：十五年前的火灾现场，消防车的红蓝灯在夜色中闪烁。",
+      "narration": "十五年前那场大火，她一直以为只是意外。",
+      "duration_sec": 7,
+      "prompt_sd": "flashback scene, house fire at night, fire truck lights flashing red and blue, silhouettes of firefighters, smoke and flames, dramatic cinematic lighting, painterly noir style, 9:16 vertical",
+      "camera": "slow_zoom_in",
+      "generator": "seedance",
+      "transition": "dissolve"
+    },
+    {
+      "scene_id": 6,
+      "shot_type": "MCU",
+      "narrative": "回到现在。林晓把信折好放进口袋，眼神变得坚定。一只蝴蝶落在窗台上。",
+      "narration": "她把信收好。有些真相，必须亲手揭开。",
+      "duration_sec": 7,
+      "prompt_sd": "medium close-up of girl's determined eyes, butterfly landing on windowsill, rain outside, mix of melancholy and resolve, painterly 3D noir, rim lighting, 9:16 vertical",
+      "camera": "ken_burns",
+      "generator": "comfyui",
+      "transition": "cut"
+    },
+    {
+      "scene_id": 7,
+      "shot_type": "EW",
+      "narrative": "林晓走出教学楼。雨停了，一束阳光穿透云层。远处，一个穿黑色风衣的人靠在围墙边。",
+      "narration": "雨停了。她不知道，有个人已经等了她十五年。",
+      "duration_sec": 8,
+      "prompt_sd": "girl walking out of school building, rain has stopped, sunbeam breaking through clouds, mysterious figure in black trench coat leaning against wall in distance, painterly noir style, hopeful yet ominous, 9:16 vertical",
+      "camera": "slow_zoom_in",
+      "generator": "seedance",
+      "transition": "fade_out"
+    }
+  ]
+}

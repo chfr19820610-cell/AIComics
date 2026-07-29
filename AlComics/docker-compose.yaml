@@ -1,0 +1,118 @@
+# ───────────────────────────────────────────────
+# AIComics v2.0 — Docker Compose
+# ───────────────────────────────────────────────
+# Start everything:
+#   docker compose up -d
+#
+# Access Web UI:
+#   http://localhost:8080
+#
+# Run an episode pipeline:
+#   docker compose exec backend ./aicomic-3layer.sh --episode 01
+#
+# Check logs:
+#   docker compose logs -f nginx backend
+# ───────────────────────────────────────────────
+
+services:
+  # ── nginx — 反向代理 + 前端静态文件 ────────────
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: aicomis-nginx
+    ports:
+      - "${AICOMICS_PORT:-8080}:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ── Backend — FastAPI API + 生产管线 ──────────
+  backend:
+    build:
+      context: .
+      target: base
+    container_name: aicomis-backend
+    expose:
+      - "8000"
+    env_file:
+      - .env
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - COMFY_URL=http://comfyui:8188
+      - AICOMICS_ROOT=/app
+      - AICOMICS_DB=/app/data/aicomis.db
+      - AICOMICS_DATA=/app/data
+      - BACKEND_PORT=8000
+    volumes:
+      - backend_data:/app/data
+      - ./episodes:/app/episodes
+      - ./output:/app/output
+      - ./source_frames:/app/source_frames
+      - ./audio:/app/audio
+      - ./assets:/app/assets
+      - ./manifests:/app/manifests
+      - ./supervision:/app/supervision
+      - ./tasks:/app/tasks
+    depends_on:
+      ollama:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+
+  # ── Ollama — 本地 LLM (3层Agent系统) ──────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: aicomis-ollama
+    ports:
+      - "${OLLAMA_PORT:-11434}:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list 2>/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 45s
+    restart: unless-stopped
+
+  # ── ComfyUI — AI图像/视频生成（需GPU）────────
+  comfyui:
+    image: comfyui/comfyui:latest
+    container_name: aicomis-comfyui
+    ports:
+      - "${COMFYUI_PORT:-8188}:8188"
+    profiles:
+      - comfyui
+    volumes:
+      - comfyui_data:/workspace
+      - ./outputs/comfy:/workspace/output
+    environment:
+      - COMFYUI_EXTRA_ARGS=--listen 0.0.0.0
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8188/system_stats 2>/dev/null || curl -sf http://localhost:8188/system_stats 2>/dev/null || exit 1"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 60s
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+  comfyui_data:
+  backend_data:
