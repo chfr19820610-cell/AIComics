@@ -2,11 +2,43 @@
 Configuration constants for the video synthesis pipeline.
 """
 
+import os
+import shutil
 from pathlib import Path
+
+
+def _resolve_ffmpeg() -> Path:
+    """Resolve a working ffmpeg binary.
+
+    Priority:
+      1. AICOMIC_FFMPEG env override
+      2. `ffmpeg` on PATH (system install)
+      3. imageio_ffmpeg bundled binary (pip dependency, always present)
+
+    Reusing the imageio_ffmpeg bundled binary means the pipeline and its tests
+    run even on machines without a system ffmpeg install (task: ffmpeg 测试归零).
+    """
+    env = os.environ.get("AICOMIC_FFMPEG", "").strip()
+    if env and Path(env).is_file():
+        return Path(env)
+    system = shutil.which("ffmpeg")
+    if system:
+        return Path(system)
+    try:
+        import imageio_ffmpeg
+
+        bundled = imageio_ffmpeg.get_ffmpeg_exe()
+        if bundled and Path(bundled).is_file():
+            return Path(bundled)
+    except Exception:  # pragma: no cover - imageio_ffmpeg is a hard dep
+        pass
+    # Last resort: keep the historical default path (may not exist on all hosts).
+    return Path("/usr/local/bin/ffmpeg")
+
 
 # ── System paths ──────────────────────────────────────────────────────────
 SYSTEM_ROOT = Path("/Users/eric/Desktop/herness/AIComics/10_System")
-FFMPEG = Path("/Users/eric/.local/bin/ffmpeg")
+FFMPEG = _resolve_ffmpeg()
 
 # Asset directories — each episode has images/ and audio/ subdirectories
 LOCAL_PROVIDER_DIR = SYSTEM_ROOT / "state" / "local_provider_output"

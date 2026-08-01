@@ -253,24 +253,25 @@ class TestPipeline:
 
         def mock_subprocess_run(cmd, **kwargs):
             """Create dummy files that verify_video/Phase 4 expects."""
+            cmd_str = " ".join(cmd)
             # If it's a build_scene_video call, create the clip file
-            for i, s in enumerate(sample_scenes):
+            for s in sample_scenes:
                 expected_clip = str(tmp_path / "TEST" / "scenes" / f"scene_{s['num']:02d}.mp4")
-                if expected_clip in " ".join(cmd):
+                if expected_clip in cmd_str:
                     Path(expected_clip).parent.mkdir(parents=True, exist_ok=True)
                     Path(expected_clip).write_text("fake-mp4")
 
             # If it's concat, create concat output
             expected_concat = str(tmp_path / "TEST" / "episode_concat.mp4")
-            if expected_concat in " ".join(cmd):
+            if expected_concat in cmd_str:
                 Path(expected_concat).parent.mkdir(parents=True, exist_ok=True)
                 Path(expected_concat).write_text("fake-mp4-concat")
 
             # If it's burn subtitles, create final output
-            if "test.mp4" in " ".join(cmd) and "-vf" in cmd:
+            if "test.mp4" in cmd_str and "-vf" in cmd:
                 output_path.write_text("fake-mp4-final")
 
-            if "test.mp4" in " ".join(cmd) and "stream" in " ".join(cmd).lower():
+            if "test.mp4" in cmd_str and "stream" in cmd_str.lower():
                 output_path.write_text("fake-mp4-final")
 
             mock_result = MagicMock()
@@ -283,7 +284,13 @@ class TestPipeline:
             mock_result.stdout = ""
             return mock_result
 
-        with patch("subprocess.run", side_effect=mock_subprocess_run):
+        # Make the pipeline's TEMP_DIR/OUTPUT_DIR resolve under tmp_path so the
+        # mocked file paths (tmp_path/TEST/...) actually line up. This removes
+        # the coupling to /tmp/video_synthesis and the real SYSTEM_ROOT.
+        import aicomic.video_synthesis.pipeline as pipeline_mod
+        with patch("subprocess.run", side_effect=mock_subprocess_run), \
+             patch.object(pipeline_mod, "TEMP_DIR", tmp_path), \
+             patch.object(pipeline_mod, "OUTPUT_DIR", tmp_path):
             result = synthesize_episode(
                 episode_code="TEST",
                 scenes=sample_scenes,
@@ -305,9 +312,32 @@ class TestPipeline:
 # ── Batch Tests ───────────────────────────────────────────────────────────
 
 class TestBatch:
-    def test_discover_episodes(self):
-        """Discover should find E01-E05."""
-        episodes = discover_episodes()
+    def test_discover_episodes(self, tmp_path):
+        """Discover should find episodes from a hermetically-built asset tree."""
+        import aicomic.video_synthesis.batch as batch_mod
+
+        # Build a self-contained asset tree so the test does not depend on the
+        # real SYSTEM_ROOT / local_provider_output directories.
+        src = tmp_path / "assets"
+        for ep in ("E01", "E02", "E03"):
+            img_dir = src / ep / "images"
+            aud_dir = src / ep / "audio"
+            img_dir.mkdir(parents=True, exist_ok=True)
+            aud_dir.mkdir(parents=True, exist_ok=True)
+            for i in range(1, 7):
+                (img_dir / f"{ep}_S{i:02d}_key.png").write_text("x")
+                (aud_dir / f"{ep}_S{i:02d}_tts.wav").write_text("x")
+
+        asset_sources = {ep: src for ep in ("E01", "E02", "E03")}
+        subtitle_map = {
+            "E01": ["a", "b", "c", "d", "", ""],
+            "E02": ["a", "b", "c", "d", "", ""],
+            "E03": ["a", "b", "c", "d", "", ""],
+        }
+
+        with patch.object(batch_mod, "ASSET_SOURCE", asset_sources), \
+             patch.object(batch_mod, "EPISODE_SUBTITLES", subtitle_map):
+            episodes = discover_episodes(asset_sources, subtitle_map)
         codes = {ep["episode_code"] for ep in episodes}
         assert len(codes) >= 3  # At least 3 episodes should be found
         assert "E01" in codes
@@ -338,7 +368,6 @@ class TestBatch:
 
     def test_batch_synthesize_dry_run(self, tmp_path):
         """Test batch with mocked subprocess (no actual FFmpeg)."""
-        from aicomic.video_synthesis.config import OUTPUT_DIR
         from unittest.mock import MagicMock, patch
 
         mock_asset_sources = {
@@ -356,8 +385,10 @@ class TestBatch:
         (tmp_path / "TEST" / "images" / "TEST_S02_key.png").write_text("x")
         (tmp_path / "TEST" / "audio" / "TEST_S02_tts.wav").write_text("x")
 
-        expected_output = OUTPUT_DIR / "TEST_full.mp4"
-        expected_output.parent.mkdir(parents=True, exist_ok=True)
+        # Hermetic output: patch pipeline TEMP_DIR + OUTPUT_DIR under tmp_path so
+        # the run never touches /tmp/video_synthesis or the real SYSTEM_ROOT.
+        import aicomic.video_synthesis.pipeline as pipeline_mod
+        expected_output = tmp_path / "TEST_full.mp4"
         expected_output.write_text("fake-mp4")
 
         def mock_run(cmd, **kwargs):
@@ -371,17 +402,20 @@ class TestBatch:
             mock_result.stdout = ""
             return mock_result
 
-        with patch("subprocess.run", side_effect=mock_run):
+        with patch("subprocess.run", side_effect=mock_run), \
+             patch.object(pipeline_mod, "TEMP_DIR", tmp_path), \
+             patch.object(pipeline_mod, "OUTPUT_DIR", tmp_path):
             with patch("aicomic.video_synthesis.scene.reencode_audio", return_value=True):
                 with patch("aicomic.video_synthesis.scene.build_scene_video", return_value=True):
                     with patch("aicomic.video_synthesis.pipeline.phase_concat", return_value=True):
-                        with patch("aicomic.video_synthesis.pipeline.phase_burn_subtitles", return_value=True):
-                            reports = batch_synthesize(
-                                episode_codes=["TEST"],
-                                asset_sources=mock_asset_sources,
-                                subtitle_map=mock_subtitles,
-                                stop_on_failure=False,
-                            )
+                        with patch("aicomic.video_synthesis.pipeline.phase_bgm_mix", return_value=True):
+                            with patch("aicomic.video_synthesis.pipeline.phase_burn_subtitles", return_value=True):
+                                reports = batch_synthesize(
+                                    episode_codes=["TEST"],
+                                    asset_sources=mock_asset_sources,
+                                    subtitle_map=mock_subtitles,
+                                    stop_on_failure=False,
+                                )
         assert len(reports) >= 1
 
 
