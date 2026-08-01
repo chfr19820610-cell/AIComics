@@ -1,0 +1,74 @@
+# =====================================================================
+# AIComics 管线清单（Pipeline Manifest）— ACOM-0.6.0 P0-1
+#
+# 声明式管线：改阶段顺序 / 增删阶段 / 改审核门，只改本 YAML，不动 Python。
+# 引擎读取本文件驱动阶段流转（creator_bootstrap.DEFAULT_PIPELINE_STEPS
+# 已由本清单接管；episode_lifecycle 阶段门禁依据本清单）。
+#
+# 字段说明：
+#   id                    阶段唯一标识（稳定，改动会破坏断点续跑）
+#   produces              本阶段产出物清单（数据契约）
+#   review_focus          自检关注点（P0-3 轻量自检使用）
+#   success_criteria      本阶段成功判定（进入下一阶段的门槛）
+#   human_approval_default true=该阶段完成前必须人工审核放行，否则锁 awaiting_human
+#   next                  有序后继阶段（声明顺序即流转顺序）
+#
+# 合规：独立 Apache-2.0 自建，借鉴业界通用"声明式管线"架构模式，未复制任何外部代码。
+# =====================================================================
+pipeline_id: manhua_episode
+version: "0.6.0"
+description: "三渲二漫剧单集生产管线（AIComics Creator 主链）"
+
+# 阶段顺序 = 数组顺序；改顺序/增删阶段只改这里。
+stages:
+  - id: project_setup
+    produces: ["project_root", "bootstrap_paths"]
+    review_focus: ["项目目录齐全", "基础配置文件生成"]
+    success_criteria: "project 目录与 seed 配置已就位"
+    human_approval_default: false
+  - id: story_bible
+    produces: ["story_bible", "character_bible", "style_bible"]
+    review_focus: ["世界观完整", "角色动机成立", "风格方向明确"]
+    success_criteria: "story/character/style bible 三件套已生成"
+    human_approval_default: false
+  - id: episode_outline
+    produces: ["episode_blueprint", "episode_manifest"]
+    review_focus: ["单集钩子成立", "节奏符合短剧规范"]
+    success_criteria: "episode manifest 已生成且含有效钩子"
+    human_approval_default: false
+  - id: shot_breakdown
+    produces: ["shot_list", "episode_manifest.shots"]
+    review_focus: ["三拍法/三步跳景别", "镜头定额", "9 种分镜卡片合规", "避坑清单"]
+    success_criteria: "shot list 生成并通过分镜 schema 校验"
+    human_approval_default: true        # ★ 分镜人工审核门（P0-2）
+  - id: asset_generation
+    produces: ["keyframe_images", "video_clips", "tts_audio"]
+    review_focus: ["人物一致性", "画质达标", "情绪/钩子到位", "六指/乱码规避"]
+    success_criteria: "关键帧/素材/TTS 产物齐备且通过轻量自检"
+    human_approval_default: true        # ★ 素材人工审核门（P0-3）
+  - id: tts_subtitle
+    produces: ["subtitles_srt", "subtitle_timing"]
+    review_focus: ["字幕一行≤14字", "时间轴对齐", "情绪重音落位"]
+    success_criteria: "字幕时间轴生成并与音频对齐"
+    human_approval_default: false
+  - id: preview_render
+    produces: ["preview_video"]
+    review_focus: ["成片可播放", "无跳帧/黑帧"]
+    success_criteria: "preview 视频已导出"
+    human_approval_default: false
+  - id: publish_pack
+    produces: ["publish_pack", "release_assets"]
+    review_focus: ["发布材料齐全", "封面/简介生成"]
+    success_criteria: "publish pack 已归档"
+    human_approval_default: false
+
+# 阶段流转顺序（声明式；与 stages 顺序必须一致，供引擎做一致性校验）
+next_order:
+  - project_setup
+  - story_bible
+  - episode_outline
+  - shot_breakdown
+  - asset_generation
+  - tts_subtitle
+  - preview_render
+  - publish_pack

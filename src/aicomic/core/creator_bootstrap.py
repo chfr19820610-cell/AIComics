@@ -2,17 +2,27 @@ from __future__ import annotations
 
 from math import ceil
 
+from aicomic.core.pipeline_manifest import (
+    LEGACY_DEFAULT_PIPELINE_STEPS,
+    PipelineManifestError,
+    load_pipeline_manifest,
+)
 
-DEFAULT_PIPELINE_STEPS = [
-    "project_setup",
-    "story_bible",
-    "episode_outline",
-    "shot_breakdown",
-    "asset_generation",
-    "tts_subtitle",
-    "preview_render",
-    "publish_pack",
-]
+# 兼容性常量：保留旧名，但 build_creator_profile 实际从清单读取。
+# 仅当清单加载失败时退回本常量（保证旧调用方不抛错）。
+DEFAULT_PIPELINE_STEPS = list(LEGACY_DEFAULT_PIPELINE_STEPS)
+
+
+def resolve_pipeline_steps() -> list[str]:
+    """返回管线阶段 id 列表。
+
+    优先读 config/pipelines/*.yaml 声明式清单；清单缺失/损坏时退回
+    LEGACY_DEFAULT_PIPELINE_STEPS，保证 P0-1 渐进式落地不回归。
+    """
+    try:
+        return load_pipeline_manifest().step_ids
+    except PipelineManifestError:
+        return list(LEGACY_DEFAULT_PIPELINE_STEPS)
 
 
 def build_creator_profile(
@@ -38,7 +48,7 @@ def build_creator_profile(
         "episode_target_count": episode_target_count,
         "working_mode": "creator_single_user",
         "workflow_goal": "idea_to_episode_release",
-        "pipeline_steps": list(DEFAULT_PIPELINE_STEPS),
+        "pipeline_steps": resolve_pipeline_steps(),
     }
 
 
