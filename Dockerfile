@@ -5,7 +5,8 @@
 # Stage 2: Python 后端运行时 + 拷贝前端产物
 # 构建: docker compose -f docker-compose.yml build  (或 bash scripts/start.sh)
 # =============================================================================
-FROM node:18-alpine AS frontend-builder
+# 前端(umijs/max)依赖 Node>=20，故用 node:20-alpine 而非 node:18
+FROM node:20-alpine AS frontend-builder
 
 WORKDIR /build
 COPY web/frontend/package.json web/frontend/package-lock.json ./web/frontend/

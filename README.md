@@ -145,7 +145,7 @@ sequenceDiagram
 | [ComfyUI](https://github.com/comfyanonymous/ComfyUI) | v0.26.0+ | AI 图片生成（SDXL 模型） |
 | [Piper TTS](https://github.com/rhasspy/piper) | latest | 中文语音合成 |
 | FFmpeg | 4.4+ | 视频合成 |
-| Node.js | 18+ | Web 前端构建 |
+| Node.js | 20+ | Web 前端构建（umijs/max） |
 
 ### 一键安装
 
