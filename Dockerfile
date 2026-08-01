@@ -8,6 +8,14 @@
 # 前端(umijs/max)依赖 Node>=20，故用 node:20-alpine 而非 node:18
 FROM node:20-alpine AS frontend-builder
 
+# 容器无 IPv6 出网路由时 node 默认解析到 IPv6 导致 npm 拉包 ECONNREFUSED；
+# 强制 node 优先用 IPv4 DNS 解析，保证 npm ci/install 可拉取 registry.npmjs.org。
+ENV NODE_OPTIONS=--dns-result-order=ipv4first
+# 构建机若设了 HTTP(S)_PROXY 指向宿主机代理(如 127.0.0.1:7897)，容器内无该代理服务，
+# npm 走代理会 ECONNREFUSED。显式清空代理环境变量 + 禁用 npm proxy，让 npm 直连 registry。
+ENV HTTPS_PROXY= HTTP_PROXY= http_proxy= https_proxy= NO_PROXY= no_proxy=
+RUN npm config set proxy null https-proxy null
+
 WORKDIR /build
 COPY web/frontend/package.json web/frontend/package-lock.json ./web/frontend/
 # umijs 构建
