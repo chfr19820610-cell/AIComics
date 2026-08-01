@@ -1,3 +1,10 @@
+# =============================================================================
+# AIComics ComfyUI sidecar 镜像
+# -----------------------------------------------------------------------------
+# 依赖 local_providers/comfyui/runtime/ComfyUI 作为 COPY 源。
+# 该目录未填充真实 ComfyUI runtime 时仍可构建（stub），但推理不可用；
+# 填充完整 runtime（含 requirements.txt）后才会安装真实依赖。
+# =============================================================================
 FROM python:3.12.13-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -12,10 +19,16 @@ RUN printf 'Acquire::Retries "5";\n' > /etc/apt/apt.conf.d/80-retries \
     && apt-get install -y --fix-missing --no-install-recommends ffmpeg libgl1 libglib2.0-0 libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
+# COPY 源必须存在；start.sh 已保证骨架存在
 COPY local_providers/comfyui/runtime/ComfyUI /opt/comfyui
 
-RUN python -m pip install --upgrade pip \
-    && python -m pip install -r /opt/comfyui/requirements.txt
+# 有真实 requirements.txt 才安装；否则作为 stub 跳过
+RUN if [ -f /opt/comfyui/requirements.txt ]; then \
+      python -m pip install --upgrade pip \
+      && python -m pip install -r /opt/comfyui/requirements.txt; \
+    else \
+      echo "WARN: ComfyUI runtime 未填充，sidecar 为 stub，推理不可用"; \
+    fi
 
 COPY scripts/run_comfyui_sidecar.py /app/scripts/run_comfyui_sidecar.py
 

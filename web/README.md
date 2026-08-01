@@ -18,15 +18,15 @@
 - 后端入口：`web/backend/app.py`
 - 前端入口：`web/frontend/src/app.tsx`
 - 本地联调一键启动：`scripts/manage_local_web_stack.sh up`
-- 架构文档：[docs/技术架构文档.md](/Users/chenfengrui/Desktop/AIComics/10_System/docs/技术架构文档.md)
-- 部署方案：[docs/部署方案.md](/Users/chenfengrui/Desktop/AIComics/10_System/docs/部署方案.md)
+- 一键部署入口：`scripts/start.sh`（Docker 推荐 / `--local` 裸机）
+- Docker 部署说明：根目录 `README.md` 的「Docker 部署」章节、`deploy/README.md`
 
 ## 本地 Creator 联调
 
 推荐命令：
 
 ```bash
-cd /Users/chenfengrui/Desktop/AIComics/10_System
+cd AIComics   # 仓库根目录
 scripts/manage_local_web_stack.sh up
 ```
 

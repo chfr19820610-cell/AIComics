@@ -12,7 +12,7 @@
 
 详细方案见：
 
-- [docs/部署方案.md](/Users/chenfengrui/Desktop/AIComics/10_System/docs/部署方案.md)
+- 部署入口：`../scripts/start.sh`（Docker 推荐；`--local` 裸机）
 
 ## 当前文件说明
 

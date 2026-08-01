@@ -39,9 +39,7 @@ services:
         condition: service_healthy
     ports:
       - "8000:8000"
-    volumes:
-      - ./web/frontend/dist:/app/web/frontend/dist:ro
-      - ./scripts/serve_frontend_spa.py:/app/scripts/serve_frontend_spa.py:ro
+    # 前端 dist 由 Dockerfile Node 阶段构建并烤进镜像，无需宿主挂载
     command: >
       sh -lc "python /app/scripts/serve_frontend_spa.py --directory /app/web/frontend/dist --host 0.0.0.0 --port 8000"
     healthcheck:

@@ -179,15 +179,24 @@ bash scripts/start.sh
 ### Docker 部署（推荐）
 
 ```bash
-# 启动核心服务
-docker compose up -d
+# 一键启动（自动生成 .env.docker.local、local_providers/ 骨架）
+bash scripts/start.sh
 
-# 启动 ComfyUI sidecar（含 SDXL 模型）
-docker compose -f docker-compose.local-providers.yml up -d
+# 仅核心（不含 ComfyUI/Piper sidecar）
+bash scripts/start.sh --no-comfyui
+
+# 手动等效命令（start.sh 的内部实现）
+docker compose -f docker-compose.yml build && docker compose -f docker-compose.yml up -d
+# ComfyUI/Piper sidecar 需以覆盖层方式组合（独立使用 local-providers 文件会报错）：
+docker compose -f docker-compose.yml -f docker-compose.local-providers.yml up -d
 
 # 查看日志
 docker compose logs -f
 ```
+
+> **注意**：`.env.docker.local` / `.env.production.local` 为本地密钥文件（被 .gitignore 排除）。
+> `start.sh` 首次运行会自动从 `.env.production.example` 生成。直接 `docker compose up -d`
+> 前请确保该文件存在。
 
 ### 启动后访问
 

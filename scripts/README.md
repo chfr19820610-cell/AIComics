@@ -7,13 +7,13 @@
 ## Python 口径
 
 - 固定版本：`Python 3.12.13`
-- 项目解释器：`10_System/.venv/bin/python`
+- 项目解释器：`<仓库根>/.venv/bin/python`
 - 不使用系统自带 `python3 3.9.x` 执行本目录脚本
 
 示例：
 
 ```bash
-cd /Users/chenfengrui/Desktop/AIComics/10_System
+cd AIComics   # 仓库根目录
 PYTHONPATH="$PWD/src:$PWD" .venv/bin/python scripts/run_demo_validation.py
 PYTHONPATH="$PWD/src:$PWD" .venv/bin/python scripts/validate_full_system_suite.py
 ```
