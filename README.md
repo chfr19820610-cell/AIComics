@@ -336,6 +336,25 @@ graph LR
 
 ---
 
+## 🧭 分支说明与开源发布
+
+| 分支 | 内容 | 说明 |
+|------|------|------|
+| `main` | **可部署的 AIComics 系统**（当前默认分支） | Docker 化 + docker-compose 一键部署 + 前端后端全栈 |
+| `archive/legacy` | 早期静态 HTML 视觉小说站（35 个提交） | 历史资产保留，仅供追溯参考，不含本系统代码 |
+| `feat/acom-0.6-p0` | ACOM-0.6.0 管线基础设施 + 部署修复 | 与 `main` 同 commit（`2f35fb4`），安全网分支 |
+| `gh-pages` | GitHub Pages 静态站 | 独立部署分支 |
+
+> 说明：公开 `main` 曾承载一批无关的静态 HTML 页面提交（`index.html`/`v2*.html`/`ai-vn-game` 等）。
+> 为让 AIComics 以**可部署系统**对外公开，已将含全部部署修复的可部署系统提升为公开 `main`，
+> 原静态站 35 个提交完整迁移至 `archive/legacy` 分支保留，未丢失任何历史数据。
+
+> ⚠️ **部署前提（联网环境）**：`docker compose build` 需要联网拉取基础镜像
+> （`node:18-alpine`、`python:3.12-slim` 等）。首次部署请在有网络的环境执行
+> `bash scripts/start.sh` 完成完整镜像构建。
+
+---
+
 ## 📄 许可证
 
 Apache 2.0 © 2026 [Eric Chen](https://github.com/chfr19820610-cell)
