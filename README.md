@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.12%2B-brightgreen)](.python-version)
-[![Tests](https://img.shields.io/badge/Tests-640%2F640-passing-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-688%2F688-passing-brightgreen)](tests/)
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-v0.26.0-important)](https://github.com/comfyanonymous/ComfyUI)
 [![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux-lightgrey)]()
 [![GitHub stars](https://img.shields.io/github/stars/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics)
@@ -214,7 +214,7 @@ docker compose logs -f
 
 | 指标 | 值 |
 |------|----|
-| 测试通过率 | **640/640** (100%) |
+| 测试通过率 | **688/688** (100%) |
 | 验证脚本 | **39/39** (100%) |
 | API 端点 | **52** 个 |
 | 视频产出 | **5 集完整漫剧**（4 分 24 秒） |
@@ -227,7 +227,7 @@ docker compose logs -f
 ## 🧪 运行测试
 
 ```bash
-# 运行全部 640 个测试
+# 运行全部 688 个测试
 PYTHONPATH="src" .venv/bin/python -m pytest tests/ -v
 
 # 快速模式（跳过耗时测试）
@@ -268,7 +268,7 @@ tail -f logs/vf_loop.log
 | **👤 角色系统** | 角色定义、一致性检测、提示词注入、参考图管理，让同一角色在不同分镜中保持外形统一 |
 | **📋 分镜版本管理** | 分镜可创建多个版本，对比选择最佳效果，支持回滚 |
 | **🎬 视频合成管线** | 端到端视频合成：图片→场景→字幕→配音→合成，支持批量处理 |
-| **✅ 640 测试覆盖** | 从 314 提升至 640 测试，新增 Provider 抽象层、角色系统、分镜版本管理等专项测试，验证脚本 39/39 全通过 |
+| **✅ 688 测试覆盖** | 从 314 提升至 688 测试，新增 Provider 抽象层、角色系统、分镜版本管理等专项测试 |
 | **🎨 风格轮换引擎** | 自动轮换视觉风格和色板，每条漫剧可拥有不同艺术风格 |
 | **🔄 无限自循环** | vf_master_loop 后台守护，自动生产+补充+发布，无需人工干预 |
 
@@ -297,7 +297,7 @@ graph LR
     WEB --> BE["backend/ (FastAPI)"]
     WEB --> FE["frontend/ (React SPA)"]
 
-    TST --> T640["640 个测试用例"]
+    TST --> T688["688 个测试用例"]
 
     ST --> REL["releases/ (视频产出)"]
     ST --> PV["produced_videos/"]
@@ -312,7 +312,7 @@ graph LR
 | `web/frontend/` | React SPA 创作台 |
 | `config/` | 配置文件（ComfyUI 路径、Provider 配置） |
 | `scripts/` | 运维脚本（vf_master_loop、启动脚本） |
-| `tests/` | 640 个测试用例 |
+| `tests/` | 688 个测试用例 |
 | `state/releases/` | 已合成的 MP4 视频产出 |
 | `state/produced_videos/` | 视频工厂产出目录 |
 
@@ -322,7 +322,7 @@ graph LR
 
 - [x] 基础漫剧管线 (故事→分镜→图片→配音)
 - [x] CLI + Web API + SPA 三端入口
-- [x] 640 测试全通过
+- [x] 688 测试全通过
 - [x] 供应商抽象层 (ComfyUI/Piper/OpenAI/Seedance)
 - [x] 角色系统 (定义/一致性/提示词注入/参考图)
 - [x] 分镜版本管理
