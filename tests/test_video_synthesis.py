@@ -370,6 +370,8 @@ class TestBatch:
         """Test batch with mocked subprocess (no actual FFmpeg)."""
         from unittest.mock import MagicMock, patch
 
+        import aicomic.video_synthesis.batch as batch_mod
+
         mock_asset_sources = {
             "TEST": tmp_path,
         }
@@ -404,7 +406,8 @@ class TestBatch:
 
         with patch("subprocess.run", side_effect=mock_run), \
              patch.object(pipeline_mod, "TEMP_DIR", tmp_path), \
-             patch.object(pipeline_mod, "OUTPUT_DIR", tmp_path):
+             patch.object(pipeline_mod, "OUTPUT_DIR", tmp_path), \
+             patch.object(batch_mod, "OUTPUT_DIR", tmp_path):
             with patch("aicomic.video_synthesis.scene.reencode_audio", return_value=True):
                 with patch("aicomic.video_synthesis.scene.build_scene_video", return_value=True):
                     with patch("aicomic.video_synthesis.pipeline.phase_concat", return_value=True):
