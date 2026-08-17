@@ -67,7 +67,7 @@ from web.backend.settings import load_web_settings
 from aicomic.characters.routes import build_character_router
 
 
-app = FastAPI(title="AI漫剧自动生成系统 Web API", version="0.1.0")
+app = FastAPI(title="AI漫剧自动生成系统 Web API", version="1.0.0")
 settings = load_web_settings()
 app.add_middleware(
     CORSMiddleware,

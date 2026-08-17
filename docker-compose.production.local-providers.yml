@@ -13,7 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.comfyui-sidecar
-    image: aicomic-comfyui-sidecar:production
+    image: aicomic-comfyui-sidecar:1.0.0-production
     container_name: aicomic-production-comfyui-sidecar
     environment:
       AICOMIC_PROJECT_ROOT: /app
@@ -46,7 +46,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: aicomic-system:production
+    image: aicomic-system:1.0.0-production
     container_name: aicomic-production-piper-sidecar
     environment:
       AICOMIC_PROJECT_ROOT: /app

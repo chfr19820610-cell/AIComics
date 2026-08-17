@@ -13,7 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.comfyui-sidecar
-    image: aicomic-comfyui-sidecar:local
+    image: aicomic-comfyui-sidecar:1.0.0-local
     container_name: aicomic-comfyui-sidecar
     environment:
       AICOMIC_PROJECT_ROOT: /app
@@ -46,7 +46,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: aicomic-system:local
+    image: aicomic-system:1.0.0-local
     container_name: aicomic-piper-sidecar
     environment:
       AICOMIC_PROJECT_ROOT: /app

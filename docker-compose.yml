@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: aicomic-system:local
+    image: aicomic-system:1.0.0-local
     container_name: aicomic-system-web
     env_file:
       - .env.docker.local
@@ -32,7 +32,7 @@ services:
     restart: unless-stopped
 
   aicomic-frontend:
-    image: aicomic-system:local
+    image: aicomic-system:1.0.0-local
     container_name: aicomic-frontend
     depends_on:
       aicomic-web:

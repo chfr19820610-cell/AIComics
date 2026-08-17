@@ -2,6 +2,7 @@
 
 > **写故事 → 拆镜头 → AI 生成 → 配音 → 发布，全自动一人公司视频工厂**
 
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue)](https://github.com/chfr19820610-cell/AIComics)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.12%2B-brightgreen)](.python-version)
 [![Tests](https://img.shields.io/badge/Tests-688%2F688-passing-brightgreen)](tests/)
@@ -260,7 +261,7 @@ tail -f logs/vf_loop.log
 
 ---
 
-## ✨ v0.2.0 新功能
+## ✨ v1.0.0 功能
 
 | 功能 | 说明 |
 |------|------|
@@ -268,9 +269,13 @@ tail -f logs/vf_loop.log
 | **👤 角色系统** | 角色定义、一致性检测、提示词注入、参考图管理，让同一角色在不同分镜中保持外形统一 |
 | **📋 分镜版本管理** | 分镜可创建多个版本，对比选择最佳效果，支持回滚 |
 | **🎬 视频合成管线** | 端到端视频合成：图片→场景→字幕→配音→合成，支持批量处理 |
-| **✅ 688 测试覆盖** | 从 314 提升至 688 测试，新增 Provider 抽象层、角色系统、分镜版本管理等专项测试 |
+| **🏗️ 声明式管线** | YAML 清单定义生产流程，审批门+断点续跑+协调器，管线可编排可中断可恢复 |
+| **🎨 ComfyUI 真实出图** | SDXL 25步 1024×1024 真实出图验证脚本 + Docker 构建代理修复 |
+| **✅ 688 测试覆盖** | 从 314 提升至 688 测试，新增 Provider 抽象层、角色系统、分镜版本管理、管线基础设施等专项测试 |
 | **🎨 风格轮换引擎** | 自动轮换视觉风格和色板，每条漫剧可拥有不同艺术风格 |
 | **🔄 无限自循环** | vf_master_loop 后台守护，自动生产+补充+发布，无需人工干预 |
+| **🐳 Docker 全栈部署** | docker-compose 一键启动（前端+后端+PostgreSQL+Redis），支持 local/production 双环境 |
+| **🌐 Web 控制台** | 前端 Web UI 管理漫剧生产全流程 |
 
 ---
 

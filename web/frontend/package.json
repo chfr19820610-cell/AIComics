@@ -1,6 +1,6 @@
 {
   "name": "aicomic-web-console",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "AI漫剧自动生成系统 Web 控制台",
   "scripts": {
