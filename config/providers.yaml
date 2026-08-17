@@ -22,6 +22,8 @@ tts_providers:
     - local_piper_tts
 
 openai_api:
+  # JieYou: 401(2026-08-10确认), 暂时不用, 待修复key后重新启用
+  # AlComics图像生成(gpt-image-1.5)和TTS(gpt-4o-mini-tts)依赖此API
   base_url: https://api.jieyouai.it.com/v1
   timeout_seconds: 120
 
@@ -60,14 +62,14 @@ kling:
 
 local_comfyui_image:
   base_url: http://127.0.0.1:8188
-  workflow_path: ../local_providers/comfyui/workflows/image_workflow.json
+  workflow_path: ../local_providers/comfyui/workflows/image_workflow_sdxl.json
   model_root: ../local_providers/comfyui/models
   model_manifest_path: ../local_providers/comfyui/model_requirements.json
-  timeout_seconds: 60
+  timeout_seconds: 120
   poll_timeout_seconds: 3600
   poll_interval_seconds: 2
-  width: 512
-  height: 768
+  width: 1024
+  height: 1024
   seed: 123456789
   steps: 4
   cfg: 1

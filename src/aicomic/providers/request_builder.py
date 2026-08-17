@@ -9,6 +9,9 @@ from aicomic.core.models import JobRecord, ProviderRequestRecord
 from aicomic.utils.atomic_io import atomic_write_json
 from aicomic.providers.provider_planner import build_provider_plan, resolve_provider_profile
 
+# Optional prompt enhancement (fused from Omni-Rewriter + prompt-optimizer)
+from .prompt_enhancer import enhance_prompt, auto_select_profile
+
 
 class ProviderRequestBuildError(RuntimeError):
     def __init__(self, skipped_jobs: list[dict[str, str]]) -> None:
@@ -90,13 +93,13 @@ def _build_quality_suffix(shot: dict[str, Any]) -> str:
 
     # ── 光影策略 ──
     # 恐怖/紧张情绪 → 低调+伦勃朗光
-    if any(k in emotion for k in ("恐惧", "紧张", "诡异", "阴", "dark", "恐惧", "惊")):
+    if any(k in emotion for k in ("恐惧", "阴", "dark", "惊悚", "诡异")):
         lighting = (
             "光影：低调戏剧光，伦勃朗式侧光勾勒面部轮廓；"
             "背光边缘光分离主体与背景；暗部保留细节不漆黑。"
         )
     # 浪漫/温柔 → 柔光+逆光
-    elif any(k in emotion for k in ("温柔", "浪漫", "温馨", "平静", "柔和")):
+    elif any(k in emotion for k in ("温柔", "浪漫", "温馨", "平静", "柔和", "心动", "心跳", "甜蜜", "安心", "暖")):
         lighting = (
             "光影：柔光漫射照明，逆光金色边缘轮廓光；"
             "面部补光柔和，高光扩散，阴影柔和过渡。"
@@ -148,13 +151,13 @@ def _build_quality_suffix(shot: dict[str, Any]) -> str:
     return f"{composition}{lighting}{style}{negative}"
 
 
-def build_image_prompt(episode_title: str, shot: dict[str, Any]) -> str:
+def build_image_prompt(episode_title: str, shot: dict[str, Any], char_service: Any = None, project_id: str = "") -> str:
     if is_horror_shot(shot):
         return build_horror_visual_prompt(shot, motion=False)
     characters = "、".join(str(item) for item in shot.get("characters", []))
     horror_context = build_horror_prompt_context(shot)
     quality_suffix = _build_quality_suffix(shot)
-    return (
+    base_prompt = (
         f"动漫插画风，剧集《{episode_title}》，场景：{shot['scene']}。"
         f"人物：{characters}。"
         f"画面：{shot['visual']}。"
@@ -165,22 +168,212 @@ def build_image_prompt(episode_title: str, shot: dict[str, Any]) -> str:
         f"{quality_suffix}"
         "高对比、强戏剧张力、短剧封面级质感。"
     )
+    # P0: 角色描述注入 — 当char_service可用时，替换[角色名]为角色描述
+    if char_service is not None:
+        try:
+            from aicomic.characters.prompt_injector import enhance_image_prompt
+            shot_characters = shot.get("characters", [])
+            return enhance_image_prompt(base_prompt, shot_characters, char_service, project_id)
+        except Exception:
+            pass  # 注入失败返回原始prompt，不阻断流程
+    return base_prompt
 
 
-def build_video_prompt(episode_title: str, shot: dict[str, Any]) -> str:
+def build_video_prompt(episode_title: str, shot: dict[str, Any], char_service: Any = None, project_id: str = "") -> str:
     if is_horror_shot(shot):
         return build_horror_visual_prompt(shot, motion=True)
+    characters = "、".join(str(item) for item in shot.get("characters", []))
     horror_context = build_horror_prompt_context(shot)
-    return (
+    quality_suffix = _build_quality_suffix(shot)
+    base_prompt = (
         f"动漫动态镜头，剧集《{episode_title}》。"
+        f"人物：{characters}。"
         f"场景：{shot['scene']}。"
         f"画面：{shot['visual']}。"
         f"动作：{shot['action']}。"
         f"情绪：{shot['emotion']}。"
         f"运镜：{shot['camera']}。"
         f"{horror_context}"
-        "时长控制在 3-4 秒，镜头稳定，突出人物情绪变化。"
+        f"{quality_suffix}"
+        "时长控制在 3-4 秒，镜头稳定，突出人物情绪变化，保持人物面容发色服装一致性。"
     )
+    if char_service is not None:
+        try:
+            from aicomic.characters.prompt_injector import enhance_image_prompt
+            shot_characters = shot.get("characters", [])
+            return enhance_image_prompt(base_prompt, shot_characters, char_service, project_id)
+        except Exception:
+            pass
+    return base_prompt
+
+
+def build_h3_video_prompt(episode_title: str, shot: dict[str, Any], char_service: Any = None, project_id: str = "") -> str:
+    """将shot数据转成H3官方3字段格式（integrated_multimodal_description + overall_soundscape + non_diegetic_music）。"""
+    # horror shot 走独立路径
+    if is_horror_shot(shot):
+        return build_horror_visual_prompt(shot, motion=True)
+
+    characters = "、".join(str(item) for item in shot.get("characters", []))
+    scene = str(shot.get("scene", ""))
+    visual = str(shot.get("visual", ""))
+    action = str(shot.get("action", ""))
+    emotion = str(shot.get("emotion", ""))
+    camera = str(shot.get("camera", ""))
+    dialogue = str(shot.get("dialogue", "")).strip()
+    duration = shot.get("duration", 4)
+
+    # ── 运镜映射（中文→H3官方英文）──
+    CAMERA_MAP = [
+        ("推近", "Push In"), ("推进", "Push In"),
+        ("拉远", "Pull Out"), ("拉出", "Pull Out"),
+        ("左摇", "Pan Left"),
+        ("右摇", "Pan Right"),
+        ("上摇", "Tilt Up"), ("仰拍", "Tilt Up"),
+        ("下摇", "Tilt Down"), ("俯拍", "Tilt Down"),
+        ("跟拍", "Tracking Shot"), ("跟随", "Tracking Shot"),
+        ("环绕", "Arc Shot"),
+        ("固定", "Static Shot"), ("静止", "Static Shot"),
+        ("手持", "Shake Slightly"),
+        ("主观", "POV"),
+    ]
+    camera_motion = "holds a static shot"
+    for cn, en in CAMERA_MAP:
+        if cn in camera:
+            camera_motion = {
+                "Push In": "pushes in with small amplitude at slow speed",
+                "Pull Out": "pulls out with small amplitude at slow speed",
+                "Pan Left": "pans left with small amplitude",
+                "Pan Right": "pans right with small amplitude",
+                "Tilt Up": "tilts up with small amplitude",
+                "Tilt Down": "tilts down with small amplitude",
+                "Tracking Shot": "tracks the subject with small amplitude",
+                "Arc Shot": "arcs around the subject with small amplitude",
+                "Static Shot": "holds a static shot",
+                "Shake Slightly": "shakes slightly",
+                "POV": "adopts the subject's point of view",
+            }.get(en, "holds a static shot")
+            break
+
+    # ── 场景中文→英文翻译（常见漫剧场景）──
+    SCENE_MAP = [
+        ("老井", "an old well at night"), ("老宅", "an abandoned old house interior"),
+        ("堂屋", "an ancestral hall interior"), ("祠堂", "a deserted ancestral shrine"),
+        ("村口", "a village entrance"), ("山路", "a mountain road"),
+        ("坟", "a graveyard"), ("井口", "a dry well opening"),
+        ("室内", "an indoor room"), ("室外", "an outdoor scene"),
+        ("街道", "a city street"), ("办公室", "an office"),
+        ("教室", "a classroom"), ("卧室", "a bedroom"),
+        ("走廊", "a corridor"), ("门口", "a doorway"),
+    ]
+    scene_en = scene
+    for cn, en in SCENE_MAP:
+        if cn in scene:
+            scene_en = en
+            break
+    if scene_en == scene:
+        scene_en = f"a location described as {scene}"
+
+    # ── 运镜描述（景别，英文）──
+    camera_desc_map = [
+        ("背影", "shot from behind"),
+        ("特写", "close-up shot"),
+        ("近景", "medium-close shot"),
+        ("中景", "medium shot"),
+        ("远景", "wide shot"),
+        ("全景", "wide shot"),
+        ("局部", "extreme close-up"),
+    ]
+    camera_desc = "medium shot"
+    for cn, en in camera_desc_map:
+        if cn in camera:
+            camera_desc = en
+            break
+
+    # ── 多角色对话分配 ──
+    dialogue_section = ""
+    if dialogue:
+        char_list = shot.get("characters", [])
+        # 多角色时按顺序分配S1/S2
+        if len(char_list) >= 2:
+            speaker = f"The {char_list[0]}"
+            dialogue_section = f"{speaker} (S1) says: <d>[Chinese] {dialogue}</d>"
+        else:
+            speaker = f"The {char_list[0]}" if char_list else "A character"
+            dialogue_section = f"{speaker} (S1) says: <d>[Chinese] {dialogue}</d>"
+    EMOTION_MAP = [
+        (("恐惧", "紧张", "诡异", "阴", "惊悚", "压迫", "悬念", "禁忌"), "fear and tension"),
+        (("温柔", "浪漫", "温馨", "平静", "柔和"), "warmth and tenderness"),
+        (("愤怒", "激烈", "战斗", "爆发"), "anger and intensity"),
+        (("悲伤", "忧伤", "失落"), "sadness and melancholy"),
+        (("欢乐", "开心", "喜悦"), "joy and lightness"),
+    ]
+    emotion_desc = "a neutral emotional tone"
+    for keywords, desc in EMOTION_MAP:
+        if any(k in emotion for k in keywords):
+            emotion_desc = desc
+            break
+
+    # ── 情绪→音效推导 ──
+    SOUND_MAP = [
+        (("恐惧", "紧张", "诡异", "阴", "惊悚", "压迫", "悬念", "禁忌"),
+         "Wind whistles through cracks, creaking floorboards, distant whispers"),
+        (("温柔", "浪漫", "温馨", "平静", "柔和"),
+         "Soft ambient sounds, gentle breeze, quiet footsteps"),
+        (("愤怒", "激烈", "战斗", "爆发"),
+         "Heavy impacts, rapid footsteps, sharp breathing"),
+        (("悲伤", "忧伤", "失落"),
+         "Muffled ambient sounds, slow breathing, distant echo"),
+        (("欢乐", "开心", "喜悦"),
+         "Bright ambient sounds, light footsteps, soft laughter"),
+    ]
+    sound_desc = "Ambient environmental sounds with subtle movement"
+    for keywords, desc in SOUND_MAP:
+        if any(k in emotion for k in keywords):
+            sound_desc = desc
+            break
+
+    # ── 情绪→配乐推导 ──
+    MUSIC_MAP = [
+        (("恐惧", "紧张", "诡异", "阴", "惊悚", "压迫", "悬念", "禁忌"),
+         "Sparse high piano notes at slow tempo with low drone strings building tension"),
+        (("温柔", "浪漫", "温馨", "平静", "柔和"),
+         "Soft acoustic guitar at moderate tempo with gentle string pads"),
+        (("愤怒", "激烈", "战斗", "爆发"),
+         "Driving percussion with aggressive string staccato at fast tempo"),
+        (("悲伤", "忧伤", "失落"),
+         "Slow cello notes with sparse piano, gradually fading"),
+        (("欢乐", "开心", "喜悦"),
+         "Light ukulele strumming at upbeat tempo with bright bell accents"),
+    ]
+    music_desc = "Subtle ambient pad at slow tempo"
+    for keywords, desc in MUSIC_MAP:
+        if any(k in emotion for k in keywords):
+            music_desc = desc
+            break
+
+    # ── 组装H3官方3字段格式 ──
+    visual_en = visual if visual else f"{characters} in {scene_en}"
+    action_en = action if action else "subtle character motion"
+
+    h3_prompt = (
+        f"integrated_multimodal_description: [Shot 1] 2D-animated, cinematic, "
+        f"a {camera_desc} frames {characters} in {scene_en}. "
+        f"The camera {camera_motion} as {action_en}. "
+        f"The scene conveys {emotion_desc}. "
+        f"{dialogue_section}\n\n"
+        f"overall_soundscape: {sound_desc}\n\n"
+        f"non_diegetic_music: {music_desc}"
+    )
+
+    # 角色描述注入（同build_video_prompt逻辑）
+    if char_service is not None:
+        try:
+            from aicomic.characters.prompt_injector import enhance_image_prompt
+            shot_characters = shot.get("characters", [])
+            return enhance_image_prompt(h3_prompt, shot_characters, char_service, project_id)
+        except Exception:
+            pass
+    return h3_prompt
 
 
 def is_horror_shot(shot: dict[str, Any]) -> bool:
@@ -295,11 +488,11 @@ def action_for_beat(horror_beat: str, anchor: str) -> str:
 
 def build_horror_prompt_context(shot: dict[str, Any]) -> str:
     horror_beat = str(shot.get("horror_beat", "")).strip()
+    if not horror_beat:
+        return ""  # 非恐怖shot不注入任何恐怖上下文
     avoidance_strategy = str(shot.get("avoidance_strategy", "")).strip()
     continuity_anchor = str(shot.get("continuity_anchor", "")).strip()
     sound_cue = str(shot.get("sound_cue", "")).strip()
-    if not any([horror_beat, avoidance_strategy, continuity_anchor, sound_cue]):
-        return ""
     return (
         "玄学民俗恐怖题材。"
         f"恐怖节拍：{horror_beat or '氛围悬念'}。"
@@ -322,12 +515,15 @@ def build_request_payload(
     shot_id: str,
     shot: dict[str, Any],
     output_root: Path,
+    char_service: Any = None,
+    project_id: str = "",
 ) -> dict[str, Any]:
     if job.job_type == "image":
-        prompt = build_image_prompt(episode_title, shot)
+        result = build_image_prompt_enhanced(episode_title, shot, char_service=char_service, project_id=project_id)
+        prompt = result.get("prompt", "") if isinstance(result, dict) else str(result)
         output_path = output_root / job.episode_code / "images" / f"{job.episode_code}_{shot_id}_key.png"
     elif job.job_type == "video":
-        prompt = build_video_prompt(episode_title, shot)
+        prompt = build_video_prompt(episode_title, shot, char_service=char_service, project_id=project_id)
         output_path = output_root / job.episode_code / "videos" / f"{job.episode_code}_{shot_id}_motion.mp4"
     else:
         prompt = build_tts_prompt(shot)
@@ -475,3 +671,33 @@ def write_provider_requests(path: Path, payload: dict[str, Any]) -> None:
     serializable_payload = dict(payload)
     serializable_payload.pop("request_records", None)
     atomic_write_json(path, serializable_payload)
+
+
+# ============ Prompt Enhancement (fused from Omni-Rewriter + prompt-optimizer) ============
+
+def build_image_prompt_enhanced(
+    episode_title: str,
+    shot: dict[str, Any],
+    char_service=None,
+    project_id: str = "",
+    use_llm: bool = False,
+    negative_prompt: str = "",
+) -> dict[str, Any]:
+    """build_image_prompt + prompt_enhancer 统一入口。"""
+    base = build_image_prompt(episode_title, shot, char_service=char_service, project_id=project_id)
+    profile_name = auto_select_profile(shot)
+    return enhance_prompt(base, shot=shot, profile_name=profile_name, use_llm=use_llm, negative_prompt=negative_prompt)
+
+
+def build_video_prompt_enhanced(
+    episode_title: str,
+    shot: dict[str, Any],
+    char_service=None,
+    project_id: str = "",
+    use_llm: bool = False,
+    negative_prompt: str = "",
+) -> dict[str, Any]:
+    """build_video_prompt + prompt_enhancer 统一入口。"""
+    base = build_h3_video_prompt(episode_title, shot, char_service=char_service, project_id=project_id)
+    profile_name = "video_h3"  # 视频固定用H3 profile
+    return enhance_prompt(base, shot=shot, profile_name=profile_name, use_llm=use_llm, negative_prompt=negative_prompt)

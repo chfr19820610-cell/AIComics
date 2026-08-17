@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from aicomic.render.preview_renderer import build_render_plan, render_preview_video
+from aicomic.render.preview_renderer import build_render_plan, render_preview_video, render_preview_video_with_audio
 
 
 def build_release_plan(manifest: dict[str, Any], episode_code: str, asset_root: Path) -> dict[str, Any]:
@@ -22,9 +22,9 @@ def render_release_video(
         release_plan,
         output_path,
         report_path,
-        width=720,
-        height=1280,
-        fps=8,
+        width=1024,
+        height=1024,
+        fps=24,
     )
     report["render_profile"] = "release"
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -49,13 +49,27 @@ def create_placeholder_frame(width: int, height: int, shot_id: str, visual: str)
     return canvas
 
 
+def _fit_image_to_canvas(img: "Image.Image", target_w: int, target_h: int) -> "Image.Image":
+    """Resize image preserving aspect ratio, pad to target canvas with black bars."""
+    orig_w, orig_h = img.size
+    scale = min(target_w / orig_w, target_h / orig_h)
+    new_w = int(orig_w * scale)
+    new_h = int(orig_h * scale)
+    resized = img.resize((new_w, new_h), Image.LANCZOS)
+    canvas = Image.new("RGB", (target_w, target_h), "#000000")
+    offset_x = (target_w - new_w) // 2
+    offset_y = (target_h - new_h) // 2
+    canvas.paste(resized, (offset_x, offset_y))
+    return canvas
+
+
 def render_preview_video(
     render_plan: dict[str, Any],
     output_path: Path,
     report_path: Path,
-    width: int = 720,
-    height: int = 1280,
-    fps: int = 6,
+    width: int = 1024,
+    height: int = 1024,
+    fps: int = 24,
 ) -> dict[str, Any]:
     report_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -71,11 +85,12 @@ def render_preview_video(
         return fallback_report
 
     total_frames = 0
-    with imageio.get_writer(output_path, fps=fps) as writer:
+    with imageio.get_writer(output_path, fps=fps, codec="libx264") as writer:
         for shot in render_plan["shots"]:
             duration_frames = max(1, int(shot["duration"]) * fps)
             if shot["has_image"] is True:
-                frame_image = Image.open(shot["image_path"]).convert("RGB").resize((width, height))
+                raw = Image.open(shot["image_path"]).convert("RGB")
+                frame_image = _fit_image_to_canvas(raw, width, height)
             else:
                 frame_image = create_placeholder_frame(width, height, shot["shot_id"], shot["visual"])
 
@@ -97,3 +112,75 @@ def render_preview_video(
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     return report
 
+
+
+# ---- Audio mixing (added v0.2.0) ----
+import subprocess as _sp
+import os as _os
+
+
+def _mix_audio_into_video(video_path: str, audio_dir: str, episode_code: str, shots: list, output_path: str, ffmpeg_bin: str = "ffmpeg") -> bool:
+    """Mix per-shot TTS audio into the rendered video using ffmpeg."""
+    # 1. Concatenate all TTS wav files in shot order
+    concat_list = _os.path.join(_os.path.dirname(output_path), f"{episode_code}_audio_concat.txt")
+    with open(concat_list, "w") as f:
+        for shot in shots:
+            shot_id = shot.get("shot_id", "")
+            wav_path = _os.path.join(audio_dir, episode_code, "audio", f"{episode_code}_{shot_id}_tts.wav")
+            if not _os.path.exists(wav_path):
+                # Try local_provider_output path
+                wav_path = _os.path.join(audio_dir, episode_code, "audio", f"{episode_code}_{shot_id}_tts.wav")
+            if _os.path.exists(wav_path):
+                f.write(f"file '{wav_path}'\n")
+            else:
+                # Generate 1s silence placeholder
+                silence_path = _os.path.join(_os.path.dirname(output_path), f"{episode_code}_{shot_id}_silence.wav")
+                _sp.run([ffmpeg_bin, "-y", "-f", "lavfi", "-i", "anullsrc=r=16000:cl=mono", "-t", str(shot.get("duration", 4)), "-q:a", "9", "-acodec", "pcm_s16le", silence_path], capture_output=True, timeout=10)
+                f.write(f"file '{silence_path}'\n")
+
+    # 2. Concat audio
+    concat_wav = _os.path.join(_os.path.dirname(output_path), f"{episode_code}_audio_full.wav")
+    _sp.run([ffmpeg_bin, "-y", "-f", "concat", "-safe", "0", "-i", concat_list, "-c", "copy", concat_wav], capture_output=True, timeout=30)
+
+    # 3. Mix audio into video
+    mixed_path = output_path.replace(".mp4", "_mixed.mp4")
+    _sp.run([ffmpeg_bin, "-y", "-i", output_path, "-i", concat_wav, "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-shortest", mixed_path], capture_output=True, timeout=60)
+
+    # 4. Replace original
+    if _os.path.exists(mixed_path) and _os.path.getsize(mixed_path) > _os.path.getsize(output_path):
+        _os.replace(mixed_path, output_path)
+
+    # 5. Cleanup
+    for tmp in [concat_list, concat_wav]:
+        if _os.path.exists(tmp):
+            _os.remove(tmp)
+
+    return True
+
+
+def render_preview_video_with_audio(render_plan: dict, output_path: Path, report_path: Path, asset_root: Path = None, **kwargs) -> dict:
+    """Render preview video with TTS audio mixed in."""
+    report = render_preview_video(render_plan, output_path, report_path, **kwargs)
+
+    # Find audio directory
+    if asset_root is None:
+        asset_root = Path("state/local_provider_output")
+
+    audio_base = str(asset_root) if asset_root else "state/local_provider_output"
+    # Also check demo_assets
+    demo_base = str(asset_root).replace("local_provider_output", "demo_assets") if "local_provider_output" in str(asset_root) else audio_base
+
+    ffmpeg_bin = "/Users/eric/.hermes/bin/ffmpeg"
+    if not _os.path.exists(ffmpeg_bin):
+        import shutil as _sh
+        ffmpeg_bin = _sh.which("ffmpeg") or "ffmpeg"
+
+    try:
+        _mix_audio_into_video(str(output_path), audio_base, render_plan["episode_code"], render_plan["shots"], str(output_path), ffmpeg_bin)
+        report["audio_mixed"] = True
+    except Exception as e:
+        report["audio_mixed"] = False
+        report["audio_error"] = str(e)
+
+    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    return report

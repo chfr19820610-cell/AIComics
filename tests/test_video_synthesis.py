@@ -199,7 +199,8 @@ class TestSceneUtils:
             pytest.skip(f"FFmpeg not found at {FFMPEG}")
 
         # Find a real WAV from the project
-        wav = list(Path("/Users/eric/Desktop/herness/AIComics/10_System/state/local_provider_output/E01/audio").glob("*.wav"))
+        audio_dir = Path(__file__).resolve().parent.parent / "state" / "local_provider_output" / "E01" / "audio"
+        wav = list(audio_dir.glob("*.wav"))
         if not wav:
             pytest.skip("No test WAV files found")
 
@@ -221,7 +222,7 @@ class TestSceneUtils:
 class TestPipeline:
     def test_verify_video(self):
         """Verify against the spike output."""
-        spike_path = Path("/Users/eric/Desktop/herness/AIComics/10_System/state/releases/E01_spike.mp4")
+        spike_path = Path(__file__).resolve().parent.parent / "state" / "releases" / "E01_spike.mp4"
         if not spike_path.exists():
             pytest.skip("Spike output not found")
 

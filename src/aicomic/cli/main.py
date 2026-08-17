@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import argparse
+import json
+import os
 from pathlib import Path
 
 from aicomic.batch.coordinator import (
@@ -42,6 +44,7 @@ from aicomic.publish.publish_pack import build_enhanced_publish_pack, build_publ
 from aicomic.publish.season_summary import build_season_summary, write_season_summary
 from aicomic.providers.executor import execute_provider_requests, write_provider_execution_report
 from aicomic.providers.comfyui_service import run_comfyui_service_action, write_comfyui_service_report
+from aicomic.cli.image_consistency_cmd import handle_image_consistency
 from aicomic.providers.live_smoke import run_local_provider_live_smoke, write_local_provider_live_smoke_report
 from aicomic.providers.manual_importer import import_manual_outputs, write_manual_import_report
 from aicomic.providers.provider_planner import build_provider_plan, write_provider_plan
@@ -51,7 +54,11 @@ from aicomic.providers.result_writer import build_provider_result_writeback, wri
 from aicomic.qc.asset_scanner import scan_episode_assets, write_asset_scan_report
 from aicomic.qc.repair_advisor import build_repair_suggestions, write_repair_suggestions
 from aicomic.qc.season_scanner import scan_season_assets, write_season_scan_report
-from aicomic.render.preview_renderer import build_render_plan, render_preview_video
+from aicomic.render.preview_renderer import build_render_plan, render_preview_video, render_preview_video_with_audio
+from aicomic.render.remotion_transitions import TransitionConfig, render_shots_with_transitions, generate_srt_from_shots, burn_subtitles_into_video
+from aicomic.core.keyframe_engine import KeyframeConfig, generate_keyframe_prompts, render_keyframe_transition
+from aicomic.core.storyboard_grid import generate_grid_prompts, compose_grid_image
+from aicomic.core.novel_splitter import split_novel_to_episodes, build_manifest_from_episodes
 from aicomic.render.release_renderer import build_release_plan, render_release_video
 from aicomic.render.season_renderer import render_season
 from aicomic.render.subtitle_audio import build_audio_plan, build_subtitle_entries, write_audio_plan, write_silence_wav, write_srt
@@ -137,7 +144,7 @@ def handle_scan_assets(ep: Path, code: str, root: Path, out: Path) -> int:
 
 
 def handle_render_preview(ep: Path, code: str, root: Path, vid: Path, ro: Path) -> int:
-    report = render_preview_video(build_render_plan(load_json(ep), code, root), vid, ro)
+    report = render_preview_video_with_audio(build_render_plan(load_json(ep), code, root), vid, ro, asset_root=root, width=1024, height=1024, fps=24)
     print(f"render_mode={report['render_mode']}\noutput={vid}")
     return 0
 
@@ -216,6 +223,96 @@ def handle_build_publish_pack(ep: Path, code: str, out: Path) -> int:
     p = build_publish_pack(load_json(ep), code)
     write_publish_pack(out, p)
     print(f"publish_title={p['publish_title']}\noutput={out}")
+    return 0
+
+
+def handle_render_with_transitions(ep, code, root, vid, ro, transition_type="fade"):
+    """Remotion风格渲染: 转场+字幕+音频"""
+    manifest = load_json(ep)
+    plan = build_render_plan(manifest, code, root)
+
+    shots = []
+    for shot in plan["shots"]:
+        img_path = shot.get("image_path", "")
+        audio_path = str(Path(str(root)) / code / "audio" / f"{code}_{shot['shot_id']}_tts.wav")
+        shots.append({
+            "image": img_path,
+            "audio": audio_path if os.path.exists(audio_path) else "",
+            "duration": shot.get("duration", 4),
+            "dialogue": shot.get("dialogue", ""),
+        })
+
+    config = TransitionConfig(
+        transition_type=transition_type,
+        duration=0.5,
+        width=1024,
+        height=1024,
+        fps=24,
+    )
+
+    render_shots_with_transitions(shots, str(vid), config)
+
+    # Generate SRT subtitles
+    srt_path = str(vid).replace(".mp4", ".srt")
+    generate_srt_from_shots(shots, srt_path)
+
+    # Burn subtitles into video
+    subtitled_path = str(vid).replace(".mp4", "_subtitled.mp4")
+    burn_subtitles_into_video(str(vid), srt_path, subtitled_path)
+
+    if os.path.exists(subtitled_path) and os.path.getsize(subtitled_path) > os.path.getsize(str(vid)):
+        os.replace(subtitled_path, str(vid))
+
+    report = {
+        "episode_code": code,
+        "render_mode": "remotion_transitions",
+        "transition_type": transition_type,
+        "output_path": str(vid),
+        "shot_count": len(shots),
+        "subtitles": True,
+    }
+    Path(str(ro)).parent.mkdir(parents=True, exist_ok=True)
+    Path(str(ro)).write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"render_mode={report['render_mode']}\ntransition={transition_type}\noutput={vid}")
+    return 0
+
+
+def handle_generate_keyframes(ep, code, root, out, mode):
+    """生成关键帧首尾帧提示词"""
+    manifest = load_json(ep)
+    plan = build_render_plan(manifest, code, root)
+    results = []
+    for shot in plan["shots"]:
+        prompts = generate_keyframe_prompts(shot)
+        results.append({"shot_id": shot["shot_id"], "start_prompt": prompts["start_prompt"][:100], "end_prompt": prompts["end_prompt"][:100]})
+    Path(str(out)).parent.mkdir(parents=True, exist_ok=True)
+    Path(str(out)).write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"keyframe_count={len(results)}\noutput={out}")
+    return 0
+
+
+def handle_generate_storyboard(ep, code, out):
+    """生成九宫格分镜提示词"""
+    manifest = load_json(ep)
+    shots = manifest.get("episodes", [{}])[0].get("shots", [])[:1]
+    if not shots:
+        print("No shots found")
+        return 1
+    prompts = generate_grid_prompts(shots[0])
+    Path(str(out)).parent.mkdir(parents=True, exist_ok=True)
+    Path(str(out)).write_text(json.dumps(prompts, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"grid_prompts={len(prompts)}\noutput={out}")
+    return 0
+
+
+def handle_split_novel(novel_path, out, shots_per_ep):
+    """小说拆分成多集manifest"""
+    text = Path(str(novel_path)).read_text(encoding="utf-8")
+    episodes = split_novel_to_episodes(text, target_shots_per_ep=shots_per_ep)
+    manifest = build_manifest_from_episodes(episodes)
+    Path(str(out)).parent.mkdir(parents=True, exist_ok=True)
+    Path(str(out)).write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"episode_count={len(episodes)}\noutput={out}")
     return 0
 
 
@@ -414,6 +511,22 @@ def handle_build_season_summary(sm: Path, jr: Path, sr: Path, rr: Path, out: Pat
 # ---------------------------------------------------------------------------
 
 COMMANDS: dict[str, dict] = {
+    "image-consistency": {"help": "图像级角色一致性（立绘母版锁脸 / IPAdapter/ControlNet/LoRA / 单集产线）", "args": [
+        (["--action"], {"choices": ("register", "list", "lock", "probe", "pipeline"), "required": True}),
+        (["--database"], {"type": Path, "default": P("ProjectPaths.default_database_path()")}),
+        (["--character-id"], {"default": ""}),
+        (["--character-name"], {"default": ""}),
+        (["--master-image"], {"default": ""}),
+        (["--source-prompt"], {"default": ""}),
+        (["--comfyui-url"], {"default": "http://127.0.0.1:8188"}),
+        (["--model-root"], {"type": Path, "default": P("ProjectPaths.project_root() / 'local_providers/comfyui/runtime/ComfyUI/models'")}),
+        (["--timeout"], {"type": float, "default": 4.0}),
+        (["--spec"], {"type": Path, "default": None}),
+        (["--work-dir"], {"type": Path, "default": P("ProjectPaths.state_dir() / 'acom071_pipeline'")}),
+        (["--mode"], {"choices": ("mock", "real"), "default": "mock"}),
+        (["--threshold"], {"type": float, "default": 0.80}),
+        (["--report-output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'acom071_pipeline_report.json'")})],
+        "handler": lambda a: handle_image_consistency(a)},
     "status": {"help": "查看项目骨架状态", "args": [], "handler": lambda a: handle_status()},
     "build-jobs": {"help": "从 episode_manifest 构建任务包", "args": [
         (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
@@ -492,6 +605,35 @@ COMMANDS: dict[str, dict] = {
         (["--episode-target-count"], {"type": int, "default": 12}),
         (["--output-root"], {"type": Path, "default": P("ProjectPaths.generated_projects_dir()")})],
         "handler": lambda a: handle_init_project(a.project_name, a.genre, a.style, a.project_id, a.logline, a.protagonist_name, a.target_audience, a.tone, a.season_hook, a.episode_target_count, a.output_root)},
+    "generate-keyframes": {"help": "生成关键帧首尾帧提示词", "args": [
+        (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
+        (["--episode-code"], {"type": str, "default": "E01"}),
+        (["--asset-root"], {"type": Path, "default": P("ProjectPaths.state_dir() / 'demo_assets'")}),
+        (["--output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'keyframes_E01.json'")}),
+        (["--mode"], {"type": str, "default": "morph"}),
+    ], "handler": lambda a: handle_generate_keyframes(a.episode_manifest, a.episode_code, a.asset_root, a.output, a.mode)},
+
+    "generate-storyboard": {"help": "生成九宫格分镜提示词", "args": [
+        (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
+        (["--episode-code"], {"type": str, "default": "E01"}),
+        (["--output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'storyboard_E01.json'")}),
+    ], "handler": lambda a: handle_generate_storyboard(a.episode_manifest, a.episode_code, a.output)},
+
+    "split-novel": {"help": "小说拆分成多集manifest", "args": [
+        (["--novel-path"], {"type": Path, "required": True}),
+        (["--output"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'novel_manifest.json'")}),
+        (["--shots-per-episode"], {"type": int, "default": 6}),
+    ], "handler": lambda a: handle_split_novel(a.novel_path, a.output, a.shots_per_episode)},
+
+    "render-remotion": {"help": "Remotion风格渲染(转场+字幕+音频)", "args": [
+        (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
+        (["--episode-code"], {"type": str, "default": "E01"}),
+        (["--asset-root"], {"type": Path, "default": P("ProjectPaths.state_dir() / 'demo_assets'")}),
+        (["--output"], {"type": Path, "default": P("ProjectPaths.state_dir() / 'preview_outputs' / 'E01_remotion.mp4'")}),
+        (["--report-output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'render_remotion_E01.json'")}),
+        (["--transition"], {"type": str, "default": "fade", "choices": ["fade", "slide", "wipe", "clock_wipe", "cross_zoom", "flip"]}),
+    ],
+        "handler": lambda a: handle_render_with_transitions(a.episode_manifest, a.episode_code, a.asset_root, a.output, a.report_output, a.transition)},
     "render-release": {"help": "渲染单集正式版视频", "args": [
         (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
         (["--episode-code"], {"default": "E01"}), (["--asset-root"], {"type": Path, "default": P("ProjectPaths.demo_assets_dir()")}),

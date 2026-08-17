@@ -37,7 +37,7 @@ def _resolve_ffmpeg() -> Path:
 
 
 # ── System paths ──────────────────────────────────────────────────────────
-SYSTEM_ROOT = Path("/Users/eric/Desktop/herness/AIComics/10_System")
+SYSTEM_ROOT = Path(os.environ.get("AICOMIC_SYSTEM_ROOT", str(Path(__file__).resolve().parents[3])))
 FFMPEG = _resolve_ffmpeg()
 
 # Asset directories — each episode has images/ and audio/ subdirectories

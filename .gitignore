@@ -76,3 +76,25 @@ dist/
 .secrets/
 *.pem
 *.key
+
+# v0.1.1 补充
+*.mp4
+episodes/
+stock_cache/
+probe*.txt
+_probe*
+
+# v1.0.0 补充 — 重资产和内部目录排除
+# ComfyUI runtime (105G — 模型/checkpoints/venv)
+local_providers/comfyui_runtime/
+# ComfyUI workflows 保留（小文件，配置用）
+# company/ 内部文档不开源
+company/
+# ComfyUI venv
+local_providers/comfyui/runtime/ComfyUI/.venv/
+# egg-info
+*.egg-info/
+# 音频素材（大文件）
+audio/
+# 工具脚本（内部用）
+scripts/skill_master_check.py

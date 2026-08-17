@@ -1,0 +1,89 @@
+{
+  "blueprint_version": "romance_content_factory/v1",
+  "episode_code": "E01",
+  "title": "加班到深夜，电梯里只剩我们两个人，她...",
+  "hook": "加班到深夜，电梯里只剩我们两个人，她突然按下了停止按钮。",
+  "genre": "都市爱情动漫剧",
+  "target_platform": "竖屏短视频",
+  "aspect_ratio": "9:16",
+  "target_seconds": 36,
+  "shot_count": 6,
+  "shot_duration_seconds": 6,
+  "acts": [
+    {
+      "act_id": "A1",
+      "title": "命运偶遇",
+      "romance_beat": "meet_cute",
+      "target_seconds": 12,
+      "shot_count": 2,
+      "purpose": "雨夜偶遇建立初印象：加班到深夜，电梯里只剩我们两个人，她突然按下了停止按钮。"
+    },
+    {
+      "act_id": "A2",
+      "title": "欢喜冤家",
+      "romance_beat": "bickering",
+      "target_seconds": 6,
+      "shot_count": 1,
+      "purpose": "日常互动中展现性格反差和化学反应。"
+    },
+    {
+      "act_id": "A3",
+      "title": "心动暗涌",
+      "romance_beat": "sparks",
+      "target_seconds": 6,
+      "shot_count": 1,
+      "purpose": "细节暗示双方心动，但还没说破。"
+    },
+    {
+      "act_id": "A4",
+      "title": "真情告白",
+      "romance_beat": "confession",
+      "target_seconds": 6,
+      "shot_count": 1,
+      "purpose": "鼓起勇气告白，呼应开头的情书。"
+    },
+    {
+      "act_id": "A5",
+      "title": "甜蜜结局",
+      "romance_beat": "sweet_ending",
+      "target_seconds": 6,
+      "shot_count": 1,
+      "purpose": "甜蜜收尾，留下余韵。"
+    }
+  ],
+  "characters": [
+    {
+      "name": "便利店男孩",
+      "role": "男主",
+      "visual_rule": "便利店围裙、温柔笑容、整理货架的日常感"
+    },
+    {
+      "name": "都市女孩",
+      "role": "女主",
+      "visual_rule": "都市穿搭、湿发凌乱感、倔强但心软的表情"
+    }
+  ],
+  "locations": [
+    "深夜便利店",
+    "城市天桥",
+    "咖啡馆落地窗",
+    "樱花街道",
+    "公寓楼下",
+    "地铁车厢",
+    "公司天台",
+    "雨中街角"
+  ],
+  "visual_rules": [
+    "优先暖色调、柔光、浅景深",
+    "每场只保留1个核心场景",
+    "角色表情和眼神交流是重点"
+  ],
+  "continuity_anchors": [
+    "雨伞",
+    "情书",
+    "咖啡杯",
+    "樱花瓣",
+    "手机屏幕",
+    "围巾"
+  ]
+}
