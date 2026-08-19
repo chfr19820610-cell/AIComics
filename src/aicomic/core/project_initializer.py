@@ -135,6 +135,7 @@ def initialize_project(
     tone: str = "强钩子",
     season_hook: str = "结尾必须留下身份、关系或真相反转。",
     episode_target_count: int = 12,
+    template: str | None = None,
 ) -> dict[str, object]:
     resolved_project_id = project_id or normalize_project_id(project_name)
     project_root = output_root / resolved_project_id
@@ -167,13 +168,31 @@ def initialize_project(
         episode_target_count,
     )
 
-    write_json(project_manifest_path, build_project_manifest(resolved_project_id, project_name, genre, style, creator_profile))
+    project_manifest = build_project_manifest(resolved_project_id, project_name, genre, style, creator_profile)
+    if template:
+        project_manifest["template"] = template
+    write_json(project_manifest_path, project_manifest)
     write_json(season_manifest_path, build_season_manifest(resolved_project_id, project_name, season_hook, episode_target_count))
     write_json(episode_manifest_path, build_episode_manifest(resolved_project_id, protagonist_name, season_hook))
     write_json(story_bible_path, build_story_bible(project_name, genre, logline, protagonist_name, tone, season_hook))
     write_json(character_bible_path, build_character_bible(protagonist_name))
     write_json(style_bible_path, build_style_bible(style, tone))
-    write_json(episode_blueprint_path, build_episode_blueprint(episode_target_count, protagonist_name, season_hook))
+    if template:
+        # Generate blueprint from template
+        try:
+            from aicomic.core.template_engine import build_blueprint_from_template, load_template
+            tmpl = load_template(template)
+            bp = build_blueprint_from_template(
+                hook=season_hook,
+                template_name=template,
+                target_seconds=tmpl.get("default_target_seconds", 240),
+                max_shots=tmpl.get("default_max_shots", 30),
+            )
+            write_json(episode_blueprint_path, bp)
+        except Exception:
+            write_json(episode_blueprint_path, build_episode_blueprint(episode_target_count, protagonist_name, season_hook))
+    else:
+        write_json(episode_blueprint_path, build_episode_blueprint(episode_target_count, protagonist_name, season_hook))
     write_json(prompt_pack_path, build_prompt_pack_template(project_name, genre, style, protagonist_name, tone))
     release_checklist_path.write_text(build_release_checklist_markdown(project_name), encoding="utf-8")
     readme_path.write_text(

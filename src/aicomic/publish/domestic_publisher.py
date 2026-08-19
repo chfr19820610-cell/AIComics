@@ -33,11 +33,14 @@ class PublishPayload:
 
     @classmethod
     def from_publish_pack(cls, pack: dict[str, Any], video: Path) -> "PublishPayload":
+        pc = pack.get("platform_copy", {}).get("douyin", {})
+        if not isinstance(pc, dict):
+            pc = {}
         return cls(
             video_path=video,
-            title=pack.get("publish_title", pack.get("title", "")),
-            description=pack.get("description", ""),
-            tags=pack.get("hashtags", []),
+            title=pc.get("title", pack.get("publish_title", pack.get("titles", {}).get("main", ""))),
+            description=pc.get("description", pack.get("description", "")),
+            tags=pc.get("tags", pack.get("hashtags", pack.get("tags", []))),
             platform_copy=pack.get("platform_copy", {}),
         )
 
