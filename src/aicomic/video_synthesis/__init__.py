@@ -20,9 +20,30 @@ from aicomic.video_synthesis.batch import (
     discover_episodes,
 )
 
+# v2.0: i18n + translation memory
+from aicomic.video_synthesis.i18n import (
+    translate_subtitles,
+    translate_srt_file,
+    build_multilang_subtitle_set,
+    get_voice_for_language,
+    build_multilang_episode,
+    get_lang_to_platform_map,
+    publish_multilang_routing,
+)
+from aicomic.video_synthesis.translation_memory import TranslationMemory
+
 __all__ = [
     "synthesize_episode",
     "verify_video",
     "batch_synthesize",
     "discover_episodes",
+    # v2.0
+    "translate_subtitles",
+    "translate_srt_file",
+    "build_multilang_subtitle_set",
+    "get_voice_for_language",
+    "build_multilang_episode",
+    "get_lang_to_platform_map",
+    "publish_multilang_routing",
+    "TranslationMemory",
 ]

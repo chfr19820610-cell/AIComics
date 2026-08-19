@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, Query, Request
@@ -761,3 +763,120 @@ def write_action_audit_log(
     ensure_auth_schema(connection)
     write_audit_log(connection, user_id, action_type, target_type, target_id, result, detail)
     connection.close()
+
+
+# === Template & Pipeline API ===
+
+@app.get("/api/templates")
+def api_list_templates() -> dict[str, Any]:
+    """List all available templates."""
+    from aicomic.core.template_engine import list_templates, load_template
+    templates = []
+    for name in list_templates():
+        try:
+            t = load_template(name)
+            templates.append({"id": name, "genre": t.get("genre", ""), "default_hook": t.get("default_hook", "")})
+        except Exception:
+            templates.append({"id": name, "genre": "(error)"})
+    return {"templates": templates}
+
+
+@app.get("/api/templates/browse")
+def api_browse_templates(genre: str | None = None) -> dict[str, Any]:
+    """Browse all templates with summary info."""
+    from aicomic.core.template_market import browse_templates
+    return browse_templates(genre=genre)
+
+
+@app.get("/api/templates/{template_id}")
+def api_template_detail(template_id: str) -> dict[str, Any]:
+    """Get template details."""
+    from aicomic.core.template_engine import load_template
+    try:
+        return load_template(template_id)
+    except FileNotFoundError:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=404, detail=f"Template not found: {template_id}")
+
+
+@app.get("/api/templates/{template_id}/preview")
+def api_preview_template(template_id: str) -> dict[str, Any]:
+    """Preview a template with acts and sample blueprint."""
+    from aicomic.core.template_market import preview_template
+    try:
+        return preview_template(template_id)
+    except FileNotFoundError:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=404, detail=f"Template not found: {template_id}")
+
+
+@app.get("/api/publish/status")
+def api_publish_status() -> dict[str, Any]:
+    """Check publish platform readiness."""
+    from aicomic.publish.domestic_publisher import check_platform_ready, load_publish_config
+    cfg = load_publish_config()
+    platforms = {}
+    for plat in ["douyin", "xiaohongshu", "bilibili"]:
+        platforms[plat] = check_platform_ready(plat, cfg)
+    return {"platforms": platforms}
+
+
+@app.post("/api/novel/import")
+def api_novel_import(body: dict[str, Any]) -> dict[str, Any]:
+    """Import novel text and generate season plan."""
+    from fastapi import HTTPException
+    from aicomic.core.novel_pipeline import import_novel
+    text = body.get("text")
+    if not text:
+        raise HTTPException(status_code=422, detail="text is required")
+    template = body.get("template", "workplace")
+    episodes = body.get("episodes", 12)
+    shots = body.get("shots_per_episode", 10)
+    return import_novel(text, template=template, episode_target_count=episodes, shots_per_episode=shots)
+
+
+@app.post("/api/publish/schedule")
+def api_create_schedule(body: dict[str, Any]) -> dict[str, Any]:
+    """Create a scheduled publish task."""
+    from aicomic.publish.publish_scheduler import create_scheduled_task, save_tasks, load_tasks
+    task = create_scheduled_task(
+        video_path=body.get("video_path", ""),
+        platforms=body.get("platforms", []),
+        scheduled_at=body.get("scheduled_at", ""),
+        title=body.get("title", ""),
+    )
+    path = Path("reports/scheduled_publish.json")
+    existing = load_tasks(path)
+    save_tasks(existing + [task], path)
+    return {"task_id": task.task_id, "status": task.status}
+
+
+@app.get("/api/publish/schedule")
+def api_list_schedule() -> dict[str, Any]:
+    """List scheduled publish tasks."""
+    from aicomic.publish.publish_scheduler import load_tasks
+    from dataclasses import asdict
+    path = Path("reports/scheduled_publish.json")
+    tasks = load_tasks(path)
+    return {"tasks": [asdict(t) for t in tasks]}
+
+
+@app.get("/api/publish/analytics/summary")
+def api_analytics_summary() -> dict[str, Any]:
+    """Get publish analytics summary."""
+    from aicomic.publish.publish_analytics import get_summary
+    path = Path("reports/publish_analytics.json")
+    return get_summary(path) if path.exists() else {"total_videos": 0, "total_views": 0, "total_likes": 0, "total_comments": 0, "total_shares": 0}
+
+
+@app.post("/api/translate")
+def api_translate(body: dict[str, Any]) -> dict[str, Any]:
+    """Translate text to multiple languages."""
+    from aicomic.video_synthesis.i18n import translate_subtitles
+    text = body.get("text", "")
+    target_langs = body.get("target_langs", ["en"])
+    translations = {}
+    for lang in target_langs:
+        result = translate_subtitles([text], lang)
+        translations[lang] = result[0] if result else ""
+    return {"translations": translations}

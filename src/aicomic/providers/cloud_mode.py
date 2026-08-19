@@ -59,3 +59,37 @@ def apply_cloud_mode(config: dict[str, Any]) -> dict[str, Any]:
             tts["default"] = cloud["tts"]
 
     return config
+
+
+# Round-robin counter for multi-GPU dispatch
+_rr_counter = 0
+
+
+def remote_gpu_dispatch(
+    prompt: str,
+    comfyui_urls: list[str],
+) -> dict[str, Any]:
+    """Dispatch an image generation request to a remote ComfyUI GPU.
+
+    Uses round-robin to distribute load across multiple GPUs.
+
+    Args:
+        prompt: Image generation prompt.
+        comfyui_urls: List of remote ComfyUI server URLs.
+
+    Returns:
+        {assigned_url, prompt, dispatch_mode}
+    """
+    global _rr_counter
+    if not comfyui_urls:
+        raise ValueError("No ComfyUI URLs provided")
+
+    assigned = comfyui_urls[_rr_counter % len(comfyui_urls)]
+    _rr_counter += 1
+
+    return {
+        "assigned_url": assigned,
+        "prompt": prompt,
+        "dispatch_mode": "round_robin",
+        "gpu_index": (_rr_counter - 1) % len(comfyui_urls),
+    }

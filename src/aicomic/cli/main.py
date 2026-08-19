@@ -299,6 +299,103 @@ def handle_novel_import(novel_file: Path, template: str, episodes: int, shots: i
     return 0
 
 
+def handle_install_template(url: str, name: str | None) -> int:
+    """Install a template from a URL."""
+    from aicomic.core.template_market import install_template_from_url
+    result = install_template_from_url(url)
+    if result["success"]:
+        print(f"✅ installed: {result.get('path', name or 'unknown')}")
+    else:
+        print(f"❌ failed: {result['error']}")
+    return 0 if result["success"] else 1
+
+
+def handle_uninstall_template(name: str) -> int:
+    """Remove a template by name."""
+    from aicomic.core.template_market import uninstall_template
+    result = uninstall_template(name)
+    if result["success"]:
+        print(f"✅ removed: {name}")
+    else:
+        print(f"❌ {result['error']}")
+    return 0 if result["success"] else 1
+
+
+def handle_share_template(name: str) -> int:
+    """Share a template as base64 string."""
+    import json
+    from aicomic.core.template_engine import load_template
+    from aicomic.core.template_market import share_template_url
+    t = load_template(name)
+    result = share_template_url(t)
+    print(f"template: {name}")
+    print(f"install command: {result['install_command']}")
+    print(f"base64 length: {len(result['yaml_base64'])}")
+    return 0
+
+
+def handle_translate_subtitles(srt_file: Path, languages: str, output_dir: Path) -> int:
+    """Translate SRT subtitles to multiple languages."""
+    from aicomic.video_synthesis.i18n import build_multilang_subtitle_set
+    langs = [l.strip() for l in languages.split(",") if l.strip()]
+    result = build_multilang_subtitle_set(srt_file, output_dir, languages=langs)
+    for lang, path in result.items():
+        print(f"  {lang}: {path}")
+    print(f"total={len(result)} languages")
+    return 0
+
+
+def handle_browse_templates(genre: str | None) -> int:
+    """Browse all templates with summary info."""
+    from aicomic.core.template_market import browse_templates
+    result = browse_templates(genre=genre)
+    for t in result["templates"]:
+        print(f"  {t['id']:12s}  {t['genre']:16s}  acts={t['acts_count']}  locs={t['locations_count']}")
+    print(f"total={result['count']}")
+    return 0
+
+
+def handle_preview_template(name: str) -> int:
+    """Preview a template with acts and sample blueprint."""
+    from aicomic.core.template_market import preview_template
+    try:
+        preview = preview_template(name)
+        print(f"genre: {preview['genre']}")
+        for act in preview["acts"]:
+            print(f"  {act['act_id']}: {act['title']} ({act['beat']})")
+        print(f"sample_shots: {preview['sample_blueprint']['total_shots']}")
+        return 0
+    except Exception as e:
+        print(f"❌ {e}")
+        return 1
+
+
+def handle_schedule_publish(video: Path, platforms: str, scheduled_at: str, title: str, output: Path) -> int:
+    """Create a scheduled publish task."""
+    import json
+    from aicomic.publish.publish_scheduler import create_scheduled_task, save_tasks
+    plats = [p.strip() for p in platforms.split(",") if p.strip()]
+    task = create_scheduled_task(str(video), plats, scheduled_at, title)
+    save_tasks([task], output)
+    print(f"✅ scheduled: {task.task_id} at {scheduled_at}")
+    print(f"  platforms: {platforms}")
+    print(f"  output={output}")
+    return 0
+
+
+def handle_analytics(output: Path) -> int:
+    """Show publish analytics summary."""
+    import json
+    from aicomic.publish.publish_analytics import get_summary, load_analytics
+    summary = get_summary(output) if output.exists() else {"total_videos": 0, "total_views": 0, "total_likes": 0, "total_comments": 0, "total_shares": 0}
+    print(f"  videos:  {summary['total_videos']}")
+    print(f"  views:   {summary['total_views']}")
+    print(f"  likes:   {summary['total_likes']}")
+    print(f"  comments:{summary['total_comments']}")
+    print(f"  shares:  {summary['total_shares']}")
+    return 0
+
+
 def handle_render_release(ep: Path, code: str, root: Path, out: Path, ro: Path) -> int:
     rpt = render_release_video(build_release_plan(load_json(ep), code, root), out, ro)
     print(f"render_profile={rpt['render_profile']}\noutput={out}")
@@ -692,6 +789,37 @@ COMMANDS: dict[str, dict] = {
         (["--shots-per-episode"], {"type": int, "default": 10}),
         (["--output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'novel_season_plan.json'")})],
         "handler": lambda a: handle_novel_import(a.novel_file, a.template, a.episodes, a.shots_per_episode, a.output)},
+    "install-template": {"help": "从URL安装模板", "args": [
+        (["--url"], {"required": True}),
+        (["--name"], {"default": None})],
+        "handler": lambda a: handle_install_template(a.url, a.name)},
+    "uninstall-template": {"help": "删除模板", "args": [
+        (["--name"], {"required": True})],
+        "handler": lambda a: handle_uninstall_template(a.name)},
+    "share-template": {"help": "分享模板为base64字符串", "args": [
+        (["--name"], {"required": True})],
+        "handler": lambda a: handle_share_template(a.name)},
+    "translate-subtitles": {"help": "翻译SRT字幕到多语言", "args": [
+        (["--srt-file"], {"type": Path, "required": True}),
+        (["--languages"], {"default": "en,ja,ko"}),
+        (["--output-dir"], {"type": Path, "default": Path("reports/subtitles")})],
+        "handler": lambda a: handle_translate_subtitles(a.srt_file, a.languages, a.output_dir)},
+    "browse-templates": {"help": "浏览所有模板（含摘要信息）", "args": [
+        (["--genre"], {"default": None})],
+        "handler": lambda a: handle_browse_templates(a.genre)},
+    "preview-template": {"help": "预览模板（五幕结构+样例蓝图）", "args": [
+        (["--name"], {"required": True})],
+        "handler": lambda a: handle_preview_template(a.name)},
+    "schedule-publish": {"help": "创建定时发布任务", "args": [
+        (["--video"], {"type": Path, "required": True}),
+        (["--platforms"], {"default": "douyin"}),
+        (["--scheduled-at"], {"required": True}),
+        (["--title"], {"default": ""}),
+        (["--output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'scheduled_publish.json'")})],
+        "handler": lambda a: handle_schedule_publish(a.video, a.platforms, a.scheduled_at, a.title, a.output)},
+    "analytics": {"help": "查看发布数据回收摘要", "args": [
+        (["--output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'publish_analytics.json'")})],
+        "handler": lambda a: handle_analytics(a.output)},
     "filter-jobs": {"help": "按条件筛选任务", "args": [
         (["--jobs-file"], {"type": Path, "default": P("ProjectPaths.project_root() / 'jobs' / 'episode_jobs.json'")}),
         (["--episode-code"], {"default": None}), (["--job-type"], {"default": None}),

@@ -96,6 +96,34 @@ def publish_to_platforms(
     return results
 
 
+def publish_batch(
+    videos: list[Path],
+    platforms: list[str],
+    config: dict[str, Any],
+) -> list[dict[str, Any]]:
+    """Batch publish multiple videos to multiple platforms.
+
+    Args:
+        videos: List of video file paths (one per episode).
+        platforms: List of platform names.
+        config: Platform config dict.
+
+    Returns:
+        List of {platform: {success, url, error}} for each video.
+    """
+    results = []
+    for video in videos:
+        payload = PublishPayload(
+            video_path=video,
+            title=video.stem,
+            description="",
+            tags=[],
+            platform_copy={},
+        )
+        results.append(publish_to_platforms(payload, platforms, config))
+    return results
+
+
 def _run_sau_upload(platform: str, payload: PublishPayload, cfg: dict[str, Any]) -> dict[str, Any]:
     """Execute social-auto-upload CLI for a platform.
 

@@ -295,3 +295,16 @@ def write_blueprint(path: Path, payload: dict[str, Any]) -> None:
 
 def write_manifest(path: Path, payload: dict[str, Any]) -> None:
     write_json(path, payload)
+
+
+def get_pipeline_override(template_name: str) -> dict[str, Any]:
+    """Get pipeline override config from a template.
+
+    Templates can override pipeline stages, review gates, and style rotation.
+    Returns empty dict if template doesn't exist or has no override.
+    """
+    try:
+        t = load_template(template_name)
+        return t.get("pipeline_override", {})
+    except Exception:
+        return {}

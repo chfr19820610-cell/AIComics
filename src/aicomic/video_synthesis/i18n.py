@@ -66,6 +66,7 @@ def translate_subtitles(
     subtitles: list[str],
     target_lang: str,
     llm_callback: Any | None = None,
+    tm: Any | None = None,
 ) -> list[str]:
     """Translate a list of subtitle strings.
 
@@ -73,6 +74,7 @@ def translate_subtitles(
         subtitles: List of Chinese subtitle strings.
         target_lang: Target language code (en/ja/ko/zh).
         llm_callback: Optional callable(text, lang) -> str for LLM translation.
+        tm: Optional TranslationMemory instance for term consistency.
 
     Returns:
         List of translated strings (same length as input).
@@ -86,6 +88,11 @@ def translate_subtitles(
     results = []
     for text in subtitles:
         translated = _translate_single(text, target_lang)
+        # Apply translation memory for known terms
+        if tm:
+            entries = [{"text": translated}]
+            applied = tm.apply_to_entries(entries, lang=target_lang)
+            translated = applied[0]["text"]
         # If LLM callback provided and text wasn't fully translated, use LLM
         if llm_callback and translated == text and text.strip():
             try:
@@ -187,3 +194,79 @@ def get_voice_for_language(lang: str, gender: str = "female") -> str:
     if gender not in VOICE_MAP[lang]:
         raise ValueError(f"Unsupported gender: {gender}")
     return VOICE_MAP[lang][gender]
+
+
+def build_multilang_episode(
+    zh_srt_path: Path,
+    output_dir: Path,
+    languages: list[str] | None = None,
+    llm_callback: Any | None = None,
+) -> dict[str, dict[str, Any]]:
+    """Build a complete multilang episode plan: subtitles + TTS voice + video routing.
+
+    Args:
+        zh_srt_path: Source Chinese SRT file.
+        output_dir: Directory for output files.
+        languages: Target languages (default: en, ja, ko).
+        llm_callback: Optional LLM callback for translation.
+
+    Returns:
+        {lang: {subtitle_path, tts_voice, video_label}}
+    """
+    if languages is None:
+        languages = ["en", "ja", "ko"]
+
+    # Build translated subtitle files
+    subtitle_paths = build_multilang_subtitle_set(
+        zh_srt_path=zh_srt_path,
+        output_dir=output_dir,
+        languages=languages,
+        llm_callback=llm_callback,
+    )
+
+    result = {}
+    for lang, srt_path in subtitle_paths.items():
+        voice = get_voice_for_language(lang, gender="female")
+        result[lang] = {
+            "subtitle_path": str(srt_path),
+            "tts_voice": voice,
+            "video_label": f"{lang}_dubbed",
+        }
+    return result
+
+
+# ── Language → Platform routing ──────────────────────────────────────────
+
+_LANG_TO_PLATFORM: dict[str, list[str]] = {
+    "zh": ["douyin", "xiaohongshu", "bilibili"],
+    "en": ["youtube", "tiktok"],
+    "ja": ["youtube", "tiktok"],
+    "ko": ["youtube", "tiktok"],
+}
+
+
+def get_lang_to_platform_map() -> dict[str, list[str]]:
+    """Get the mapping of language codes to target platforms.
+
+    Chinese → domestic platforms (douyin/xiaohongshu/bilibili)
+    English/Japanese/Korean → international platforms (youtube/tiktok)
+    """
+    return dict(_LANG_TO_PLATFORM)
+
+
+def publish_multilang_routing(
+    languages: list[str] | None = None,
+) -> dict[str, list[str]]:
+    """Route multilang episodes to appropriate platforms by region.
+
+    Args:
+        languages: List of language codes. Default: all supported.
+
+    Returns:
+        {lang: [platform1, platform2, ...]}
+    """
+    if languages is None:
+        languages = list(_LANG_TO_PLATFORM.keys())
+
+    mapping = get_lang_to_platform_map()
+    return {lang: mapping.get(lang, ["youtube"]) for lang in languages}

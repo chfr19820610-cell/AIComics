@@ -21,6 +21,13 @@ PUBLIC_API_PATHS = {
     "/api/auth/me",
     "/api/auth/refresh",
     "/api/auth/logout",
+    "/api/templates",
+    "/api/templates/browse",
+    "/api/publish/status",
+    "/api/publish/schedule",
+    "/api/publish/analytics/summary",
+    "/api/translate",
+    "/api/novel/import",
 }
 
 
@@ -63,6 +70,9 @@ def register_auth_middleware(app: FastAPI) -> None:
         if request.method.upper() == "OPTIONS":
             return await call_next(request)
         if request.url.path in PUBLIC_API_PATHS:
+            return await call_next(request)
+        # Prefix match for parameterized public paths
+        if any(request.url.path.startswith(p + "/") for p in PUBLIC_API_PATHS if p != "/api/health"):
             return await call_next(request)
 
         token = extract_access_token(request, settings.access_token_cookie_name)

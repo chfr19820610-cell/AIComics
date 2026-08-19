@@ -12,6 +12,10 @@ from aicomic.providers.provider_registry import (
     reset_provider_registry,
 )
 
+# v2.0 modules
+from aicomic.providers.cloud_mode import is_cloud_mode, filter_cloud_providers, get_cloud_defaults, apply_cloud_mode, remote_gpu_dispatch
+from aicomic.providers.saas_api_key import APIKeyManager, generate_api_key, validate_api_key
+
 __all__ = [
     # Abstract base
     "IProvider",
@@ -29,4 +33,13 @@ __all__ = [
     "ProviderRegistry",
     "get_provider_registry",
     "reset_provider_registry",
+    # v2.0
+    "is_cloud_mode",
+    "filter_cloud_providers",
+    "get_cloud_defaults",
+    "apply_cloud_mode",
+    "remote_gpu_dispatch",
+    "APIKeyManager",
+    "generate_api_key",
+    "validate_api_key",
 ]

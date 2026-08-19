@@ -121,3 +121,18 @@ local_piper_tts:
   speaker_id: null
   timeout_seconds: 120
   extra_args: null
+
+# ── 远程 ComfyUI 配置（多机推理）──────────────────────────────────
+# 环境变量 AICOMIC_COMFYUI_BASE_URL 会覆盖上面的 base_url
+# 支持多 GPU 负载均衡：设置多个 URL，cloud_mode.remote_gpu_dispatch 自动 round-robin
+#
+# 示例：
+#   export AICOMIC_COMFYUI_BASE_URL=http://gpu-server:8188
+#   或在 SaaS 模式下配置多个远程 GPU：
+#     comfyui_urls:
+#       - http://gpu1:8188
+#       - http://gpu2:8188
+#       - http://gpu3:8188
+#
+# Docker 容器内访问宿主机 ComfyUI：
+#   AICOMIC_COMFYUI_BASE_URL=http://host.docker.internal:8188

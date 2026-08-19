@@ -520,3 +520,103 @@ export async function getVersionBoard(episodeCode: string): Promise<VersionBoard
     `/api/creator/versions/board?episode_code=${encodeURIComponent(episodeCode)}`,
   );
 }
+
+// ── v2.0 API: Templates / Publish / Novel / Translate ───────────────────
+
+export interface TemplateSummary {
+  id: string;
+  genre: string;
+  acts_count: number;
+  locations_count: number;
+  characters_count: number;
+  default_hook: string;
+}
+
+export interface TemplateBrowseResult {
+  templates: TemplateSummary[];
+  count: number;
+}
+
+export interface TemplatePreview {
+  genre: string;
+  acts: Array<{ act_id: string; title: string; beat: string }>;
+  characters: Array<{ name: string; role: string }>;
+  locations: string[];
+  sample_blueprint: { total_shots: number; blueprint_version: string };
+}
+
+export async function browseTemplates(genre?: string): Promise<TemplateBrowseResult> {
+  const qs = genre ? `?genre=${encodeURIComponent(genre)}` : '';
+  return fetchJson<TemplateBrowseResult>(`/api/templates/browse${qs}`);
+}
+
+export async function previewTemplate(templateId: string): Promise<TemplatePreview> {
+  return fetchJson<TemplatePreview>(`/api/templates/${encodeURIComponent(templateId)}/preview`);
+}
+
+export interface PublishStatus {
+  platforms: Record<string, { enabled: boolean; ready: boolean; reason?: string }>;
+}
+
+export async function getPublishStatus(): Promise<PublishStatus> {
+  return fetchJson<PublishStatus>('/api/publish/status');
+}
+
+export interface ScheduledTask {
+  task_id: string;
+  video_path: string;
+  platforms: string[];
+  scheduled_at: string;
+  title: string;
+  status: string;
+}
+
+export async function createScheduledTask(payload: {
+  video_path: string;
+  platforms: string[];
+  scheduled_at: string;
+  title: string;
+}): Promise<{ task_id: string; status: string }> {
+  return fetchJson<{ task_id: string; status: string }>('/api/publish/schedule', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function listScheduledTasks(): Promise<{ tasks: ScheduledTask[] }> {
+  return fetchJson<{ tasks: ScheduledTask[] }>('/api/publish/schedule');
+}
+
+export interface AnalyticsSummary {
+  total_videos: number;
+  total_views: number;
+  total_likes: number;
+  total_comments: number;
+  total_shares: number;
+}
+
+export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
+  return fetchJson<AnalyticsSummary>('/api/publish/analytics/summary');
+}
+
+export async function importNovel(payload: {
+  text: string;
+  template: string;
+  episodes: number;
+  shots_per_episode: number;
+}): Promise<Record<string, unknown>> {
+  return fetchJson<Record<string, unknown>>('/api/novel/import', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function translateText(payload: {
+  text: string;
+  target_langs: string[];
+}): Promise<{ translations: Record<string, string> }> {
+  return fetchJson<{ translations: Record<string, string> }>('/api/translate', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}

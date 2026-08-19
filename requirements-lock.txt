@@ -51,3 +51,9 @@ typing-inspection==0.4.2
 urllib3==2.6.3
 uvicorn==0.46.0
 websocket-client==1.9.0
+
+# v2.0 optional deps (for international publish + multilang TTS)
+# Uncomment when using those features:
+# google-api-python-client==2.154.0
+# google-auth-oauthlib==1.2.1
+# edge-tts==6.1.19

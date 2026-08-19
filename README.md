@@ -2,10 +2,10 @@
 
 > **写故事 → 拆镜头 → AI 生成 → 配音 → 发布，全自动一人公司视频工厂**
 
-[![Version](https://img.shields.io/badge/Version-1.0.0-blue)](https://github.com/chfr19820610-cell/AIComics)
+[![Version](https://img.shields.io/badge/Version-2.0.0-blue)](https://github.com/chfr19820610-cell/AIComics)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.12%2B-brightgreen)](.python-version)
-[![Tests](https://img.shields.io/badge/Tests-688%2F688-passing-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-939%2F939-passing-brightgreen)](tests/)
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-v0.26.0-important)](https://github.com/comfyanonymous/ComfyUI)
 [![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux-lightgrey)]()
 [![GitHub stars](https://img.shields.io/github/stars/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics)
@@ -38,6 +38,62 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。你只需要有
 | 🔊 **配配音** | 每个分镜生成中文语音旁白 | Piper TTS |
 | 🎬 **做视频** | 图片+配音合成完整剧集 | FFmpeg |
 | 📡 **发平台** | 一键发布到小红书/B站/抖音 | social-auto-upload |
+
+---
+
+## 🆕 v2.0 新功能（路线图 6 项）
+
+| 功能 | CLI 命令 | Web API | 说明 |
+|------|---------|---------|------|
+| **漫剧模板系统** | `list-templates` / `template-blueprint --template horror` | `GET /api/templates` | 6 题材 YAML 模板（恐怖/爱情/职场/修仙/悬疑/甜宠） |
+| **小说→漫剧管道** | `novel-import --novel-file book.txt --template mystery` | `POST /api/novel/import` | 小说文本→章节拆分→整季蓝图→分镜计划 |
+| **多语言配音&字幕** | `translate-subtitles --srt-file zh.srt --languages en,ja,ko` | `POST /api/translate` | 中→英/日/韩 字幕翻译 + 多语言 TTS 路由 + 翻译记忆库 |
+| **发布平台集成** | `publish --video v.mp4 --platforms douyin,xiaohongshu,bilibili` | `GET /api/publish/status` · `POST /api/publish/schedule` · `GET /api/publish/analytics/summary` | 国内 3 平台 + YouTube/TikTok/Instagram + 定时发布 + 数据回收 |
+| **云端轻量模式** | `AICOMIC_CLOUD=1` 环境变量 | — | 跳过 local_providers 全走 API，Docker 镜像 < 500MB |
+| **社区模板市场** | `install-template --url <url>` / `share-template --name horror` | — | 模板安装/卸载/分享/在线浏览/预览 |
+
+### 模板系统
+
+```bash
+# 列出所有模板
+aicomic list-templates
+
+# 用模板生成蓝图
+aicomic template-blueprint --hook "村里老人说，夜里不能回头看井口。" --template horror
+
+# 初始化项目时指定模板
+aicomic init-project --name "我的恐怖漫剧" --template horror
+
+# 安装社区模板
+aicomic install-template --url <base64-url>
+
+# 分享自己的模板
+aicomic share-template --name horror
+```
+
+### 小说→漫剧管道
+
+```bash
+# 导入小说→生成整季蓝图
+aicomic novel-import --novel-file novel.txt --template mystery --episodes 12 --shots-per-episode 10
+```
+
+### 发布平台
+
+```bash
+# 检查就绪状态
+aicomic check-publish --platforms douyin,xiaohongshu,bilibili
+
+# 发布视频
+aicomic publish --video output.mp4 --platforms douyin,xiaohongshu
+```
+
+### 多语言
+
+```bash
+# 翻译字幕
+aicomic translate-subtitles --srt-file zh.srt --languages en,ja,ko --output-dir reports/subtitles
+```
 
 **当前成品示例：** 《我变成僵尸后全校跪求我别死》E01-E05（30 张关键帧 + 30 段配音 + 5 集完整视频）
 

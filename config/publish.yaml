@@ -28,3 +28,27 @@ defaults:
   tags: ["#AI漫剧", "#短剧", "#动漫"]
   scheduled: false
   headless: true
+
+# 国际平台配置
+international:
+  youtube:
+    enabled: false
+    client_secret_path: /Users/eric/credentials/youtube_client_secret.json
+    credentials_path: /Users/eric/credentials/youtube_credentials.json
+    # Requires: pip install google-api-python-client google-auth-oauthlib
+    # Get credentials: https://console.cloud.google.com/apis/credentials
+
+  tiktok:
+    enabled: false
+    # Uses social-auto-upload tk_uploader (playwright-based)
+    cookie_path: /Users/eric/social-auto-upload/cookies/tiktok.json
+    headless: true
+    account_name: aicomic
+
+  instagram:
+    enabled: false
+    # Uses Instagram Graph API (not selenium)
+    # Requires: Facebook app with instagram_content_publish permission
+    access_token: ""
+    instagram_account_id: ""
+    # Get token: https://developers.facebook.com/docs/instagram-api/getting-started

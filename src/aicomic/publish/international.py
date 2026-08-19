@@ -1,27 +1,30 @@
-"""International publisher — YouTube/TikTok/Instagram publishing support.
+"""International platform uploaders — YouTube (Data API v3), TikTok (sau), Instagram (Graph API).
 
-Distilled from MoneyPrinterTurbo cross-platform publishing concept.
-Uses selenium for browser automation (same pattern as social-auto-upload).
+YouTube: youtube_publisher.py (Data API v3, not selenium)
+TikTok: social-auto-upload tk_uploader (playwright automation)
+Instagram: Instagram Graph API (reels media publish)
 """
 from __future__ import annotations
 
-import time
-from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Optional, Protocol
+from typing import Any, Protocol
 
 
-@dataclass
 class PublishPayload:
-    """Standardized publish payload for any platform."""
-    video_path: Path
-    title: str
-    description: str = ""
-    tags: list[str] | None = None
-    cover_path: Path | None = None
-    category: str = ""
-    privacy: str = "public"  # public / unlisted / private
-    scheduled_time: str | None = None  # ISO 8601 for scheduled uploads
+    """Standardized publish payload."""
+    def __init__(
+        self,
+        video_path: Path,
+        title: str = "",
+        description: str = "",
+        tags: list[str] | None = None,
+        cover_path: Path | None = None,
+    ):
+        self.video_path = video_path
+        self.title = title
+        self.description = description
+        self.tags = tags or []
+        self.cover_path = cover_path
 
 
 class IPlatformUploader(Protocol):
@@ -33,66 +36,113 @@ class IPlatformUploader(Protocol):
 
 
 class YouTubeUploader:
-    """YouTube uploader via selenium (login + upload page automation)."""
+    """YouTube uploader via Data API v3 (not selenium)."""
 
     PLATFORM = "youtube"
 
     def upload(self, payload: PublishPayload, config: dict[str, Any]) -> dict[str, Any]:
-        """Upload to YouTube Studio."""
-        cookie_path = config.get("youtube_cookie_path", "")
-        headless = config.get("headless", False)
-
-        # Selenium automation:
-        # 1. Load cookies → open https://studio.youtube.com
-        # 2. Click "Create" → "Upload video"
-        # 3. Send video file
-        # 4. Fill title/description/tags
-        # 5. Set visibility (public/unlisted/private)
-        # 6. Wait for processing → get video URL
-
-        return _selenium_upload(
-            platform=self.PLATFORM,
-            payload=payload,
-            cookie_path=cookie_path,
-            headless=headless,
-            config=config,
+        """Upload to YouTube via Data API v3."""
+        from aicomic.publish.youtube_publisher import YouTubePayload, check_youtube_ready, build_youtube_upload_command
+        yt_payload = YouTubePayload(
+            video_path=str(payload.video_path),
+            title=payload.title,
+            description=payload.description,
+            tags=payload.tags,
+            privacy="public",
         )
+        ready = check_youtube_ready(config)
+        if not ready["ready"]:
+            return {"success": False, "platform": self.PLATFORM, "error": ready["reason"]}
+        cmd = build_youtube_upload_command(yt_payload, config)
+        import subprocess
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+        if proc.returncode == 0:
+            return {"success": True, "platform": self.PLATFORM, "url": proc.stdout.strip()}
+        return {"success": False, "platform": self.PLATFORM, "error": proc.stderr.strip()[:200]}
 
 
 class TikTokUploader:
-    """TikTok uploader via selenium."""
+    """TikTok uploader via social-auto-upload (playwright automation)."""
 
     PLATFORM = "tiktok"
 
     def upload(self, payload: PublishPayload, config: dict[str, Any]) -> dict[str, Any]:
-        """Upload to TikTok."""
-        cookie_path = config.get("tiktok_cookie_path", "")
-        headless = config.get("headless", False)
-        return _selenium_upload(
-            platform=self.PLATFORM,
-            payload=payload,
-            cookie_path=cookie_path,
-            headless=headless,
-            config=config,
-        )
+        """Upload to TikTok via sau tk_uploader."""
+        account_file = config.get("tiktok_account_file", "")
+        if not account_file:
+            return {"success": False, "platform": self.PLATFORM, "error": "tiktok_account_file not configured"}
+        scheduled_at = config.get("scheduled_at", "")
+        try:
+            import asyncio
+            import subprocess
+            import json
+
+            # Call sau_cli.py for TikTok upload
+            sau_cli = config.get("sau_cli_path", "/Users/eric/social-auto-upload/sau_cli.py")
+            cmd = [
+                "python", sau_cli, "upload",
+                "--platform", "tiktok",
+                "--video", str(payload.video_path),
+                "--title", payload.title,
+                "--account-file", account_file,
+            ]
+            if payload.tags:
+                cmd.extend(["--tags", ",".join(payload.tags)])
+            if scheduled_at:
+                cmd.extend(["--schedule", scheduled_at])
+
+            proc = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+            if proc.returncode == 0:
+                return {"success": True, "platform": self.PLATFORM, "url": "tiktok://uploaded"}
+            return {"success": False, "platform": self.PLATFORM, "error": proc.stderr.strip()[:200]}
+        except Exception as e:
+            return {"success": False, "platform": self.PLATFORM, "error": str(e)}
 
 
 class InstagramUploader:
-    """Instagram Reels uploader via selenium."""
+    """Instagram Reels uploader via Graph API."""
 
     PLATFORM = "instagram"
 
     def upload(self, payload: PublishPayload, config: dict[str, Any]) -> dict[str, Any]:
-        """Upload to Instagram Reels."""
-        cookie_path = config.get("instagram_cookie_path", "")
-        headless = config.get("headless", False)
-        return _selenium_upload(
-            platform=self.PLATFORM,
-            payload=payload,
-            cookie_path=cookie_path,
-            headless=headless,
-            config=config,
-        )
+        """Upload to Instagram Reels via Graph API."""
+        access_token = config.get("instagram_access_token", "")
+        ig_user_id = config.get("instagram_user_id", "")
+        if not access_token or not ig_user_id:
+            return {"success": False, "platform": self.PLATFORM, "error": "instagram_access_token or instagram_user_id not configured"}
+        try:
+            import requests
+
+            # Step 1: Create media container
+            api_base = "https://graph.facebook.com/v21.0"
+            media_url = config.get("video_url", str(payload.video_path))
+            resp = requests.post(
+                f"{api_base}/{ig_user_id}/media",
+                data={
+                    "media_type": "REELS",
+                    "video_url": media_url,
+                    "caption": f"{payload.title} {' '.join('#' + t for t in payload.tags)}",
+                    "access_token": access_token,
+                },
+                timeout=30,
+            )
+            data = resp.json()
+            if "id" not in data:
+                return {"success": False, "platform": self.PLATFORM, "error": f"container creation failed: {data}"}
+            container_id = data["id"]
+
+            # Step 2: Publish media
+            resp2 = requests.post(
+                f"{api_base}/{ig_user_id}/media_publish",
+                data={"creation_id": container_id, "access_token": access_token},
+                timeout=30,
+            )
+            data2 = resp2.json()
+            if "id" in data2:
+                return {"success": True, "platform": self.PLATFORM, "url": f"instagram://media/{data2['id']}"}
+            return {"success": False, "platform": self.PLATFORM, "error": f"publish failed: {data2}"}
+        except Exception as e:
+            return {"success": False, "platform": self.PLATFORM, "error": str(e)}
 
 
 def publish(
@@ -105,7 +155,7 @@ def publish(
     Args:
         payload: Standardized publish payload.
         platforms: List of platform names ("youtube", "tiktok", "instagram").
-        config: Platform config dict (cookie paths, headless, proxy, etc.).
+        config: Platform config dict.
 
     Returns:
         {platform: {success, url, error}} for each platform.
@@ -127,31 +177,3 @@ def publish(
         except Exception as e:
             results[platform] = {"success": False, "error": str(e)}
     return results
-
-
-def _selenium_upload(
-    platform: str,
-    payload: PublishPayload,
-    cookie_path: str,
-    headless: bool,
-    config: dict[str, Any],
-) -> dict[str, Any]:
-    """Generic selenium-based upload stub.
-
-    Full implementation requires:
-    1. selenium + chromedriver
-    2. Platform cookies (from browser export)
-    3. Platform-specific selectors
-
-    This is a stub — returns not_implemented until selenium is configured.
-    """
-    return {
-        "success": False,
-        "platform": platform,
-        "error": "selenium_not_configured",
-        "message": (
-            f"Install selenium + chromedriver, set {platform}_cookie_path in config. "
-            f"Then implement browser automation for {platform} upload page."
-        ),
-        "next_step": f"pip install selenium chromedriver-autoinstaller && set cookies",
-    }

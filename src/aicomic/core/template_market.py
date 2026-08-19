@@ -100,3 +100,47 @@ def list_installed_templates(templates_dir: Path | None = None) -> list[str]:
     if not d.exists():
         return []
     return sorted(f.stem for f in d.glob("*.yaml"))
+
+
+def browse_templates(genre: str | None = None) -> dict[str, Any]:
+    """Browse all installed templates with summary info."""
+    from aicomic.core.template_engine import list_templates, load_template
+    result = []
+    for name in list_templates():
+        try:
+            t = load_template(name)
+            if genre and genre not in t.get("genre", ""):
+                continue
+            result.append({
+                "id": name,
+                "genre": t.get("genre", ""),
+                "acts_count": len(t.get("acts", [])),
+                "locations_count": len(t.get("locations", [])),
+                "characters_count": len(t.get("characters", [])),
+                "default_hook": t.get("default_hook", ""),
+            })
+        except Exception:
+            pass
+    return {"templates": result, "count": len(result)}
+
+
+def preview_template(name: str) -> dict[str, Any]:
+    """Preview a template with acts and a sample blueprint."""
+    from aicomic.core.template_engine import load_template, build_blueprint_from_template
+    t = load_template(name)
+    bp = build_blueprint_from_template(
+        hook=t.get("default_hook", ""),
+        template_name=name,
+        target_seconds=t.get("default_target_seconds", 240),
+        max_shots=t.get("default_max_shots", 30),
+    )
+    return {
+        "genre": t.get("genre", ""),
+        "acts": [{"act_id": a.get("act_id"), "title": a.get("title"), "beat": a.get("beat")} for a in t.get("acts", [])],
+        "characters": [{"name": c.get("name"), "role": c.get("role")} for c in t.get("characters", [])],
+        "locations": t.get("locations", []),
+        "sample_blueprint": {
+            "total_shots": bp.get("total_shots", 0),
+            "blueprint_version": bp.get("blueprint_version", ""),
+        },
+    }
