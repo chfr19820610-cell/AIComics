@@ -2,7 +2,7 @@
 # =============================================================================
 # AIComics ComfyUI 真实 runtime 一键安装脚本
 # -----------------------------------------------------------------------------
-# 把 local_providers/comfyui/runtime/ComfyUI 从「stub（仅 README）」变成
+# 把 local_providers/comfyui_runtime/ComfyUI 从「stub（仅 README）」变成
 # 「真实可出图的 ComfyUI runtime」，并做真出图验证。
 #
 # 用法：
@@ -23,7 +23,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-RUNTIME_DIR="$ROOT/local_providers/comfyui/runtime/ComfyUI"
+RUNTIME_DIR="$ROOT/local_providers/comfyui_runtime/ComfyUI"
 VENV_DIR="$RUNTIME_DIR/.venv"
 PORT="${AICOMIC_COMFYUI_PORT:-8188}"
 HOST="${AICOMIC_COMFYUI_HOST:-127.0.0.1}"

@@ -13,7 +13,7 @@
 #   - 首次运行会自动从 .env.production.example 生成 .env.docker.local /
 #     .env.production.local（若缺失），并补齐 local_providers/ 骨架。
 #   - ComfyUI 图像运行时依赖真实 ComfyUI runtime，需自行放入
-#     local_providers/comfyui/runtime/ComfyUI 后重建 sidecar 镜像。
+#     local_providers/comfyui_runtime/ComfyUI 后重建 sidecar 镜像。
 # =============================================================================
 set -euo pipefail
 
@@ -52,7 +52,7 @@ ensure_env() {
 
 # ---- 2. local_providers 骨架（sidecar 构建 COPY 源，缺失会导致 build 失败）------
 ensure_local_providers() {
-  local dir="local_providers/comfyui/runtime/ComfyUI"
+  local dir="local_providers/comfyui_runtime/ComfyUI"
   mkdir -p "$dir"
   if [ ! -f "$dir/README.md" ]; then
     cat > "$dir/README.md" <<'EOF'
@@ -61,7 +61,7 @@ ensure_local_providers() {
 本目录用于放置 ComfyUI 运行时（含 SDXL 模型），供
 `Dockerfile.comfyui-sidecar` 构建 sidecar 镜像使用。
 
-- 镜像会执行 `COPY local_providers/comfyui/runtime/ComfyUI /opt/comfyui`，
+- 镜像会执行 `COPY local_providers/comfyui_runtime/ComfyUI /opt/comfyui`，
   并把 `/opt/comfyui/requirements.txt` 装进 sidecar。
 - 骨架保留为空时 sidecar 镜像仍可构建，但 ComfyUI 推理不可用（stub）。
 - 若要启用真实推理，把完整 ComfyUI runtime 放到本目录后：

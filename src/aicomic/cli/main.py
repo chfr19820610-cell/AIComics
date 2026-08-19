@@ -519,7 +519,7 @@ COMMANDS: dict[str, dict] = {
         (["--master-image"], {"default": ""}),
         (["--source-prompt"], {"default": ""}),
         (["--comfyui-url"], {"default": "http://127.0.0.1:8188"}),
-        (["--model-root"], {"type": Path, "default": P("ProjectPaths.project_root() / 'local_providers/comfyui/runtime/ComfyUI/models'")}),
+        (["--model-root"], {"type": Path, "default": P("ProjectPaths.project_root() / 'local_providers/comfyui_runtime/ComfyUI/models'")}),
         (["--timeout"], {"type": float, "default": 4.0}),
         (["--spec"], {"type": Path, "default": None}),
         (["--work-dir"], {"type": Path, "default": P("ProjectPaths.state_dir() / 'acom071_pipeline'")}),

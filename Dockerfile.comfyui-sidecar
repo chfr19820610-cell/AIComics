@@ -1,7 +1,7 @@
 # =============================================================================
 # AIComics ComfyUI sidecar 镜像
 # -----------------------------------------------------------------------------
-# 依赖 local_providers/comfyui/runtime/ComfyUI 作为 COPY 源。
+# 依赖 local_providers/comfyui_runtime/ComfyUI 作为 COPY 源。
 # 该目录未填充真实 ComfyUI runtime 时仍可构建（stub），但推理不可用；
 # 填充完整 runtime（含 requirements.txt）后才会安装真实依赖。
 # =============================================================================
@@ -20,7 +20,7 @@ RUN printf 'Acquire::Retries "5";\n' > /etc/apt/apt.conf.d/80-retries \
     && rm -rf /var/lib/apt/lists/*
 
 # COPY 源必须存在；start.sh 已保证骨架存在
-COPY local_providers/comfyui/runtime/ComfyUI /opt/comfyui
+COPY local_providers/comfyui_runtime/ComfyUI /opt/comfyui
 
 # 有真实 requirements.txt 才安装；否则作为 stub 跳过
 RUN if [ -f /opt/comfyui/requirements.txt ]; then \

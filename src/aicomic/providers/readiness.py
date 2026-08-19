@@ -134,18 +134,18 @@ def build_provider_next_actions(provider: str, readiness: dict[str, Any]) -> lis
     if provider == "local_comfyui_image":
         actions: list[str] = []
         if not bool(readiness.get("workflow_api_format", False)):
-            actions.append("Place an API-format image workflow JSON at local_providers/comfyui/workflows/image_workflow.json.")
+            actions.append("Place an API-format image workflow JSON at local_providers/comfyui_runtime/workflows/image_workflow.json.")
         if not bool(readiness.get("required_models_ready", False)):
-            actions.append("Place required image model weights under local_providers/comfyui/models according to model_requirements.json.")
+            actions.append("Place required image model weights under local_providers/comfyui_runtime/ComfyUI/models according to model_requirements.json.")
         if not bool(readiness.get("comfyui_server_available", False)):
             actions.append("Start ComfyUI at the configured base_url, then validate one image shot.")
         return actions or ["Validate one image shot with --confirm-live --limit 1."]
     if provider == "local_comfyui_video":
         actions = []
         if not bool(readiness.get("workflow_api_format", False)):
-            actions.append("Place an API-format video workflow JSON at local_providers/comfyui/workflows/video_workflow.json.")
+            actions.append("Place an API-format video workflow JSON at local_providers/comfyui_runtime/workflows/video_workflow.json.")
         if not bool(readiness.get("required_models_ready", False)):
-            actions.append("Place required video model weights under local_providers/comfyui/models according to model_requirements.json.")
+            actions.append("Place required video model weights under local_providers/comfyui_runtime/ComfyUI/models according to model_requirements.json.")
         if not bool(readiness.get("comfyui_server_available", False)):
             actions.append("Start ComfyUI at the configured base_url, then validate one low-resolution video shot.")
         return actions or ["Validate one low-resolution video shot with --confirm-live --limit 1."]

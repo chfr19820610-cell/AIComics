@@ -39,10 +39,8 @@ reports/publish_*.md
 jobs/*.json
 
 # Local providers (重资产排除；保留骨架以支持 sidecar COPY 源)
-local_providers/comfyui/models/
-local_providers/comfyui/runtime/*
-!local_providers/comfyui/runtime/ComfyUI/
-!local_providers/comfyui/runtime/ComfyUI/**
+local_providers/comfyui_runtime/ComfyUI/.venv-h3/
+local_providers/comfyui_runtime/models/
 local_providers/piper/bin/
 local_providers/piper/python/
 local_providers/piper/piper_macos_aarch64.tar.gz
@@ -91,7 +89,7 @@ local_providers/comfyui_runtime/
 # company/ 内部文档不开源
 company/
 # ComfyUI venv
-local_providers/comfyui/runtime/ComfyUI/.venv/
+local_providers/comfyui_runtime/ComfyUI/.venv/
 # egg-info
 *.egg-info/
 # 音频素材（大文件）

@@ -62,9 +62,9 @@ kling:
 
 local_comfyui_image:
   base_url: http://127.0.0.1:8188
-  workflow_path: ../local_providers/comfyui/workflows/image_workflow_sdxl.json
-  model_root: ../local_providers/comfyui/models
-  model_manifest_path: ../local_providers/comfyui/model_requirements.json
+  workflow_path: ../local_providers/comfyui_runtime/workflows/image_workflow_sdxl.json
+  model_root: ../local_providers/comfyui_runtime/ComfyUI/models
+  model_manifest_path: ../local_providers/comfyui_runtime/model_requirements.json
   timeout_seconds: 120
   poll_timeout_seconds: 3600
   poll_interval_seconds: 2
@@ -78,9 +78,9 @@ local_comfyui_image:
 
 local_comfyui_video:
   base_url: http://127.0.0.1:8188
-  workflow_path: ../local_providers/comfyui/workflows/video_workflow.json
-  model_root: ../local_providers/comfyui/models
-  model_manifest_path: ../local_providers/comfyui/model_requirements.json
+  workflow_path: ../local_providers/comfyui_runtime/workflows/video_workflow.json
+  model_root: ../local_providers/comfyui_runtime/ComfyUI/models
+  model_manifest_path: ../local_providers/comfyui_runtime/model_requirements.json
   timeout_seconds: 60
   poll_timeout_seconds: 7200
   poll_interval_seconds: 5
@@ -96,9 +96,9 @@ local_comfyui_video:
 
 local_comfyui_video_fast:
   base_url: http://127.0.0.1:8188
-  workflow_path: ../local_providers/comfyui/workflows/video_workflow_fast.json
-  model_root: ../local_providers/comfyui/models
-  model_manifest_path: ../local_providers/comfyui/model_requirements.json
+  workflow_path: ../local_providers/comfyui_runtime/workflows/video_workflow_fast.json
+  model_root: ../local_providers/comfyui_runtime/ComfyUI/models
+  model_manifest_path: ../local_providers/comfyui_runtime/model_requirements.json
   timeout_seconds: 60
   poll_timeout_seconds: 1800
   poll_interval_seconds: 2

@@ -163,7 +163,7 @@ def build_local_provider_detail(validation: dict[str, Any]) -> str:
 def build_local_provider_recommendation(validation: dict[str, Any]) -> str:
     piper_ready = bool(validation.get("provider_readiness_local_piper_tts_ready", False))
     if piper_ready:
-        return "本地替代 OpenAI 的 TTS 路线已可执行；继续启动 ComfyUI、补齐 `local_providers/comfyui/model_requirements.json` 中的模型权重，再跑小批量图片/视频 Provider。"
+        return "本地替代 OpenAI 的 TTS 路线已可执行；继续启动 ComfyUI、补齐 `local_providers/comfyui_runtime/model_requirements.json` 中的模型权重，再跑小批量图片/视频 Provider。"
     return "如要本地替代 OpenAI，先补齐 ComfyUI workflow/模型/服务与 Piper `.onnx` 配置，再跑小批量本地 Provider。"
 
 

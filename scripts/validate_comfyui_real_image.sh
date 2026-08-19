@@ -2,7 +2,7 @@
 # =============================================================================
 # AIComics ComfyUI 真出图验证
 # -----------------------------------------------------------------------------
-# 对 local_providers/comfyui/runtime/ComfyUI 做「真实出图」验证：
+# 对 local_providers/comfyui_runtime/ComfyUI 做「真实出图」验证：
 #   1) 若端口无服务则启动 ComfyUI server
 #   2) 调用真实 ComfyUI API 生成一张 txt2img 图片
 #   3) 校验 PNG 文件存在且可解码，输出报告到 reports/
@@ -16,7 +16,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 HOST="${1:-127.0.0.1}"
 PORT="${2:-8188}"
 BASE_URL="http://$HOST:$PORT"
-RUNTIME_DIR="$ROOT/local_providers/comfyui/runtime/ComfyUI"
+RUNTIME_DIR="$ROOT/local_providers/comfyui_runtime/ComfyUI"
 OUT_DIR="$ROOT/state/comfyui_real_output"
 REPORT_DIR="$ROOT/reports"
 TS="$(date +%Y%m%d%H%M%S)"

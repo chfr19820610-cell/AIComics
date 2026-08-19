@@ -266,7 +266,7 @@ def collect_comfyui_risks(provider_items: dict[str, dict[str, Any]], deployment_
                     "local_provider",
                     "high",
                     json.dumps(missing, ensure_ascii=False) if missing else "Required model manifest is missing or empty.",
-                    "Place the listed model files under local_providers/comfyui/models and rerun provider-readiness.",
+                    "Place the listed model files under local_providers/comfyui_runtime/ComfyUI/models and rerun provider-readiness.",
                     True,
                 )
             )
