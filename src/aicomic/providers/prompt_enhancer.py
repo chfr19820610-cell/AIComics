@@ -386,3 +386,315 @@ def auto_select_profile(shot: dict[str, Any]) -> str:
     if "特写" in camera or "close" in camera.lower():
         return "emotion_closeup"
     return "anime_donghua"
+
+
+# ============ 7. 镜头意图分类器 (Narrative Position Intelligence) ============
+#
+# 蒸馏自叙事弧线理论 (StoryboardThat Plot Diagram + Weber State Film Analysis):
+#   6类镜头意图: exposition → rising_action → climax → falling_action → resolution → transition
+#   每类有专属的构图/光影/色彩/节奏增强策略。
+#
+# 分类信号:
+#   1. shot在episode中的位置 (第几镜/总镜数)
+#   2. emotion强度 (恐惧/愤怒/震惊 → 高潮信号)
+#   3. camera类型 (远景→铺垫, 特写→高潮/收束)
+#   4. action关键词 (奔跑/战斗→推进, 静止→铺垫/结局)
+#   5. dialogue存在性 (有对话→推进/高潮, 无→铺垫/转场)
+
+from dataclasses import dataclass as _dc
+
+@_dc
+class ShotIntent:
+    """镜头意图分类结果"""
+    intent: str           # exposition/rising_action/climax/falling_action/resolution/transition
+    confidence: float     # 0.0-1.0
+    signals: dict         # 分类信号详情
+    narrative_position: str  # "开头" "中段" "高潮" "收尾"
+
+
+# 6类意图的增强策略
+INTENT_ENHANCE: dict[str, dict] = {
+    "exposition": {
+        "narrative_position": "开头",
+        "composition": "wide establishing shot, environment-dominant, leading lines guide eye to subject, foreground framing adds depth",
+        "lighting": "natural ambient lighting, soft gradient sky or interior light, gentle shadow gradation",
+        "color": "balanced palette, establish mood through base tones, warm-cool contrast sets atmosphere",
+        "quality": "detailed background, clear focal point, establish spatial relationships",
+        "negative": "avoid close-up, avoid extreme contrast, avoid chaotic composition",
+        "description": "铺垫镜：建立场景，展示环境，引入角色关系",
+    },
+    "rising_action": {
+        "narrative_position": "中段",
+        "composition": "medium shot or medium-close, subject prominent but environment still visible, dynamic angle suggesting forward motion",
+        "lighting": "directional lighting intensifying, shadows lengthening, contrast increasing",
+        "color": "saturation increasing, warm accents on subject, cool tension in background",
+        "quality": "dynamic pose, motion energy, character expression showing determination or tension",
+        "negative": "avoid static pose, avoid flat lighting, avoid symmetrical composition",
+        "description": "推进镜：紧张感上升，角色行动，冲突发展",
+    },
+    "climax": {
+        "narrative_position": "高潮",
+        "composition": "dramatic close-up or extreme close-up, face fills 50-70% frame, dutch angle or low angle for power",
+        "lighting": "extreme high-contrast, hard key light, deep shadows, rim light separating subject from chaos",
+        "color": "maximum saturation, bold primary colors, red/orange urgency or cold blue dread",
+        "quality": "intense facial expression, body language at peak tension, every detail sharp",
+        "negative": "avoid wide shot, avoid soft lighting, avoid muted colors, avoid calm expression",
+        "description": "高潮镜：情绪爆发，冲突顶点，视觉冲击最大",
+    },
+    "falling_action": {
+        "narrative_position": "收尾",
+        "composition": "medium shot pulling back, subject centered but environment closing in, breathing room after climax",
+        "lighting": "softening contrast, shadows lifting, light becoming gentle and forgiving",
+        "color": "desaturating slightly, warm relief tones or melancholic blue, emotional color shift",
+        "quality": "emotion visible but settling, body language releasing tension, exhaustion or relief",
+        "negative": "avoid extreme close-up, avoid maximum contrast, avoid chaotic background",
+        "description": "收束镜：高潮后的回落，情绪缓和，结果显现",
+    },
+    "resolution": {
+        "narrative_position": "结尾",
+        "composition": "wide or medium-wide, subject in environment, balanced and stable composition, symmetry or rule of thirds",
+        "lighting": "golden hour or soft diffused light, warm and gentle, peaceful ambiance",
+        "color": "harmonious palette, warm golden or hopeful bright tones, emotional resolution through color",
+        "quality": "calm expression, settled body language, closure in composition",
+        "negative": "avoid tension, avoid extreme angle, avoid harsh shadow, avoid cliffhanger ambiguity",
+        "description": "结局镜：一切尘埃落定，情感闭环",
+    },
+    "transition": {
+        "narrative_position": "转场",
+        "composition": "environment focus, empty or minimal character presence, atmospheric shot, compositional bridge",
+        "lighting": "time-of-day transition lighting, dawn/dusk/night, atmospheric haze or weather",
+        "color": "distinctive color shift from previous scene, signaling new location or time",
+        "quality": "atmosphere over detail, mood-setting, implying passage of time",
+        "negative": "avoid character close-up, avoid complex action, avoid busy composition",
+        "description": "转场镜：连接两段叙事，切换时空",
+    },
+}
+
+
+# 情绪强度映射
+EMOTION_INTENSITY: dict[str, int] = {
+    "恐惧": 3, "愤怒": 3, "震惊": 3, "绝望": 3,
+    "悲伤": 2, "焦虑": 2, "紧张": 2, "坚定": 2,
+    "快乐": 1, "平静": 0, "喜悦": 1, "温柔": 0,
+    "疑惑": 1, "期待": 1, "释然": 0, "思念": 1,
+}
+
+# camera类型映射
+CAMERA_TYPE: dict[str, str] = {
+    "远景": "wide", "全景": "wide", "大全景": "wide",
+    "中景": "medium", "中近景": "medium",
+    "近景": "close", "特写": "close", "大特写": "extreme_close",
+    "俯视": "high_angle", "仰视": "low_angle", "平视": "eye_level",
+}
+
+
+def classify_shot_intent(
+    shot: dict[str, Any],
+    shot_index: int = 0,
+    total_shots: int = 1,
+    prev_shot: dict[str, Any] | None = None,
+    next_shot: dict[str, Any] | None = None,
+) -> ShotIntent:
+    """
+    镜头意图分类器 — 根据叙事位置、情绪强度、镜头类型、动作关键词分类。
+
+    Args:
+        shot: 分镜数据 (scene/visual/action/emotion/camera/characters/dialogue)
+        shot_index: 当前镜在episode中的索引 (0-based)
+        total_shots: episode总镜数
+        prev_shot: 上一镜数据 (用于转场检测)
+        next_shot: 下一镜数据 (用于预判)
+
+    Returns:
+        ShotIntent: 意图分类结果
+    """
+    signals = {}
+    scores = {k: 0.0 for k in INTENT_ENHANCE}
+
+    # ── 信号1: 叙事位置 (基于位置在弧线中的比例) ──
+    if total_shots <= 1:
+        position_ratio = 0.0
+    else:
+        position_ratio = shot_index / (total_shots - 1)
+
+    signals["position_ratio"] = position_ratio
+    signals["shot_index"] = shot_index
+    signals["total_shots"] = total_shots
+
+    if position_ratio < 0.2:
+        scores["exposition"] += 3.0
+    elif position_ratio < 0.5:
+        scores["rising_action"] += 2.0
+    elif position_ratio < 0.8:
+        scores["climax"] += 2.5
+    elif position_ratio < 0.95:
+        scores["falling_action"] += 3.0
+    else:
+        scores["resolution"] += 3.0
+
+    # ── 信号2: 情绪强度 ──
+    emotion = str(shot.get("emotion", ""))
+    emotion_level = 0
+    for cn_key, level in EMOTION_INTENSITY.items():
+        if cn_key in emotion:
+            emotion_level = max(emotion_level, level)
+            break
+    signals["emotion"] = emotion
+    signals["emotion_level"] = emotion_level
+
+    if emotion_level >= 3:
+        scores["climax"] += 3.0
+        scores["rising_action"] += 1.0
+    elif emotion_level == 2:
+        scores["rising_action"] += 2.0
+    elif emotion_level == 0:
+        scores["exposition"] += 1.0
+        scores["resolution"] += 1.0
+        # 紧跟高潮后的低情绪 → falling_action 信号
+        if position_ratio >= 0.7 and position_ratio < 0.95:
+            scores["falling_action"] += 1.5
+
+    # ── 信号3: camera类型 ──
+    camera = str(shot.get("camera", ""))
+    cam_type = "medium"
+    for cn_key, en_type in CAMERA_TYPE.items():
+        if cn_key in camera:
+            cam_type = en_type
+            break
+    signals["camera"] = camera
+    signals["cam_type"] = cam_type
+
+    if cam_type == "wide":
+        scores["exposition"] += 1.5
+        scores["resolution"] += 1.0
+        scores["transition"] += 1.0
+    elif cam_type == "close" or cam_type == "extreme_close":
+        scores["climax"] += 2.0
+        scores["falling_action"] += 1.0
+    elif cam_type == "low_angle":
+        scores["climax"] += 1.5
+    elif cam_type == "high_angle":
+        scores["falling_action"] += 1.0
+
+    # ── 信号4: action关键词 ──
+    action = str(shot.get("action", ""))
+    signals["action"] = action
+
+    high_energy = ["奔跑", "战斗", "追逐", "逃跑", "攻击", "爆发", "尖叫", "冲突", "摔倒", "冲"]
+    low_energy = ["静坐", "站立", "凝视", "沉默", "等待", "沉睡", "回忆", "望"]
+    transition_kw = ["离开", "到达", "穿越", "走过", "时间流逝", "转场", "切换"]
+
+    if any(kw in action for kw in high_energy):
+        scores["rising_action"] += 2.0
+        scores["climax"] += 1.5
+    if any(kw in action for kw in low_energy):
+        scores["exposition"] += 1.0
+        scores["resolution"] += 1.0
+    if any(kw in action for kw in transition_kw):
+        scores["transition"] += 3.0
+
+    # ── 信号5: 转场检测 (场景切换) ──
+    if prev_shot:
+        prev_scene = str(prev_shot.get("scene", ""))
+        curr_scene = str(shot.get("scene", ""))
+        if prev_scene and curr_scene and prev_scene != curr_scene:
+            scores["transition"] += 2.0
+            signals["scene_changed"] = True
+        else:
+            signals["scene_changed"] = False
+    else:
+        signals["scene_changed"] = False
+
+    # ── 信号6: dialogue存在性 ──
+    has_dialogue = bool(shot.get("dialogue"))
+    signals["has_dialogue"] = has_dialogue
+    if has_dialogue:
+        scores["rising_action"] += 0.5
+        scores["climax"] += 0.5
+    else:
+        scores["exposition"] += 0.5
+        scores["transition"] += 0.5
+
+    # ── 选最高分 ──
+    best_intent = max(scores, key=scores.get)
+    best_score = scores[best_intent]
+    total_score = sum(scores.values())
+    confidence = best_score / total_score if total_score > 0 else 0.0
+
+    signals["all_scores"] = {k: round(v, 1) for k, v in sorted(scores.items(), key=lambda x: -x[1])}
+
+    return ShotIntent(
+        intent=best_intent,
+        confidence=round(confidence, 2),
+        signals=signals,
+        narrative_position=INTENT_ENHANCE[best_intent]["narrative_position"],
+    )
+
+
+def enhance_by_intent(
+    base_prompt: str,
+    shot: dict[str, Any],
+    shot_index: int = 0,
+    total_shots: int = 1,
+    prev_shot: dict[str, Any] | None = None,
+    next_shot: dict[str, Any] | None = None,
+    profile_name: str = "",
+    negative_prompt: str = "",
+    use_llm: bool = False,
+) -> dict[str, Any]:
+    """
+    镜头意图驱动的动态增强 — 根据叙事位置自动选择构图/光影/色彩/节奏策略。
+
+    在原有profile增强之上，叠加意图专属增强。
+    """
+    # 1. 先做意图分类
+    intent_result = classify_shot_intent(shot, shot_index, total_shots, prev_shot, next_shot)
+    intent = intent_result.intent
+    enhance_strategy = INTENT_ENHANCE[intent]
+
+    # 2. 原有profile增强 (保留向后兼容)
+    profile = PROFILES.get(profile_name, PROFILES["anime_donghua"])
+    result = render_enhanced_prompt(base_prompt, profile, negative_prompt, shot)
+
+    # 3. 叠加意图专属增强
+    enhanced_prompt = result["prompt"]
+
+    # 注入意图专属构图/光影/色彩
+    intent_parts = []
+    if enhance_strategy.get("composition"):
+        intent_parts.append(enhance_strategy["composition"])
+    if enhance_strategy.get("lighting"):
+        intent_parts.append(enhance_strategy["lighting"])
+    if enhance_strategy.get("color"):
+        intent_parts.append(enhance_strategy["color"])
+    if enhance_strategy.get("quality"):
+        intent_parts.append(enhance_strategy["quality"])
+
+    if intent_parts:
+        enhanced_prompt = enhanced_prompt + ", " + ", ".join(intent_parts)
+
+    # 意图专属负项
+    intent_negative = enhance_strategy.get("negative", "")
+    final_negative = result.get("negative_prompt", "")
+    if intent_negative and intent_negative not in final_negative:
+        final_negative = final_negative + ", " + intent_negative
+
+    # 截断
+    if len(enhanced_prompt) > profile.max_length:
+        enhanced_prompt = enhanced_prompt[:profile.max_length].rsplit(", ", 1)[0]
+
+    # 4. 重算评分
+    new_score = score_prompt(enhanced_prompt)
+
+    return {
+        "prompt": enhanced_prompt,
+        "negative_prompt": final_negative,
+        "score": new_score,
+        "validation": result.get("validation", {}),
+        "profile": profile_name,
+        "intent": intent,
+        "intent_confidence": intent_result.confidence,
+        "intent_position": intent_result.narrative_position,
+        "intent_signals": intent_result.signals,
+        "enhanced": True,
+    }

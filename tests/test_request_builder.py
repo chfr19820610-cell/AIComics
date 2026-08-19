@@ -104,7 +104,7 @@ class TestBuildVideoPrompt:
     def test_normal(self) -> None:
         result = build_video_prompt("测试", {"scene": "森林", "visual": "日落", "action": "说", "emotion": "悲伤",
                                              "camera": "近景", "characters": []})
-        assert "3-4 秒" in result
+        assert "3-4 seconds" in result
         assert "日落" in result
 
     def test_horror(self) -> None:

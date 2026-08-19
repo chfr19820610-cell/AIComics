@@ -179,3 +179,40 @@ def validate_character_prompt_integrity(
         "enriched_length": len(enriched_prompt),
         "added_length": length_diff,
     }
+
+
+def generate_character_sheet_prompt(
+    char_service: CharacterService,
+    character_id: str,
+    art_style: str = "anime_donghua",
+    style_override: str = "",
+) -> dict[str, Any]:
+    """为指定角色生成设定图prompt (character sheet / turnaround)。
+    
+    7分区结构: 正面+侧面+背面 三视图 + 面部特写 + 配色板 + 局部细节 + 黄金比例。
+    生成的设定图可作为后续每镜生成的视觉参考。
+    
+    Args:
+        char_service: CharacterService 实例
+        character_id: 角色ID
+        art_style: 艺术风格 (anime_donghua/realistic_cn/horror_folk)
+        style_override: 自定义画风材质描述 (覆盖默认)
+        
+    Returns:
+        {"prompt": str, "negative_prompt": str, "layout": str, ...}
+    """
+    from aicomic.characters.character_sheet_builder import build_sheet_from_character
+    
+    char = char_service.get_character(character_id)
+    if char is None:
+        return {
+            "prompt": "",
+            "negative_prompt": "",
+            "error": f"角色不存在: {character_id}",
+        }
+    
+    return build_sheet_from_character(
+        character=char,
+        style=style_override,
+        art_style=art_style,
+    )
