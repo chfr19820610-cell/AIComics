@@ -1,0 +1,103 @@
+template_id: horror
+genre: "玄学/民俗恐怖"
+default_hook: "村里老人说，夜里不能回头看井口。"
+target_platform: "竖屏短视频"
+aspect_ratio: "9:16"
+default_target_seconds: 360
+default_max_shots: 60
+shot_duration_seconds: 6
+blueprint_version: "horror_content_factory/v1"
+
+acts:
+  - act_id: A1
+    title: 开场禁忌
+    beat: taboo
+  - act_id: A2
+    title: 触犯规则
+    beat: omen
+  - act_id: A3
+    title: 异象升级
+    beat: escalation
+  - act_id: A4
+    title: 真相反转
+    beat: reveal
+  - act_id: A5
+    title: 结尾钩子
+    beat: hook
+
+locations:
+  - 老宅堂屋
+  - 村口枯井
+  - 雾气山路
+  - 祖坟边
+  - 废弃祠堂
+
+characters:
+  - name: 返乡青年
+    role: 主视角
+    visual_rule: 多用背影、手部和侧脸，减少正脸连续性要求
+  - name: 守夜老人
+    role: 规则讲述者
+    visual_rule: 草帽、烟袋、佝偻背影作为识别锚点
+  - name: 失踪母亲
+    role: 真相线索
+    visual_rule: 旧照片、红绳和白衣轮廓作为识别锚点
+
+visual_motifs:
+  - 符纸
+  - 红绳
+  - 旧照片
+  - 白瓷碗
+  - 黑伞
+  - 门缝
+
+sound_cues:
+  - 低频风声
+  - 木门吱呀
+  - 远处铃声
+  - 井底水滴
+  - 纸钱摩擦
+  - 压低的人声
+
+avoidance_strategies:
+  - back_view
+  - silhouette
+  - close_up
+  - object
+  - fog
+  - dark_light
+
+taboos:
+  - 夜里听见有人叫名字不能答应
+  - 经过枯井不能回头
+  - 红绳断开前不能进祠堂
+
+twist: "所谓鬼怪不是来害人，而是在阻止主角重复上一代人的死法。"
+
+visual_rules:
+  - 优先暗光、雾、遮挡、背影、门缝和物件特写
+  - 每幕只保留 1 个核心场景，减少跨场景连续性压力
+  - 不要要求画面直接出现字幕、角色名或可读文字
+
+emotion_map:
+  taboo: 压低、禁忌、悬念
+  omen: 不安、试探、异样
+  escalation: 惊惧、逼近、失控
+  reveal: 震惊、悲凉、真相
+  hook: 未解、寒意、强钩子
+
+camera_map:
+  back_view: 背影中景，缓慢推进
+  silhouette: 远景定镜，雾中轮廓
+  close_up: 极近特写，浅景深
+  object: 物件特写，轻微摇晃
+  fog: 低角度广角，雾气遮挡
+  dark_light: 暗光手持感，慢慢扫过
+
+avoidance_visual_map:
+  back_view: 主角背影停在画面前景
+  silhouette: 远处只出现模糊人影轮廓
+  close_up: "{motif} 的极近特写占满画面"
+  object: "{motif} 被风吹动，周围没有人"
+  fog: 雾从地面压过来，人物轮廓若隐若现
+  dark_light: 暗光里只有一束冷色手电光

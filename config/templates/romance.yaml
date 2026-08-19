@@ -1,0 +1,103 @@
+template_id: romance
+genre: "都市爱情动漫剧"
+default_hook: "暴雨夜，她闯进他的便利店，浑身湿透，手里攥着一封被雨打湿的情书。"
+target_platform: "竖屏短视频"
+aspect_ratio: "9:16"
+default_target_seconds: 240
+default_max_shots: 6
+shot_duration_seconds: 6
+blueprint_version: "romance_content_factory/v1"
+
+acts:
+  - act_id: A1
+    title: 命运偶遇
+    beat: meet_cute
+  - act_id: A2
+    title: 欢喜冤家
+    beat: bickering
+  - act_id: A3
+    title: 心动暗涌
+    beat: sparks
+  - act_id: A4
+    title: 真情告白
+    beat: confession
+  - act_id: A5
+    title: 甜蜜结局
+    beat: sweet_ending
+
+locations:
+  - 深夜便利店
+  - 城市天桥
+  - 咖啡馆落地窗
+  - 樱花街道
+  - 公寓楼下
+  - 地铁车厢
+  - 公司天台
+  - 雨中街角
+
+characters:
+  - name: 便利店男孩
+    role: 男主
+    visual_rule: 便利店围裙、温柔笑容、整理货架的日常感
+  - name: 都市女孩
+    role: 女主
+    visual_rule: 都市穿搭、湿发凌乱感、倔强但心软的表情
+
+visual_motifs:
+  - 雨伞
+  - 情书
+  - 咖啡杯
+  - 樱花瓣
+  - 手机屏幕
+  - 围巾
+
+sound_cues:
+  - 雨声
+  - 便利店门铃
+  - 城市白噪音
+  - 心跳音效
+  - 风铃声
+  - 轻音乐
+
+emotion_map:
+  meet_cute: 惊讶、好奇、微微尴尬
+  bickering: 嘴硬、好笑、暗暗在意
+  sparks: 心跳加速、不敢对视、偷偷微笑
+  confession: 紧张、真诚、鼓起勇气
+  sweet_ending: 温暖、甜蜜、安心
+
+camera_map:
+  meet_cute: 中景双人构图，便利店暖光
+  bickering: 正反打近景，快速切换
+  sparks: 特写眼神交流，浅景深
+  confession: 侧面近景，柔和逆光
+  sweet_ending: 双人全景，暖色调
+
+visual_templates:
+  meet_cute: "{loc}，{char_a}正在整理货架，门铃响起，{char_b}浑身湿透冲进来，两人四目相对。"
+  bickering: "{loc}，{char_a}和{char_b}并排走着，嘴上互怼但嘴角都带着笑。"
+  sparks: "{loc}，{char_a}低头看手机，{char_b}悄悄从侧面看他认真的侧脸。"
+  confession: "{loc}，{char_a}深呼吸后转向{char_b}，夕阳从背后照过来。"
+  sweet_ending: "{loc}，{char_a}撑着伞，{char_b}靠在他肩上，雨后万家灯火亮起。"
+
+dialogue_templates:
+  meet_cute:
+    - 这么大的雨，你没事吧？
+    - 便利店还开着，进来躲躲吧。
+    - 你手里那封信...是被雨淋湿了吗？
+  bickering:
+    - 谁让你上次不等我的！
+    - 嘴上说不要，身体很诚实嘛。
+    - 我又不是故意迟到的，地铁故障怪我咯？
+  sparks:
+    - 他转头的瞬间，正好对上她的目光。
+    - 心跳得好快，一定是因为咖啡太浓了。
+    - 偷偷看他认真的侧脸，忍不住嘴角上扬。
+  confession:
+    - 其实...从那个雨夜起，我就一直在想你。
+    - 我不是因为雨才撑伞的，是因为你在对面。
+    - 这封信，我想亲手交给你，不管结果怎样。
+  sweet_ending:
+    - 原来最幸运的事，是那场暴雨让我遇见你。
+    - 以后每个雨天，都有我撑伞。
+    - 她靠在他肩上，雨后的城市亮起了万家灯火。

@@ -28,6 +28,14 @@ from aicomic.core.horror_pipeline import (
     write_horror_blueprint,
     write_horror_episode_manifest,
 )
+from aicomic.core.template_engine import (
+    build_blueprint_from_template,
+    build_manifest_from_template,
+    list_templates,
+    load_template,
+    write_blueprint as write_template_blueprint,
+    write_manifest as write_template_manifest,
+)
 from aicomic.core.job_control import filter_jobs, retry_jobs, write_job_payload
 from aicomic.core.job_builder import build_jobs_from_episode_manifest, serialize_jobs
 from aicomic.core.manifest import load_json, write_json
@@ -210,6 +218,35 @@ def handle_resume_report(ss: Path, jf: Path, dr: Path, out: Path) -> int:
 def handle_init_project(name: str, genre: str, style: str, pid: str | None, logline: str, proto: str, aud: str, tone: str, hook: str, ept: int, root: Path) -> int:
     p = initialize_project(root, name, genre, style, pid, logline=logline, protagonist_name=proto, target_audience=aud, tone=tone, season_hook=hook, episode_target_count=ept)
     print(f"project_id={p['project_id']}\nproject_root={p['project_root']}\ncreated_directory_count={p['created_directory_count']}\nstory_bible={p['bootstrap_paths']['story_bible']}")
+    return 0
+
+
+def handle_template_blueprint(template: str, hook: str, code: str, sec: int | None, shots: int | None, out: Path) -> int:
+    bp = build_blueprint_from_template(template, hook=hook, episode_code=code, target_seconds=sec, max_shots=shots)
+    write_template_blueprint(out, bp)
+    print(f"template={template}\nepisode_code={bp['episode_code']}\nshot_count={bp['shot_count']}\noutput={out}")
+    return 0
+
+
+def handle_template_manifest(blueprint_path: Path, template: str, pid: str, season: int, out: Path) -> int:
+    from aicomic.core.manifest import load_json
+    bp = load_json(blueprint_path)
+    m = build_manifest_from_template(bp, template_name=template, project_id=pid, season=season)
+    write_template_manifest(out, m)
+    ep = m["episodes"][0]
+    print(f"template={template}\nepisode_code={ep['episode_code']}\nshot_count={len(ep['shots'])}\noutput={out}")
+    return 0
+
+
+def handle_list_templates() -> int:
+    templates = list_templates()
+    for t in templates:
+        try:
+            meta = load_template(t)
+            print(f"  {t:12s}  {meta.get('genre', '?')}")
+        except Exception:
+            print(f"  {t:12s}  (error)")
+    print(f"total={len(templates)}")
     return 0
 
 
@@ -573,6 +610,23 @@ COMMANDS: dict[str, dict] = {
         (["--project-id"], {"default": "aicomic_system"}), (["--season"], {"type": int, "default": 1}),
         (["--output"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")})],
         "handler": lambda a: handle_build_horror_episode(a.blueprint, a.project_id, a.season, a.output)},
+    "list-templates": {"help": "列出所有可用漫剧模板", "args": [],
+        "handler": lambda a: handle_list_templates()},
+    "template-blueprint": {"help": "从模板生成故事蓝图", "args": [
+        (["--template"], {"default": "horror"}),
+        (["--hook"], {"default": ""}),
+        (["--episode-code"], {"default": "E01"}),
+        (["--target-seconds"], {"type": int, "default": None}),
+        (["--max-shots"], {"type": int, "default": None}),
+        (["--output"], {"type": Path, "default": P("ProjectPaths.project_root() / 'docs' / 'template_blueprint.json'")})],
+        "handler": lambda a: handle_template_blueprint(a.template, a.hook, a.episode_code, a.target_seconds, a.max_shots, a.output)},
+    "template-manifest": {"help": "从模板蓝图生成 Episode Manifest", "args": [
+        (["--blueprint"], {"type": Path, "default": P("ProjectPaths.project_root() / 'docs' / 'template_blueprint.json'")}),
+        (["--template"], {"default": ""}),
+        (["--project-id"], {"default": "aicomic_system"}),
+        (["--season"], {"type": int, "default": 1}),
+        (["--output"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")})],
+        "handler": lambda a: handle_template_manifest(a.blueprint, a.template, a.project_id, a.season, a.output)},
     "filter-jobs": {"help": "按条件筛选任务", "args": [
         (["--jobs-file"], {"type": Path, "default": P("ProjectPaths.project_root() / 'jobs' / 'episode_jobs.json'")}),
         (["--episode-code"], {"default": None}), (["--job-type"], {"default": None}),
