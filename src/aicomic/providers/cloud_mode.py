@@ -16,8 +16,9 @@ def is_cloud_mode() -> bool:
 
 
 def filter_cloud_providers(available: list[str]) -> list[str]:
-    """Remove local_* providers from a list."""
-    return [p for p in available if not p.startswith("local_")]
+    """Remove local-only providers from a list (comfyui_local, local_*, piper, etc.)."""
+    _LOCAL_KEYWORDS = ("local", "piper", "comfyui_local")
+    return [p for p in available if not any(kw in p.lower() for kw in _LOCAL_KEYWORDS)]
 
 
 def get_cloud_defaults() -> dict[str, str]:
