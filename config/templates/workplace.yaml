@@ -1,0 +1,80 @@
+template_id: workplace
+genre: "职场逆袭"
+default_hook: "她刚被实习生当众羞辱，总裁的座驾就停在了门口。"
+target_platform: "竖屏短视频"
+aspect_ratio: "9:16"
+default_target_seconds: 240
+default_max_shots: 30
+shot_duration_seconds: 8
+blueprint_version: "workplace_content_factory/v1"
+
+acts:
+  - act_id: A1
+    title: 开场屈辱
+    beat: humiliation
+  - act_id: A2
+    title: 隐忍蓄力
+    beat: endurance
+  - act_id: A3
+    title: 身份暗示
+    beat: hint
+  - act_id: A4
+    title: 真相反转
+    beat: reveal
+  - act_id: A5
+    title: 爽感结局
+    beat: triumph
+
+locations:
+  - 公司大堂
+  - 电梯间
+  - 会议室
+  - 总裁办公室
+  - 天台
+  - 地下车库
+
+characters:
+  - name: 女主
+    role: 主视角
+    visual_rule: 职业装+马尾，表情从隐忍到坚定
+  - name: 实习生
+    role: 反派
+    visual_rule: 嚣张表情，名牌西服
+  - name: 总裁
+    role: 身份反转
+    visual_rule: 只露背影和侧脸，深色大衣
+
+visual_motifs:
+  - 工牌
+  - 解约书
+  - 咖啡杯
+  - 电梯按键
+  - 玻璃倒影
+
+sound_cues:
+  - 键盘敲击
+  - 电梯提示音
+  - 会议窃窃私语
+  - 高跟鞋脚步
+  - 手机震动
+
+emotion_map:
+  humiliation: 屈辱、愤怒、隐忍
+  endurance: 压抑、蓄力、冷静
+  hint: 暗涌、疑惑、期待
+  reveal: 震惊、痛快、反转
+  triumph: 爽感、扬眉吐气、收尾
+
+camera_map:
+  humiliation: 俯拍女主被指责，压迫构图
+  endurance: 近景侧脸，眼神特写
+  hint: 中景远景，总裁背影虚化
+  reveal: 正反打快切，表情对比
+  triumph: 仰拍女主，光线明亮
+
+visual_rules:
+  - 职场现代感，干净色调
+  - 每幕保留1个识别物件（工牌/咖啡杯）
+  - 总裁出场只用背影侧脸，制造悬念
+
+twist: "总裁不是来救她，是来向她汇报的——她才是真正的幕后老板。"

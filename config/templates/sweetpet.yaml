@@ -1,0 +1,80 @@
+template_id: sweetpet
+genre: "甜宠"
+default_hook: "全公司都知道他高冷禁欲，只有她知道他会偷偷把奶茶塞进她工位。"
+target_platform: "竖屏短视频"
+aspect_ratio: "9:16"
+default_target_seconds: 180
+default_max_shots: 24
+shot_duration_seconds: 8
+blueprint_version: "sweetpet_content_factory/v1"
+
+acts:
+  - act_id: A1
+    title: 偶遇心动
+    beat: meet_cute
+  - act_id: A2
+    title: 暗撩甜 interactions
+    beat: secret_sweet
+  - act_id: A3
+    title: 误会吃醋
+    beat: jealousy
+  - act_id: A4
+    title: 表白高甜
+    beat: confession
+  - act_id: A5
+    title: 糖度爆表
+    beat: sugar_rush
+
+locations:
+  - 办公室工位
+  - 奶茶店
+  - 电梯间
+  - 雨天公交站
+  - 天台星空
+  - 花店
+
+characters:
+  - name: 女主
+    role: 主视角
+    visual_rule: 马尾+卫衣，笑起来有酒窝
+  - name: 总裁
+    role: 甜宠方
+    visual_rule: 冷脸对外温柔对内，只在看她时笑
+  - name: 闺蜜
+    role: 助攻
+    visual_rule: 夸张表情，吃瓜群众
+
+visual_motifs:
+  - 奶茶
+  - 便利贴
+  - 雨伞
+  - 手机聊天界面
+  - 星空
+
+sound_cues:
+  - 轻快BGM
+  - 手机提示音
+  - 奶茶吸管声
+  - 笑声
+  - 心跳音效
+
+emotion_map:
+  meet_cute: 意外、心跳、好感
+  secret_sweet: 暗甜、小鹿乱撞、偷笑
+  jealousy: 吃醋、委屈、在意
+  confession: 紧张、真诚、感动
+  sugar_rush: 甜蜜、撒糖、满足
+
+camera_map:
+  meet_cute: 中景双人偶遇，暖光
+  secret_sweet: 特写偷塞奶茶的手
+  jealousy: 正反打表情，微表情
+  confession: 近景眼神，浅景深
+  sugar_rush: 全景甜蜜，柔光
+
+visual_rules:
+  - 暖色调，高糖度
+  - 每幕至少一个甜蜜道具（奶茶/便利贴）
+  - 总裁只有对女主才笑，反差感
+
+twist: "他不是突然对她好——他等了三年，才等到她进这家公司。"

@@ -1,0 +1,80 @@
+template_id: cultivation
+genre: "修仙"
+default_hook: "废柴少年被逐出宗门那天，体内的封印突然碎了。"
+target_platform: "竖屏短视频"
+aspect_ratio: "9:16"
+default_target_seconds: 360
+default_max_shots: 50
+shot_duration_seconds: 7
+blueprint_version: "cultivation_content_factory/v1"
+
+acts:
+  - act_id: A1
+    title: 废柴登场
+    beat: underdog
+  - act_id: A2
+    title: 封印觉醒
+    beat: awakening
+  - act_id: A3
+    title: 逆袭修炼
+    beat: breakthrough
+  - act_id: A4
+    title: 宗门震动
+    beat: confrontation
+  - act_id: A5
+    title: 天道钩子
+    beat: ascension
+
+locations:
+  - 宗门山门
+  - 修炼密室
+  - 悬崖边
+  - 宗门大殿
+  - 灵脉深处
+  - 九天云海
+
+characters:
+  - name: 少年
+    role: 主视角
+    visual_rule: 粗布麻衣到华服，眼神从迷茫到锐利
+  - name: 宗门长老
+    role: 反派
+    visual_rule: 白须长袍，威严表情
+  - name: 神秘老者
+    role: 指引者
+    visual_rule: 虚影残像，只在封印空间出现
+
+visual_motifs:
+  - 封印符文
+  - 灵气漩涡
+  - 断剑
+  - 丹药
+  - 天劫雷云
+
+sound_cues:
+  - 风啸
+  - 雷鸣
+  - 灵气共鸣
+  - 剑鸣
+  - 心跳加速
+
+emotion_map:
+  underdog: 不甘、屈辱、倔强
+  awakening: 震惊、蜕变、力量涌现
+  breakthrough: 专注、突破、升华
+  confrontation: 对峙、碾压、痛快
+  ascension: 仰望、浩瀚、悬念
+
+camera_map:
+  underdog: 俯拍少年跪地，压迫感
+  awakening: 特写瞳孔变化，金光涌现
+  breakthrough: 全身环绕气流，仰拍
+  confrontation: 正反打对峙，气场碰撞
+  ascension: 远景云海，少年剪影
+
+visual_rules:
+  - 东方仙侠美术风格
+  - 灵气特效用粒子不用实拍
+  - 封印符文作为每幕视觉锚点
+
+twist: "封印不是困住他的枷锁，是保护他的最后一道屏障——他才是天道要抹杀的存在。"

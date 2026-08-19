@@ -1,0 +1,80 @@
+template_id: mystery
+genre: "悬疑推理"
+default_hook: "监控里，死者死后三小时，自己推开了停尸房的门。"
+target_platform: "竖屏短视频"
+aspect_ratio: "9:16"
+default_target_seconds: 300
+default_max_shots: 40
+shot_duration_seconds: 8
+blueprint_version: "mystery_content_factory/v1"
+
+acts:
+  - act_id: A1
+    title: 案发现场
+    beat: crime_scene
+  - act_id: A2
+    title: 线索收集
+    beat: investigation
+  - act_id: A3
+    title: 嫌疑反转
+    beat: suspicion
+  - act_id: A4
+    title: 真相逼近
+    beat: deduction
+  - act_id: A5
+    title: 意外结局
+    beat: twist_end
+
+locations:
+  - 停尸房
+  - 案发现场公寓
+  - 警局档案室
+  - 监控室
+  - 废弃仓库
+  - 雨夜街头
+
+characters:
+  - name: 侦探
+    role: 主视角
+    visual_rule: 风衣+手套，总在看证据
+  - name: 嫌疑人A
+    role: 红鲱鱼
+    visual_rule: 紧张表情，频繁擦汗
+  - name: 死者
+    role: 核心谜团
+    visual_rule: 监控画面里的模糊人影
+
+visual_motifs:
+  - 监控画面
+  - 现场照片
+  - 手表
+  - 雨伞
+  - 手机通话记录
+
+sound_cues:
+  - 雨声
+  - 监控嗡嗡声
+  - 时钟滴答
+  - 电话铃
+  - 脚步回响
+
+emotion_map:
+  crime_scene: 压抑、不安、冰冷
+  investigation: 专注、抽丝剥茧、疑虑
+  suspicion: 警觉、矛盾、反转
+  deduction: 逼近、紧张、串联
+  twist_end: 震惊、寒意、强钩子
+
+camera_map:
+  crime_scene: 广角低光，案发现场全景
+  investigation: 特写证据物，浅景深
+  suspicion: 正反打，表情微妙变化
+  deduction: 快切线索蒙太奇
+  twist_end: 缓慢推向监控画面
+
+visual_rules:
+  - 冷色调，高对比度
+  - 监控画面用低分辨率风格穿插
+  - 关键证据每幕给一次特写
+
+twist: "死者推开门的不是复活——是凶手在伪造死亡时间，而真正的死者，从一开始就是侦探自己。"

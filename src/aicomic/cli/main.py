@@ -50,6 +50,12 @@ from aicomic.publish.dashboard import build_dashboard_payload, write_dashboard_h
 from aicomic.publish.navigator import build_episode_navigator, write_navigator
 from aicomic.publish.publish_pack import build_enhanced_publish_pack, build_publish_pack, write_publish_pack
 from aicomic.publish.season_summary import build_season_summary, write_season_summary
+from aicomic.publish.domestic_publisher import (
+    PublishPayload as DomesticPublishPayload,
+    check_platform_ready,
+    load_publish_config,
+    publish_to_platforms,
+)
 from aicomic.providers.executor import execute_provider_requests, write_provider_execution_report
 from aicomic.providers.comfyui_service import run_comfyui_service_action, write_comfyui_service_report
 from aicomic.cli.image_consistency_cmd import handle_image_consistency
@@ -247,6 +253,49 @@ def handle_list_templates() -> int:
         except Exception:
             print(f"  {t:12s}  (error)")
     print(f"total={len(templates)}")
+    return 0
+
+
+def handle_publish(video: Path, pack: Path, platforms: str, output: Path) -> int:
+    """Publish video to domestic platforms via social-auto-upload."""
+    import json
+    pack_data = json.loads(pack.read_text(encoding="utf-8")) if pack.exists() else {}
+    payload = DomesticPublishPayload.from_publish_pack(pack_data, video)
+    cfg = load_publish_config()
+    plats = [p.strip() for p in platforms.split(",") if p.strip()]
+    results = publish_to_platforms(payload, plats, cfg)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
+    for plat, res in results.items():
+        status = "✅" if res.get("success") else "❌"
+        print(f"  {status} {plat}: {res.get('error', 'published')}")
+    print(f"output={output}")
+    return 0
+
+
+def handle_check_publish(platforms: str) -> int:
+    """Check publish platform readiness."""
+    cfg = load_publish_config()
+    plats = [p.strip() for p in platforms.split(",") if p.strip()] or ["douyin", "xiaohongshu", "bilibili"]
+    for plat in plats:
+        r = check_platform_ready(plat, cfg)
+        status = "✅" if r["ready"] else "❌"
+        print(f"  {status} {plat}: {r['reason']}")
+    return 0
+
+
+def handle_novel_import(novel_file: Path, template: str, episodes: int, shots: int, output: Path) -> int:
+    """Import a novel and generate a season plan."""
+    import json
+    from aicomic.core.novel_pipeline import import_novel_file
+    result = import_novel_file(novel_file, template=template, episode_target_count=episodes, shots_per_episode=shots)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"template={result['template']}  genre={result['genre']}")
+    print(f"episode_count={result['episode_count']}")
+    for ep in result["episodes"]:
+        print(f"  {ep['episode_code']}  shots={ep['shot_count']}  hook={ep['hook'][:30]}")
+    print(f"output={output}")
     return 0
 
 
@@ -627,6 +676,22 @@ COMMANDS: dict[str, dict] = {
         (["--season"], {"type": int, "default": 1}),
         (["--output"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")})],
         "handler": lambda a: handle_template_manifest(a.blueprint, a.template, a.project_id, a.season, a.output)},
+    "publish": {"help": "发布视频到国内平台（抖音/小红书/B站）", "args": [
+        (["--video"], {"type": Path, "required": True}),
+        (["--pack"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'publish_pack_E01.json'")}),
+        (["--platforms"], {"default": "douyin,xiaohongshu,bilibili"}),
+        (["--output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'publish_results.json'")})],
+        "handler": lambda a: handle_publish(a.video, a.pack, a.platforms, a.output)},
+    "check-publish": {"help": "检查发布平台就绪状态", "args": [
+        (["--platforms"], {"default": "douyin,xiaohongshu,bilibili"})],
+        "handler": lambda a: handle_check_publish(a.platforms)},
+    "novel-import": {"help": "导入小说→拆分→生成整季蓝图", "args": [
+        (["--novel-file"], {"type": Path, "required": True}),
+        (["--template"], {"default": "workplace"}),
+        (["--episodes"], {"type": int, "default": 12}),
+        (["--shots-per-episode"], {"type": int, "default": 10}),
+        (["--output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'novel_season_plan.json'")})],
+        "handler": lambda a: handle_novel_import(a.novel_file, a.template, a.episodes, a.shots_per_episode, a.output)},
     "filter-jobs": {"help": "按条件筛选任务", "args": [
         (["--jobs-file"], {"type": Path, "default": P("ProjectPaths.project_root() / 'jobs' / 'episode_jobs.json'")}),
         (["--episode-code"], {"default": None}), (["--job-type"], {"default": None}),

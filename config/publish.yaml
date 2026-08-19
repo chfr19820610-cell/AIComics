@@ -1,0 +1,30 @@
+# 发布平台配置
+# cookie 文件路径：每个平台一个 storage_state JSON（从浏览器导出）
+# social-auto-upload 安装路径
+social_auto_upload_path: /Users/eric/social-auto-upload
+
+# 平台配置
+platforms:
+  douyin:
+    enabled: false
+    cookie_path: /Users/eric/social-auto-upload/cookies/douyin.json
+    headless: true
+    account_name: aicomic
+
+  xiaohongshu:
+    enabled: false
+    cookie_path: /Users/eric/social-auto-upload/cookies/xiaohongshu.json
+    headless: true
+    account_name: aicomic
+
+  bilibili:
+    enabled: false
+    cookie_path: /Users/eric/social-auto-upload/cookies/bilibili.json
+    headless: true
+    account_name: aicomic
+
+# 默认发布设置
+defaults:
+  tags: ["#AI漫剧", "#短剧", "#动漫"]
+  scheduled: false
+  headless: true
