@@ -14,6 +14,25 @@
 
 ---
 
+## 🛒 成品漫剧 · Commercial Releases
+
+> 本系统产出的**成品 AI 漫剧**已在 Gumroad 上架，可直接购买 / 用于白标授权。
+> Finished AI animation series produced by this system are on Gumroad — buy them outright, or license them white-label.
+
+| 产品 | 价格 | 链接 |
+|------|------|------|
+| **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $156 | [Gumroad](https://chfr1982.gumroad.com/l/vvbxej) |
+| **Nine Turns of the Crimson Heavens — Episode 1** (The Night the Village Burned) | $39 | [Gumroad](https://chfr1982.gumroad.com/l/lrruav) |
+| **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $39 | [Gumroad](https://chfr1982.gumroad.com/l/matlkg) |
+| **Vertical Manhua AI Toolkit** · 竖屏漫剧制作工具包 | $78 | [Gumroad](https://chfr1982.gumroad.com/l/vsrbx) |
+| **AICG Animation Production Handbook** · AI 动画工作流手册 | $78 | [Gumroad](https://chfr1982.gumroad.com/l/aicg-handbook) |
+| **Free: 30s White-Label AI Animation Sample** *(免费样品 · 先看再下单)* | Free | [Gumroad](https://chfr1982.gumroad.com/l/hrscll) |
+
+> 🔗 完整产品页: https://chfr1982.gumroad.com
+> 需要定制 / 白标量产? 联系: chfr19820610@gmail.com
+
+---
+
 ## 📺 演示
 
 | Painterly 3D Noir 风格 (E01) | Painterly 3D Noir 风格 (E03) |
