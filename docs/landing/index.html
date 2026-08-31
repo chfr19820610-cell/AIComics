@@ -114,6 +114,14 @@
     }
     pre code { color: #c0c0d0; }
 
+    .product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s; }
+    .product-card:hover { border-color: var(--accent); }
+    .product-card h3 { font-size: 1rem; }
+    .product-card p { color: var(--muted); font-size: 0.85rem; flex: 1; }
+    .product-tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; background: var(--accent); color: white; align-self: flex-start; }
+    .product-card .btn { align-self: flex-start; margin-top: 0.5rem; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+
     .links {
       display: flex;
       gap: 1rem;
@@ -208,6 +216,36 @@
           <p>Built for solo creators. No subscriptions, no API fees, no hidden costs. Your hardware, your content.</p>
         </div>
       </div>
+    </section>
+
+    <section>
+      <h2>🛒 Watch Finished Episodes — Buy on Gumroad</h2>
+      <p style="color: var(--muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
+        Don't want to set up the pipeline? Watch the finished AI donghua series produced with this system — available now on Gumroad.
+      </p>
+      <div class="products">
+        <div class="product-card">
+          <div class="product-tag">Free</div>
+          <h3>30s White-Label Sample</h3>
+          <p>Free 30-second preview — see the quality before you buy.</p>
+          <a href="https://chfr1982.gumroad.com/l/hrscll" class="btn primary" target="_blank" rel="noopener">Watch Free →</a>
+        </div>
+        <div class="product-card">
+          <div class="product-tag">Episode</div>
+          <h3>Nine Turns EP1: The Night the Village Burned</h3>
+          <p>Complete AI-generated cultivation-fantasy donghua. Chinese narration + English subtitles.</p>
+          <a href="https://chfr1982.gumroad.com/l/lrruav" class="btn primary" target="_blank" rel="noopener">Get Episode 1 →</a>
+        </div>
+        <div class="product-card">
+          <div class="product-tag">Full Season</div>
+          <h3>Nine Turns — Complete Season (12 Episodes)</h3>
+          <p>The entire first season. 4+ hours of AI animation. Use code <strong>LAUNCH25</strong> for 25% off.</p>
+          <a href="https://chfr1982.gumroad.com/l/vvbxej" class="btn primary" target="_blank" rel="noopener">Get Full Season →</a>
+        </div>
+      </div>
+      <p style="color: var(--muted); margin-top: 1rem; font-size: 0.85rem;">
+        🔗 All products: <a href="https://chfr1982.gumroad.com" style="color: var(--accent2);" target="_blank" rel="noopener">chfr1982.gumroad.com</a> · Custom orders: chfr19820610@gmail.com
+      </p>
     </section>
 
     <section>
