@@ -31,6 +31,14 @@
 > 🔗 完整产品页: https://chfr1982.gumroad.com
 > 需要定制 / 白标量产? 联系: chfr19820610@gmail.com
 
+### 👉 Watch the free sample, then get the full episode
+
+> **Liked the 30-second preview?** Episode 1 is a complete 4-minute AI-generated cultivation-fantasy donghua — 15+ controlled SDXL keyframes, Blender NPR shading, automated TTS narration + BGM. [Get Episode 1 for $39 →](https://chfr1982.gumroad.com/l/lrruav)
+>
+> **Want the whole story?** The complete 12-episode season (4+ hours of content) is [available for $156 →](https://chfr1982.gumroad.com/l/vvbxej) — that's under $14/episode.
+>
+> **Building your own AI animation pipeline?** The [AICG Animation Production Handbook](https://chfr1982.gumroad.com/l/aicg-handbook) ($78) documents the full ComfyUI + Blender + Remotion workflow used to produce every episode. The open-source system you're looking at right now is free; the handbook teaches you how to use it end-to-end.
+
 ---
 
 ## 📺 演示
