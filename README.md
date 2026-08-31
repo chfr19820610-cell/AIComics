@@ -22,7 +22,7 @@
 | 产品 | 价格 | 链接 |
 |------|------|------|
 | **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $156 | [Gumroad](https://chfr1982.gumroad.com/l/vvbxej) |
-| **Nine Turns of the Crimson Heavens — Episode 1** (The Night the Village Burned) | $39 | [Gumroad](https://chfr1982.gumroad.com/l/lrruav) |
+| **Nine Turns of the Crimson Heavens — Episode 1** (The Night the Village Burned) | **$2** (launch sale) | [Gumroad](https://chfr1982.gumroad.com/l/lrruav) |
 | **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $39 | [Gumroad](https://chfr1982.gumroad.com/l/matlkg) |
 | **Vertical Manhua AI Toolkit** · 竖屏漫剧制作工具包 | $78 | [Gumroad](https://chfr1982.gumroad.com/l/vsrbx) |
 | **AICG Animation Production Handbook** · AI 动画工作流手册 | $78 | [Gumroad](https://chfr1982.gumroad.com/l/aicg-handbook) |
@@ -33,7 +33,7 @@
 
 ### 👉 Watch the free sample, then get the full episode
 
-> **Liked the 30-second preview?** Episode 1 is a complete 4-minute AI-generated cultivation-fantasy donghua — 15+ controlled SDXL keyframes, Blender NPR shading, automated TTS narration + BGM. [Get Episode 1 for $39 →](https://chfr1982.gumroad.com/l/lrruav)
+> **Liked the 30-second preview?** Episode 1 is a complete 4-minute AI-generated cultivation-fantasy donghua — 15+ controlled SDXL keyframes, Blender NPR shading, automated TTS narration + BGM. **Launch sale: $2 (use code LAUNCH20 for extra 20% off).** [Get Episode 1 →](https://chfr1982.gumroad.com/l/lrruav)
 >
 > **Want the whole story?** The complete 12-episode season (4+ hours of content) is [available for $156 →](https://chfr1982.gumroad.com/l/vvbxej) — that's under $14/episode.
 >
