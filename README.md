@@ -31,9 +31,17 @@
 > 🔗 完整产品页: https://chfr1982.gumroad.com
 > 需要定制 / 白标量产? 联系: chfr19820610@gmail.com
 
+### 🎁 Limited-Time Launch Offer — FREE Downloads
+
+> **First 10 people can get Episode 1 ($7.99) for FREE!** Use code **`FIRST100`** at checkout → [Claim free Episode 1 →](https://chfr1982.gumroad.com/l/lrruav)
+>
+> **First 10 people can get the AICG Animation Handbook ($78) for FREE!** Use code **`EARLYBIRD`** at checkout → [Claim free Handbook →](https://chfr1982.gumroad.com/l/aicg-handbook)
+>
+> **First 10 people can get the Crypto Spread Scanner ($78) for FREE!** Use code **`EARLYBIRD`** at checkout → [Claim free Scanner →](https://chfr1982.gumroad.com/l/hiaut)
+
 ### 👉 Watch the free sample, then get the full episode
 
-> **Liked the 30-second preview?** Episode 1 is a complete AI-generated cultivation-fantasy donghua — 15+ controlled SDXL keyframes, Blender NPR shading, automated TTS narration + BGM. **Price: $7.99.** [Get Episode 1 →](https://chfr1982.gumroad.com/l/lrruav)
+> **Liked the 30-second preview?** Episode 1 is a complete AI-generated cultivation-fantasy donghua — 15+ controlled SDXL keyframes, Blender NPR shading, automated TTS narration + BGM. **Price: $7.99 (FREE with code FIRST100 — first 10 only!)**. [Get Episode 1 →](https://chfr1982.gumroad.com/l/lrruav)
 >
 > **Want the whole story?** The complete 12-episode season (4+ hours of content) is [available for $156 →](https://chfr1982.gumroad.com/l/vvbxej) — that's under $14/episode.
 >
