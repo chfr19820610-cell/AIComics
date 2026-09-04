@@ -1,98 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Donghua Studio — Free AI-Generated Chinese Anime | ComfyUI + SDXL + Blender</title>
-    <meta name="description" content="Watch free AI-generated donghua (Chinese anime) — Nine Turns of the Crimson Heavens. Built with open-source tools: ComfyUI, SDXL, Blender NPR, TTS. Full 12-episode season available.">
-    <meta name="keywords" content="ai animation, ai anime, donghua, chinese anime, cultivation, xianxia, comfyui, sdxl, blender, ai video, web series, free anime">
-    <meta property="og:title" content="AI Donghua Studio — Free AI-Generated Chinese Anime">
-    <meta property="og:description" content="Watch a free 30-second sample of AI-generated donghua. Full 12-episode season available on Gumroad.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://chfr19820610-cell.github.io/AIComics/">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e8e8f0; line-height: 1.6; }
-        .container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
-        h1 { font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, #ff6b6b, #c92a2a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .tagline { font-size: 1.2rem; color: #888; margin-bottom: 2rem; }
-        .section { margin-bottom: 2rem; padding: 1.5rem; background: #14141f; border-radius: 12px; border: 1px solid #222; }
-        .section h2 { font-size: 1.4rem; margin-bottom: 0.8rem; color: #ff6b6b; }
-        .cta { display: inline-block; padding: 0.8rem 2rem; background: linear-gradient(135deg, #ff6b6b, #c92a2a); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin: 0.5rem 0.5rem 0.5rem 0; transition: transform 0.2s; }
-        .cta:hover { transform: translateY(-2px); }
-        .cta.secondary { background: #222; border: 1px solid #444; }
-        .product-list { list-style: none; }
-        .product-list li { padding: 0.8rem 0; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; }
-        .price { color: #ff6b6b; font-weight: 600; }
-        .free { color: #4CAF50; font-weight: 600; }
-        .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .tech-stack span { padding: 0.3rem 0.8rem; background: #1a1a2e; border-radius: 20px; font-size: 0.85rem; border: 1px solid #333; }
-        footer { text-align: center; padding: 2rem 0; color: #555; font-size: 0.85rem; }
-        a { color: #ff6b6b; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Donghua Studio — Free AI Anime | 50% Off Launch Sale</title>
+<meta name="description" content="Watch free AI-generated donghua. 10 products: animation, toolkits, games, novels. 50% off with code EARLYBIRD50. Built with ComfyUI + SDXL + Blender.">
+<meta property="og:title" content="AI Donghua Studio — Free AI Anime + 50% Off Sale">
+<meta property="og:description" content="Free Episode 1 + 50% off all products. AI-generated Chinese anime built with open-source tools.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chfr19820610-cell.github.io/AIComics/">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0f;color:#e8e8f0;line-height:1.6}
+.c{max-width:760px;margin:0 auto;padding:2rem 1rem}
+h1{font-size:2.4rem;margin-bottom:.5rem;background:linear-gradient(135deg,#ff6b6b,#c92a2a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.tag{font-size:1.1rem;color:#888;margin-bottom:2rem}
+.s{margin-bottom:1.5rem;padding:1.4rem;background:#14141f;border-radius:12px;border:1px solid #222}
+.s h2{font-size:1.3rem;margin-bottom:.6rem;color:#ff6b6b}
+.cta{display:inline-block;padding:.7rem 1.8rem;background:linear-gradient(135deg,#ff6b6b,#c92a2a);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;margin:.4rem .4rem .4rem 0}
+.cta:hover{transform:translateY(-2px)}
+.cta2{background:#222;border:1px solid #444}
+.sale{border:2px solid #ff6b6b;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{border-color:#ff6b6b}50%{border-color:#ff9999}}
+.price{color:#ff6b6b;font-weight:700}
+.free{color:#4CAF50;font-weight:700}
+.old{text-decoration:line-through;color:#666;font-size:.85rem}
+.pl{list-style:none}
+.pl li{padding:.6rem 0;border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center}
+.pl a{text-decoration:none;color:inherit}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tags span{padding:.25rem .7rem;background:#1a1a2e;border-radius:20px;font-size:.8rem;border:1px solid #333}
+.share{display:flex;gap:.5rem;margin-top:1rem}
+.share a{padding:.5rem 1rem;border-radius:8px;font-size:.85rem;text-decoration:none;color:#fff}
+.share .rd{background:#ff4500}.share .tw{background:#1da1f2}.share .gh{background:#333}
+footer{text-align:center;padding:2rem 0;color:#555;font-size:.85rem}
+a{color:#ff6b6b}
+.code{background:#1a1a2e;padding:.2rem .5rem;border-radius:4px;font-family:monospace;color:#4CAF50;border:1px solid #333}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>AI Donghua Studio</h1>
-        <p class="tagline">AI-generated Chinese anime — built entirely with open-source tools</p>
+<div class="c">
+<h1>AI Donghua Studio</h1>
+<p class="tag">AI-generated Chinese anime — built with open-source tools. 16-star GitHub project.</p>
 
-        <div class="section" style="border: 2px solid #ff6b6b;">
-            <h2>Start Here: Free 30-Second Preview</h2>
-            <p>Watch a free 30-second preview of <strong>Nine Turns of the Crimson Heavens (九转丹霄)</strong> — no signup, no email required.</p>
-            <a href="https://chfr1982.gumroad.com/l/hrscll" class="cta">Get Free Sample →</a>
-        </div>
+<div class="s sale">
+<h2>Launch Sale: 50% Off Everything</h2>
+<p>Use code <span class="code">EARLYBIRD50</span> at checkout. All paid products $1.99-$2.99. Complete season just $2.99 (was $156).</p>
+</div>
 
-        <div class="section" style="background: #1a1a2e; border: 1px solid #ff6b6b;">
-            <h2>Best Value: Episode 1 — Just $7.99</h2>
-            <p>The night the village burned, Su Chen lost everything. But before the wolf's fangs closed — a sword fell from the heavens.</p>
-            <p style="color: #aaa; font-size: 0.9rem;">Full 5-minute animated episode · TTS narration + BGM · English subtitles · Vertical 1080x1920 · No DRM</p>
-            <a href="https://chfr1982.gumroad.com/l/lrruav" class="cta">Get Episode 1 — $7.99 →</a>
-            <p style="margin-top: 0.8rem; color: #4CAF50; font-size: 0.85rem;">Less than a coffee. Support indie AI animation.</p>
-        </div>
+<div class="s" style="border:2px solid #4CAF50">
+<h2>Watch Free: Episode 1 + 30s Sample</h2>
+<p><strong>Nine Turns of the Crimson Heavens (九转丹霄)</strong> — the pilot episode, free forever. No signup, no email.</p>
+<a href="https://chfr1982.gumroad.com/l/nine-turns-episode-1" class="cta">Get Episode 1 FREE</a>
+<a href="https://chfr1982.gumroad.com/l/free-ai-animation-sample" class="cta cta2">30s Sample</a>
+</div>
 
-        <div class="section">
-            <h2>FAQ</h2>
-            <p><strong>Is it just a slideshow?</strong> No. The free preview shows keyframes with Ken Burns camera movement. The full episodes include animated scene transitions, TTS narration, background music, and sound design.</p>
-            <p style="margin-top: 0.8rem;"><strong>What format?</strong> MP4, vertical 1080x1920 (mobile-optimized), direct download, no DRM.</p>
-            <p style="margin-top: 0.8rem;"><strong>Open source?</strong> Yes. The entire production pipeline is <a href="https://github.com/chfr19820610-cell/AIComics">open-sourced on GitHub</a> — 939 tests passing, Docker-ready.</p>
-        </div>
+<div class="s">
+<h2>All 10 Products</h2>
+<ul class="pl">
+<li><a href="https://chfr1982.gumroad.com/l/nine-turns-episode-1"><span>Nine Turns Ep1 — The Night the Village Burned</span><span class="free">FREE</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/free-ai-animation-sample"><span>30s White-Label AI Animation Sample</span><span class="free">FREE</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/nine-turns-complete-season"><span>Nine Turns — Complete Season (12 ep, 4+ hrs)</span><span class="price">$2.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/starfall-chronicle-ep2"><span>Starfall Chronicle EP2 — Under the Dome</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/vertical-manhua-ai-toolkit"><span>Vertical Manhua AI Toolkit (ComfyUI)</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/aicg-handbook"><span>AICG Animation Production Handbook</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/white-label-ai-animation"><span>White-Label AI Animation Suite</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/crypto-spread-scanner"><span>Crypto Spread Scanner — Arbitrage Tool</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/starfall-night-game"><span>Starfall Night — HTML5 Arcade Game</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/nine-heavens-ascension-novel"><span>Nine Heavens Ascension — Xianxia Novel</span><span class="price">$1.99</span></a></li>
+</ul>
+</div>
 
-        <div class="section">
-            <h2>All Products</h2>
-            <ul class="product-list">
-                <li><a href="https://chfr1982.gumroad.com/l/hrscll" style="text-decoration:none;color:inherit"><span>Free: 30s AI Animation Sample</span> <span class="free">FREE</span></a></li>
-                <li><a href="https://chfr1982.gumroad.com/l/lrruav" style="text-decoration:none;color:inherit"><span>Nine Turns — Episode 1</span> <span class="price">$7.99</span></a></li>
-                <li><a href="https://chfr1982.gumroad.com/l/vvbxej" style="text-decoration:none;color:inherit"><span>Nine Turns — Complete Season (12 ep)</span> <span class="price">$156</span></a></li>
-                <li><a href="https://chfr1982.gumroad.com/l/matlkg" style="text-decoration:none;color:inherit"><span>Starfall Chronicle EP2</span> <span class="price">$39</span></a></li>
-                <li><a href="https://chfr1982.gumroad.com/l/vsrbx" style="text-decoration:none;color:inherit"><span>Vertical Manhua AI Toolkit</span> <span class="price">$78</span></a></li>
-                <li><a href="https://chfr1982.gumroad.com/l/aicg-handbook" style="text-decoration:none;color:inherit"><span>AICG Animation Handbook</span> <span class="price">$78</span></a></li>
-                <li><a href="https://chfr1982.gumroad.com" style="text-decoration:none;color:inherit"><span>White-Label AI Animation Suite</span> <span class="price">$156</span></a></li>
-            </ul>
-        </div>
+<div class="s">
+<h2>FAQ</h2>
+<p><b>Is it just a slideshow?</b> No. Keyframes with Ken Burns camera movement, TTS narration, BGM, and sound design.</p>
+<p style="margin-top:.6rem"><b>What format?</b> MP4, vertical 1080x1920 (mobile-optimized), direct download, no DRM.</p>
+<p style="margin-top:.6rem"><b>Open source?</b> Yes. Full pipeline on <a href="https://github.com/chfr19820610-cell/AIComics">GitHub</a> — 939 tests, Docker-ready.</p>
+<p style="margin-top:.6rem"><b>Offer codes:</b> EARLYBIRD50 (50% off all), SEASON50 (50% off season), BINGE20 (20% off season), GUIDE50 (50% off handbook).</p>
+</div>
 
-        <div class="section">
-            <h2>Tech Stack</h2>
-            <div class="tech-stack">
-                <span>ComfyUI</span>
-                <span>SDXL</span>
-                <span>Blender NPR</span>
-                <span>TTS</span>
-                <span>Remotion</span>
-                <span>Docker</span>
-                <span>Python</span>
-            </div>
-            <p style="margin-top: 1rem;">The entire production pipeline is <a href="https://github.com/chfr19820610-cell/AIComics">open-sourced on GitHub</a>. Deploy with Docker, generate your own donghua.</p>
-        </div>
+<div class="s">
+<h2>Tech Stack</h2>
+<div class="tags"><span>ComfyUI</span><span>SDXL</span><span>Blender NPR</span><span>TTS</span><span>Remotion</span><span>Docker</span><span>Python</span></div>
+<p style="margin-top:1rem">Full pipeline <a href="https://github.com/chfr19820610-cell/AIComics">open-sourced on GitHub</a>. Deploy with Docker, generate your own donghua.</p>
+<a href="https://github.com/chfr19820610-cell/AIComics" class="cta">Star on GitHub</a>
+</div>
 
-        <div class="section">
-            <h2>Open-Source Pipeline</h2>
-            <p>The entire AI animation production pipeline is open-sourced on GitHub. 939 tests passing, Docker-ready, ComfyUI + Blender + Remotion.</p>
-            <a href="https://github.com/chfr19820610-cell/AIComics" class="cta">Star on GitHub →</a>
-        </div>
+<div class="s">
+<h2>Share This Page</h2>
+<div class="share">
+<a class="rd" href="https://reddit.com/submit?url=https://chfr19820610-cell.github.io/AIComics/&title=AI-generated%20donghua%20%E2%80%94%20free%20Episode%201%20+%2050%%20off%20sale">Reddit</a>
+<a class="tw" href="https://twitter.com/intent/tweet?url=https://chfr19820610-cell.github.io/AIComics/&text=Free%20AI-generated%20donghua%20%E2%80%94%2050%%20off%20launch%20sale">Twitter</a>
+<a class="gh" href="https://github.com/chfr19820610-cell/AIComics">GitHub</a>
+</div>
+</div>
 
-        <footer>
-            <p>AIComics Open-Source Project | <a href="https://github.com/chfr19820610-cell/AIComics">GitHub</a> | <a href="https://chfr1982.gumroad.com">Gumroad</a></p>
-        </footer>
-    </div>
+<footer>
+<p>AIComics Open-Source Project | <a href="https://github.com/chfr19820610-cell/AIComics">GitHub</a> | <a href="https://chfr1982.gumroad.com">Gumroad Store</a></p>
+</footer>
+</div>
 </body>
 </html>
