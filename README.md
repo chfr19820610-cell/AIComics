@@ -14,30 +14,48 @@
 
 ---
 
-## 🛒 成品漫剧 · Commercial Releases
+## 🛒 Commercial Releases — Buy on Gumroad
 
-> 本系统产出的**成品 AI 漫剧**已在 Gumroad 上架，可直接购买 / 用于白标授权。
-> Finished AI animation series produced by this system are on Gumroad — buy them outright, or license them white-label.
+> **10 products available** — AI-animated donghua, production toolkits, handbooks, games, and novels.
+> All instantly downloadable. No DRM. Use offer codes below for launch discounts.
 
-| 产品 | 价格 | 链接 |
-|------|------|------|
+### 📺 AI Animation (Donghua)
+
+| Product | Price | Link |
+|---------|-------|------|
 | **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $156 | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-complete-season) |
 | **Nine Turns of the Crimson Heavens — Episode 1** (The Night the Village Burned) | **$0.99** | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-episode-1) |
-| **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $39 | [Gumroad](https://chfr1982.gumroad.com/l/matlkg) |
+| **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $39 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-chronicle-ep2) |
+| **Free: 30s White-Label AI Animation Sample** *(免费样品)* | Free | [Gumroad](https://chfr1982.gumroad.com/l/free-ai-animation-sample) |
+
+### 🛠️ Tools & Handbooks
+
+| Product | Price | Link |
+|---------|-------|------|
 | **Vertical Manhua AI Toolkit** · 竖屏漫剧制作工具包 | $78 | [Gumroad](https://chfr1982.gumroad.com/l/vsrbx) |
 | **AICG Animation Production Handbook** · AI 动画工作流手册 | $78 | [Gumroad](https://chfr1982.gumroad.com/l/aicg-handbook) |
-| **Free: 30s White-Label AI Animation Sample** *(免费样品 · 先看再下单)* | Free | [Gumroad](https://chfr1982.gumroad.com/l/free-ai-animation-sample) |
+| **White-Label AI Animation Suite** · 白标AI动画套件 | $156 | [Gumroad](https://chfr1982.gumroad.com) |
+| **Crypto Spread Scanner** — Arbitrage Detection | $78 | [Gumroad](https://chfr1982.gumroad.com/l/crypto-spread-scanner) |
 
-> 🔗 完整产品页: https://chfr1982.gumroad.com
-> 需要定制 / 白标量产? 联系: chfr19820610@gmail.com
+### 🎮 Games & Novels
 
-### 🎁 Limited-Time Launch Offer — FREE Downloads
+| Product | Price | Link |
+|---------|-------|------|
+| **Starfall Night — HTML5 Arcade Game** | $39 | [Gumroad](https://chfr1982.gumroad.com) |
+| **Nine Heavens Ascension — Xianxia Novel** · 九天飞升 | $39 | [Gumroad](https://chfr1982.gumroad.com) |
 
-> **First 10 people can get Episode 1 ($0.99) for FREE!** Use code **`FIRST100`** at checkout → [Claim free Episode 1 →](https://chfr1982.gumroad.com/l/nine-turns-episode-1)
+> 🔗 **Full store**: https://chfr1982.gumroad.com
+> 📧 Custom / white-label inquiries: chfr19820610@gmail.com
+
+### 🎁 Limited-Time Launch Offers
+
+> **Episode 1 for FREE** — Use code **`FIRST100`** at checkout → [Claim free Episode 1 →](https://chfr1982.gumroad.com/l/nine-turns-episode-1)
 >
-> **First 10 people can get the AICG Animation Handbook ($78) for FREE!** Use code **`EARLYBIRD`** at checkout → [Claim free Handbook →](https://chfr1982.gumroad.com/l/aicg-handbook)
+> **50% OFF Complete Season** — Use code **`SEASON50`** → [Get full season for $78 →](https://chfr1982.gumroad.com/l/nine-turns-complete-season)
 >
-> **First 10 people can get the Crypto Spread Scanner ($78) for FREE!** Use code **`EARLYBIRD`** at checkout → [Claim free Scanner →](https://chfr1982.gumroad.com/l/hiaut)
+> **Handbook for FREE** — Use code **`EARLYBIRD`** → [Claim free Handbook →](https://chfr1982.gumroad.com/l/aicg-handbook)
+>
+> ⚡ All codes are limited to first 10 buyers. Don't wait!
 
 ### 👉 Watch the free sample, then get the full episode
 
