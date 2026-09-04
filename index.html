@@ -1,290 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AIComics - AI-powered manga & animation video generation pipeline. Write stories, generate frames, dub, and publish automatically.">
-  <title>AIComics — AI Manga & Animation Generator</title>
-  <style>
-    :root {
-      --bg: #0a0a0f;
-      --surface: #14141e;
-      --border: #2a2a3e;
-      --accent: #6c5ce7;
-      --accent2: #00cec9;
-      --text: #e8e8f0;
-      --muted: #8888a0;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-    .container { max-width: 960px; margin: 0 auto; padding: 2rem; }
-
-    /* Hero */
-    header {
-      text-align: center;
-      padding: 4rem 0 2rem;
-    }
-    h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .tagline {
-      font-size: 1.2rem;
-      color: var(--muted);
-      margin-top: 1rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Badges */
-    .badges {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-    .badge.primary { border-color: var(--accent); color: var(--accent); }
-
-    /* Cards */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin: 3rem 0;
-    }
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.8rem;
-      transition: border-color 0.2s;
-    }
-    .card:hover { border-color: var(--accent); }
-    .card h3 { font-size: 1.1rem; margin-bottom: 0.6rem; }
-    .card p { color: var(--muted); font-size: 0.9rem; }
-
-    /* Sections */
-    section { margin: 3rem 0; }
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--accent2);
-    }
-
-    .quick-start {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      overflow-x: auto;
-    }
-    code {
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 0.9rem;
-      color: var(--accent2);
-    }
-    pre {
-      background: #0e0e18;
-      padding: 1rem;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
-    pre code { color: #c0c0d0; }
-
-    .product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s; }
-    .product-card:hover { border-color: var(--accent); }
-    .product-card h3 { font-size: 1rem; }
-    .product-card p { color: var(--muted); font-size: 0.85rem; flex: 1; }
-    .product-tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; background: var(--accent); color: white; align-self: flex-start; }
-    .product-card .btn { align-self: flex-start; margin-top: 0.5rem; }
-    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
-
-    .links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 2rem 0;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-    .btn.primary {
-      background: var(--accent);
-      color: white;
-    }
-    .btn.primary:hover { background: #5a4bd1; }
-    .btn.outline {
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .btn.outline:hover { border-color: var(--accent); }
-
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      padding: 3rem 0;
-      border-top: 1px solid var(--border);
-    }
-    footer a { color: var(--accent2); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    @media (max-width: 640px) {
-      h1 { font-size: 2.2rem; }
-      .container { padding: 1rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Donghua Studio — Free AI Anime | 50% Off Launch Sale</title>
+<meta name="description" content="Watch free AI-generated donghua. 10 products: animation, toolkits, games, novels. 50% off with code EARLYBIRD50. Built with ComfyUI + SDXL + Blender.">
+<meta property="og:title" content="AI Donghua Studio — Free AI Anime + 50% Off Sale">
+<meta property="og:description" content="Free Episode 1 + 50% off all products. AI-generated Chinese anime built with open-source tools.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chfr19820610-cell.github.io/AIComics/">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0f;color:#e8e8f0;line-height:1.6}
+.c{max-width:760px;margin:0 auto;padding:2rem 1rem}
+h1{font-size:2.4rem;margin-bottom:.5rem;background:linear-gradient(135deg,#ff6b6b,#c92a2a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.tag{font-size:1.1rem;color:#888;margin-bottom:2rem}
+.s{margin-bottom:1.5rem;padding:1.4rem;background:#14141f;border-radius:12px;border:1px solid #222}
+.s h2{font-size:1.3rem;margin-bottom:.6rem;color:#ff6b6b}
+.cta{display:inline-block;padding:.7rem 1.8rem;background:linear-gradient(135deg,#ff6b6b,#c92a2a);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;margin:.4rem .4rem .4rem 0}
+.cta:hover{transform:translateY(-2px)}
+.cta2{background:#222;border:1px solid #444}
+.sale{border:2px solid #ff6b6b;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{border-color:#ff6b6b}50%{border-color:#ff9999}}
+.price{color:#ff6b6b;font-weight:700}
+.free{color:#4CAF50;font-weight:700}
+.old{text-decoration:line-through;color:#666;font-size:.85rem}
+.pl{list-style:none}
+.pl li{padding:.6rem 0;border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center}
+.pl a{text-decoration:none;color:inherit}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tags span{padding:.25rem .7rem;background:#1a1a2e;border-radius:20px;font-size:.8rem;border:1px solid #333}
+.share{display:flex;gap:.5rem;margin-top:1rem}
+.share a{padding:.5rem 1rem;border-radius:8px;font-size:.85rem;text-decoration:none;color:#fff}
+.share .rd{background:#ff4500}.share .tw{background:#1da1f2}.share .gh{background:#333}
+footer{text-align:center;padding:2rem 0;color:#555;font-size:.85rem}
+a{color:#ff6b6b}
+.code{background:#1a1a2e;padding:.2rem .5rem;border-radius:4px;font-family:monospace;color:#4CAF50;border:1px solid #333}
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>AIComics</h1>
-      <p class="tagline">
-        🎬 AI-powered manga &amp; animation video generation pipeline.
-        Write a story → auto-split into scenes → AI-generate frames → dub → publish.
-        Runs entirely on open-source models via ComfyUI.
-      </p>
-      <div class="badges">
-        <span class="badge primary">⚡ Zero API Cost</span>
-        <span class="badge">🎨 ComfyUI</span>
-        <span class="badge">🔊 Piper TTS</span>
-        <span class="badge">🐳 Docker</span>
-        <span class="badge">🆓 MIT License</span>
-      </div>
-      <div class="links">
-        <a href="https://github.com/chfr19820610-cell/AIComics" class="btn primary">View on GitHub</a>
-        <a href="https://github.com/chfr19820610-cell/AIComics/blob/main/README.md" class="btn outline">Documentation</a>
-      </div>
-    </header>
+<div class="c">
+<h1>AI Donghua Studio</h1>
+<p class="tag">AI-generated Chinese anime — built with open-source tools. 16-star GitHub project.</p>
 
-    <section>
-      <h2>✨ Features</h2>
-      <div class="features">
-        <div class="card">
-          <h3>📖 Story-to-Video</h3>
-          <p>Write any story or prompt. The system automatically splits it into scenes, generates manga-style frames, and assembles them into a video.</p>
-        </div>
-        <div class="card">
-          <h3>🎙️ Auto Dubbing</h3>
-          <p>Zero-cost text-to-speech via Piper TTS. Each character gets distinct voice lines synced to the animation timeline.</p>
-        </div>
-        <div class="card">
-          <h3>🐳 One-Click Deploy</h3>
-          <p>Docker Compose brings up the entire pipeline — ComfyUI sidecar, web interface, and job runner — with a single command.</p>
-        </div>
-        <div class="card">
-          <h3>🔄 Batch Production</h3>
-          <p>Designed for content factories. Queue multiple stories, process them in parallel, and publish results automatically.</p>
-        </div>
-        <div class="card">
-          <h3>🔧 Fully Customizable</h3>
-          <p>Swap models, change art styles, add new workflows — everything is driven by ComfyUI workflows and config files.</p>
-        </div>
-        <div class="card">
-          <h3>📦 One-Person Studio</h3>
-          <p>Built for solo creators. No subscriptions, no API fees, no hidden costs. Your hardware, your content.</p>
-        </div>
-      </div>
-    </section>
+<div class="s sale">
+<h2>Launch Sale: 50% Off Everything</h2>
+<p>Use code <span class="code">EARLYBIRD50</span> at checkout. All paid products $1.99-$2.99. Complete season just $2.99 (was $156).</p>
+</div>
 
-    <section>
-      <h2>🛒 Watch Finished Episodes — Buy on Gumroad</h2>
-      <p style="color: var(--muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
-        Don't want to set up the pipeline? Watch the finished AI donghua series produced with this system — available now on Gumroad.
-      </p>
-      <div class="products">
-        <div class="product-card">
-          <div class="product-tag">Free</div>
-          <h3>30s White-Label Sample</h3>
-          <p>Free 30-second preview — see the quality before you buy.</p>
-          <a href="https://chfr1982.gumroad.com/l/hrscll" class="btn primary" target="_blank" rel="noopener">Watch Free →</a>
-        </div>
-        <div class="product-card">
-          <div class="product-tag">Episode · HK$15 (~US$2)</div>
-          <h3>Nine Turns EP1: The Night the Village Burned</h3>
-          <p>Complete AI-generated cultivation-fantasy donghua. Chinese narration + English subtitles. <strong>Launch price — use code LAUNCH20 for 20% off!</strong></p>
-          <a href="https://chfr1982.gumroad.com/l/lrruav" class="btn primary" target="_blank" rel="noopener">Get Episode 1 — HK$15 →</a>
-        </div>
-        <div class="product-card">
-          <div class="product-tag">Full Season</div>
-          <h3>Nine Turns — Complete Season (12 Episodes)</h3>
-          <p>The entire first season. 4+ hours of AI animation. Use code <strong>LAUNCH25</strong> for 25% off.</p>
-          <a href="https://chfr1982.gumroad.com/l/vvbxej" class="btn primary" target="_blank" rel="noopener">Get Full Season →</a>
-        </div>
-      </div>
-      <p style="color: var(--muted); margin-top: 1rem; font-size: 0.85rem;">
-        🔗 All products: <a href="https://chfr1982.gumroad.com" style="color: var(--accent2);" target="_blank" rel="noopener">chfr1982.gumroad.com</a> · Custom orders: chfr19820610@gmail.com
-      </p>
-    </section>
+<div class="s" style="border:2px solid #4CAF50">
+<h2>Watch Free: Episode 1 + 30s Sample</h2>
+<p><strong>Nine Turns of the Crimson Heavens (九转丹霄)</strong> — the pilot episode, free forever. No signup, no email.</p>
+<a href="https://chfr1982.gumroad.com/l/nine-turns-episode-1" class="cta">Get Episode 1 FREE</a>
+<a href="https://chfr1982.gumroad.com/l/free-ai-animation-sample" class="cta cta2">30s Sample</a>
+</div>
 
-    <section>
-      <h2>🚀 Quick Start</h2>
-      <div class="quick-start">
-        <pre><code># Clone
-git clone https://github.com/chfr19820610-cell/AIComics.git
-cd AIComics
+<div class="s">
+<h2>All 10 Products</h2>
+<ul class="pl">
+<li><a href="https://chfr1982.gumroad.com/l/nine-turns-episode-1"><span>Nine Turns Ep1 — The Night the Village Burned</span><span class="free">FREE</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/free-ai-animation-sample"><span>30s White-Label AI Animation Sample</span><span class="free">FREE</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/nine-turns-complete-season"><span>Nine Turns — Complete Season (12 ep, 4+ hrs)</span><span class="price">$2.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/starfall-chronicle-ep2"><span>Starfall Chronicle EP2 — Under the Dome</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/vertical-manhua-ai-toolkit"><span>Vertical Manhua AI Toolkit (ComfyUI)</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/aicg-handbook"><span>AICG Animation Production Handbook</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/white-label-ai-animation"><span>White-Label AI Animation Suite</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/crypto-spread-scanner"><span>Crypto Spread Scanner — Arbitrage Tool</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/starfall-night-game"><span>Starfall Night — HTML5 Arcade Game</span><span class="price">$1.99</span></a></li>
+<li><a href="https://chfr1982.gumroad.com/l/nine-heavens-ascension-novel"><span>Nine Heavens Ascension — Xianxia Novel</span><span class="price">$1.99</span></a></li>
+</ul>
+</div>
 
-# Launch
-docker compose up -d
+<div class="s">
+<h2>FAQ</h2>
+<p><b>Is it just a slideshow?</b> No. Keyframes with Ken Burns camera movement, TTS narration, BGM, and sound design.</p>
+<p style="margin-top:.6rem"><b>What format?</b> MP4, vertical 1080x1920 (mobile-optimized), direct download, no DRM.</p>
+<p style="margin-top:.6rem"><b>Open source?</b> Yes. Full pipeline on <a href="https://github.com/chfr19820610-cell/AIComics">GitHub</a> — 939 tests, Docker-ready.</p>
+<p style="margin-top:.6rem"><b>Offer codes:</b> EARLYBIRD50 (50% off all), SEASON50 (50% off season), BINGE20 (20% off season), GUIDE50 (50% off handbook).</p>
+</div>
 
-# Open http://localhost:8080 and start creating!</code></pre>
-      </div>
-    </section>
+<div class="s">
+<h2>Tech Stack</h2>
+<div class="tags"><span>ComfyUI</span><span>SDXL</span><span>Blender NPR</span><span>TTS</span><span>Remotion</span><span>Docker</span><span>Python</span></div>
+<p style="margin-top:1rem">Full pipeline <a href="https://github.com/chfr19820610-cell/AIComics">open-sourced on GitHub</a>. Deploy with Docker, generate your own donghua.</p>
+<a href="https://github.com/chfr19820610-cell/AIComics" class="cta">Star on GitHub</a>
+</div>
 
-    <section>
-      <h2>📊 Pipeline Overview</h2>
-      <div class="quick-start">
-        <pre><code> Story Input (text or prompt)
-    │
-    ▼
- Scene Splitter ──► Frame Generator (ComfyUI)
-    │                               │
-    ▼                               ▼
- Script Writer               Image Assembler
-    │                               │
-    ▼                               ▼
- TTS (Piper) ──► Audio Sync ──► Video Export
-    │
-    ▼
- Publish / Share</code></pre>
-      </div>
-    </section>
+<div class="s">
+<h2>Share This Page</h2>
+<div class="share">
+<a class="rd" href="https://reddit.com/submit?url=https://chfr19820610-cell.github.io/AIComics/&title=AI-generated%20donghua%20%E2%80%94%20free%20Episode%201%20+%2050%%20off%20sale">Reddit</a>
+<a class="tw" href="https://twitter.com/intent/tweet?url=https://chfr19820610-cell.github.io/AIComics/&text=Free%20AI-generated%20donghua%20%E2%80%94%2050%%20off%20launch%20sale">Twitter</a>
+<a class="gh" href="https://github.com/chfr19820610-cell/AIComics">GitHub</a>
+</div>
+</div>
 
-    <footer>
-      <p>Built with ❤️ by <a href="https://github.com/chfr19820610-cell">chfr19820610-cell</a></p>
-      <p style="margin-top: 0.5rem;">MIT Licensed · Free &amp; Open Source</p>
-    </footer>
-  </div>
+<footer>
+<p>AIComics Open-Source Project | <a href="https://github.com/chfr19820610-cell/AIComics">GitHub</a> | <a href="https://chfr1982.gumroad.com">Gumroad Store</a></p>
+</footer>
+</div>
 </body>
 </html>
