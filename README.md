@@ -17,53 +17,52 @@
 ## 🛒 Commercial Releases — Buy on Gumroad
 
 > **10 products available** — AI-animated donghua, production toolkits, handbooks, games, and novels.
-> All instantly downloadable. No DRM. Use offer codes below for launch discounts.
+> All instantly downloadable. No DRM. **Every paid product is $1.99–$2.99.**
+> Use offer codes below for 50% off.
 
 ### 📺 AI Animation (Donghua)
 
 | Product | Price | Link |
 |---------|-------|------|
-| **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $156 | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-complete-season) |
+| **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $2.99 | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-complete-season) |
 | **Nine Turns of the Crimson Heavens — Episode 1** (The Night the Village Burned) | **FREE** | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-episode-1) |
-| **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $39 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-chronicle-ep2) |
+| **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-chronicle-ep2) |
 | **Free: 30s White-Label AI Animation Sample** *(免费样品)* | Free | [Gumroad](https://chfr1982.gumroad.com/l/free-ai-animation-sample) |
 
-### 🛒 Commercial Releases (EN)
+### 🛠️ Toolkits & Handbooks
 
 | Product | Price | Link |
 |---------|-------|------|
-| **Vertical Manhua AI Toolkit** · 竖屏漫剧制作工具包 | $78 | [Gumroad](https://chfr1982.gumroad.com/l/vsrbx) |
-| **AICG Animation Production Handbook** · AI 动画工作流手册 | $78 | [Gumroad](https://chfr1982.gumroad.com/l/aicg-handbook) |
-| **White-Label AI Animation Suite** · 白标AI动画套件 | $156 | [Gumroad](https://chfr1982.gumroad.com) |
-| **Crypto Spread Scanner** — Arbitrage Detection | $78 | [Gumroad](https://chfr1982.gumroad.com/l/crypto-spread-scanner) |
+| **Vertical Manhua AI Toolkit** · 竖屏漫剧制作工具包 | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/vertical-manhua-ai-toolkit) |
+| **AICG Animation Production Handbook** · AI 动画工作流手册 | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/aicg-handbook) |
+| **White-Label AI Animation Suite** · 白标AI动画套件 | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/white-label-ai-animation) |
+| **Crypto Spread Scanner** — Arbitrage Detection | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/crypto-spread-scanner) |
 
 ### 🎮 Games & Novels
 
 | Product | Price | Link |
 |---------|-------|------|
-| **Starfall Night — HTML5 Arcade Game** | $39 | [Gumroad](https://chfr1982.gumroad.com) |
-| **Nine Heavens Ascension — Xianxia Novel** · 九天飞升 | $39 | [Gumroad](https://chfr1982.gumroad.com) |
+| **Starfall Night — HTML5 Arcade Game** | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-night-game) |
+| **Nine Heavens Ascension — Xianxia Novel** · 九天飞升 | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/nine-heavens-ascension-novel) |
 
 > 🔗 **Full store**: https://chfr1982.gumroad.com
 > 📧 Custom / white-label inquiries: chfr19820610@gmail.com
 
-### 🎁 Limited-Time Launch Offers
+### 🎁 Launch Offers (50% Off All Paid Products)
 
-> **Episode 1 for FREE** — Use code **`FIRST100`** at checkout → [Claim free Episode 1 →](https://chfr1982.gumroad.com/l/nine-turns-episode-1)
+> **50% OFF any product** — Use code **`EARLYBIRD50`** at checkout → works on every paid product
 >
-> **50% OFF Complete Season** — Use code **`SEASON50`** → [Get full season for $78 →](https://chfr1982.gumroad.com/l/nine-turns-complete-season)
+> **Episode 1 is FREE** — no code needed, just download → [Get Episode 1 →](https://chfr1982.gumroad.com/l/nine-turns-episode-1)
 >
-> **Handbook for FREE** — Use code **`EARLYBIRD`** → [Claim free Handbook →](https://chfr1982.gumroad.com/l/aicg-handbook)
->
-> ⚡ All codes are limited to first 10 buyers. Don't wait!
+> **Free 30s sample** — no signup required → [Watch now →](https://chfr1982.gumroad.com/l/free-ai-animation-sample)
 
-### 👉 Watch the free sample, then get the full episode
+### 👉 Start free, then get the full season for $2.99
 
-> **Liked the 30-second preview?** Episode 1 is a complete AI-generated cultivation-fantasy donghua — 15+ controlled SDXL keyframes, Blender NPR shading, automated TTS narration + BGM. **Price: $0.99 (FREE with code FIRST100 — first 10 only!)**. [Get Episode 1 →](https://chfr1982.gumroad.com/l/nine-turns-episode-1)
+> **Watch the free 30-second sample** — no email required. Then grab **Episode 1 for free** to see if you like the style.
 >
-> **Want the whole story?** The complete 12-episode season (4+ hours of content) is [available for $156 →](https://chfr1982.gumroad.com/l/nine-turns-complete-season) — that's under $14/episode.
+> **Want the whole story?** The complete 12-episode season is just **$2.99** (use code `EARLYBIRD50` → $1.50) — [Get the full season →](https://chfr1982.gumroad.com/l/nine-turns-complete-season)
 >
-> **Building your own AI animation pipeline?** The [AICG Animation Production Handbook](https://chfr1982.gumroad.com/l/aicg-handbook) ($78) documents the full ComfyUI + Blender + Remotion workflow used to produce every episode. The open-source system you're looking at right now is free; the handbook teaches you how to use it end-to-end.
+> **Building your own AI animation pipeline?** The [AICG Animation Production Handbook](https://chfr1982.gumroad.com/l/aicg-handbook) ($1.99, or $0.99 with `EARLYBIRD50`) documents the full ComfyUI + Blender + Remotion workflow.
 
 ---
 
