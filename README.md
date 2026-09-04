@@ -24,11 +24,11 @@
 | Product | Price | Link |
 |---------|-------|------|
 | **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $156 | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-complete-season) |
-| **Nine Turns of the Crimson Heavens — Episode 1** (The Night the Village Burned) | **$0.99** | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-episode-1) |
+| **Nine Turns of the Crimson Heavens — Episode 1** (The Night the Village Burned) | **FREE** | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-episode-1) |
 | **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $39 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-chronicle-ep2) |
 | **Free: 30s White-Label AI Animation Sample** *(免费样品)* | Free | [Gumroad](https://chfr1982.gumroad.com/l/free-ai-animation-sample) |
 
-### 🛠️ Tools & Handbooks
+### 🛒 Commercial Releases (EN)
 
 | Product | Price | Link |
 |---------|-------|------|
