@@ -50,11 +50,13 @@
 
 ### 🎁 Launch Offers (50% Off All Paid Products)
 
-> **50% OFF any product** — Use code **`EARLYBIRD50`** at checkout → works on every paid product
+> **50% OFF any product** — Use code **`EARLYBIRD50`** at checkout → works on every paid product (20 uses per product)
 >
 > **Episode 1 is FREE** — no code needed, just download → [Get Episode 1 →](https://chfr1982.gumroad.com/l/nine-turns-episode-1)
 >
 > **Free 30s sample** — no signup required → [Watch now →](https://chfr1982.gumroad.com/l/free-ai-animation-sample)
+>
+> ⚡ All codes are limited. Don't wait!
 
 ### 👉 Start free, then get the full season for $2.99
 
@@ -62,7 +64,7 @@
 >
 > **Want the whole story?** The complete 12-episode season is just **$2.99** (use code `EARLYBIRD50` → $1.50) — [Get the full season →](https://chfr1982.gumroad.com/l/nine-turns-complete-season)
 >
-> **Building your own AI animation pipeline?** The [AICG Animation Production Handbook](https://chfr1982.gumroad.com/l/aicg-handbook) ($1.99, or $0.99 with `EARLYBIRD50`) documents the full ComfyUI + Blender + Remotion workflow.
+> **Building your own AI animation pipeline?** The [AICG Animation Production Handbook](https://chfr1982.gumroad.com/l/aicg-handbook) ($1.99, or $0.99 with `EARLYBIRD50`) documents the full ComfyUI + Blender + Remotion workflow used to produce every episode. The open-source system you're looking at right now is free; the handbook teaches you how to use it end-to-end.
 
 ---
 
