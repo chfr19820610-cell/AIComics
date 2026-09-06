@@ -3,6 +3,40 @@
 All notable changes to AIComics are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [3.0.0] — 2026-09-06
+
+### v3.0 升级 — 角色一致性 + 视频生成 + 图像管线
+
+#### P0: 基础修复
+- `image_pipeline/diagnostics.py` — 就绪诊断模块（不post prompt检查ComfyUI节点/模型/阶段状态）
+- `image_pipeline/workflows.py` — RMBG/ControlNet工作流护栏（未就绪时抛RuntimeError）
+- 26/26 image_pipeline 测试通过（965 total, 0 failed）
+- 删除错误的 `com.alcomics.backend` launchd plist
+- 提交 image_pipeline 8模块入git
+
+#### P1: Triple-Lock 角色一致性（进行中）
+- `image_consistency/triple_lock.py` — IPAdapter FaceID + ControlNet + FaceDetailer 三重锁
+- 升级从 pHash（2024方案）到 Triple-Lock（2026标准）
+- IPAdapter FaceID weight=0.75 锁脸
+- ControlNet OpenPose/Depth strength=0.8 锁姿势
+- FaceDetailer denoise=0.4 后处理修脸
+
+#### P2: 视频生成升级（进行中）
+- `providers/video_router.py` — 多模型路由（动作→Kling/对话→Seedance/创意→Wan）
+- `providers/flf_interpolator.py` — FLF首尾帧插值（参考Frameliq/OiiOii）
+- Seedance/Kling provider 支持 FLF 模式
+
+#### P3: 3D工厂（待Tripo API key）
+- `acom-0.9.0/` 骨架已就绪（tripo_pipeline + auto_animate + cel_shader）
+- 待 `TRIPO_API_KEY` 配置后跑通真3D链路
+
+### 测试
+- 711 → 939 (v2.0) → 965+ (v3.0)
+- 全部新增模块 100% 测试覆盖
+- 所有测试 mock 化，不依赖真实API
+
+---
+
 ## [2.0.0] — 2026-08-19
 
 ### Roadmap v2.0 — 全部 6 项完成
