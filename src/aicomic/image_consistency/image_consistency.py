@@ -39,7 +39,7 @@ def image_dhash(path_or_pil: Any, size: int = 8, crop: tuple[int, int, int, int]
         if len(crop) == 4 and crop[2] > crop[0] and crop[3] > crop[1]:
             img = img.crop(crop)
     img = ImageOps.fit(img, (size, size + 1), Image.Resampling.LANCZOS)
-    pixels = list(img.getdata())
+    pixels = list(img.get_flattened_data())
     width = size
     bits = 0
     for y in range(size):  # size 行
