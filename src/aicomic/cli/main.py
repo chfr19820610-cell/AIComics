@@ -76,6 +76,7 @@ from aicomic.core.novel_splitter import split_novel_to_episodes, build_manifest_
 from aicomic.render.release_renderer import build_release_plan, render_release_video
 from aicomic.render.season_renderer import render_season
 from aicomic.render.subtitle_audio import build_audio_plan, build_subtitle_entries, write_audio_plan, write_silence_wav, write_srt
+from aicomic.cli.render_cmd import handle_render as _handle_render_cmd
 from aicomic.review.metrics import build_review_metrics, write_review_html, write_review_metrics
 from aicomic.security.dependency_audit import build_dependency_audit_report, write_dependency_audit_report
 from aicomic.security.production_readiness import build_production_risk_register, write_production_risk_register
@@ -1042,6 +1043,18 @@ COMMANDS: dict[str, dict] = {
         (["--output-dir"], {"type": Path, "default": P("ProjectPaths.preview_outputs_dir() / 'season1'")}),
         (["--report-output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'season1_render_report.json'")})],
         "handler": lambda a: handle_render_season(a.season_manifest, a.episode_manifest, a.asset_root, a.output_dir, a.report_output, a.mode)},
+    # v3.0: three-line render command
+    "render": {"help": "v3.0 三档渲染 (2d/2.5d/3d) — 生成渲染计划", "args": [
+        (["--mode"], {"default": "2d", "choices": ["2d", "2.5d", "3d"]}),
+        (["--episode-code"], {"default": "E01"}),
+        (["--master-image"], {"default": None}),
+        (["--character-image"], {"default": None}),
+        (["--transition-mode"], {"default": "zoom"}),
+        (["--duration"], {"type": int, "default": 3}),
+        (["--fps"], {"type": int, "default": 24}),
+        (["--output"], {"type": Path, "default": None}),
+        (["--list-modes"], {"action": "store_true"})],
+        "handler": _handle_render_cmd},
     "build-season-summary": {"help": "生成整季总报告", "args": [
         (["--season-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'season_manifest.json'")}),
         (["--jobs-report"], {"type": Path, "default": P("ProjectPaths.jobs_output_dir() / 'season1_jobs.json'")}),
