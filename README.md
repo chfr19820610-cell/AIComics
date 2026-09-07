@@ -95,14 +95,27 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。你只需要有
 
 ---
 
-## 🆕 v3.0 新功能 — 角色一致性 + 视频生成 + 图像管线
+## 🆕 v3.0 新功能 — 三线渲染 + 角色一致性 + 视频生成
+
+### 三线渲染架构 (2D / 2.5D / 3D)
+
+```bash
+aicomic render --list-modes              # 查看三档就绪状态
+aicomic render --mode 2d                 # 2D: ffmpeg Ken Burns
+aicomic render --mode 2.5d               # 2.5D: Blender Cycles 赛璐珑
+aicomic render --mode 3d                 # 3D: Tripo→Mixamo→cel-shader
+```
 
 | 功能 | 模块 | 说明 |
 |------|------|------|
-| **Triple-Lock 角色一致性** | `image_consistency/triple_lock.py` | IPAdapter FaceID(0.75) + ControlNet(0.8) + FaceDetailer(0.4) — 2026标准方案 |
-| **多模型视频路由** | `providers/video_router.py` | 按镜头类型自动选模型：动作→Kling / 对话→Seedance / 远景→Wan |
-| **FLF 首尾帧插值** | `providers/flf_interpolator.py` | 首帧+尾帧→模型插值运动，保证shot间运动连续性 |
-| **图像管线 + 诊断** | `image_pipeline/` (8模块) | 抠图(RMBG)→生图(SDXL)→放大(Real-ESRGAN)→合成 + 就绪诊断 |
+| **三线渲染路由** | `render/mode_router.py` | 2D/2.5D/3D三档选择 + 按镜头类型自动路由 |
+| **2D 渲染线** | `render/two_d/` | ffmpeg Ken Burns zoom/pan + 关键帧插值 (v1.0成熟) |
+| **2.5D 渲染线** | `render/two_half_d/` | Blender Cycles赛璐珑材质 + 轨道相机±12° (100/100放行) |
+| **3D 渲染线** | `render/three_d/` | Tripo图生3D→Mixamo绑骨→cel-shader渲染 (gate 5/5) |
+| **Triple-Lock 角色一致性** | `image_consistency/triple_lock.py` | IPAdapter FaceID(0.75) + ControlNet(0.8) + FaceDetailer(0.4) |
+| **多模型视频路由** | `providers/video_router.py` | 动作→Kling / 对话→Seedance / 远景→Wan |
+| **FLF 首尾帧插值** | `providers/flf_interpolator.py` | 首帧+尾帧→模型插值运动，保证shot间连续性 |
+| **图像管线 + 诊断** | `image_pipeline/` (8模块) | 抠图→生图→放大→合成 + 就绪诊断 |
 
 ---
 
