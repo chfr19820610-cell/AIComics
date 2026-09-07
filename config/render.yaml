@@ -1,12 +1,42 @@
-preview:
-  width: 720
-  height: 1280
-  fps: 6
-  background_color: "#141414"
-  text_color: "#ffffff"
-  fallback_mode: placeholder_frame
+# AIComics Render Mode Configuration — v3.0 three-line architecture
+# 峰哥定调: 2D / 2.5D / 3D 三档
 
-paths:
-  preview_output_dir: G:\AIComics\10_System\state\preview_outputs
-  render_report_dir: G:\AIComics\10_System\reports
+render:
+  # 默认渲染模式
+  default_mode: "2d"
 
+  # 自动路由：镜头类型 → 渲染模式
+  auto_routing:
+    dialogue: "2d"          # 对话镜头 → 2D (便宜快速)
+    action: "2.5d"          # 动作镜头 → 2.5D (伪3D深度)
+    establishing: "2d"      # 建立镜头 → 2D (静态大景)
+    closeup: "2d"           # 特写镜头 → 2D (情绪近景)
+    key_moment: "3d"        # 关键时刻 → 3D (英雄镜头)
+    transition: "2d"        # 过渡镜头 → 2D (便宜)
+    flashback: "2.5d"       # 回忆镜头 → 2.5D (梦幻感)
+
+  # 2D 配置
+  two_d:
+    transition_mode: "zoom"   # morph | zoom | pan
+    duration: 3
+    fps: 24
+    ken_burns_zoom: "1.0-1.05"
+
+  # 2.5D 配置
+  two_half_d:
+    orbit_degrees: 12
+    frame_count: 90
+    breathing_frames: 105
+    cycles_samples: 16
+    resolution: [1080, 1920]
+    blender_bin: "/Applications/Blender.app/Contents/MacOS/Blender"
+
+  # 3D 配置
+  three_d:
+    tripo_model: "v3.1-20260211"
+    tripo_preset: "mixamo"
+    cel_outline: true
+    cycles_samples: 16
+    resolution: [1080, 1920]
+    frame_count: 90
+    blender_bin: "/Applications/Blender.app/Contents/MacOS/Blender"
