@@ -65,5 +65,7 @@ jobs:
         run: |
           echo "检查核心模块导入..."
           PYTHONPATH=src python -c "from aicomic.cli.main import main; print('✅ CLI 主模块导入成功')"
-          PYTHONPATH=src python -c "from aicomic.core import episode, manifest, project; print('✅ 核心模块导入成功')"
-          PYTHONPATH=src python -c "from aicomic.providers import provider_base, request_builder, executor; print('✅ Provider 模块导入成功')"
+          PYTHONPATH=src python -c "from aicomic.core import manifest, pipeline_coordinator, episode_lifecycle; print('✅ 核心模块导入成功')"
+          PYTHONPATH=src python -c "from aicomic.providers import base, request_builder, executor; print('✅ Provider 模块导入成功')"
+          PYTHONPATH=src python -c "from aicomic.image_consistency.triple_lock import build_triple_lock_workflow; print('✅ Triple-Lock 模块导入成功')"
+          PYTHONPATH=src python -c "from aicomic.providers.video_router import VideoRouter; print('✅ Video Router 模块导入成功')"
