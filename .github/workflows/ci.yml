@@ -28,7 +28,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-lock.txt
 
-      - name: 运行全部 640 个测试
+      - name: 运行全部 997 个测试
         id: pytest
         continue-on-error: false
         run: |

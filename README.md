@@ -2,15 +2,15 @@
 
 > **写故事 → 拆镜头 → AI 生成 → 配音 → 发布，全自动一人公司视频工厂**
 
-[![Version](https://img.shields.io/badge/Version-2.0.0-blue)](https://github.com/chfr19820610-cell/AIComics)
+[![Version](https://img.shields.io/badge/Version-3.0.0-blue)](https://github.com/chfr19820610-cell/AIComics)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.12%2B-brightgreen)](.python-version)
-[![Tests](https://img.shields.io/badge/Tests-939%2F939-passing-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-997%2F997-passing-brightgreen)](tests/)
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-v0.26.0-important)](https://github.com/comfyanonymous/ComfyUI)
 [![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux-lightgrey)]()
 [![GitHub stars](https://img.shields.io/github/stars/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics)
 [![Last Commit](https://img.shields.io/github/last-commit/chfr19820610-cell/AIComics)](https://github.com/chfr19820610-cell/AIComics/commits/main)
-[![Validation](https://img.shields.io/badge/Validation-39%2F39%20(100%25)-success)](tests/)
+[![Validation](https://img.shields.io/badge/Validation-55%2F55%20(100%25)-success)](tests/)
 
 ---
 
@@ -92,6 +92,17 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。你只需要有
 | 🔊 **配配音** | 每个分镜生成中文语音旁白 | Piper TTS |
 | 🎬 **做视频** | 图片+配音合成完整剧集 | FFmpeg |
 | 📡 **发平台** | 一键发布到小红书/B站/抖音 | social-auto-upload |
+
+---
+
+## 🆕 v3.0 新功能 — 角色一致性 + 视频生成 + 图像管线
+
+| 功能 | 模块 | 说明 |
+|------|------|------|
+| **Triple-Lock 角色一致性** | `image_consistency/triple_lock.py` | IPAdapter FaceID(0.75) + ControlNet(0.8) + FaceDetailer(0.4) — 2026标准方案 |
+| **多模型视频路由** | `providers/video_router.py` | 按镜头类型自动选模型：动作→Kling / 对话→Seedance / 远景→Wan |
+| **FLF 首尾帧插值** | `providers/flf_interpolator.py` | 首帧+尾帧→模型插值运动，保证shot间运动连续性 |
+| **图像管线 + 诊断** | `image_pipeline/` (8模块) | 抠图(RMBG)→生图(SDXL)→放大(Real-ESRGAN)→合成 + 就绪诊断 |
 
 ---
 
