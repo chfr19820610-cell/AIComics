@@ -117,7 +117,18 @@ def _build_quality_suffix(shot: dict[str, Any]) -> str:
 
 def build_image_prompt(episode_title: str, shot: dict[str, Any], char_service: Any = None, project_id: str = "") -> str:
     if is_horror_shot(shot):
-        return build_horror_visual_prompt(shot, motion=False)
+        base_prompt = build_horror_visual_prompt(shot, motion=False)
+        # Horror shots also need character injection for consistency
+        if char_service is not None:
+            try:
+                from aicomic.characters.prompt_injector import enhance_image_prompt
+                shot_characters = shot.get("characters", [])
+                return enhance_image_prompt(base_prompt, shot_characters, char_service, project_id)
+            except Exception:
+                import logging
+                logging.getLogger("aicomic.providers.request_builder").warning(
+                    "Character injection failed in build_image_prompt (horror), returning base prompt")
+        return base_prompt
     characters = ", ".join(str(item) for item in shot.get("characters", []))
     horror_context = build_horror_prompt_context(shot)
     quality_suffix = _build_quality_suffix(shot)
@@ -138,13 +149,25 @@ def build_image_prompt(episode_title: str, shot: dict[str, Any], char_service: A
             shot_characters = shot.get("characters", [])
             return enhance_image_prompt(base_prompt, shot_characters, char_service, project_id)
         except Exception:
-            pass
+            import logging
+            logging.getLogger("aicomic.providers.request_builder").warning(
+                "Character injection failed in build_image_prompt, returning base prompt without character context")
     return base_prompt
 
 
 def build_video_prompt(episode_title: str, shot: dict[str, Any], char_service: Any = None, project_id: str = "") -> str:
     if is_horror_shot(shot):
-        return build_horror_visual_prompt(shot, motion=True)
+        base_prompt = build_horror_visual_prompt(shot, motion=True)
+        if char_service is not None:
+            try:
+                from aicomic.characters.prompt_injector import enhance_image_prompt
+                shot_characters = shot.get("characters", [])
+                return enhance_image_prompt(base_prompt, shot_characters, char_service, project_id)
+            except Exception:
+                import logging
+                logging.getLogger("aicomic.providers.request_builder").warning(
+                    "Character injection failed in build_video_prompt (horror), returning base prompt")
+        return base_prompt
     characters = ", ".join(str(item) for item in shot.get("characters", []))
     horror_context = build_horror_prompt_context(shot)
     quality_suffix = _build_quality_suffix(shot)
@@ -166,15 +189,27 @@ def build_video_prompt(episode_title: str, shot: dict[str, Any], char_service: A
             shot_characters = shot.get("characters", [])
             return enhance_image_prompt(base_prompt, shot_characters, char_service, project_id)
         except Exception:
-            pass
+            import logging
+            logging.getLogger("aicomic.providers.request_builder").warning(
+                "Character injection failed in build_video_prompt, returning base prompt without character context")
     return base_prompt
 
 
 def build_h3_video_prompt(episode_title: str, shot: dict[str, Any], char_service: Any = None, project_id: str = "") -> str:
     """将shot数据转成H3官方3字段格式（integrated_multimodal_description + overall_soundscape + non_diegetic_music）。"""
-    # horror shot 走独立路径
+    # horror shot 走独立路径 (但仍注入角色描述)
     if is_horror_shot(shot):
-        return build_horror_visual_prompt(shot, motion=True)
+        base_prompt = build_horror_visual_prompt(shot, motion=True)
+        if char_service is not None:
+            try:
+                from aicomic.characters.prompt_injector import enhance_image_prompt
+                shot_characters = shot.get("characters", [])
+                return enhance_image_prompt(base_prompt, shot_characters, char_service, project_id)
+            except Exception:
+                import logging
+                logging.getLogger("aicomic.providers.request_builder").warning(
+                    "Character injection failed in build_h3_video_prompt (horror), returning base prompt")
+        return base_prompt
 
     characters = "、".join(str(item) for item in shot.get("characters", []))
     scene = str(shot.get("scene", ""))
@@ -335,7 +370,9 @@ def build_h3_video_prompt(episode_title: str, shot: dict[str, Any], char_service
             shot_characters = shot.get("characters", [])
             return enhance_image_prompt(h3_prompt, shot_characters, char_service, project_id)
         except Exception:
-            pass
+            import logging
+            logging.getLogger("aicomic.providers.request_builder").warning(
+                "Character injection failed in build_h3_video_prompt, returning base prompt without character context")
     return h3_prompt
 
 
@@ -671,10 +708,19 @@ def build_video_prompt_enhanced(
     total_shots: int = 1,
     prev_shot: dict[str, Any] | None = None,
     next_shot: dict[str, Any] | None = None,
+    use_h3: bool = True,
 ) -> dict[str, Any]:
-    """build_video_prompt + prompt_enhancer + 镜头意图分类 统一入口。"""
-    base = build_h3_video_prompt(episode_title, shot, char_service=char_service, project_id=project_id)
-    profile_name = "video_h3"  # 视频固定用H3 profile
+    """build_video_prompt + prompt_enhancer + 镜头意图分类 统一入口。
+
+    Args:
+        use_h3: True=H3三字段格式(默认), False=普通video prompt格式
+    """
+    if use_h3:
+        base = build_h3_video_prompt(episode_title, shot, char_service=char_service, project_id=project_id)
+        profile_name = "video_h3"
+    else:
+        base = build_video_prompt(episode_title, shot, char_service=char_service, project_id=project_id)
+        profile_name = auto_select_profile(shot)
     return enhance_by_intent(
         base, shot=shot, shot_index=shot_index, total_shots=total_shots,
         prev_shot=prev_shot, next_shot=next_shot,

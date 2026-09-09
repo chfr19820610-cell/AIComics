@@ -656,15 +656,30 @@ def enhance_by_intent(
     profile = PROFILES.get(profile_name, PROFILES["anime_donghua"])
     result = render_enhanced_prompt(base_prompt, profile, negative_prompt, shot)
 
-    # 3. 叠加意图专属增强
+    # 3. 叠加意图专属增强 (覆盖Profile的composition/lighting, 避免冲突)
     enhanced_prompt = result["prompt"]
 
-    # 注入意图专属构图/光影/色彩
+    # 意图专属增强 — composition和lighting覆盖Profile的同类型指令
     intent_parts = []
-    if enhance_strategy.get("composition"):
-        intent_parts.append(enhance_strategy["composition"])
-    if enhance_strategy.get("lighting"):
-        intent_parts.append(enhance_strategy["lighting"])
+    intent_composition = enhance_strategy.get("composition", "")
+    intent_lighting = enhance_strategy.get("lighting", "")
+
+    # 移除Profile已添加的composition_hints (避免"vertical 9:16"与"extreme close-up"共存)
+    if intent_composition and profile.composition_hints:
+        enhanced_prompt = enhanced_prompt.replace(profile.composition_hints, "")
+    # 移除Profile已添加的lighting_hints
+    if intent_lighting and profile.lighting_hints:
+        enhanced_prompt = enhanced_prompt.replace(profile.lighting_hints, "")
+
+    # 清理多余逗号和空格
+    enhanced_prompt = re.sub(r",\s*,", ",", enhanced_prompt)
+    enhanced_prompt = re.sub(r"\s+", " ", enhanced_prompt).strip().rstrip(",")
+
+    # 叠加意图专属composition/lighting/color/quality
+    if intent_composition:
+        intent_parts.append(intent_composition)
+    if intent_lighting:
+        intent_parts.append(intent_lighting)
     if enhance_strategy.get("color"):
         intent_parts.append(enhance_strategy["color"])
     if enhance_strategy.get("quality"):
@@ -683,13 +698,23 @@ def enhance_by_intent(
     if len(enhanced_prompt) > profile.max_length:
         enhanced_prompt = enhanced_prompt[:profile.max_length].rsplit(", ", 1)[0]
 
-    # 4. 重算评分
+    # 4. 重算评分 + 质量门禁
     new_score = score_prompt(enhanced_prompt)
+    quality_gate = "pass"
+    if new_score["score"] < 30:
+        quality_gate = "fail"
+        import logging
+        logging.getLogger("aicomic.providers.prompt_enhancer").warning(
+            "Prompt quality score %d below threshold 30: %s",
+            new_score["score"], new_score.get("issues", []))
+    elif new_score["score"] < 50:
+        quality_gate = "warn"
 
     return {
         "prompt": enhanced_prompt,
         "negative_prompt": final_negative,
         "score": new_score,
+        "quality_gate": quality_gate,
         "validation": result.get("validation", {}),
         "profile": profile_name,
         "intent": intent,
