@@ -12,6 +12,10 @@ from aicomic.providers.provider_planner import build_provider_plan, resolve_prov
 # Optional prompt enhancement (fused from Omni-Rewriter + prompt-optimizer)
 from .prompt_enhancer import enhance_prompt, auto_select_profile, enhance_by_intent
 
+# v3.0: VideoRouter + FLFInterpolator for intelligent video routing
+from aicomic.providers.video_router import VideoRouter, ShotType
+from aicomic.providers.flf_interpolator import FLFInterpolator
+
 
 class ProviderRequestBuildError(RuntimeError):
     def __init__(self, skipped_jobs: list[dict[str, str]]) -> None:
@@ -517,13 +521,24 @@ def build_request_payload(
     output_root: Path,
     char_service: Any = None,
     project_id: str = "",
+    shot_index: int = 0,
+    total_shots: int = 1,
+    prev_shot: dict[str, Any] | None = None,
+    next_shot: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if job.job_type == "image":
-        result = build_image_prompt_enhanced(episode_title, shot, char_service=char_service, project_id=project_id)
+        result = build_image_prompt_enhanced(
+            episode_title, shot, char_service=char_service, project_id=project_id,
+            shot_index=shot_index, total_shots=total_shots,
+            prev_shot=prev_shot, next_shot=next_shot)
         prompt = result.get("prompt", "") if isinstance(result, dict) else str(result)
         output_path = output_root / job.episode_code / "images" / f"{job.episode_code}_{shot_id}_key.png"
     elif job.job_type == "video":
-        prompt = build_video_prompt(episode_title, shot, char_service=char_service, project_id=project_id)
+        result = build_video_prompt_enhanced(
+            episode_title, shot, char_service=char_service, project_id=project_id,
+            shot_index=shot_index, total_shots=total_shots,
+            prev_shot=prev_shot, next_shot=next_shot)
+        prompt = result.get("prompt", "") if isinstance(result, dict) else str(result)
         output_path = output_root / job.episode_code / "videos" / f"{job.episode_code}_{shot_id}_motion.mp4"
     else:
         prompt = build_tts_prompt(shot)
@@ -612,7 +627,20 @@ def build_provider_requests(
         if provider_profile is not None and not bool(provider_profile["env_ready"]):
             request_status = "blocked"
 
-        payload = build_request_payload(job, routed_job.provider, str(episode["title"]), shot_id, shot, output_root)
+        # Build shot context for intent classification
+        all_shots = list(shots.values())
+        shot_idx = 0
+        for i, s in enumerate(all_shots):
+            if s.get("shot_id") == shot_id:
+                shot_idx = i
+                break
+        total_shots = len(all_shots)
+        prev_shot = all_shots[shot_idx - 1] if shot_idx > 0 else None
+        next_shot = all_shots[shot_idx + 1] if shot_idx + 1 < total_shots else None
+
+        payload = build_request_payload(
+            job, routed_job.provider, str(episode["title"]), shot_id, shot, output_root,
+            shot_index=shot_idx, total_shots=total_shots, prev_shot=prev_shot, next_shot=next_shot)
         request_id = f"REQ_{job.job_id}"
         requests.append(
             {
@@ -639,6 +667,68 @@ def build_provider_requests(
     ready_count = sum(1 for item in requests if item["request_status"] == "ready")
     if skipped_jobs:
         raise ProviderRequestBuildError(skipped_jobs)
+
+    # ── v3.0: VideoRouter — intelligent shot-type → provider routing ──
+    routing_decisions: list[dict[str, Any]] = []
+    try:
+        router = VideoRouter.from_config(providers_config_path)
+    except Exception:
+        router = None
+
+    video_keyframes: dict[str, list[str]] = {}
+    for req in requests:
+        payload = req.get("payload", {})
+        if payload.get("job_type") != "video":
+            continue
+        shot_type_str = str(payload.get("shot_type", payload.get("camera", "dialogue"))).lower()
+        if any(k in shot_type_str for k in ("action", "打斗", "追", "跑")):
+            mapped_type = ShotType.ACTION
+        elif any(k in shot_type_str for k in ("wide", "全景", "远景", "establishing")):
+            mapped_type = ShotType.WIDE
+        elif any(k in shot_type_str for k in ("transition", "转场", "fade", "dissolve")):
+            mapped_type = ShotType.TRANSITION
+        elif any(k in shot_type_str for k in ("creative", "蒙太奇", "montage")):
+            mapped_type = ShotType.CREATIVE
+        else:
+            mapped_type = ShotType.DIALOGUE
+
+        if router:
+            decision = router.route(mapped_type, flf=False)
+            routing_decisions.append({
+                "request_id": req["request_id"],
+                "shot_type": mapped_type,
+                "routed_provider": decision.provider_name,
+                "reason": decision.reason,
+            })
+            if decision.provider_name and decision.provider_name != payload.get("provider"):
+                req["video_routing"] = {
+                    "original_provider": payload.get("provider"),
+                    "routed_provider": decision.provider_name,
+                    "reason": decision.reason,
+                }
+                payload["provider"] = decision.provider_name
+
+        ep_code = payload.get("episode_code", "")
+        output_path = payload.get("output_path", "")
+        if output_path:
+            video_keyframes.setdefault(ep_code, []).append(output_path)
+
+    # ── v3.0: FLFInterpolator — motion continuity chains ──
+    flf = FLFInterpolator(provider=None)
+    flf_chains: dict[str, list[dict[str, Any]]] = {}
+    for ep_code, keyframes in video_keyframes.items():
+        if len(keyframes) >= 2:
+            chain = flf.build_motion_continuity_chain(keyframes)
+            flf_chains[ep_code] = [
+                {
+                    "first_frame": r.first_frame,
+                    "last_frame": r.last_frame,
+                    "duration": r.duration,
+                    "motion_hint": r.motion_hint,
+                }
+                for r in chain
+            ]
+
     return {
         "providers_config_path": str(providers_config_path),
         "provider_overrides": provider_overrides or {},
@@ -648,6 +738,8 @@ def build_provider_requests(
         "requests": requests,
         "request_records": [asdict(item) for item in request_records],
         "skipped_jobs": skipped_jobs,
+        "video_routing": routing_decisions,
+        "flf_chains": flf_chains,
     }
 
 

@@ -1039,7 +1039,7 @@ COMMANDS: dict[str, dict] = {
         (["--season-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'season_manifest.json'")}),
         (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
         (["--asset-root"], {"type": Path, "default": P("ProjectPaths.demo_assets_dir()")}),
-        (["--mode"], {"default": "preview", "choices": ["preview", "release"]}),
+        (["--mode"], {"default": "preview", "choices": ["preview", "release", "2d", "2.5d", "3d"]}),
         (["--output-dir"], {"type": Path, "default": P("ProjectPaths.preview_outputs_dir() / 'season1'")}),
         (["--report-output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'season1_render_report.json'")})],
         "handler": lambda a: handle_render_season(a.season_manifest, a.episode_manifest, a.asset_root, a.output_dir, a.report_output, a.mode)},
