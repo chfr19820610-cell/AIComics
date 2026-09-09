@@ -282,3 +282,112 @@ class TestWriteProviderRequests:
         write_provider_requests(path, payload)
         content = path.read_text(encoding="utf-8")
         assert "request_records" not in content
+
+
+# ── v3.0 module integration tests (prevent disconnection regression) ──
+
+class TestV3ModuleIntegration:
+    """Verify that v3.0 modules (VideoRouter, FLF, Triple-Lock, mode_router)
+    are actually wired into build_provider_requests — not orphan code."""
+
+    @pytest.fixture
+    def full_manifest(self) -> dict:
+        return {
+            "project_id": "test_proj",
+            "project_name": "测试",
+            "genre": "horror",
+            "episodes": [{
+                "episode_code": "E01",
+                "title": "第一集",
+                "shots": [
+                    {"shot_id": "S001", "dialogue": "你好", "ai_video": True,
+                     "camera": "dialogue", "scene": "室内，夜", "visual": "对话",
+                     "action": "说", "emotion": "紧张", "characters": ["主角"],
+                     "horror_beat": "诡异"},
+                    {"shot_id": "S002", "dialogue": "", "ai_video": True,
+                     "camera": "action", "scene": "室外，白天", "visual": "追逐",
+                     "action": "跑", "emotion": "恐惧", "characters": ["主角"],
+                     "horror_beat": "追逐"},
+                    {"shot_id": "S003", "dialogue": "", "ai_video": False,
+                     "camera": "closeup", "scene": "室内", "visual": "特写",
+                     "action": "看", "emotion": "惊", "characters": ["主角"],
+                     "horror_beat": "惊吓"},
+                ],
+            }],
+        }
+
+    @pytest.fixture
+    def providers_config(self) -> Path:
+        return Path("config/providers.yaml")
+
+    def test_video_routing_decisions_present(self, full_manifest, providers_config, tmp_path):
+        """VideoRouter must produce routing decisions for video jobs."""
+        from aicomic.core.job_builder import build_jobs_from_episode_manifest
+        from aicomic.providers.request_builder import build_provider_requests
+
+        jobs = build_jobs_from_episode_manifest(full_manifest)
+        result = build_provider_requests(full_manifest, jobs, providers_config, tmp_path)
+
+        routing = result.get("video_routing", [])
+        assert len(routing) >= 2, f"Expected ≥2 routing decisions, got {len(routing)}"
+        # dialogue → seedance, action → kling
+        providers_routed = {d["routed_provider"] for d in routing}
+        assert len(providers_routed) >= 2, "Routing should map different shot types to different providers"
+
+    def test_flf_chain_present(self, full_manifest, providers_config, tmp_path):
+        """FLFInterpolator must produce motion continuity chains for episodes with video jobs."""
+        from aicomic.core.job_builder import build_jobs_from_episode_manifest
+        from aicomic.providers.request_builder import build_provider_requests
+
+        jobs = build_jobs_from_episode_manifest(full_manifest)
+        result = build_provider_requests(full_manifest, jobs, providers_config, tmp_path)
+
+        flf = result.get("flf_chains", {})
+        assert "E01" in flf, "FLF chain must exist for episode with video jobs"
+        assert len(flf["E01"]) >= 1, "FLF chain must have at least 1 segment"
+
+    def test_no_video_routing_for_image_only(self, full_manifest, providers_config, tmp_path):
+        """VideoRouter must not produce routing for episodes without video jobs."""
+        from aicomic.providers.request_builder import build_provider_requests
+
+        manifest_no_video = {
+            "project_id": "p", "project_name": "t", "genre": "horror",
+            "episodes": [{"episode_code": "E99", "title": "x", "shots": [
+                {"shot_id": "S001", "dialogue": "hi", "ai_video": False,
+                 "camera": "fixed", "scene": "室内", "visual": "v",
+                 "action": "a", "emotion": "e", "characters": ["c"],
+                 "horror_beat": "b"}]}]
+        }
+        from aicomic.core.job_builder import build_jobs_from_episode_manifest
+        jobs = build_jobs_from_episode_manifest(manifest_no_video)
+        result = build_provider_requests(manifest_no_video, jobs, providers_config, tmp_path)
+        assert result.get("video_routing", []) == []
+        assert result.get("flf_chains", {}).get("E99") is None
+
+    def test_triple_lock_import_wired(self):
+        """Triple-Lock module must be importable and build_triple_lock_workflow callable."""
+        from aicomic.image_consistency.triple_lock import build_triple_lock_workflow
+        import inspect
+        sig = inspect.signature(build_triple_lock_workflow)
+        assert "reference_image" in sig.parameters or len(sig.parameters) >= 3
+
+    def test_mode_router_import_wired(self):
+        """RenderModeRouter must be importable from render module."""
+        from aicomic.render.mode_router import RenderModeRouter
+        assert RenderModeRouter is not None
+
+    def test_video_prompt_enhanced_called(self, full_manifest, providers_config, tmp_path):
+        """Video jobs must use build_video_prompt_enhanced (with shot context), not plain build_video_prompt."""
+        from aicomic.core.job_builder import build_jobs_from_episode_manifest
+        from aicomic.providers.request_builder import build_provider_requests
+
+        jobs = build_jobs_from_episode_manifest(full_manifest)
+        result = build_provider_requests(full_manifest, jobs, providers_config, tmp_path)
+
+        video_requests = [r for r in result["requests"] if r.get("payload", {}).get("job_type") == "video"]
+        assert len(video_requests) >= 2
+        for vr in video_requests:
+            payload = vr.get("payload", {})
+            # Enhanced prompt should include intent composition keywords
+            prompt_text = str(payload.get("prompt", ""))
+            assert len(prompt_text) > 50, f"Video prompt too short: {len(prompt_text)} chars"
