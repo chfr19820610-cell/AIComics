@@ -123,3 +123,92 @@ class TestPipelineCoordinator:
         assert resume_stage_from_checkpoints(coord.state_dir, "E01") == "shot_breakdown"
         coord.approve_stage("E01", "shot_breakdown", reviewer="峰哥")
         assert resume_stage_from_checkpoints(coord.state_dir, "E01") == "asset_generation"
+
+
+class TestStageExecutors:
+    """SOP 阶段执行器接入测试 — 8阶段管线从空壳到真实产出。"""
+
+    def test_execute_shot_breakdown(self, coord: PipelineCoordinator) -> None:
+        """shot_breakdown 执行器：blueprint → shot manifest。"""
+        blueprint = {
+            "blueprint_version": "horror_v1",
+            "episode_title": "Test",
+            "episode_count": 1,
+            "episodes": [{"episode_code": "E01", "title": "Test", "act": 1, "beats": ["intro"]}],
+        }
+        result = coord.execute_shot_breakdown("E01", blueprint, template_name="horror")
+        assert result["status"] == "generated"
+        assert result["episode_code"] == "E01"
+        assert "shot_manifest" in result
+
+    def test_execute_asset_generation(self, coord: PipelineCoordinator, tmp_path: Path) -> None:
+        """asset_generation 执行器：episode_manifest → provider requests。"""
+        import yaml
+
+        providers_yaml = tmp_path / "providers.yaml"
+        providers_yaml.write_text(yaml.dump({"providers": []}), encoding="utf-8")
+        manifest = {"episode_code": "E01", "shots": []}
+        result = coord.execute_asset_generation("E01", manifest, str(providers_yaml), str(tmp_path))
+        assert result["status"] == "generated"
+        assert "provider_requests" in result
+
+    def test_execute_tts_subtitle(self, coord: PipelineCoordinator) -> None:
+        """tts_subtitle 执行器：episode_manifest → subtitles + tts prompts。"""
+        manifest = {
+            "episode_code": "E01",
+            "episodes": [
+                {
+                    "episode_code": "E01",
+                    "shots": [
+                        {"shot_id": "E01_S001", "dialogue": "你好", "duration": 2, "tts_provider": "edge"},
+                    ],
+                }
+            ],
+            "shots": [
+                {"shot_id": "E01_S001", "dialogue": "你好", "duration": 2, "tts_provider": "edge"},
+            ],
+        }
+        result = coord.execute_tts_subtitle("E01", manifest)
+        assert result["status"] == "generated"
+        assert "subtitles" in result
+        assert "tts_prompts" in result
+
+    def test_execute_preview_render(self, coord: PipelineCoordinator, tmp_path: Path) -> None:
+        """preview_render 执行器：render_plan → 预览视频。"""
+        render_plan = {
+            "episode_code": "E01",
+            "shot_count": 1,
+            "shots": [
+                {
+                    "shot_id": "E01_S001",
+                    "duration": 1,
+                    "image_path": "",
+                    "has_image": False,
+                    "visual": "test scene",
+                    "narration": "test",
+                },
+            ],
+        }
+        out = tmp_path / "preview.mp4"
+        report = tmp_path / "report.json"
+        result = coord.execute_preview_render("E01", render_plan, str(out), str(report))
+        assert result["status"] == "rendered"
+        assert "render_result" in result
+
+    def test_execute_publish_pack(self, coord: PipelineCoordinator) -> None:
+        """publish_pack 执行器：episode_manifest → publish pack。"""
+        manifest = {
+            "episode_code": "E01",
+            "episodes": [
+                {
+                    "episode_code": "E01",
+                    "title": "Test Episode",
+                    "publish_title": "测试标题",
+                    "cover_text": "测试封面",
+                    "shots": [{"shot_id": "E01_S001", "scene": "intro", "dialogue": "hi", "duration": 2}],
+                }
+            ],
+        }
+        result = coord.execute_publish_pack("E01", manifest)
+        assert result["status"] == "generated"
+        assert "publish_pack" in result

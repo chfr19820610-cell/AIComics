@@ -190,6 +190,52 @@ class PipelineCoordinator:
         """外部调用：试图进入/处理某阶段前，校验前置门禁已放行。"""
         require_stage_approved(self.state_dir, episode_code, stage_id, self.manifest)
 
+    def execute_shot_breakdown(
+        self, episode_code: str, blueprint: dict[str, object], template_name: str = "", project_id: str = ""
+    ) -> dict[str, object]:
+        """执行 SOP shot_breakdown 阶段：从蓝图生成完整分镜 manifest。"""
+        from aicomic.core.template_engine import build_manifest_from_template
+
+        manifest = build_manifest_from_template(blueprint, template_name, project_id)
+        return {"episode_code": episode_code, "shot_manifest": manifest, "status": "generated"}
+
+    def execute_asset_generation(
+        self, episode_code: str, episode_manifest: dict[str, object], providers_config_path: str, output_root: str
+    ) -> dict[str, object]:
+        """执行 SOP asset_generation 阶段：生成 provider API requests。"""
+        from aicomic.providers.request_builder import build_provider_requests
+
+        result = build_provider_requests(
+            manifest=episode_manifest,
+            jobs=[],
+            providers_config_path=Path(providers_config_path),
+            output_root=Path(output_root),
+        )
+        return {"episode_code": episode_code, "provider_requests": result, "status": "generated"}
+
+    def execute_tts_subtitle(self, episode_code: str, episode_manifest: dict[str, object]) -> dict[str, object]:
+        """执行 SOP tts_subtitle 阶段：生成字幕条目 + TTS prompt。"""
+        from aicomic.providers.request_builder import build_tts_prompt
+        from aicomic.render.subtitle_audio import build_subtitle_entries
+
+        subtitles = build_subtitle_entries(episode_manifest, episode_code)
+        shots = episode_manifest.get("shots", [])
+        tts_prompts: list[dict[str, object]] = []
+        if isinstance(shots, list):
+            for s in shots:
+                if isinstance(s, dict):
+                    tts_prompts.append({"shot_id": s.get("shot_id", ""), "tts_prompt": build_tts_prompt(s)})
+        return {"episode_code": episode_code, "subtitles": subtitles, "tts_prompts": tts_prompts, "status": "generated"}
+
+    def execute_preview_render(
+        self, episode_code: str, render_plan: dict[str, object], output_path: str, report_path: str
+    ) -> dict[str, object]:
+        """执行 SOP preview_render 阶段：渲染预览视频。"""
+        from aicomic.render.preview_renderer import render_preview_video
+
+        result = render_preview_video(render_plan, Path(output_path), Path(report_path))
+        return {"episode_code": episode_code, "render_result": result, "status": "rendered"}
+
     def execute_publish_pack(self, episode_code: str, episode_manifest: dict[str, object]) -> dict[str, object]:
         """执行 SOP publish_pack 阶段：调用 build_enhanced_publish_pack 生成发布材料。
 
