@@ -1,19 +1,18 @@
-# AIComics 路线图 v2.0
+# AIComics 路线图 v3.0
 
-更新时间：2026-08-19
+更新时间：2026-09-06
 
-## 已完成 ✅
+## v3.0 已完成 ✅
 
-- [x] 基础漫剧管线 (故事→分镜→图片→配音)
-- [x] CLI + Web API + SPA 三端入口
-- [x] 711 测试全通过
-- [x] 供应商抽象层 (ComfyUI/Piper/OpenAI/Seedance/Kling/Edge TTS)
-- [x] 角色系统 (定义/一致性/提示词注入/参考图)
-- [x] 分镜版本管理
-- [x] 自动风格轮换引擎 + 无限自循环
-- [x] Docker 化全栈部署 + ComfyUI v0.33 升级
-- [x] ASGI 入口统一 (main:app)
-- [x] prompt 英文化 + 镜头意图分类 + 角色表构建器
+- [x] P0 基础修复 — image_pipeline 诊断 + Pillow 14 兼容
+- [x] P1 Triple-Lock 角色一致性 — seed/LoRA/IP-Adapter 三重锁定
+- [x] P2 视频生成升级 — video_router 多模型路由 + FLF 帧插值
+- [x] 三线渲染架构 — 2D / 2.5D / 3D 统一入口
+- [x] 提示词/意图识别系统 — 6类意图分类 + 意图感知增强
+- [x] SOP v3.0 模块接入 — 4断链修复 + 6防回归测试
+- [x] SOP 5额外问题修复 — A(状态机映射) B(template读取) C(horror_beat) D(publish_pack) E(skip API)
+- [x] SOP v3.0 架构图文档
+- [x] 1045 测试全通过
 
 ---
 
@@ -165,5 +164,19 @@
 | ⑥ | 社区模板市场 | ✅ | ✅ | — | **完成** |
 
 **总测试: 711 → 939 (+228, +32%) | hermes verify: ok=true | Docker cloud build: ok=true**
+
+---
+
+## v3.0 待办（需外部资源）
+
+### 🔒 需峰哥配 API Key
+- [ ] P3 3D工厂 — Tripo API key 返回 401，需有效 key
+- [ ] 问题E — JieYou API key 过期，视频生成无法实际测试
+- [ ] ComfyUI 启动 — Triple-Lock 当前只能 plan_only 模式
+
+### 📋 下一步开发（不需外部 API）
+- [ ] `enhance_by_intent` 管线触发接入 — 已验证端到端通，需集成到 CLI `build-provider-requests` 自动触发
+- [ ] SOP 阶段执行器 — `pipeline_coordinator` 目前只管 checkpoint，需 stage executor 自动触发每阶段实际逻辑
+- [ ] 发布平台深度集成 — `execute_publish_pack()` 已桥接，需接入 social-auto-upload 实际分发
 
 ROADMAP 所有代码级子项已 100% 完成。
