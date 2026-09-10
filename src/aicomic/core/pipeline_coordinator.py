@@ -190,6 +190,18 @@ class PipelineCoordinator:
         """外部调用：试图进入/处理某阶段前，校验前置门禁已放行。"""
         require_stage_approved(self.state_dir, episode_code, stage_id, self.manifest)
 
+    def execute_publish_pack(self, episode_code: str, episode_manifest: dict[str, object]) -> dict[str, object]:
+        """执行 SOP publish_pack 阶段：调用 build_enhanced_publish_pack 生成发布材料。
+
+        之前 publish_pack 阶段只写 checkpoint 但不产出任何文件（空壳）。
+        此方法桥接 SOP 单集管线与 publish 模块，确保 checkpoint 完成时
+        publish pack 文件实际生成。
+        """
+        from aicomic.publish.publish_pack import build_enhanced_publish_pack
+
+        pack = build_enhanced_publish_pack(episode_manifest, episode_code)
+        return {"episode_code": episode_code, "publish_pack": pack, "status": "generated"}
+
     # ---- 内部 ----
 
     def _next_of(self, stage_id: str) -> str | None:
