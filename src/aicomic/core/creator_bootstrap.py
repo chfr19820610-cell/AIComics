@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from math import ceil
+from typing import Any
 
 from aicomic.core.pipeline_manifest import (
     LEGACY_DEFAULT_PIPELINE_STEPS,
@@ -59,7 +60,36 @@ def build_story_bible(
     protagonist_name: str,
     tone: str,
     season_hook: str,
+    template_name: str | None = None,
 ) -> dict[str, object]:
+    # If a template is given, enrich the story bible from template YAML.
+    tmpl: dict[str, Any] | None = None
+    if template_name:
+        try:
+            from aicomic.core.template_engine import load_template
+            tmpl = load_template(template_name)
+        except Exception:
+            tmpl = None
+
+    if tmpl:
+        return {
+            "project_name": project_name,
+            "genre": tmpl.get("genre", genre),
+            "concept_logline": logline,
+            "tone_keywords": [item for item in [tone, "强钩子", "情绪反转", "短剧节奏"] if item],
+            "core_conflict": f"{protagonist_name} 必须在高压环境中完成身份反转，并持续制造每集反转钩子。",
+            "season_hook": season_hook,
+            "world_rules": tmpl.get("visual_rules", [
+                "单集时长优先控制在 45-90 秒。",
+                "每集必须在前 3 个镜头内抛出冲突或悬念。",
+                "每集结尾保留下一集强钩子。",
+            ]),
+            "narrative_beats": [act.get("title", act.get("beat", "")) for act in tmpl.get("acts", [])],
+            "template_id": tmpl.get("template_id", template_name),
+            "taboos": tmpl.get("taboos", []),
+            "twist": tmpl.get("twist", ""),
+        }
+
     return {
         "project_name": project_name,
         "genre": genre,

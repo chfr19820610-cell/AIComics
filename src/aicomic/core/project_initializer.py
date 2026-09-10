@@ -174,7 +174,7 @@ def initialize_project(
     write_json(project_manifest_path, project_manifest)
     write_json(season_manifest_path, build_season_manifest(resolved_project_id, project_name, season_hook, episode_target_count))
     write_json(episode_manifest_path, build_episode_manifest(resolved_project_id, protagonist_name, season_hook))
-    write_json(story_bible_path, build_story_bible(project_name, genre, logline, protagonist_name, tone, season_hook))
+    write_json(story_bible_path, build_story_bible(project_name, genre, logline, protagonist_name, tone, season_hook, template_name=template))
     write_json(character_bible_path, build_character_bible(protagonist_name))
     write_json(style_bible_path, build_style_bible(style, tone))
     if template:

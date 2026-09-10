@@ -185,6 +185,7 @@ def build_manifest_from_template(
                 "act_title": act_title,
                 "sound_cue": sound,
                 "continuity_anchor": motif if template_name == "horror" else None,
+                "horror_beat": beat if template_name == "horror" else None,
             })
             gi += 1
 
