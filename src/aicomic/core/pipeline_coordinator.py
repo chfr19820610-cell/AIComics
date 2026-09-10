@@ -28,6 +28,7 @@ from aicomic.core.checkpoint_store import (
     checkpoint_status,
     write_checkpoint,
 )
+from aicomic.core.episode_lifecycle import stage_to_episode_status
 from aicomic.core.pipeline_manifest import (
     CHECKPOINT_IN_PROGRESS,
     PipelineManifest,
@@ -44,6 +45,7 @@ class StageAdvanceResult:
     status: str
     required_human_approval: bool = False
     warnings: list[str] = field(default_factory=list)
+    episode_status: str | None = None  # synced from episode_lifecycle mapping
 
 
 class PipelineCoordinator:
@@ -127,6 +129,7 @@ class PipelineCoordinator:
             current_stage=stage_id,
             next_stage=self._next_of(stage_id),
             status=CHECKPOINT_COMPLETED,
+            episode_status=stage_to_episode_status(stage_id),
         )
 
     def approve_stage(
@@ -150,6 +153,7 @@ class PipelineCoordinator:
             current_stage=stage_id,
             next_stage=self._next_of(stage_id),
             status=CHECKPOINT_COMPLETED,
+            episode_status=stage_to_episode_status(stage_id),
         )
 
     def advance(self, episode_code: str) -> StageAdvanceResult:
