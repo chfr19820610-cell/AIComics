@@ -10,7 +10,6 @@ import subprocess
 import re
 from enum import Enum
 from pathlib import Path
-from typing import Optional
 
 from aicomic.video_synthesis.config import FFMPEG
 

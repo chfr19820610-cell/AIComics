@@ -12,7 +12,7 @@ import hashlib
 import urllib.request
 import urllib.parse
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 from aicomic.providers.base import IProvider, ProviderCapability, ProviderInfo
 

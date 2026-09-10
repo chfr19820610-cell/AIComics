@@ -1,7 +1,6 @@
 """管线清单声明化测试 — ACOM-0.6.0 P0-1."""
 from __future__ import annotations
 
-import tempfile
 from pathlib import Path
 
 import pytest

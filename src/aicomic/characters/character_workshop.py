@@ -14,7 +14,7 @@ from aicomic.characters.database import (
     connect_character_database, delete_character,
     get_character_by_id, insert_character,
 )
-from aicomic.characters.models import Character, CharacterCreateRequest, now_utc_iso
+from aicomic.characters.models import Character, now_utc_iso
 
 # ── Workshop schema extension ─────────────────────────────────────────────
 

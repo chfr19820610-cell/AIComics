@@ -16,7 +16,6 @@ import json
 import sqlite3
 import uuid
 from dataclasses import dataclass, field
-from pathlib import Path
 from typing import Any
 
 from aicomic.characters.models import now_utc_iso

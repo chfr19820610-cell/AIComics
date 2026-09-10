@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Optional
 
 from aicomic.video_synthesis.config import FFMPEG, AUDIO_SAMPLE_RATE
-from aicomic.video_synthesis.audio_mix import BGM_DIR, BGM_TRACKS, select_bgm_for_episode
+from aicomic.video_synthesis.audio_mix import BGM_DIR, BGM_TRACKS
 
 
 def mix_bgm(

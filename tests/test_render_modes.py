@@ -6,7 +6,7 @@ import pytest
 
 class TestRenderModeRouter:
     def test_route_2d(self):
-        from aicomic.render.mode_router import RenderModeRouter, RenderMode
+        from aicomic.render.mode_router import RenderModeRouter
         router = RenderModeRouter()
         plan = router.route(mode="2d")
         assert plan.mode == "2d"

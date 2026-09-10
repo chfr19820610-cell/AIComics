@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from aicomic.render.preview_renderer import build_render_plan, render_preview_video, render_preview_video_with_audio
+from aicomic.render.preview_renderer import build_render_plan, render_preview_video
 
 
 def build_release_plan(manifest: dict[str, Any], episode_code: str, asset_root: Path) -> dict[str, Any]:

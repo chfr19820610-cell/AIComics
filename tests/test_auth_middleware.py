@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from pathlib import Path
 
 from web.backend.auth.auth_middleware import extract_access_token, PUBLIC_API_PATHS
 

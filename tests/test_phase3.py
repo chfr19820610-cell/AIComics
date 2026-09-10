@@ -3,11 +3,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
 
 
 # === ① 模板→管线绑定 ===
-from aicomic.core.template_engine import load_template, build_blueprint_from_template
 
 
 class TestTemplatePipelineBinding:
@@ -39,7 +37,7 @@ class TestTemplatePipelineBinding:
 
 
 # === ② 批量编排 ===
-from aicomic.core.novel_pipeline import build_season_production_plan, generate_episode_plan
+from aicomic.core.novel_pipeline import build_season_production_plan
 
 
 class TestBatchSeasonOrchestration:
@@ -121,7 +119,7 @@ class TestPublishOrchestration:
 
 
 # === ⑤ 远程 ComfyUI ===
-from aicomic.providers.cloud_mode import apply_cloud_mode, is_cloud_mode
+from aicomic.providers.cloud_mode import apply_cloud_mode
 
 
 class TestRemoteComfyUI:

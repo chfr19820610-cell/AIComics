@@ -10,7 +10,7 @@ from aicomic.providers.base import IProvider, ProviderCapability, ProviderInfo
 from aicomic.providers.openai_provider import OpenAIProvider, DALL_EProvider
 from aicomic.providers.seedance_provider import SeedanceProvider
 from aicomic.providers.comfyui_provider import ComfyUIProvider
-from aicomic.providers.manual_provider import ManualProvider, PiperTTSProvider
+from aicomic.providers.manual_provider import ManualProvider
 from aicomic.providers.provider_registry import (
     ProviderRegistry,
     get_provider_registry,

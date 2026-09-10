@@ -5,10 +5,8 @@ Tests the domestic platform publisher that delegates to social-auto-upload.
 from __future__ import annotations
 
 import json
-from pathlib import Path
 from unittest.mock import patch
 
-import pytest
 
 from aicomic.publish.domestic_publisher import (
     PublishPayload,

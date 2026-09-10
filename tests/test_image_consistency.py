@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import sqlite3
 
-import pytest
 from PIL import Image, ImageDraw
 
 from aicomic.characters.database import connect_character_database, ensure_character_schema

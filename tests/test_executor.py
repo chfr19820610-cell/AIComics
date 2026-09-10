@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
 
 from aicomic.providers.executor import (
     SUPPORTED_EXECUTION_PROVIDERS,

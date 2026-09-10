@@ -5,7 +5,6 @@ subtitle burn-in, and output verification.
 
 import json
 import subprocess
-import sys
 from pathlib import Path
 
 from aicomic.video_synthesis.config import (

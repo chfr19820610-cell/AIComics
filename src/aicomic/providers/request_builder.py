@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from dataclasses import asdict
-import json
 from pathlib import Path
 from typing import Any
 
@@ -10,7 +9,7 @@ from aicomic.utils.atomic_io import atomic_write_json
 from aicomic.providers.provider_planner import build_provider_plan, resolve_provider_profile
 
 # Optional prompt enhancement (fused from Omni-Rewriter + prompt-optimizer)
-from .prompt_enhancer import enhance_prompt, auto_select_profile, enhance_by_intent
+from .prompt_enhancer import auto_select_profile, enhance_by_intent
 
 # v3.0: VideoRouter + FLFInterpolator for intelligent video routing
 from aicomic.providers.video_router import VideoRouter, ShotType

@@ -7,7 +7,6 @@ Supports:
 """
 
 from pathlib import Path
-from typing import Any
 
 from aicomic.video_synthesis.config import (
     SUBTITLE_BORDER_SIZE,

@@ -17,7 +17,6 @@ from aicomic.characters.script_parser import (
     resolve_episode_manifest_path,
 )
 from aicomic.characters.service import CharacterService
-from web.backend.auth.auth_middleware import get_request_user
 
 
 def build_character_router(

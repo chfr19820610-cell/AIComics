@@ -1,7 +1,6 @@
 """Coverage gap tests — get_expired_platforms, publish_to_youtube, write_blueprint."""
 from __future__ import annotations
 
-from pathlib import Path
 
 import pytest
 

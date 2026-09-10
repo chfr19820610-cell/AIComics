@@ -1,9 +1,7 @@
 """CLI + Web API integration tests for template market, i18n, and novel pipeline."""
 from __future__ import annotations
 
-from pathlib import Path
 
-import pytest
 
 # === CLI handler tests ===
 

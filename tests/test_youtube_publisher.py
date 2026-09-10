@@ -1,7 +1,6 @@
 """YouTube Data API v3 publisher tests."""
 from __future__ import annotations
 
-import pytest
 
 from aicomic.publish.youtube_publisher import (
     YouTubePayload,

@@ -11,7 +11,6 @@ Covers:
 """
 from __future__ import annotations
 
-import pytest
 
 
 # ============ classify_shot_intent tests ============

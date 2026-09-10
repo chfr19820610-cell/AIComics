@@ -10,7 +10,7 @@ similarity ∈ [0,1]；阈值 threshold 判定是否「跳脸 / FACE_SKIP」。
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 

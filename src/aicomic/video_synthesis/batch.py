@@ -2,8 +2,6 @@
 Batch synthesis — orchestrate video synthesis across multiple episodes.
 """
 
-import json
-import sys
 from pathlib import Path
 
 from aicomic.video_synthesis.config import (

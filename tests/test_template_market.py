@@ -1,7 +1,6 @@
 """Template marketplace tests — install/uninstall/share templates."""
 from __future__ import annotations
 
-import pytest
 
 from aicomic.core.template_market import (
     validate_template_yaml,

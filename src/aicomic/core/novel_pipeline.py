@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from aicomic.core.novel_splitter import split_novel_to_episodes, build_manifest_from_episodes
+from aicomic.core.novel_splitter import split_novel_to_episodes
 from aicomic.core.template_engine import load_template, build_blueprint_from_template
 
 

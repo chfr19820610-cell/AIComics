@@ -1,7 +1,6 @@
 """Tests for Triple-Lock character consistency module."""
 from __future__ import annotations
 
-import pytest
 
 
 class TestTripleLockWorkflow:

@@ -1,7 +1,6 @@
 """Tests for narrate_rewrite + character_auto_register + YouTube integration fix."""
 from __future__ import annotations
 
-import pytest
 
 from aicomic.core.novel_pipeline import (
     narrate_rewrite,

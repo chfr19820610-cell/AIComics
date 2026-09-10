@@ -1,9 +1,7 @@
 """Tests for ROADMAP gap closures — cookie persist, template override, full pipeline, multilang episode, remote GPU."""
 from __future__ import annotations
 
-from pathlib import Path
 
-import pytest
 
 
 # === ④ Cookie 持久化 ===

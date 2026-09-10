@@ -1,7 +1,6 @@
 """Tests for new Phase 2 templates: workplace, cultivation, mystery, sweetpet."""
 from __future__ import annotations
 
-import pytest
 
 from aicomic.core.template_engine import (
     list_templates,

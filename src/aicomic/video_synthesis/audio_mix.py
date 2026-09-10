@@ -8,12 +8,11 @@ Provides:
 """
 
 import subprocess
-import json
 import random
 from pathlib import Path
 from typing import Optional
 
-from aicomic.video_synthesis.config import FFMPEG, AUDIO_SAMPLE_RATE, AUDIO_BITRATE, SYSTEM_ROOT
+from aicomic.video_synthesis.config import FFMPEG, AUDIO_SAMPLE_RATE, SYSTEM_ROOT
 
 # ── Paths ───────────────────────────────────────────────────────────────────
 BGM_DIR = SYSTEM_ROOT / "assets" / "bgm"

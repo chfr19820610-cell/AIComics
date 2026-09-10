@@ -1,9 +1,8 @@
 """Tests for image_pipeline module — matting, generation, upscaling, composite, pipeline."""
 from __future__ import annotations
 
-import json
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 import pytest
 from PIL import Image

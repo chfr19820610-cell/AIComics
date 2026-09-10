@@ -16,7 +16,6 @@ from aicomic.image_consistency.comfyui_locks import (
     probe_lock_models,
     validate_locked_workflow,
 )
-from aicomic.image_consistency.image_consistency import ImageConsistencyService
 from aicomic.image_consistency.master_sheet import (
     ensure_master_sheet_schema,
     get_master_by_name,
