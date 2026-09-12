@@ -202,7 +202,7 @@ class PipelineCoordinator:
     def execute_asset_generation(
         self, episode_code: str, episode_manifest: dict[str, object], providers_config_path: str, output_root: str
     ) -> dict[str, object]:
-        """执行 SOP asset_generation 阶段：生成 provider API requests。"""
+        """执行 SOP asset_generation 阶段：生成 provider API requests + 角色四视图 prompts (v4.0 P0-1)."""
         from aicomic.providers.request_builder import build_provider_requests
 
         result = build_provider_requests(
@@ -211,10 +211,52 @@ class PipelineCoordinator:
             providers_config_path=Path(providers_config_path),
             output_root=Path(output_root),
         )
-        return {"episode_code": episode_code, "provider_requests": result, "status": "generated"}
+
+        # v4.0 P0-1: Generate four-view prompts for each character
+        four_view_prompts = self._build_four_view_prompts(episode_manifest)
+
+        return {
+            "episode_code": episode_code,
+            "provider_requests": result,
+            "four_view_prompts": four_view_prompts,
+            "status": "generated",
+        }
+
+    def _build_four_view_prompts(self, episode_manifest: dict[str, object]) -> list[dict[str, object]]:
+        """P0-1: Build four-view (front/three_quarter/side/back) prompts for each character."""
+        try:
+            from aicomic.characters.character_views import (
+                FourViewGenerator,
+                ViewAngle,
+                generate_view_prompt,
+            )
+        except ImportError:
+            return []
+
+        characters = episode_manifest.get("characters", [])
+        if not characters:
+            return []
+
+        prompts: list[dict[str, object]] = []
+        for char in characters:
+            if not isinstance(char, dict):
+                continue
+            char_id = char.get("character_id", char.get("id", ""))
+            char_name = char.get("name", "")
+            char_desc = char.get("description", "")
+            views: list[dict[str, object]] = []
+            for angle in ViewAngle.ordered():
+                prompt_text = generate_view_prompt(
+                    character_description=char_desc,
+                    angle=angle.value,
+                    character_name=char_name,
+                )
+                views.append({"angle": angle.value, "prompt": prompt_text})
+            prompts.append({"character_id": char_id, "name": char_name, "views": views})
+        return prompts
 
     def execute_tts_subtitle(self, episode_code: str, episode_manifest: dict[str, object]) -> dict[str, object]:
-        """执行 SOP tts_subtitle 阶段：生成字幕条目 + TTS prompt。"""
+        """执行 SOP tts_subtitle 阶段：生成字幕条目 + TTS prompt + 多语言 (v4.0 P0-4)."""
         from aicomic.providers.request_builder import build_tts_prompt
         from aicomic.render.subtitle_audio import build_subtitle_entries
 
@@ -225,7 +267,105 @@ class PipelineCoordinator:
             for s in shots:
                 if isinstance(s, dict):
                     tts_prompts.append({"shot_id": s.get("shot_id", ""), "tts_prompt": build_tts_prompt(s)})
-        return {"episode_code": episode_code, "subtitles": subtitles, "tts_prompts": tts_prompts, "status": "generated"}
+
+        # v4.0 P0-4: Multi-language subtitles
+        multilang_subtitles = self._build_multilang_subtitles(episode_manifest, subtitles)
+
+        return {
+            "episode_code": episode_code,
+            "subtitles": subtitles,
+            "tts_prompts": tts_prompts,
+            "multilang_subtitles": multilang_subtitles,
+            "status": "generated",
+        }
+
+    def _build_multilang_subtitles(
+        self, episode_manifest: dict[str, object], base_subtitles: list[object]
+    ) -> dict[str, list[object]]:
+        """P0-4: Build multi-language subtitle sets (zh, en, ja, ko)."""
+        output_langs = episode_manifest.get("output_languages", ["zh"])
+        if not isinstance(output_langs, list):
+            output_langs = ["zh"]
+
+        result: dict[str, list[object]] = {}
+        # Extract text strings from subtitle entries for translation
+        base_texts: list[str] = []
+        for sub in base_subtitles:
+            if isinstance(sub, dict):
+                base_texts.append(str(sub.get("text", sub.get("content", ""))))
+            else:
+                base_texts.append(str(sub))
+
+        for lang in output_langs:
+            if lang == "zh":
+                result["zh"] = base_subtitles
+            else:
+                try:
+                    from aicomic.video_synthesis.i18n import translate_subtitles
+
+                    translated_texts = translate_subtitles(base_texts, target_lang=str(lang))
+                    # Rebuild subtitle entries with translated text
+                    translated_entries: list[object] = []
+                    for orig, txt in zip(base_subtitles, translated_texts):
+                        if isinstance(orig, dict):
+                            entry = dict(orig)
+                            entry["text"] = txt
+                            entry["lang"] = str(lang)
+                            translated_entries.append(entry)
+                        else:
+                            translated_entries.append(txt)
+                    result[str(lang)] = translated_entries
+                except (ImportError, Exception):
+                    result[str(lang)] = base_subtitles
+        if "zh" not in result:
+            result["zh"] = base_subtitles
+        return result
+
+    def execute_drift_gate(
+        self, episode_code: str, shots: list[dict[str, object]], character_references: dict[str, dict[str, object]]
+    ) -> dict[str, object]:
+        """执行 v4.0 P0-3 防偏移检查：对每个镜头生成 drift gate 结果。
+
+        Args:
+            episode_code: Episode identifier.
+            shots: List of shot dicts with character_id and optional generated_features.
+            character_references: {character_id: {feature: value}} reference features.
+
+        Returns:
+            Dict with per-shot gate results and overall pass/fail status.
+        """
+        from aicomic.image_consistency.drift_gate import DriftGate
+
+        gate = DriftGate(threshold=60, warn_threshold=75)
+        results: list[dict[str, object]] = []
+        pass_count = 0
+        warn_count = 0
+        fail_count = 0
+
+        for shot in shots:
+            shot_id = shot.get("shot_id", "")
+            char_id = shot.get("character_id", "")
+            ref = character_references.get(char_id, {})
+            gen = shot.get("generated_features", {})
+            gate_result = gate.check(ref, gen)
+            results.append({"shot_id": shot_id, "character_id": char_id, **gate_result})
+            status = gate_result["status"]
+            if status == "PASS":
+                pass_count += 1
+            elif status == "WARN":
+                warn_count += 1
+            else:
+                fail_count += 1
+
+        overall = "PASS" if fail_count == 0 else ("WARN" if warn_count > 0 else "FAIL")
+        return {
+            "episode_code": episode_code,
+            "gate_results": results,
+            "pass_count": pass_count,
+            "warn_count": warn_count,
+            "fail_count": fail_count,
+            "overall_status": overall,
+        }
 
     def execute_preview_render(
         self, episode_code: str, render_plan: dict[str, object], output_path: str, report_path: str
