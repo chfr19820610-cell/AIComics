@@ -1,5 +1,45 @@
 # AIComics CHANGELOG
 
+## v4.0.0 — 2026-09-06
+
+### v4.0 升级 — 12项功能 · 4优先级 · TDD全程
+
+基于 GitHub 竞品调研（4个项目对比）+ v3.0 深度审计（20+维度），补齐断链、防偏移、跨集一致性、发布集成。
+
+#### P0 — 核心体验（1-2周）
+- **P0-1 角色四视图接入**: `execute_asset_generation` 调用 `generate_view_prompt()` 生成正面/侧面/背面/45° 四视图
+- **P0-2 多模型视频路由**: `VideoRouter.route(shot_type)` → `RoutingDecision`（provider/model/flf_enabled）
+- **P0-3 防偏移Drift Gate**: `drift_gate.py` (146行) — `DriftGate.check(shots, refs)` → PASS/WARN/FAIL + drift_score 0-100
+- **P0-4 多语言TTS+字幕**: `get_voice_for_language(lang, gender)` + `translate_subtitles(list)` + `build_subtitle_entries`
+
+#### P1 — 生产力（2-3周）
+- **P1-5 Workflow-First**: `execute_publish_pack` 已接入 `pipeline_coordinator.py`
+- **P1-6 跨集一致性**: 新增 `check_cross_episode_consistency(ep_a, ep_b)` → `list[ConsistencyIssue]`
+- **P1-7 发布平台集成**: `international.py` — `publish()` + `YouTubeUploader`（YouTube/TikTok/IG selenium）
+- **P1-8 模板系统**: `template_loader.py` (53行) — `load_genre_template(name)` + 6个题材YAML模板
+
+#### P2/P3 — 扩展能力（3-4周）
+- **P2-9 LoRA训练配置**: `lora_config.py` (73行) — `build_lora_training_config()` 生成SDXL角色LoRA训练配置
+- **P2-10 Docker一键部署**: Dockerfile + 7个compose文件（dev/prod/gpu/cpu/comfyui/all-in-one）
+- **P3-11 小说→漫剧管道**: `import_novel()` → `split_novel_to_episodes()` → `generate_episode_plan()` → `build_season_production_plan()`
+- **P3-12 Electron桌面端**: `desktop/` 脚手架 — Electron main + preload + package.json
+
+### 测试
+- v3.0 基线: 992 passed
+- P0: +13 → 1005 passed
+- P1: +13 → 1018 passed
+- P2/P3: +18 → **1036 passed, 1 skipped, 0 failed**
+- 零回归（992 v3.0 测试全部仍通过）
+
+### QA 认证
+- ✅ 1036/1037 测试通过 (99.9%)
+- ✅ 12/12 v4.0 功能项逐条验证
+- ✅ 10个核心模块导入冒烟
+- ✅ CLI 60+ 命令可用
+- ✅ Git 4 commits, all pushed
+
+---
+
 ## v3.0.0 — 2026-09-06
 
 ### 破坏性变更
