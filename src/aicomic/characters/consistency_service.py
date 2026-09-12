@@ -336,6 +336,65 @@ class ConsistencyService:
             ))
         return suggestions
 
+    def check_cross_episode_consistency(
+        self,
+        episode_a_states: list[ShotCharacterState],
+        episode_b_states: list[ShotCharacterState],
+    ) -> list[ConsistencyIssue]:
+        """Check character attribute consistency across two episodes.
+
+        Compares the last-known state of each character in episode A
+        against the first-known state in episode B. Detects attribute
+        drift (e.g. hair color change, clothing change) between episodes.
+        """
+        # Build last-known-state per character from episode A
+        last_state_a: dict[str, dict[str, AttributeEntry]] = {}
+        last_shot_a: dict[str, str] = {}
+        for state in episode_a_states:
+            attr_map: dict[str, AttributeEntry] = {}
+            for attr in state.attributes:
+                attr_map[attr.category] = attr
+            last_state_a[state.character_name] = attr_map
+            last_shot_a[state.character_name] = state.shot_id
+
+        # Build first-known-state per character from episode B
+        first_state_b: dict[str, dict[str, AttributeEntry]] = {}
+        first_shot_b: dict[str, str] = {}
+        for state in episode_b_states:
+            if state.character_name in first_state_b:
+                continue
+            attr_map: dict[str, AttributeEntry] = {}
+            for attr in state.attributes:
+                attr_map[attr.category] = attr
+            first_state_b[state.character_name] = attr_map
+            first_shot_b[state.character_name] = state.shot_id
+
+        # Compare and collect issues
+        issues: list[ConsistencyIssue] = []
+        for char_name, attrs_b in first_state_b.items():
+            attrs_a = last_state_a.get(char_name)
+            if attrs_a is None:
+                continue  # New character in episode B, no drift to check
+            for category, attr_b in attrs_b.items():
+                attr_a = attrs_a.get(category)
+                if attr_a is None:
+                    continue
+                if attr_a.attribute != attr_b.attribute:
+                    issues.append(
+                        ConsistencyIssue(
+                            character_name=char_name,
+                            attribute_category=category,
+                            attribute_name=category,
+                            shot_id_a=last_shot_a[char_name],
+                            value_a=attr_a.attribute,
+                            shot_id_b=first_shot_b[char_name],
+                            value_b=attr_b.attribute,
+                            severity="warning",
+                            description=f"跨集漂移: {char_name} 的 {category} 从 '{attr_a.attribute}' 变为 '{attr_b.attribute}'",
+                        )
+                    )
+        return issues
+
     def get_recent_reports(self, project_id: str = "", limit: int = 10) -> list[dict[str, Any]]:
         """Get recent consistency reports."""
         if project_id:
