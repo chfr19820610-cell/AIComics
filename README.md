@@ -17,33 +17,33 @@
 ## 🛒 Commercial Releases — Buy on Gumroad
 
 > **10 products available** — AI-animated donghua, production toolkits, handbooks, games, and novels.
-> All instantly downloadable. No DRM. **Every paid product is $1.99–$2.99.**
+> All instantly downloadable. No DRM. **Every paid product is $0.99–$0.99.**
 > Use offer codes below for 50% off.
 
 ### 📺 AI Animation (Donghua)
 
 | Product | Price | Link |
 |---------|-------|------|
-| **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $2.99 | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-complete-season) |
+| **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-complete-season) |
 | **Nine Turns of the Crimson Heavens — Episode 1** (The Night the Village Burned) | **FREE** | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-episode-1) |
-| **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-chronicle-ep2) |
+| **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-chronicle-ep2) |
 | **Free: 30s White-Label AI Animation Sample** *(免费样品)* | Free | [Gumroad](https://chfr1982.gumroad.com/l/free-ai-animation-sample) |
 
 ### 🛠️ Toolkits & Handbooks
 
 | Product | Price | Link |
 |---------|-------|------|
-| **Vertical Manhua AI Toolkit** · 竖屏漫剧制作工具包 | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/vertical-manhua-ai-toolkit) |
-| **AICG Animation Production Handbook** · AI 动画工作流手册 | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/aicg-handbook) |
-| **White-Label AI Animation Suite** · 白标AI动画套件 | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/white-label-ai-animation) |
-| **Crypto Spread Scanner** — Arbitrage Detection | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/crypto-spread-scanner) |
+| **Vertical Manhua AI Toolkit** · 竖屏漫剧制作工具包 | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/vertical-manhua-ai-toolkit) |
+| **AICG Animation Production Handbook** · AI 动画工作流手册 | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/aicg-handbook) |
+| **White-Label AI Animation Suite** · 白标AI动画套件 | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/white-label-ai-animation) |
+| **Crypto Spread Scanner** — Arbitrage Detection | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/crypto-spread-scanner) |
 
 ### 🎮 Games & Novels
 
 | Product | Price | Link |
 |---------|-------|------|
-| **Starfall Night — HTML5 Arcade Game** | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-night-game) |
-| **Nine Heavens Ascension — Xianxia Novel** · 九天飞升 | $1.99 | [Gumroad](https://chfr1982.gumroad.com/l/nine-heavens-ascension-novel) |
+| **Starfall Night — HTML5 Arcade Game** | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-night-game) |
+| **Nine Heavens Ascension — Xianxia Novel** · 九天飞升 | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/nine-heavens-ascension-novel) |
 
 > 🔗 **Full store**: https://chfr1982.gumroad.com
 > 📧 Custom / white-label inquiries: chfr19820610@gmail.com
@@ -58,13 +58,13 @@
 >
 > ⚡ All codes are limited. Don't wait!
 
-### 👉 Start free, then get the full season for $2.99
+### 👉 Start free, then get the full season for $0.99
 
 > **Watch the free 30-second sample** — no email required. Then grab **Episode 1 for free** to see if you like the style.
 >
-> **Want the whole story?** The complete 12-episode season is just **$2.99** (use code `EARLYBIRD50` → $1.50) — [Get the full season →](https://chfr1982.gumroad.com/l/nine-turns-complete-season)
+> **Want the whole story?** The complete 12-episode season is just **$0.99** (use code `EARLYBIRD50` → $0.49) — [Get the full season →](https://chfr1982.gumroad.com/l/nine-turns-complete-season)
 >
-> **Building your own AI animation pipeline?** The [AICG Animation Production Handbook](https://chfr1982.gumroad.com/l/aicg-handbook) ($1.99, or $0.99 with `EARLYBIRD50`) documents the full ComfyUI + Blender + Remotion workflow used to produce every episode. The open-source system you're looking at right now is free; the handbook teaches you how to use it end-to-end.
+> **Building your own AI animation pipeline?** The [AICG Animation Production Handbook](https://chfr1982.gumroad.com/l/aicg-handbook) ($0.99, or $0.49 with `EARLYBIRD50`) documents the full ComfyUI + Blender + Remotion workflow used to produce every episode. The open-source system you're looking at right now is free; the handbook teaches you how to use it end-to-end.
 
 ---
 
