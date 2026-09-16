@@ -17,14 +17,14 @@
 ## 🛒 Commercial Releases — Buy on Gumroad
 
 > **10 products available** — AI-animated donghua, production toolkits, handbooks, games, and novels.
-> All instantly downloadable. No DRM. **Every paid product is $0.99–$0.99.**
+> All instantly downloadable. No DRM. **Paid products from $0.99. Use `EARLYBIRD50` for 50% off.**
 > Use offer codes below for 50% off.
 
 ### 📺 AI Animation (Donghua)
 
 | Product | Price | Link |
 |---------|-------|------|
-| **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-complete-season) |
+| **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $4.99 → $2.49 with `EARLYBIRD50` | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-complete-season) |
 | **Nine Turns of the Crimson Heavens — Episode 1** (The Night the Village Burned) | **FREE** | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-episode-1) |
 | **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-chronicle-ep2) |
 | **Free: 30s White-Label AI Animation Sample** *(免费样品)* | Free | [Gumroad](https://chfr1982.gumroad.com/l/free-ai-animation-sample) |
@@ -58,11 +58,11 @@
 >
 > ⚡ All codes are limited. Don't wait!
 
-### 👉 Start free, then get the full season for $0.99
+### 👉 Start free, then get the full season
 
 > **Watch the free 30-second sample** — no email required. Then grab **Episode 1 for free** to see if you like the style.
 >
-> **Want the whole story?** The complete 12-episode season is just **$0.99** (use code `EARLYBIRD50` → $0.49) — [Get the full season →](https://chfr1982.gumroad.com/l/nine-turns-complete-season)
+> **Want the whole story?** The complete 12-episode season is **$4.99** — but use code `EARLYBIRD50` for 50% off → **$2.49** — [Get the full season →](https://chfr1982.gumroad.com/l/nine-turns-complete-season)
 >
 > **Building your own AI animation pipeline?** The [AICG Animation Production Handbook](https://chfr1982.gumroad.com/l/aicg-handbook) ($0.99, or $0.49 with `EARLYBIRD50`) documents the full ComfyUI + Blender + Remotion workflow used to produce every episode. The open-source system you're looking at right now is free; the handbook teaches you how to use it end-to-end.
 
