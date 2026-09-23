@@ -99,7 +99,7 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v4.0 已支持�
 
 ---
 
-## 🆕 v4.0 新功能 — 12项升级 · 4优先级 · 1036测试零回归
+## 🆕 v4.0 新功能 — 14项升级 · 4优先级 · 1036测试零回归
 
 基于 GitHub 竞品调研 + v3.0 深度审计，补齐断链、防偏移、跨集一致性、发布集成。
 
@@ -125,6 +125,8 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v4.0 已支持�
 | **Docker一键部署** | 7个compose文件 | dev/prod/gpu/cpu/comfyui/all-in-one |
 | **小说→漫剧管道** | `import_novel()` | 小说→章节→整季蓝图→分镜计划 |
 | **Electron桌面端** | `desktop/` | Electron main + preload 脚手架 |
+| **☁️ 云端轻量模式** | `cloud_mode.py` | `AICOMIC_CLOUD=1` 跳过local providers，全走API，镜像<500MB |
+| **🏪 社区模板市场** | `template_market.py` | install/uninstall/share/browse/preview 全CLI支持，base64分发 |
 
 ### 测试
 - v3.0 基线 992 → v4.0 **1036 passed, 1 skipped, 0 failed**（零回归）
@@ -535,8 +537,9 @@ graph LR
 - [x] v4.0: 小说→漫剧管道 (import→split→plan)
 - [x] v4.0: 发布平台集成 (YouTube/TikTok/IG)
 - [x] v4.0: LoRA训练配置 + Docker一键部署 + Electron桌面端
-- [ ] 云端轻量模式
-- [ ] 社区模板市场
+- [x] v4.0: 云端轻量模式 — `AICOMIC_CLOUD=1` 环境变量 + Dockerfile.cloud (<500MB)
+- [x] v4.0: 社区模板市场 — install/uninstall/share/browse/preview 模板全CLI支持
+- [ ] v5.0 路线图待定（Web模板市场UI / 实时协作 / 更多视频模型接入）
 
 ---
 
