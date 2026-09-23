@@ -2,15 +2,14 @@
 
 > **写故事 → 拆镜头 → AI 生成 → 配音 → 发布，全自动一人公司视频工厂**
 
-[![Version](https://img.shields.io/badge/Version-3.0.0-blue)](https://github.com/chfr19820610-cell/AIComics)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.12%2B-brightgreen)](.python-version)
-[![Tests](https://img.shields.io/badge/Tests-997%2F997-passing-brightgreen)](tests/)
-[![ComfyUI](https://img.shields.io/badge/ComfyUI-v0.26.0-important)](https://github.com/comfyanonymous/ComfyUI)
-[![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux-lightgrey)]()
 [![GitHub stars](https://img.shields.io/github/stars/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics)
+[![GitHub forks](https://img.shields.io/github/forks/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics/fork)
+[![CI](https://img.shields.io/github/actions/workflow/status/chfr19820610-cell/AIComics/ci.yml?label=CI)](https://github.com/chfr19820610-cell/AIComics/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/chfr19820610-cell/AIComics)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.12%2B-brightgreen)](.python-version)
+[![ComfyUI](https://img.shields.io/badge/ComfyUI-v0.26.0-important)](https://github.com/comfyanonymous/ComfyUI)
 [![Last Commit](https://img.shields.io/github/last-commit/chfr19820610-cell/AIComics)](https://github.com/chfr19820610-cell/AIComics/commits/main)
-[![Validation](https://img.shields.io/badge/Validation-55%2F55%20(100%25)-success)](tests/)
+[![Gumroad](https://img.shields.io/badge/🛒_Buy_on_Gumroad-$0.99-orange)](https://chfr1982.gumroad.com)
 
 ---
 
@@ -502,9 +501,15 @@ Apache 2.0 © 2026 [Eric Chen](https://github.com/chfr19820610-cell)
 
 ## 🤝 贡献
 
-Issues 和 PR 都欢迎！提交前请确保测试通过。
+Issues、PR、Discussions 都欢迎！详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+提交前请确保测试通过：
 
 ```bash
 # 运行测试确认
 PYTHONPATH="src" .venv/bin/python -m pytest tests/ -q
 ```
+
+### ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=chfr19820610-cell/AIComics&type=Date)](https://star-history.com/#chfr19820610-cell/AIComics&Date)
