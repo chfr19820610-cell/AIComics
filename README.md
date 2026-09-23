@@ -83,15 +83,19 @@
 
 ## ✨ 它能做什么
 
-AIComics 是一个**全本地运行**的 AI 漫剧创作系统。你只需要有一个故事想法，系统会帮你：
+AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v4.0 已支持从故事到发布的完整管线：
 
 | 环节 | 说明 | 技术 |
 |------|------|------|
 | 📝 **写剧本** | 设定世界观、角色、剧情，自动生成分镜脚本 | 大语言模型 |
-| 🎨 **出画面** | 每个分镜生成动漫风格的关键帧图片 | ComfyUI + SDXL |
-| 🔊 **配配音** | 每个分镜生成中文语音旁白 | Piper TTS |
-| 🎬 **做视频** | 图片+配音合成完整剧集 | FFmpeg |
-| 📡 **发平台** | 一键发布到小红书/B站/抖音 | social-auto-upload |
+| 📖 **小说导入** | 小说文本→章节拆分→整季蓝图→分镜计划 | `import_novel()` |
+| 🎨 **出画面** | 每个分镜生成动漫风格的关键帧图片 + 角色四视图 | ComfyUI + SDXL |
+| 🛡️ **防偏移** | Drift Gate 检测画面偏离参考图 → PASS/WARN/FAIL | `drift_gate.py` |
+| 🔗 **跨集一致** | 跨集角色一致性检查 | `consistency_service.py` |
+| 🔊 **配配音** | 多语言TTS（中/英/日/韩）+ 字幕翻译 | Piper TTS + `translate_subtitles()` |
+| 🎬 **做视频** | 多模型路由（动作→Kling/对话→Seedance/远景→Wan）+ FLF插值 | `VideoRouter` + FFmpeg |
+| 📡 **发平台** | YouTube/TikTok/Instagram + 小红书/B站/抖音 | `international.py` + social-auto-upload |
+| 🖥️ **桌面端** | Electron 桌面应用 | `desktop/` |
 
 ---
 
@@ -151,7 +155,7 @@ aicomic render --mode 3d                 # 3D: Tripo→Mixamo→cel-shader
 
 ---
 
-## 🆕 v2.0 新功能（路线图 6 项）
+## 🆕 v2.0 功能 — 6项扩展（模板/小说/多语言/发布/云/社区）
 
 | 功能 | CLI 命令 | Web API | 说明 |
 |------|---------|---------|------|
@@ -217,35 +221,52 @@ graph TB
         CLI["CLI 命令行"]
         WEB["Web 创作台<br/>(React SPA)"]
         API["REST API<br/>(FastAPI)"]
+        DESKTOP["🖥️ Electron<br/>桌面端"]
     end
 
     subgraph Core["⚙️ 核心引擎 src/aicomic/"]
         direction TB
         CLI_CORE["cli/<br/>入口 & 命令"]
         CORE_BP["core/<br/>业务逻辑<br/>项目/剧集/分镜/版本"]
-        PROV["providers/<br/>Provider 抽象层<br/>ComfyUI / Piper /<br/>OpenAI / Seedance"]
-        CHAR["characters/<br/>角色系统<br/>一致性/提示词注入"]
+        PROV["providers/<br/>Provider 抽象层<br/>ComfyUI / Piper /<br>OpenAI / Seedance"]
+        CHAR["characters/<br/>角色系统<br/>一致性/四视图/提示词注入"]
         VIDEO_SYNTH["video_synthesis/<br/>视频合成管线<br/>图片→场景→字幕→配音→合成"]
+        IMG_PIPE["image_pipeline/<br/>图像管线+诊断<br/>(8模块)"]
+        DRIFT["🛡️ drift_gate<br/>防偏移检测"]
+        CONSIST["🔗 consistency_service<br/>跨集一致性"]
         UTILS["utils/<br/>工具函数"]
         CLI_CORE --> CORE_BP
         CORE_BP --> PROV
         CORE_BP --> CHAR
         CORE_BP --> VIDEO_SYNTH
+        CORE_BP --> IMG_PIPE
+        CORE_BP --> DRIFT
+        CORE_BP --> CONSIST
     end
 
     subgraph Providers["🔌 Provider 插件"]
-        COMFY["ComfyUI<br/>✨ 图片生成"]
-        PIPER["Piper TTS<br/>🔊 中文配音"]
+        COMFY["ComfyUI<br/>✨ 图片生成 (SDXL)"]
+        PIPER["Piper TTS<br/>🔊 多语言配音"]
         OPENAI["OpenAI/DALL·E<br/>🎨 备选生图"]
         SEEDANCE["Seedance<br/>🎬 云视频合成"]
+        KLING["Kling<br/>🎬 动作视频"]
+        WAN["Wan<br/>🎬 远景视频"]
         MANUAL["手动模式<br/>📁 本地资产导入"]
+    end
+
+    subgraph V4["🆕 v4.0 扩展"]
+        TEMPLATES["📋 template_loader<br/>6题材YAML模板"]
+        NOVEL["📖 novel_import<br/>小说→漫剧管道"]
+        LORA["🎨 lora_config<br/>角色LoRA训练配置"]
+        I18N["🌐 translate_subtitles<br/>多语言字幕"]
+        PUBLISH_INTL["📤 international.py<br/>YouTube/TikTok/IG"]
     end
 
     subgraph Output["📦 产出层"]
         IMAGES["关键帧图片"]
-        AUDIO["语音旁白"]
+        AUDIO["多语言语音旁白"]
         VIDEO["合成视频 MP4<br/>state/releases/"]
-        PUBLISH["发布包<br/>小红书/B站/抖音"]
+        PUBLISH["发布包<br/>小红书/B站/抖音<br/>YouTube/TikTok/IG"]
     end
 
     subgraph Automation["🔄 自动循环"]
@@ -255,6 +276,7 @@ graph TB
     end
 
     User --> Core
+    Core --> V4
     PROV --> Providers
     Providers --> Output
     Output --> PUBLISH
@@ -381,7 +403,8 @@ docker compose logs -f
 
 | 指标 | 值 |
 |------|----|
-| 测试通过率 | **1036/1036** (100%) |
+| **版本** | **4.0.0** |
+| 测试通过率 | **1036/1037** (99.9%) |
 | 验证脚本 | **39/39** (100%) |
 | API 端点 | **52** 个 |
 | 视频产出 | **5 集完整漫剧**（4 分 24 秒） |
@@ -427,7 +450,7 @@ tail -f logs/vf_loop.log
 
 ---
 
-## ✨ v1.0.0 功能
+## ✨ v1.0.0 核心功能
 
 | 功能 | 说明 |
 |------|------|
@@ -437,7 +460,7 @@ tail -f logs/vf_loop.log
 | **🎬 视频合成管线** | 端到端视频合成：图片→场景→字幕→配音→合成，支持批量处理 |
 | **🏗️ 声明式管线** | YAML 清单定义生产流程，审批门+断点续跑+协调器，管线可编排可中断可恢复 |
 | **🎨 ComfyUI 真实出图** | SDXL 25步 1024×1024 真实出图验证脚本 + Docker 构建代理修复 |
-| **✅ 1036 测试覆盖** | 从 314 提升至 1036 测试，新增 Provider 抽象层、角色系统、分镜版本管理、管线基础设施等专项测试 |
+| **✅ 1036 测试覆盖** | 从 314 提升至 1036 测试，覆盖 Provider 抽象层、角色系统、分镜版本管理、管线基础设施、v4.0 P0-P3 功能 |
 | **🎨 风格轮换引擎** | 自动轮换视觉风格和色板，每条漫剧可拥有不同艺术风格 |
 | **🔄 无限自循环** | vf_master_loop 后台守护，自动生产+补充+发布，无需人工干预 |
 | **🐳 Docker 全栈部署** | docker-compose 一键启动（前端+后端+PostgreSQL+Redis），支持 local/production 双环境 |
@@ -456,6 +479,8 @@ graph LR
         SCR["scripts/"]
         TST["tests/"]
         ST["state/"]
+        DSK["desktop/"]
+        DOCS["docs/"]
     end
 
     SRC --> CLI["cli/"]
@@ -463,6 +488,8 @@ graph LR
     SRC --> PROV2["providers/"]
     SRC --> CHAR2["characters/"]
     SRC --> VS["video_synthesis/"]
+    SRC --> IMG2["image_pipeline/"]
+    SRC --> IC["image_consistency/"]
     SRC --> UTL["utils/"]
 
     WEB --> BE["backend/ (FastAPI)"]
@@ -478,10 +505,13 @@ graph LR
 
 | 目录 | 说明 |
 |------|------|
-| `src/aicomic/` | 核心引擎 — CLI / 业务逻辑 / Provider 抽象层 / 角色系统 / 视频合成 |
+| `src/aicomic/` | 核心引擎 — CLI / 业务逻辑 / Provider 抽象层 / 角色系统 / 视频合成 / 图像管线 |
+| `src/aicomic/image_consistency/` | 角色一致性 — Triple-Lock + Drift Gate + 跨集检查 |
+| `src/aicomic/image_pipeline/` | 图像管线 — 抠图→生图→放大→合成 + 就绪诊断 (8模块) |
 | `web/backend/` | FastAPI 后端（52 个 API 端点） |
 | `web/frontend/` | React SPA 创作台 |
-| `config/` | 配置文件（ComfyUI 路径、Provider 配置） |
+| `desktop/` | Electron 桌面端 (v4.0) |
+| `config/` | 配置文件（ComfyUI 路径、Provider 配置、6题材模板） |
 | `scripts/` | 运维脚本（vf_master_loop、启动脚本） |
 | `tests/` | 1036 个测试用例 |
 | `state/releases/` | 已合成的 MP4 视频产出 |
