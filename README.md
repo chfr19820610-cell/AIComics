@@ -2,6 +2,7 @@
 
 > **写故事 → 拆镜头 → AI 生成 → 配音 → 发布，全自动一人公司视频工厂**
 
+[![Version](https://img.shields.io/badge/Version-4.0.0-blue)](https://github.com/chfr19820610-cell/AIComics/releases)
 [![GitHub stars](https://img.shields.io/github/stars/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics)
 [![GitHub forks](https://img.shields.io/github/forks/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics/fork)
 [![CI](https://img.shields.io/github/actions/workflow/status/chfr19820610-cell/AIComics/ci.yml?label=CI)](https://github.com/chfr19820610-cell/AIComics/actions/workflows/ci.yml)
@@ -91,6 +92,38 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。你只需要有
 | 🔊 **配配音** | 每个分镜生成中文语音旁白 | Piper TTS |
 | 🎬 **做视频** | 图片+配音合成完整剧集 | FFmpeg |
 | 📡 **发平台** | 一键发布到小红书/B站/抖音 | social-auto-upload |
+
+---
+
+## 🆕 v4.0 新功能 — 12项升级 · 4优先级 · 1036测试零回归
+
+基于 GitHub 竞品调研 + v3.0 深度审计，补齐断链、防偏移、跨集一致性、发布集成。
+
+### P0 — 核心体验
+| 功能 | 模块 | 说明 |
+|------|------|------|
+| **角色四视图** | `execute_asset_generation` | 正面/侧面/背面/45° 四视图自动生成 |
+| **多模型视频路由** | `VideoRouter.route()` | 动作→Kling / 对话→Seedance / 远景→Wan |
+| **防偏移 Drift Gate** | `drift_gate.py` | `check(shots, refs)` → PASS/WARN/FAIL + drift_score |
+| **多语言TTS+字幕** | `translate_subtitles()` | 中→英/日/韩 字幕 + 多语言TTS路由 |
+
+### P1 — 生产力
+| 功能 | 模块 | 说明 |
+|------|------|------|
+| **跨集一致性** | `consistency_service.py` | `check_cross_episode_consistency()` |
+| **发布平台集成** | `international.py` | YouTube/TikTok/Instagram selenium 上传 |
+| **模板系统** | `template_loader.py` | 6题材YAML模板（恐怖/爱情/职场/修仙/悬疑/甜宠）|
+
+### P2/P3 — 扩展能力
+| 功能 | 模块 | 说明 |
+|------|------|------|
+| **LoRA训练配置** | `lora_config.py` | SDXL角色LoRA训练配置生成 |
+| **Docker一键部署** | 7个compose文件 | dev/prod/gpu/cpu/comfyui/all-in-one |
+| **小说→漫剧管道** | `import_novel()` | 小说→章节→整季蓝图→分镜计划 |
+| **Electron桌面端** | `desktop/` | Electron main + preload 脚手架 |
+
+### 测试
+- v3.0 基线 992 → v4.0 **1036 passed, 1 skipped, 0 failed**（零回归）
 
 ---
 
@@ -348,7 +381,7 @@ docker compose logs -f
 
 | 指标 | 值 |
 |------|----|
-| 测试通过率 | **688/688** (100%) |
+| 测试通过率 | **1036/1036** (100%) |
 | 验证脚本 | **39/39** (100%) |
 | API 端点 | **52** 个 |
 | 视频产出 | **5 集完整漫剧**（4 分 24 秒） |
@@ -361,7 +394,7 @@ docker compose logs -f
 ## 🧪 运行测试
 
 ```bash
-# 运行全部 688 个测试
+# 运行全部 1036 个测试
 PYTHONPATH="src" .venv/bin/python -m pytest tests/ -v
 
 # 快速模式（跳过耗时测试）
@@ -404,7 +437,7 @@ tail -f logs/vf_loop.log
 | **🎬 视频合成管线** | 端到端视频合成：图片→场景→字幕→配音→合成，支持批量处理 |
 | **🏗️ 声明式管线** | YAML 清单定义生产流程，审批门+断点续跑+协调器，管线可编排可中断可恢复 |
 | **🎨 ComfyUI 真实出图** | SDXL 25步 1024×1024 真实出图验证脚本 + Docker 构建代理修复 |
-| **✅ 688 测试覆盖** | 从 314 提升至 688 测试，新增 Provider 抽象层、角色系统、分镜版本管理、管线基础设施等专项测试 |
+| **✅ 1036 测试覆盖** | 从 314 提升至 1036 测试，新增 Provider 抽象层、角色系统、分镜版本管理、管线基础设施等专项测试 |
 | **🎨 风格轮换引擎** | 自动轮换视觉风格和色板，每条漫剧可拥有不同艺术风格 |
 | **🔄 无限自循环** | vf_master_loop 后台守护，自动生产+补充+发布，无需人工干预 |
 | **🐳 Docker 全栈部署** | docker-compose 一键启动（前端+后端+PostgreSQL+Redis），支持 local/production 双环境 |
@@ -435,7 +468,7 @@ graph LR
     WEB --> BE["backend/ (FastAPI)"]
     WEB --> FE["frontend/ (React SPA)"]
 
-    TST --> T688["688 个测试用例"]
+    TST --> T1036["1036 个测试用例"]
 
     ST --> REL["releases/ (视频产出)"]
     ST --> PV["produced_videos/"]
@@ -450,7 +483,7 @@ graph LR
 | `web/frontend/` | React SPA 创作台 |
 | `config/` | 配置文件（ComfyUI 路径、Provider 配置） |
 | `scripts/` | 运维脚本（vf_master_loop、启动脚本） |
-| `tests/` | 688 个测试用例 |
+| `tests/` | 1036 个测试用例 |
 | `state/releases/` | 已合成的 MP4 视频产出 |
 | `state/produced_videos/` | 视频工厂产出目录 |
 
@@ -460,15 +493,18 @@ graph LR
 
 - [x] 基础漫剧管线 (故事→分镜→图片→配音)
 - [x] CLI + Web API + SPA 三端入口
-- [x] 688 测试全通过
+- [x] 1036 测试全通过
 - [x] 供应商抽象层 (ComfyUI/Piper/OpenAI/Seedance)
 - [x] 角色系统 (定义/一致性/提示词注入/参考图)
 - [x] 分镜版本管理
 - [x] 自动风格轮换引擎 + 无限自循环
-- [ ] 漫剧专用模板系统
-- [ ] 小说→漫剧一站式管道
-- [ ] 多语言配音 & 字幕
-- [ ] 发布平台自动集成（小红书/B站/抖音一键发布）
+- [x] v4.0: 角色四视图 + 防偏移Drift Gate + 跨集一致性
+- [x] v4.0: 多模型视频路由 (Kling/Seedance/Wan) + FLF插值
+- [x] v4.0: 多语言TTS + 字幕翻译
+- [x] v4.0: 漫剧模板系统 (6题材YAML模板)
+- [x] v4.0: 小说→漫剧管道 (import→split→plan)
+- [x] v4.0: 发布平台集成 (YouTube/TikTok/IG)
+- [x] v4.0: LoRA训练配置 + Docker一键部署 + Electron桌面端
 - [ ] 云端轻量模式
 - [ ] 社区模板市场
 
