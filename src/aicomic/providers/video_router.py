@@ -21,6 +21,7 @@ from typing import Any
 from aicomic.providers.base import IProvider
 from aicomic.providers.kling_provider import KlingProvider
 from aicomic.providers.seedance_provider import SeedanceProvider
+from aicomic.providers.wan_provider import WanProvider
 
 
 # ── Shot type enum (string-based for YAML compatibility) ─────────────────
@@ -46,12 +47,11 @@ DEFAULT_ROUTING: dict[str, str] = {
     ShotType.TRANSITION: "seedance",
 }
 
-# Models not yet implemented as full IProvider adapters — stub for routing.
-# When Wan provider is added, replace the stub with the real class.
+# v5.0: Wan provider is now a real adapter — no more stub.
 _PROVIDER_STUBS: dict[str, type] = {
     "kling": KlingProvider,
     "seedance": SeedanceProvider,
-    # "wan": WanProvider,  # future
+    "wan": WanProvider,
 }
 
 
@@ -183,7 +183,7 @@ class VideoRouter:
 
         cls = _PROVIDER_STUBS.get(name)
         if cls is None:
-            # Provider not yet implemented (e.g. "wan") — return None
+            # Provider not registered — return None
             return None
 
         try:

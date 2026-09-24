@@ -191,6 +191,16 @@ def initialize_project(
             write_json(episode_blueprint_path, bp)
         except Exception:
             write_json(episode_blueprint_path, build_episode_blueprint(episode_target_count, protagonist_name, season_hook))
+        # v5.0: also load genre template via template_loader for art_style hints
+        try:
+            from aicomic.core.template_loader import load_genre_template
+            genre_tmpl = load_genre_template(template)
+            style_bible = build_style_bible(style, tone)
+            style_bible["art_style"] = genre_tmpl.get("art_style", style)
+            style_bible["character_style"] = genre_tmpl.get("character_style", "")
+            write_json(style_bible_path, style_bible)
+        except (FileNotFoundError, Exception):
+            pass  # template_loader is best-effort enhancement
     else:
         write_json(episode_blueprint_path, build_episode_blueprint(episode_target_count, protagonist_name, season_hook))
     write_json(prompt_pack_path, build_prompt_pack_template(project_name, genre, style, protagonist_name, tone))

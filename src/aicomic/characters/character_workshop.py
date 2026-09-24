@@ -323,6 +323,23 @@ class CharacterWorkshop:
             if project_id:
                 from aicomic.characters.database import link_character_to_project
                 link_character_to_project(self._connection, project_id, char_id, role_tag=ext.name)
+
+            # v5.0: auto-generate LoRA training config for this character (was dead code)
+            try:
+                from aicomic.core.lora_config import build_lora_training_config, write_training_config
+                from pathlib import Path
+                char_dir = Path("state/generated_projects") / (project_id or "default") / "characters" / char_id
+                char_dir.mkdir(parents=True, exist_ok=True)
+                config = build_lora_training_config(
+                    character_name=ext.name,
+                    training_images_dir=str(char_dir / "training_images"),
+                    output_dir=str(char_dir / "lora_output"),
+                    trigger_word=ext.name.lower().replace(" ", "_"),
+                )
+                write_training_config(config, str(char_dir / "lora_training_config.json"))
+            except Exception:
+                pass  # LoRA config generation is best-effort, not blocking
+
             created.append(Character.from_dict(record))
             existing_names.add(ext.name)
         return created

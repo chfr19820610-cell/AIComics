@@ -4,10 +4,12 @@ Phase 1: Dictionary-based translation for common AI漫剧 phrases + LLM hook.
 Phase 2: Voice routing to Edge TTS per language.
 
 Design: 极简. Dictionary covers common phrases; LLM callable for the rest.
-No external API dependency — falls back to dictionary + transliteration.
+v5.0: built-in ``make_llm_callback`` factory connects to OpenAI-compatible APIs
+for phrases outside the dictionary. Falls back to dictionary when no API key.
 """
 from __future__ import annotations
 
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -44,6 +46,56 @@ _PHRASE_DICT: dict[str, dict[str, str]] = {
 }
 
 # ── Translation ──────────────────────────────────────────────────────────
+
+
+def make_llm_callback(
+    api_key: str | None = None,
+    base_url: str = "https://api.openai.com/v1",
+    model: str = "gpt-4o-mini",
+) -> Any | None:
+    """Build an LLM translation callback for use with translate_subtitles().
+
+    Uses OpenAI-compatible chat completions API.  If no ``api_key`` is
+    provided, falls back to the ``OPENAI_API_KEY`` env var; if still missing,
+    returns ``None`` so callers silently fall back to the dictionary.
+
+    Args:
+        api_key: API key (defaults to ``OPENAI_API_KEY`` env var).
+        base_url: OpenAI-compatible endpoint.
+        model: Model to use for translation.
+
+    Returns:
+        Callable ``(text: str, target_lang: str) -> str`` or ``None``.
+    """
+    key = api_key or os.environ.get("OPENAI_API_KEY") or os.environ.get("AICOMIC_LLM_KEY")
+    if not key:
+        return None
+
+    lang_names = LANGUAGES  # closure over module-level dict
+
+    def _callback(text: str, target_lang: str) -> str:
+        import httpx
+
+        target_name = lang_names.get(target_lang, target_lang)
+        prompt = (
+            f"Translate the following Chinese subtitle into {target_name}. "
+            f"Return ONLY the translation, no explanation.\n\n{text}"
+        )
+        resp = httpx.post(
+            f"{base_url}/chat/completions",
+            headers={"Authorization": f"Bearer {key}"},
+            json={
+                "model": model,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": 0.3,
+                "max_tokens": 1024,
+            },
+            timeout=30.0,
+        )
+        resp.raise_for_status()
+        return resp.json()["choices"][0]["message"]["content"].strip()
+
+    return _callback
 
 
 def _translate_single(text: str, target_lang: str) -> str:

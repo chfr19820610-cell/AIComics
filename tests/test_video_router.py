@@ -26,8 +26,8 @@ class TestVideoRouter:
         router = VideoRouter()
         decision = router.route(ShotType.WIDE)
         assert decision.provider_name == "wan"
-        # Wan provider is not yet implemented — provider should be None
-        assert decision.provider is None
+        # v5.0: Wan provider is now a real adapter — provider should be instantiated
+        assert decision.provider is not None
 
     def test_route_unknown_shot_falls_back_to_dialogue(self):
         from aicomic.providers.video_router import VideoRouter

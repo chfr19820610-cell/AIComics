@@ -52,8 +52,9 @@ urllib3==2.6.3
 uvicorn==0.46.0
 websocket-client==1.9.0
 
-# v2.0 optional deps (for international publish + multilang TTS)
-# Uncomment when using those features:
-# google-api-python-client==2.154.0
-# google-auth-oauthlib==1.2.1
-# edge-tts==6.1.19
+# v5.0 optional deps (i18n LLM translation + multilang TTS + publish)
+google-api-python-client==2.154.0
+google-auth-oauthlib==1.2.1
+edge-tts==6.1.19
+openai==1.55.0
+selenium==4.25.0

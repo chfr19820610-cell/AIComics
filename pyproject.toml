@@ -34,6 +34,18 @@ cloud = [
     "httpx>=0.28,<1",
     "pyyaml>=6.0,<7",
 ]
+# v5.0: i18n LLM translation + multilang TTS + publish
+i18n = [
+    "openai>=1.0,<2",
+]
+tts = [
+    "edge-tts>=6.1,<7",
+]
+publish = [
+    "google-api-python-client>=2.154,<3",
+    "google-auth-oauthlib>=1.2,<2",
+    "selenium>=4.20,<5",
+]
 
 [project.scripts]
 aicomic = "aicomic.cli.main:main"
