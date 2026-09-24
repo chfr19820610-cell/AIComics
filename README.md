@@ -539,7 +539,6 @@ graph LR
 - [x] v4.0: LoRA训练配置 + Docker一键部署 + Electron桌面端
 - [x] v4.0: 云端轻量模式 — `AICOMIC_CLOUD=1` 环境变量 + Dockerfile.cloud (<500MB)
 - [x] v4.0: 社区模板市场 — install/uninstall/share/browse/preview 模板全CLI支持
-- [ ] v5.0 路线图待定（Web模板市场UI / 实时协作 / 更多视频模型接入）
 
 ---
 
