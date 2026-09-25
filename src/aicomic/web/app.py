@@ -51,6 +51,37 @@ class QualityCheckRequest(BaseModel):
     min_bitrate_kbps: int = 500
 
 
+# ── v5.1 Request models ────────────────────────────────────────────────────
+
+
+class SilentFailureRequest(BaseModel):
+    """Request body for silent failure check."""
+    episode_metadata: dict[str, Any]
+
+
+class CostRecordRequest(BaseModel):
+    """Request body for recording a generation cost."""
+    provider: str
+    asset_id: str = ""
+    credits: float = 0
+    cents: float = 0
+    model: str = ""
+    asset_path: str = ""
+    episode_code: str = ""
+
+
+class BudgetSetRequest(BaseModel):
+    """Request body for setting budget."""
+    cents: float
+
+
+class PlaybackReviewRequest(BaseModel):
+    """Request body for playback review."""
+    episode_metadata: dict[str, Any]
+    video_path: str = ""
+    require_manual: bool = False
+
+
 # ── App factory ───────────────────────────────────────────────────────────
 
 
@@ -65,15 +96,15 @@ def create_app(state_dir: Path | str = "state") -> FastAPI:
     """
     app = FastAPI(
         title="AIComics API",
-        description="AI漫剧自动生成系统 — v5.0",
-        version="5.0.0",
+        description="AI漫剧自动生成系统 — v5.1",
+        version="5.1.0",
     )
 
     # ── Health ─────────────────────────────────────────────────────────
 
     @app.get("/api/health")
     def health() -> dict[str, str]:
-        return {"status": "ok", "version": "5.0.0"}
+        return {"status": "ok", "version": "5.1.0"}
 
     # ── Drift Gate ─────────────────────────────────────────────────────
 
@@ -120,6 +151,88 @@ def create_app(state_dir: Path | str = "state") -> FastAPI:
     def quality_available() -> dict[str, Any]:
         """Check if ffprobe is available on this system."""
         return {"ffprobe_available": FFprobeGate.is_available()}
+
+    # ── Silent Failure Check (v5.1) ────────────────────────────────────
+
+    @app.post("/api/silent-failure/check")
+    def silent_failure_check(req: SilentFailureRequest) -> dict[str, Any]:
+        """Check for 漫剧专属 silent failures (lip sync, subtitle occlusion, etc.)."""
+        from aicomic.video_synthesis.silent_failure import SilentFailureChecker
+        checker = SilentFailureChecker()
+        report = checker.check(req.episode_metadata)
+        return report.to_dict()
+
+    @app.get("/api/silent-failure/catalog")
+    def silent_failure_catalog() -> list[dict[str, str]]:
+        """Get the full trap catalog."""
+        from aicomic.video_synthesis.silent_failure import SilentFailureChecker
+        return SilentFailureChecker.get_trap_catalog()
+
+    # ── Cost Dashboard (v5.1) ──────────────────────────────────────────
+
+    @app.post("/api/cost/record")
+    def cost_record(req: CostRecordRequest) -> dict[str, Any]:
+        """Record a generation cost."""
+        from aicomic.core.cost_dashboard import CostDashboard
+        dash = CostDashboard(storage_dir=f"{state_dir}/costs")
+        entry = dash.record_generation(
+            provider=req.provider,
+            asset_id=req.asset_id,
+            credits=req.credits,
+            cents=req.cents,
+            model=req.model,
+            asset_path=req.asset_path,
+            episode_code=req.episode_code,
+        )
+        return entry.to_dict()
+
+    @app.get("/api/cost/dashboard")
+    def cost_dashboard() -> dict[str, Any]:
+        """Get cost dashboard summary."""
+        from aicomic.core.cost_dashboard import CostDashboard
+        dash = CostDashboard(storage_dir=f"{state_dir}/costs")
+        return dash.export_dashboard()
+
+    @app.get("/api/cost/budget")
+    def cost_budget() -> dict[str, Any]:
+        """Get budget status."""
+        from aicomic.core.cost_dashboard import CostDashboard
+        dash = CostDashboard(storage_dir=f"{state_dir}/costs")
+        return dash.get_budget_status().to_dict()
+
+    @app.post("/api/cost/budget")
+    def cost_set_budget(req: BudgetSetRequest) -> dict[str, Any]:
+        """Set budget limit."""
+        from aicomic.core.cost_dashboard import CostDashboard
+        dash = CostDashboard(storage_dir=f"{state_dir}/costs")
+        dash.set_budget(req.cents)
+        return {"budget_cents": req.cents, "status": "set"}
+
+    # ── Playback Review (v5.1) ─────────────────────────────────────────
+
+    @app.post("/api/playback/review")
+    def playback_review(req: PlaybackReviewRequest) -> dict[str, Any]:
+        """Run playback review gate (final check before publish)."""
+        from aicomic.video_synthesis.playback_review import PlaybackReviewGate
+        gate = PlaybackReviewGate(require_manual=req.require_manual)
+        result = gate.review(req.episode_metadata, req.video_path)
+        return result.to_dict()
+
+    # ── API Key Manager (v5.0 P4) ──────────────────────────────────────
+
+    @app.get("/api/keys/status")
+    def keys_status() -> dict[str, Any]:
+        """Get all API key statuses."""
+        from aicomic.providers.api_key_manager import APIKeyManager
+        mgr = APIKeyManager(storage_path=f"{state_dir}/api_keys.json")
+        return {"keys": mgr.get_all_status(), "unconfigured": mgr.get_unconfigured()}
+
+    @app.get("/api/keys/unconfigured")
+    def keys_unconfigured() -> list[str]:
+        """Get list of providers without configured keys."""
+        from aicomic.providers.api_key_manager import APIKeyManager
+        mgr = APIKeyManager(storage_path=f"{state_dir}/api_keys.json")
+        return mgr.get_unconfigured()
 
     # ── Include character router ───────────────────────────────────────
 

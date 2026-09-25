@@ -171,7 +171,7 @@ class TestWebAPI:
         assert resp.status_code == 200
         data = resp.json()
         assert data["status"] == "ok"
-        assert data["version"] == "5.0.0"
+        assert data["version"] == "5.1.0"
 
     def test_drift_check_pass(self, client):
         resp = client.post("/api/drift/check", json={
@@ -223,3 +223,56 @@ class TestWebAPI:
         assert resp.status_code == 200
         data = resp.json()
         assert "ffprobe_available" in data
+
+    # ── v5.1 API tests ──────────────────────────────────────────────────
+
+    def test_silent_failure_check(self, client):
+        resp = client.post("/api/silent-failure/check", json={
+            "episode_metadata": {"shots": [{"shot_index": 1, "duration_seconds": 5, "audio_duration": 5}]}
+        })
+        assert resp.status_code == 200
+        data = resp.json()
+        assert data["status"] == "CLEAN"
+
+    def test_silent_failure_catalog(self, client):
+        resp = client.get("/api/silent-failure/catalog")
+        assert resp.status_code == 200
+        data = resp.json()
+        assert len(data) == 8
+
+    def test_cost_record_and_dashboard(self, client):
+        # Record a cost
+        resp = client.post("/api/cost/record", json={
+            "provider": "kling", "cents": 15.0, "asset_id": "s1"
+        })
+        assert resp.status_code == 200
+        assert resp.json()["provider"] == "kling"
+        # Get dashboard
+        resp2 = client.get("/api/cost/dashboard")
+        assert resp2.status_code == 200
+        assert resp2.json()["asset_count"] >= 1
+
+    def test_cost_budget(self, client):
+        resp = client.get("/api/cost/budget")
+        assert resp.status_code == 200
+        assert "status" in resp.json()
+
+    def test_playback_review(self, client):
+        resp = client.post("/api/playback/review", json={
+            "episode_metadata": {
+                "total_duration": 120,
+                "shots": [{"shot_index": i, "duration_seconds": 5, "emotion": e, "resolution": "1080x1920"}
+                          for i, e in enumerate(["tense", "happy", "sad", "angry", "neutral", "surprised"])],
+            }
+        })
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "passed" in data
+        assert "overall_score" in data
+
+    def test_keys_status(self, client):
+        resp = client.get("/api/keys/status")
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "keys" in data
+        assert "unconfigured" in data
