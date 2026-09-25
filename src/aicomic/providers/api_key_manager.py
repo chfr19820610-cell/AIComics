@@ -8,7 +8,7 @@ not strong encryption — use OS keychain for production).
 
 Usage:
     manager = APIKeyManager()
-    manager.set_key("kling", "sk-xxx", quota_limit=1000)
+    manager.set_key("kling", "<your-api-key>", quota_limit=1000)
     key = manager.get_key("kling")
     manager.record_usage("kling", tokens=50)
     status = manager.get_key_status("kling")

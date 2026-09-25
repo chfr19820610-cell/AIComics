@@ -214,7 +214,7 @@ def render_shots_with_transitions(
         if f.startswith("_seg_") or f.startswith("_xfade_") or f.startswith("_concat_") or f.startswith("_placeholder_"):
             try:
                 os.remove(os.path.join(tmp_dir, f))
-            except:
+            except Exception:
                 pass
 
     return output_path

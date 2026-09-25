@@ -302,7 +302,7 @@ class AutoCameo:
         self._sessions[user_id] = session
         return session
 
-    def to_content_anchor(self, user_id: str):
+    def to_content_anchor(self, user_id: str) -> "ContentAnchor":
         """Convert a user's face features to a ContentAnchor reference.
 
         This bridges AutoCameo with the cross-episode consistency system.

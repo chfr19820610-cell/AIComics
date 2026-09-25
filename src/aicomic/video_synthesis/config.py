@@ -4,6 +4,7 @@ Configuration constants for the video synthesis pipeline.
 
 import os
 import shutil
+import tempfile
 from pathlib import Path
 
 
@@ -46,7 +47,7 @@ DEMO_ASSETS_DIR = SYSTEM_ROOT / "state" / "demo_assets"
 
 # Output directories
 OUTPUT_DIR = SYSTEM_ROOT / "state" / "releases"
-TEMP_DIR = Path("/tmp") / "video_synthesis"
+TEMP_DIR = Path(tempfile.gettempdir()) / "video_synthesis"
 
 # ── Video quality — 1080p @ 30fps ─────────────────────────────────────────
 FPS = 30
