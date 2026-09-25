@@ -2,7 +2,7 @@
 
 > **写故事 → 拆镜头 → AI 生成 → 配音 → 发布，全自动一人公司视频工厂**
 
-[![Version](https://img.shields.io/badge/Version-4.0.0-blue)](https://github.com/chfr19820610-cell/AIComics/releases)
+[![Version](https://img.shields.io/badge/Version-5.1.0-blue)](https://github.com/chfr19820610-cell/AIComics/releases)
 [![GitHub stars](https://img.shields.io/github/stars/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics)
 [![GitHub forks](https://img.shields.io/github/forks/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics/fork)
 [![CI](https://img.shields.io/github/actions/workflow/status/chfr19820610-cell/AIComics/ci.yml?label=CI)](https://github.com/chfr19820610-cell/AIComics/actions/workflows/ci.yml)
@@ -17,14 +17,14 @@
 ## 🛒 Commercial Releases — Buy on Gumroad
 
 > **10 products available** — AI-animated donghua, production toolkits, handbooks, games, and novels.
-> All instantly downloadable. No DRM. **Every paid product is $0.99.** Use code `EARLYBIRD50` for 50% off.
+> All instantly downloadable. No DRM. **Paid products from $0.99. Use `EARLYBIRD50` for 50% off.**
 > Use offer codes below for 50% off.
 
 ### 📺 AI Animation (Donghua)
 
 | Product | Price | Link |
 |---------|-------|------|
-| **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-complete-season) |
+| **Nine Turns of the Crimson Heavens — Complete Season (Ep 1–12)** · 九转丹霄全季 | $4.99 → $2.49 with `EARLYBIRD50` | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-complete-season) |
 | **Nine Turns of the Crimson Heavens — Episode 1** (The Night the Village Burned) | **FREE** | [Gumroad](https://chfr1982.gumroad.com/l/nine-turns-episode-1) |
 | **Starfall Chronicle EP2 — Under the Dome** (AI Donghua) | $0.99 | [Gumroad](https://chfr1982.gumroad.com/l/starfall-chronicle-ep2) |
 | **Free: 30s White-Label AI Animation Sample** *(免费样品)* | Free | [Gumroad](https://chfr1982.gumroad.com/l/free-ai-animation-sample) |
@@ -58,11 +58,11 @@
 >
 > ⚡ All codes are limited. Don't wait!
 
-### 👉 Start free, then get the full season for $0.99
+### 👉 Start free, then get the full season
 
 > **Watch the free 30-second sample** — no email required. Then grab **Episode 1 for free** to see if you like the style.
 >
-> **Want the whole story?** The complete 12-episode season is just **$0.99** (use code `EARLYBIRD50` → $0.49) — [Get the full season →](https://chfr1982.gumroad.com/l/nine-turns-complete-season)
+> **Want the whole story?** The complete 12-episode season is **$4.99** — but use code `EARLYBIRD50` for 50% off → **$2.49** — [Get the full season →](https://chfr1982.gumroad.com/l/nine-turns-complete-season)
 >
 > **Building your own AI animation pipeline?** The [AICG Animation Production Handbook](https://chfr1982.gumroad.com/l/aicg-handbook) ($0.99, or $0.49 with `EARLYBIRD50`) documents the full ComfyUI + Blender + Remotion workflow used to produce every episode. The open-source system you're looking at right now is free; the handbook teaches you how to use it end-to-end.
 
@@ -83,7 +83,7 @@
 
 ## ✨ 它能做什么
 
-AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v4.0 已支持从故事到发布的完整管线：
+AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v5.1 已支持从故事到发布的完整管线 + MLLM 智能层 + 质量控制闭环 + Agent 架构：
 
 | 环节 | 说明 | 技术 |
 |------|------|------|
@@ -96,6 +96,98 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v4.0 已支持�
 | 🎬 **做视频** | 多模型路由（动作→Kling/对话→Seedance/远景→Wan）+ FLF插值 | `VideoRouter` + FFmpeg |
 | 📡 **发平台** | YouTube/TikTok/Instagram + 小红书/B站/抖音 | `international.py` + social-auto-upload |
 | 🖥️ **桌面端** | Electron 桌面应用 | `desktop/` |
+
+---
+
+## 🆕 v5.0 + v5.1 — 22新模块 · 135新测试 · 1171全绿
+
+基于 12 竞品深度调研 + DSH团队 godogen (7K⭐) 方法论对照，分5方向实施。
+
+### v5.0 P0 — 修死代码 (5项)
+
+| 模块 | 说明 |
+|------|------|
+| `project_initializer.py` | `template_loader` 正确接入项目初始化，填充 `style_bible.art_style` |
+| `character_workshop.py` | `lora_config` 自动生成 LoRA 训练配置（best-effort，不阻塞） |
+| `i18n.py` | 新增 `make_llm_callback()` 工厂，接 OpenAI 兼容 API，无 key 降级词典 |
+| `wan_provider.py` | 182 行完整 `IProvider` 实现（submit+poll 异步模式，最多轮询 5 分钟） |
+| `pyproject.toml` + `requirements-lock.txt` | 新增 i18n/tts/publish 三组 optional deps，取消注释 5 个依赖 |
+
+### v5.0 P1 — 质量控制 (5项)
+
+| 模块 | 说明 |
+|------|------|
+| `quality_gate.py` | ffprobe 视频质量门：分辨率≥720p / 帧率≥24fps / 比特率≥500kbps / 音视频同步 |
+| `artifact_detector.py` | AI 伪影检测：手指/面部/文字/时序/色彩 + VLM 支持，单个 critical 直接 FAIL |
+| `auto_retry.py` | 自动重试：生成→检测→prompt 精炼→provider 切换→重生成 |
+| `thumbnail.py` | FFmpeg 关键帧提取 + Pillow 缩略图网格 |
+| `web/app.py` | FastAPI app：`/api/health` · `/api/drift/check` · `/api/artifact/check` · `/api/quality/check` |
+
+### v5.0 P2 — MLLM 智能 (3项)
+
+| 模块 | 说明 |
+|------|------|
+| `mllm_storyboard.py` | MLLM 故事→结构化分镜引擎，无 API key 时 fallback 到 template |
+| `content_anchor.py` | Content Anchor 角色记忆：正面/侧面/背影锚点 + 对话记忆 (Gloria CVPR 2026) |
+| `smart_router.py` | 7 维智能路由：质量/速度/成本/稳定性/特性/负载/延迟，自动 fallback chain |
+
+### v5.0 P3 — 杀手功能 (3项)
+
+| 模块 | 说明 |
+|------|------|
+| `autocameo.py` | AutoCameo 自拍入剧：VLM 面部特征提取→face prompt→角色替换→ContentAnchor 桥接 |
+| `audio_avatar.py` | TTS 音频→唇形同步+表情动画（7 种情绪），HunyuanVideo-Avatar 风格 |
+| `orchestrator.py` | 统一多平台发布编排器：国内(抖音/小红书/B站) + 国际(YouTube/TikTok/Instagram) |
+
+### v5.0 P4 — Agent 架构 (2项)
+
+| 模块 | 说明 |
+|------|------|
+| `director_agent.py` | Director Agent：7-agent 编排管线（Script→Storyboard→Character→Image→Video→Quality→Publish） |
+| `api_key_manager.py` | API Key 统一管理：加密存储 / 轮换追踪 / 配额监控 / 故障转移 |
+
+### v5.1 — Godogen 方法论迁移 (3项)
+
+基于 [godogen](https://github.com/dsh-team/godogen) (7K⭐) 7 条方法论逐条对照，4 条已超过，3 条 gap 补上：
+
+| 模块 | 说明 | godogen 对照 |
+|------|------|-------------|
+| `silent_failure.py` | 8 类漫剧专属沉默失败检测：唇音不同步/字幕遮挡/跳切违和/运镜穿帮/色调漂移/画幅错误/时间轴偏移/表情僵硬 | 条目4: 沉默失败陷阱库 |
+| `cost_dashboard.py` | 成本仪表盘：累积追踪 + 预算门禁(80%警告/100%拦截) + 按 provider/episode 分拆 | 条目5: 成本仪表盘 |
+| `playback_review.py` | 成片回看自证：播放/节奏/叙事 beat/情绪弧线/分辨率一致性/前置 gate + VLM 审 + 手动审 | 条目6: 成片回看自证 |
+
+### v5.1 Web API (17端点)
+
+| 端点 | 方法 | 说明 |
+|------|------|------|
+| `/api/health` | GET | 健康检查（返回版本号） |
+| `/api/drift/check` | POST | Drift Gate 偏移检测 |
+| `/api/artifact/check` | POST | AI 伪影检测 |
+| `/api/quality/check` | POST | ffprobe 视频质量门 |
+| `/api/quality/available` | GET | ffprobe 可用性检查 |
+| `/api/silent-failure/check` | POST | 沉默失败检测（8 类暗病） |
+| `/api/silent-failure/catalog` | GET | 沉默失败陷阱目录 |
+| `/api/cost/dashboard` | GET | 成本仪表盘 |
+| `/api/cost/budget` | GET | 预算状态 |
+| `/api/playback/review` | POST | 成片回看自证 |
+| `/api/keys/status` | GET | API Key 配置状态 |
+
+### v5.1 实测 — 九转丹霄 E13-E15
+
+用 v5.1 gate 实测现有分镜数据：
+
+| 集数 | SilentFailure | 陷阱数 | PlaybackReview | 回看分 |
+|------|--------------|--------|---------------|--------|
+| E13 | ⚠️ SUSPECT (55分) | 3 (jump_cut) | ✅ PASS | 93 |
+| E14 | ⚠️ SUSPECT (40分) | 4 (jump_cut) | ✅ PASS | 93 |
+| E15 | ✅ CLEAN (100分) | 0 | ✅ PASS | 93 |
+
+> 发现：E13/E14 存在跳切违和（同场景不同地点间缺过渡镜头），E15 干净。所有集 duration_check 扣分（20-21s 太短，期望 >30s）。
+
+### 测试
+
+- v4.0 基线 1036 → v5.0 **1133** → v5.1 **1171 passed, 1 skipped, 0 failed**（零回归）
+- 22 个新模块 · ~7,300 行新代码 · 135 个新测试
 
 ---
 
@@ -405,10 +497,10 @@ docker compose logs -f
 
 | 指标 | 值 |
 |------|----|
-| **版本** | **4.0.0** |
-| 测试通过率 | **1036/1037** (99.9%) |
-| 验证脚本 | **39/39** (100%) |
-| API 端点 | **52** 个 |
+| **版本** | **5.1.0** |
+| 测试通过率 | **1171/1172** (99.9%) |
+| 验证脚本 | **23/23** (100% 端到端) |
+| API 端点 | **63** 个（含 17 个 v5.x 端点） |
 | 视频产出 | **5 集完整漫剧**（4 分 24 秒） |
 | 资产完整度 | **60/60**（30 图 + 30 配音） |
 | Python 版本 | **3.12** |
@@ -419,15 +511,15 @@ docker compose logs -f
 ## 🧪 运行测试
 
 ```bash
-# 运行全部 1036 个测试
+# 运行全部 1171 个测试
 PYTHONPATH="src" .venv/bin/python -m pytest tests/ -v
 
 # 快速模式（跳过耗时测试）
 PYTHONPATH="src" .venv/bin/python -m pytest tests/ -q --skip-slow
 
 # 运行特定模块测试
-PYTHONPATH="src" .venv/bin/python -m pytest tests/test_providers/ -v
-PYTHONPATH="src" .venv/bin/python -m pytest tests/test_characters/ -v
+PYTHONPATH="src" .venv/bin/python -m pytest tests/test_p1_quality.py -v
+PYTHONPATH="src" .venv/bin/python -m pytest tests/test_v51_godogen.py -v
 ```
 
 ---
@@ -462,7 +554,7 @@ tail -f logs/vf_loop.log
 | **🎬 视频合成管线** | 端到端视频合成：图片→场景→字幕→配音→合成，支持批量处理 |
 | **🏗️ 声明式管线** | YAML 清单定义生产流程，审批门+断点续跑+协调器，管线可编排可中断可恢复 |
 | **🎨 ComfyUI 真实出图** | SDXL 25步 1024×1024 真实出图验证脚本 + Docker 构建代理修复 |
-| **✅ 1036 测试覆盖** | 从 314 提升至 1036 测试，覆盖 Provider 抽象层、角色系统、分镜版本管理、管线基础设施、v4.0 P0-P3 功能 |
+| **✅ 1171 测试覆盖** | 从 314 提升至 1171 测试，覆盖 Provider 抽象层、角色系统、分镜版本管理、管线基础设施、v4.0-v5.1 全部功能 |
 | **🎨 风格轮换引擎** | 自动轮换视觉风格和色板，每条漫剧可拥有不同艺术风格 |
 | **🔄 无限自循环** | vf_master_loop 后台守护，自动生产+补充+发布，无需人工干预 |
 | **🐳 Docker 全栈部署** | docker-compose 一键启动（前端+后端+PostgreSQL+Redis），支持 local/production 双环境 |
@@ -497,7 +589,7 @@ graph LR
     WEB --> BE["backend/ (FastAPI)"]
     WEB --> FE["frontend/ (React SPA)"]
 
-    TST --> T1036["1036 个测试用例"]
+    TST --> T1171["1171 个测试用例"]
 
     ST --> REL["releases/ (视频产出)"]
     ST --> PV["produced_videos/"]
@@ -515,7 +607,7 @@ graph LR
 | `desktop/` | Electron 桌面端 (v4.0) |
 | `config/` | 配置文件（ComfyUI 路径、Provider 配置、6题材模板） |
 | `scripts/` | 运维脚本（vf_master_loop、启动脚本） |
-| `tests/` | 1036 个测试用例 |
+| `tests/` | 1171 个测试用例 |
 | `state/releases/` | 已合成的 MP4 视频产出 |
 | `state/produced_videos/` | 视频工厂产出目录 |
 
@@ -539,6 +631,12 @@ graph LR
 - [x] v4.0: LoRA训练配置 + Docker一键部署 + Electron桌面端
 - [x] v4.0: 云端轻量模式 — `AICOMIC_CLOUD=1` 环境变量 + Dockerfile.cloud (<500MB)
 - [x] v4.0: 社区模板市场 — install/uninstall/share/browse/preview 模板全CLI支持
+- [x] v5.0: 修死代码 — template_loader/lora_config/i18n/wan_provider/依赖管理
+- [x] v5.0: 质量控制 — ffprobe质量门/AI伪影检测/自动重试/缩略图/FastAPI
+- [x] v5.0: MLLM智能 — MLLM分镜引擎/Content Anchor角色记忆/7维智能路由
+- [x] v5.0: 杀手功能 — AutoCameo自拍入剧/Audio Avatar唇形同步/多平台发布编排
+- [x] v5.0: Agent架构 — Director Agent 7-agent管线/API Key统一管理
+- [x] v5.1: Godogen方法论迁移 — 沉默失败检测(8类)/成本仪表盘/成片回看自证
 
 ---
 
