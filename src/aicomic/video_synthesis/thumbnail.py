@@ -8,7 +8,6 @@ from __future__ import annotations
 import shutil
 import subprocess
 from pathlib import Path
-from typing import Any
 
 
 def extract_key_frames(

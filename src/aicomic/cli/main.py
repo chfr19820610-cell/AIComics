@@ -324,7 +324,6 @@ def handle_uninstall_template(name: str) -> int:
 
 def handle_share_template(name: str) -> int:
     """Share a template as base64 string."""
-    import json
     from aicomic.core.template_engine import load_template
     from aicomic.core.template_market import share_template_url
     t = load_template(name)
@@ -373,7 +372,6 @@ def handle_preview_template(name: str) -> int:
 
 def handle_schedule_publish(video: Path, platforms: str, scheduled_at: str, title: str, output: Path) -> int:
     """Create a scheduled publish task."""
-    import json
     from aicomic.publish.publish_scheduler import create_scheduled_task, save_tasks
     plats = [p.strip() for p in platforms.split(",") if p.strip()]
     task = create_scheduled_task(str(video), plats, scheduled_at, title)
@@ -386,8 +384,7 @@ def handle_schedule_publish(video: Path, platforms: str, scheduled_at: str, titl
 
 def handle_analytics(output: Path) -> int:
     """Show publish analytics summary."""
-    import json
-    from aicomic.publish.publish_analytics import get_summary, load_analytics
+    from aicomic.publish.publish_analytics import get_summary
     summary = get_summary(output) if output.exists() else {"total_videos": 0, "total_views": 0, "total_likes": 0, "total_comments": 0, "total_shares": 0}
     print(f"  videos:  {summary['total_videos']}")
     print(f"  views:   {summary['total_views']}")

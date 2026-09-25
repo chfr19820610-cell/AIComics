@@ -151,7 +151,7 @@ def complete_stage(
     强制人工审核后才放行（P0-2 硬门禁）。
     """
     if stage_holds_human_approval(manifest, stage_id):
-        path = mark_awaiting_human(
+        mark_awaiting_human(
             state_dir,
             episode_code,
             stage_id,

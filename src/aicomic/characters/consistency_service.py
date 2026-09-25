@@ -270,7 +270,6 @@ class ConsistencyService:
         """Analyze an entire episode manifest for character consistency."""
         all_states: list[ShotCharacterState] = []
         for ep in manifest.get("episodes", []):
-            ep_code = ep.get("episode_code", "")
             for shot in ep.get("shots", []):
                 shot_id = shot.get("shot_id", "")
                 combined = f"{shot.get('visual', '')}，{shot.get('action', '')}，{shot.get('emotion', '')}"

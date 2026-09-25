@@ -153,7 +153,6 @@ class KlingProvider(IProvider, _VidGenProviderMixin):
         payload = request_item.get("payload", {})
 
         base_url = self._resolve_setting(settings, "kling", "base_url", self._base_url)
-        has_text = bool(str(payload.get("prompt", "")).strip())
         first_frame = str(payload.get("first_frame", "")).strip()
         has_image = bool(first_frame)
 

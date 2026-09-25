@@ -15,7 +15,6 @@ from aicomic.batch.coordinator import (
 from aicomic.batch.reporter import build_batch_summary, write_batch_summary
 from aicomic.batch.retry_manager import retry_batch_jobs, write_retry_batch_report
 from aicomic.batch.preflight_gate import (
-    build_batch_preflight_gate,
     ensure_batch_preflight_gate,
     evaluate_existing_preflight_report,
 )

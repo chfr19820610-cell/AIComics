@@ -135,7 +135,6 @@ def _run_sau_upload(platform: str, payload: PublishPayload, cfg: dict[str, Any])
         return {"success": False, "error": f"social-auto-upload not found: {sau_path}"}
 
     plat_cfg = cfg["platforms"][platform]
-    cookie = plat_cfg["cookie_path"]
     headless = plat_cfg.get("headless", True)
     account = plat_cfg.get("account_name", "aicomic")
 

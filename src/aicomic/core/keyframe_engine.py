@@ -121,7 +121,6 @@ def render_keyframe_transition(
         return False
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    total_frames = duration * fps
 
     if mode == "morph":
         # 交叉淡入淡出: start → fade → end
@@ -190,5 +189,5 @@ def render_keyframe_transition(
     else:
         return False
 
-    result = subprocess.run(cmd, capture_output=True, timeout=120)
+    subprocess.run(cmd, capture_output=True, timeout=120)
     return os.path.exists(output_path) and os.path.getsize(output_path) > 1000

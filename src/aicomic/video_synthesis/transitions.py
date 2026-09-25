@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import random
 import subprocess
-import re
 from enum import Enum
 from pathlib import Path
 

@@ -112,6 +112,5 @@ def _draw_placeholder(draw, x, y, size, label):
     """Draw a placeholder rectangle for missing images."""
     if draw is None:
         return
-    from PIL import ImageDraw
     draw.rectangle([x, y, x + size, y + size], outline="#444444", width=2)
     draw.text((x + size // 3, y + size // 2), label, fill="#666666")

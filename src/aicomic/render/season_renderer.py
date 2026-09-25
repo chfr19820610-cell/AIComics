@@ -6,7 +6,6 @@ from typing import Any
 
 from aicomic.render.preview_renderer import build_render_plan, render_preview_video
 from aicomic.render.release_renderer import build_release_plan, render_release_video
-from aicomic.render.mode_router import RenderModeRouter
 from aicomic.render.two_d.pipeline import TwoDPipeline
 from aicomic.render.two_half_d.pipeline import TwoHalfDPipeline
 from aicomic.render.three_d.pipeline import ThreeDPipeline
@@ -19,7 +18,6 @@ def _build_mode_render_plan(
     asset_root: Path,
 ) -> dict[str, Any]:
     """Build a render plan for 2d/2.5d/3d modes using the mode-router pipelines."""
-    router = RenderModeRouter()
     episode_lookup = {item["episode_code"]: item for item in episode_manifest.get("episodes", [])}
     episode = episode_lookup.get(episode_code, {})
 

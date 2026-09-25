@@ -167,8 +167,6 @@ def render_preview_video_with_audio(render_plan: dict, output_path: Path, report
         asset_root = Path("state/local_provider_output")
 
     audio_base = str(asset_root) if asset_root else "state/local_provider_output"
-    # Also check demo_assets
-    demo_base = str(asset_root).replace("local_provider_output", "demo_assets") if "local_provider_output" in str(asset_root) else audio_base
 
     ffmpeg_bin = "/Users/eric/.hermes/bin/ffmpeg"
     if not _os.path.exists(ffmpeg_bin):

@@ -216,12 +216,10 @@ def build_h3_video_prompt(episode_title: str, shot: dict[str, Any], char_service
 
     characters = "、".join(str(item) for item in shot.get("characters", []))
     scene = str(shot.get("scene", ""))
-    visual = str(shot.get("visual", ""))
     action = str(shot.get("action", ""))
     emotion = str(shot.get("emotion", ""))
     camera = str(shot.get("camera", ""))
     dialogue = str(shot.get("dialogue", "")).strip()
-    duration = shot.get("duration", 4)
 
     # ── 运镜映射（中文→H3官方英文）──
     CAMERA_MAP = [
@@ -353,7 +351,6 @@ def build_h3_video_prompt(episode_title: str, shot: dict[str, Any], char_service
             break
 
     # ── 组装H3官方3字段格式 ──
-    visual_en = visual if visual else f"{characters} in {scene_en}"
     action_en = action if action else "subtle character motion"
 
     h3_prompt = (

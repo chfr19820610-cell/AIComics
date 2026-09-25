@@ -73,9 +73,7 @@ class TikTokUploader:
             return {"success": False, "platform": self.PLATFORM, "error": "tiktok_account_file not configured"}
         scheduled_at = config.get("scheduled_at", "")
         try:
-            import asyncio
             import subprocess
-            import json
 
             # Call sau_cli.py for TikTok upload
             sau_cli = config.get("sau_cli_path", "/Users/eric/social-auto-upload/sau_cli.py")

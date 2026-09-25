@@ -205,7 +205,7 @@ class _FontResolver:
         for name in candidates:
             try:
                 result = subprocess.run(
-                    ["fc-list", f":lang=zh"],
+                    ["fc-list", ":lang=zh"],
                     capture_output=True, text=True, timeout=3,
                 )
                 if name.lower() in result.stdout.lower():

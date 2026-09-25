@@ -16,10 +16,9 @@ prompt_enhancer.py — AlComics提示词增强引擎 v1.0
 
 from __future__ import annotations
 
-import json
 import re
 from typing import Any
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 
 # ============ 1. PE Profile (蒸馏自Omni-Rewriter) ============
@@ -172,7 +171,7 @@ def validate_prompt(prompt: str, profile: PEProfile) -> dict[str, Any]:
     if profile.style_keywords:
         has_style = any(kw.lower() in prompt.lower() for kw in profile.style_keywords.split(", "))
         if not has_style:
-            warnings.append(f"缺少风格关键词")
+            warnings.append("缺少风格关键词")
 
     if profile.aspect_ratio and profile.aspect_ratio not in prompt and "9:16" not in prompt and "竖屏" not in prompt:
         warnings.append(f"缺少宽高比指示({profile.aspect_ratio})")

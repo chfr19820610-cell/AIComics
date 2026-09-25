@@ -19,7 +19,6 @@ from aicomic.core.approval_gate import (
     approve_stage,
     complete_stage,
     is_stage_approved,
-    mark_awaiting_human,
     require_stage_approved,
 )
 from aicomic.core.checkpoint_store import (
@@ -32,7 +31,6 @@ from aicomic.core.episode_lifecycle import stage_to_episode_status
 from aicomic.core.pipeline_manifest import (
     CHECKPOINT_IN_PROGRESS,
     PipelineManifest,
-    PipelineManifestError,
     get_pipeline_manifest,
 )
 
@@ -226,7 +224,6 @@ class PipelineCoordinator:
         """P0-1: Build four-view (front/three_quarter/side/back) prompts for each character."""
         try:
             from aicomic.characters.character_views import (
-                FourViewGenerator,
                 ViewAngle,
                 generate_view_prompt,
             )

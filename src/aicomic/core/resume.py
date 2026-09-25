@@ -6,7 +6,6 @@ from typing import Any
 from aicomic.core.checkpoint_store import (
     CHECKPOINT_COMPLETED,
     checkpoint_status,
-    resume_from,
 )
 from aicomic.core.models import ResumeReport
 from aicomic.core.pipeline_manifest import get_pipeline_manifest

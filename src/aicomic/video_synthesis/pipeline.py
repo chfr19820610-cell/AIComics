@@ -34,7 +34,7 @@ def run_cmd(cmd: list, desc: str = "") -> bool:
     log(f"→ {desc or 'run'}")
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
-        log(f"  ✗ FAILED:")
+        log("  ✗ FAILED:")
         log(result.stderr[-2000:] if result.stderr else result.stdout[-2000:])
         return False
     tail = [l for l in result.stderr.split("\n") if l.strip()][-5:]
@@ -130,7 +130,6 @@ def phase_bgm_mix(
         True on success
     """
     from aicomic.video_synthesis.audio_mix import (
-        BGM_DIR,
         select_bgm_for_episode,
     )
 
@@ -296,7 +295,7 @@ def synthesize_episode(
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     # ── Phase 0: Duration analysis ──
-    log(f"\n── Phase 0: Duration Analysis ──")
+    log("\n── Phase 0: Duration Analysis ──")
     durations = resolve_scene_durations(scenes, audio_dir)
     for s, dur in zip(scenes, durations):
         audio_path = audio_dir / s["audio_name"]
@@ -304,7 +303,7 @@ def synthesize_episode(
         log(f"  S{s['num']:02d}: audio={ad:.2f}s → clip={dur:.2f}s   sub={'✓' if s.get('subtitle') else ' '}")
 
     # ── Phase 1: Build scenes ──
-    log(f"\n── Phase 1: Build Scenes ──")
+    log("\n── Phase 1: Build Scenes ──")
     clip_paths = phase_build_scenes(scenes, durations, image_dir, audio_dir, temp_scenes_dir)
     if not clip_paths:
         log("✗ Scene building failed")
@@ -312,7 +311,7 @@ def synthesize_episode(
     log(f"  Built {len(clip_paths)} scenes")
 
     # ── Phase 2: Create subtitles ──
-    log(f"\n── Phase 2: Create Subtitles ──")
+    log("\n── Phase 2: Create Subtitles ──")
     subtitles = [s.get("subtitle", "") for s in scenes]
 
     if subtitle_format == "ass":
@@ -327,7 +326,7 @@ def synthesize_episode(
     log(f"  {sub_path.name}: {sub_count} entries")
 
     # ── Phase 3: Concatenate scenes ──
-    log(f"\n── Phase 3: Concatenate ──")
+    log("\n── Phase 3: Concatenate ──")
     concat_temp = temp_ep_dir / "episode_concat.mp4"
     if not phase_concat(clip_paths, concat_temp):
         return None
@@ -335,7 +334,7 @@ def synthesize_episode(
     # ── Phase 3b: BGM Mix ──
     bgm_mixed = concat_temp  # default: same file if BGM disabled
     if BGM_ENABLED:
-        log(f"\n── Phase 3b: BGM Mix ──")
+        log("\n── Phase 3b: BGM Mix ──")
         total_duration = sum(durations)
         bgm_mixed = temp_ep_dir / "episode_bgm.mp4"
         if not phase_bgm_mix(concat_temp, bgm_mixed, episode_code, total_duration):
@@ -343,7 +342,7 @@ def synthesize_episode(
             bgm_mixed = concat_temp
 
     # ── Phase 4: Burn subtitles ──
-    log(f"\n── Phase 4: Burn Subtitles ──")
+    log("\n── Phase 4: Burn Subtitles ──")
     if sub_count > 0:
         if not phase_burn_subtitles(bgm_mixed, sub_path, output_path, subtitle_format):
             return None
@@ -354,7 +353,7 @@ def synthesize_episode(
         log("  (no subtitles to burn)")
 
     # ── Phase 5: Verify ──
-    log(f"\n── Phase 5: Verification ──")
+    log("\n── Phase 5: Verification ──")
     info = verify_video(output_path)
     log(f"  Output:  {info['path']}")
     log(f"  Size:    {info['size_mb']:.2f} MB")
@@ -370,7 +369,7 @@ def synthesize_episode(
         log(f"{'='*60}")
         info["status"] = "ok"
     else:
-        log(f"\n⚠ Output < 1 MB. Check manually.")
+        log("\n⚠ Output < 1 MB. Check manually.")
         info["status"] = "small_output"
 
     # Write report

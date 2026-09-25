@@ -12,9 +12,7 @@ from aicomic.characters.database import (
     ensure_character_schema,
 )
 from aicomic.image_consistency.comfyui_locks import (
-    build_locked_workflow,
     probe_lock_models,
-    validate_locked_workflow,
 )
 from aicomic.image_consistency.master_sheet import (
     ensure_master_sheet_schema,

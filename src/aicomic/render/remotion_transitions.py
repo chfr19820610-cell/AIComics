@@ -199,7 +199,7 @@ def render_shots_with_transitions(
             print(f"  ✅ xfade_{i:03d} ({transition}): {os.path.getsize(next_path)//1024}KB")
         else:
             # fallback: 简单concat
-            print(f"  ⚠️ xfade失败, 用concat")
+            print("  ⚠️ xfade失败, 用concat")
             concat_path = os.path.join(tmp_dir, f"_concat_{i:03d}.mp4")
             subprocess.run([FFMPEG, "-y", "-i", current, "-i", segments[i],
                           "-c", "copy", concat_path], capture_output=True, timeout=30)

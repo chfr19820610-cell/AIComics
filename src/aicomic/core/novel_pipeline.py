@@ -89,7 +89,6 @@ def import_novel_file(path: str | Path, template: str = "workplace", **kwargs: A
 def _read_epub(path: Path) -> str:
     """Extract text from an epub file (zip with XHTML chapters)."""
     import zipfile
-    import re as _re
     from html.parser import HTMLParser
 
     class _TextExtractor(HTMLParser):

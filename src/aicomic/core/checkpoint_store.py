@@ -23,6 +23,17 @@ from aicomic.core.pipeline_manifest import (
 )
 from aicomic.utils.atomic_io import atomic_write_json
 
+__all__ = [
+    "CHECKPOINT_AWAITING_HUMAN",
+    "CHECKPOINT_COMPLETED",
+    "CHECKPOINT_FAILED",
+    "CHECKPOINT_IN_PROGRESS",
+    "CHECKPOINT_STATUSES",
+    "CHECKPOINT_TERMINAL_STATUSES",
+    "PipelineManifestError",
+    "atomic_write_json",
+]
+
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()

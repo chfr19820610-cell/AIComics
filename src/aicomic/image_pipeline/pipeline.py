@@ -97,7 +97,7 @@ class ImagePipeline:
                 controlnet_image=str(controlnet_image),
             )
             # Post to ComfyUI when available; for now build plan only
-            tl_metadata = build_triple_lock_metadata(
+            build_triple_lock_metadata(
                 prompt=prompt,
                 reference_image=str(reference_image),
                 controlnet_type=controlnet_type or "openpose",

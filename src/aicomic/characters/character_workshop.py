@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from aicomic.characters.database import (
-    connect_character_database, delete_character,
+    delete_character,
     get_character_by_id, insert_character,
 )
 from aicomic.characters.models import Character, now_utc_iso

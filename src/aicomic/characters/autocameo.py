@@ -18,6 +18,11 @@ Usage:
 """
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from aicomic.image_consistency.content_anchor import ContentAnchor
+
 import json
 import os
 from dataclasses import dataclass, field

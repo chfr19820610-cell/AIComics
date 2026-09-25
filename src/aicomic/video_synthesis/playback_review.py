@@ -210,7 +210,6 @@ class PlaybackReviewGate:
         if platform:
             # Vertical platforms need 9:16
             vertical_platforms = {"douyin", "tiktok", "xiaohongshu", "instagram"}
-            horizontal_platforms = {"youtube", "bilibili"}
             target_aspect = "9:16" if platform in vertical_platforms else "16:9"
             checks.append(ReviewCheck(
                 name="platform_aspect",

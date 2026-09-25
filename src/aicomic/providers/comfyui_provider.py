@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 from pathlib import Path
 from typing import Any, ClassVar
 
@@ -31,15 +30,12 @@ class ComfyUIProvider(IProvider):
     def validate_config(self) -> dict[str, Any]:
         """Check ComfyUI runtime configuration."""
         from aicomic.providers.local_adapter import (
-            LOCAL_EXECUTION_PROVIDERS,
             inspect_comfyui_model_requirements,
             inspect_comfyui_workflow_path,
-            inspect_comfyui_workflow_model_usage,
             comfyui_server_available,
         )
         from aicomic.providers.comfyui_service import resolve_comfyui_service_config
 
-        settings = self._load_providers_config()
         errors: list[str] = []
         warnings: list[str] = []
 

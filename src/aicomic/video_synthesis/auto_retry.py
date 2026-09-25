@@ -20,7 +20,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable
 
-from aicomic.video_synthesis.quality_gate import FFprobeGate, QualityReport
+from aicomic.video_synthesis.quality_gate import FFprobeGate
 from aicomic.video_synthesis.artifact_detector import ArtifactDetector, ArtifactReport
 
 

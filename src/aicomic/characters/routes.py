@@ -7,7 +7,6 @@ from fastapi import APIRouter, HTTPException, Query, Request
 
 from aicomic.characters.models import (
     CharacterCreateRequest,
-    CharacterResponse,
     CharacterUpdateRequest,
 )
 from aicomic.characters.script_parser import (
@@ -29,8 +28,6 @@ def build_character_router(
     """
     router = APIRouter(prefix="/api/characters", tags=["characters"])
     char_service = CharacterService(state_dir=state_dir)
-
-    from functools import lru_cache
 
     def _get_service() -> CharacterService:
         return char_service

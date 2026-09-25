@@ -252,11 +252,11 @@ def _update_view(
     set_clauses: list[str] = []
     params: list[Any] = []
 
-    for field in ("image_path", "prompt_used", "quality_score", "angle"):
-        if field in updates:
-            set_clauses.append(f"{field} = ?")
-            val = updates[field]
-            if field == "quality_score":
+    for field_name in ("image_path", "prompt_used", "quality_score", "angle"):
+        if field_name in updates:
+            set_clauses.append(f"{field_name} = ?")
+            val = updates[field_name]
+            if field_name == "quality_score":
                 val = float(val)
             params.append(val)
 
@@ -434,9 +434,9 @@ class FourViewGenerator:
             return None
 
         update_dict: dict[str, Any] = {"updated_at": now_utc_iso()}
-        for field in ("image_path", "prompt_used", "quality_score", "is_primary", "params", "angle"):
-            if field in updates:
-                update_dict[field] = updates[field]
+        for field_name in ("image_path", "prompt_used", "quality_score", "is_primary", "params", "angle"):
+            if field_name in updates:
+                update_dict[field_name] = updates[field_name]
 
         _update_view(self._connection, view_id, update_dict)
         return _get_view_by_id(self._connection, view_id)
