@@ -2,7 +2,7 @@
 
 > **写故事 → 拆镜头 → AI 生成 → 配音 → 发布，全自动一人公司视频工厂**
 
-[![Version](https://img.shields.io/badge/Version-5.1.0-blue)](https://github.com/chfr19820610-cell/AIComics/releases)
+[![Version](https://img.shields.io/badge/Version-5.2.0-blue)](https://github.com/chfr19820610-cell/AIComics/releases)
 [![GitHub stars](https://img.shields.io/github/stars/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics)
 [![GitHub forks](https://img.shields.io/github/forks/chfr19820610-cell/AIComics?style=social)](https://github.com/chfr19820610-cell/AIComics/fork)
 [![CI](https://img.shields.io/github/actions/workflow/status/chfr19820610-cell/AIComics/ci.yml?label=CI)](https://github.com/chfr19820610-cell/AIComics/actions/workflows/ci.yml)
@@ -99,7 +99,7 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v5.1 已支持�
 
 ---
 
-## 🆕 v5.0 + v5.1 — 22新模块 · 221新测试 · 1257全绿
+## 🆕 v5.0 + v5.1 + v5.2 — 30新模块 · 303新测试 · 1339全绿
 
 基于 12 竞品深度调研 + DSH团队 godogen (7K⭐) 方法论对照，分5方向实施。
 
@@ -186,8 +186,23 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v5.1 已支持�
 
 ### 测试
 
-- v4.0 基线 1036 → v5.0 **1133** → v5.1 **1257 passed, 1 skipped, 0 failed**（零回归）
-- 22 个新模块 · ~8,300 行新代码 · 221 个新测试（135 v5.x + 86 CLI）
+- v4.0 基线 1036 → v5.0 **1133** → v5.1 **1257** → v5.2 **1339 passed, 1 skipped, 0 failed**（零回归）
+- 30 个新模块 · ~9,600 行新代码 · 303 个新测试（135 v5.x + 86 CLI + 82 v5.2 智能层）
+
+### v5.2 — Jev System One 智能层 (8模块)
+
+蒸馏自 TypeSafe AI Jev (System One) 校准决策方法论。全本地运行，零API依赖。
+
+| 模块 | Jev原语 | AIComics应用 |
+|------|---------|-------------|
+| `calibrated_decision.py` | Noul/Choice/Score 三原语 | 校准概率+置信度替代硬阈值 |
+| `confidence_gate.py` | 置信度门控路由 | 质量门：高→通过/中→复核/低→拒绝 |
+| `best_of_n.py` | Best-of-N仲裁 | 多候选取最优，替代串行重试 |
+| `loop_breaker.py` | 卡死检测 | 重试循环早停，省生成预算 |
+| `speculative_fanout.py` | 并行扇出评估 | 4检查一次性并行，不串行 |
+| `model_cascade.py` | 难度→模型级联 | 简单→Wan(免费)/复杂→Kling(付费) |
+| `guardrail.py` | 输入输出护栏 | prompt送API前检测违禁，省credits |
+| `patch_verifier.py` | diff验证+语义CI | 分镜/配置/角色改动前验证连续性 |
 
 ---
 
@@ -497,8 +512,8 @@ docker compose logs -f
 
 | 指标 | 值 |
 |------|----|
-| **版本** | **5.1.0** |
-| 测试通过率 | **1257/1258** (99.9%) |
+| **版本** | **5.2.0** |
+| 测试通过率 | **1339/1340** (99.9%) |
 | 验证脚本 | **23/23** (100% 端到端) |
 | API 端点 | **63** 个（含 17 个 v5.x 端点） |
 | 视频产出 | **5 集完整漫剧**（4 分 24 秒） |
@@ -511,7 +526,7 @@ docker compose logs -f
 ## 🧪 运行测试
 
 ```bash
-# 运行全部 1257 个测试
+# 运行全部 1339 个测试
 PYTHONPATH="src" .venv/bin/python -m pytest tests/ -v
 
 # 快速模式（跳过耗时测试）
@@ -554,7 +569,7 @@ tail -f logs/vf_loop.log
 | **🎬 视频合成管线** | 端到端视频合成：图片→场景→字幕→配音→合成，支持批量处理 |
 | **🏗️ 声明式管线** | YAML 清单定义生产流程，审批门+断点续跑+协调器，管线可编排可中断可恢复 |
 | **🎨 ComfyUI 真实出图** | SDXL 25步 1024×1024 真实出图验证脚本 + Docker 构建代理修复 |
-| **✅ 1257 测试覆盖** | 从 314 提升至 1257 测试，覆盖 Provider 抽象层、角色系统、分镜版本管理、管线基础设施、v4.0-v5.1 全部功能 |
+| **✅ 1339 测试覆盖** | 从 314 提升至 1339 测试，覆盖 Provider 抽象层、角色系统、分镜版本管理、管线基础设施、v4.0-v5.2 全部功能（含 Jev 智能层） |
 | **🎨 风格轮换引擎** | 自动轮换视觉风格和色板，每条漫剧可拥有不同艺术风格 |
 | **🔄 无限自循环** | vf_master_loop 后台守护，自动生产+补充+发布，无需人工干预 |
 | **🐳 Docker 全栈部署** | docker-compose 一键启动（前端+后端+PostgreSQL+Redis），支持 local/production 双环境 |
@@ -589,7 +604,7 @@ graph LR
     WEB --> BE["backend/ (FastAPI)"]
     WEB --> FE["frontend/ (React SPA)"]
 
-    TST --> T1257["1257 个测试用例"]
+    TST --> T1339["1339 个测试用例"]
 
     ST --> REL["releases/ (视频产出)"]
     ST --> PV["produced_videos/"]
@@ -607,7 +622,7 @@ graph LR
 | `desktop/` | Electron 桌面端 (v4.0) |
 | `config/` | 配置文件（ComfyUI 路径、Provider 配置、6题材模板） |
 | `scripts/` | 运维脚本（vf_master_loop、启动脚本） |
-| `tests/` | 1257 个测试用例 |
+| `tests/` | 1339 个测试用例 |
 | `state/releases/` | 已合成的 MP4 视频产出 |
 | `state/produced_videos/` | 视频工厂产出目录 |
 
