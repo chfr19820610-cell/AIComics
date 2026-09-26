@@ -22,6 +22,7 @@ from aicomic.providers.base import IProvider
 from aicomic.providers.kling_provider import KlingProvider
 from aicomic.providers.seedance_provider import SeedanceProvider
 from aicomic.providers.wan_provider import WanProvider
+from aicomic.intelligence.model_cascade import ModelCascade
 
 
 # ── Shot type enum (string-based for YAML compatibility) ─────────────────
@@ -161,6 +162,67 @@ class VideoRouter:
             flf = shot.get("flf", False)
             results.append(self.route(st, flf=flf))
         return results
+
+    # ── v5.2: Jev Model Cascade integration ─────────────────────────────
+
+    def route_with_cascade(
+        self,
+        shot_description: str = "",
+        motion_intensity: str = "medium",
+        character_count: int = 1,
+        has_vfx: bool = False,
+        budget_aware: bool = True,
+    ) -> RoutingDecision:
+        """Route using Jev-calibrated difficulty assessment.
+
+        Uses ModelCascade to classify shot difficulty and route to the
+        cheapest provider that can handle it. Saves budget by not sending
+        simple talking-head shots to expensive Kling API.
+
+        Args:
+            shot_description: Natural language shot description.
+            motion_intensity: low/medium/high/extreme.
+            character_count: Number of characters in frame.
+            has_vfx: Whether VFX/particles are needed.
+            budget_aware: If True, prefer cheaper providers when safe.
+
+        Returns:
+            RoutingDecision with the chosen provider.
+        """
+        cascade = ModelCascade()
+        route_result = cascade.route(
+            shot_description=shot_description,
+            motion_intensity=motion_intensity,
+            character_count=character_count,
+            has_vfx=has_vfx,
+            budget_aware=budget_aware,
+        )
+
+        if route_result.should_escalate:
+            # EXTREME difficulty — return a decision that signals escalation
+            return RoutingDecision(
+                shot_type="escalation",
+                provider_name="human",
+                provider=None,
+                reason=f"v5.2 cascade: {route_result.reasoning}",
+                flf_enabled=False,
+                extra={"difficulty": route_result.difficulty.value, "cascade_confidence": route_result.confidence},
+            )
+
+        # Map cascade provider to VideoRouter's provider system
+        provider = self._get_provider(route_result.provider)
+        return RoutingDecision(
+            shot_type=route_result.difficulty.value,
+            provider_name=route_result.provider,
+            provider=provider,
+            reason=f"v5.2 cascade: {route_result.reasoning}",
+            flf_enabled=False,
+            extra={
+                "difficulty": route_result.difficulty.value,
+                "cascade_confidence": route_result.confidence,
+                "estimated_cost_cents": route_result.estimated_cost,
+            },
+        )
 
     # ── Introspection ────────────────────────────────────────────────────
 

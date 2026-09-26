@@ -19,6 +19,8 @@ from pathlib import Path
 from typing import Any
 
 
+
+
 @dataclass
 class QualityReport:
     """Result of a ffprobe quality gate check."""
@@ -27,6 +29,7 @@ class QualityReport:
     file_path: str
     metrics: dict[str, Any] = field(default_factory=dict)
     issues: list[str] = field(default_factory=list)
+    confidence: float = 0.0  # v5.2: calibrated confidence (0-1)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -34,6 +37,7 @@ class QualityReport:
             "file_path": self.file_path,
             "metrics": self.metrics,
             "issues": self.issues,
+            "confidence": self.confidence,
         }
 
 
@@ -190,9 +194,21 @@ class FFprobeGate:
                 )
                 status = "WARN" if status == "PASS" else status
 
+        # v5.2: Compute calibrated confidence
+        # PASS with no issues → high confidence; more issues → lower confidence
+        if status == "PASS" and not issues:
+            confidence = 0.95
+        elif status == "PASS":
+            confidence = 0.80
+        elif status == "WARN":
+            confidence = max(0.3, 0.6 - 0.1 * len(issues))
+        else:  # FAIL
+            confidence = max(0.1, 0.3 - 0.1 * len(issues))
+
         return QualityReport(
             status=status,
             file_path=str(path),
             metrics=metrics,
             issues=issues,
+            confidence=round(confidence, 2),
         )

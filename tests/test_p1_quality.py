@@ -171,7 +171,7 @@ class TestWebAPI:
         assert resp.status_code == 200
         data = resp.json()
         assert data["status"] == "ok"
-        assert data["version"] == "5.1.0"
+        assert data["version"] == "5.2.0"
 
     def test_drift_check_pass(self, client):
         resp = client.post("/api/drift/check", json={

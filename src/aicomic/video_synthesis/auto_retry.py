@@ -22,6 +22,7 @@ from typing import Any, Callable
 
 from aicomic.video_synthesis.quality_gate import FFprobeGate
 from aicomic.video_synthesis.artifact_detector import ArtifactDetector, ArtifactReport
+from aicomic.intelligence.loop_breaker import LoopBreaker, LoopSignal
 
 
 @dataclass
@@ -76,12 +77,14 @@ class AutoRetryLoop:
         artifact_detector: ArtifactDetector | None = None,
         prompt_refiner: Callable[[str, list[str]], str] | None = None,
         provider_fallback: list[str] | None = None,
+        loop_breaker: LoopBreaker | None = None,
     ) -> None:
         self.max_retries = max_retries
         self.gate = ffprobe_gate or FFprobeGate()
         self.detector = artifact_detector or ArtifactDetector()
         self.prompt_refiner = prompt_refiner
         self.provider_fallback = provider_fallback or []
+        self.loop_breaker = loop_breaker or LoopBreaker()
 
     def run(
         self,
@@ -180,6 +183,18 @@ class AutoRetryLoop:
                     final_status="PASS",
                     attempts=attempts,
                     final_video_path=str(path),
+                    total_retries=attempt_num,
+                )
+
+            # Step 5b: Loop breaker — check if we're stuck repeating the same errors
+            signal: LoopSignal = self.loop_breaker.observe(all_issues, float(combined_score))
+            if signal.should_break and attempt_num < self.max_retries:
+                attempts[-1].action_taken = f"loop_broken: {signal.reason}"
+                return RetryResult(
+                    success=status != "FAIL",
+                    final_status=f"BROKEN_{status}",
+                    attempts=attempts,
+                    final_video_path=str(path) if path.exists() else "",
                     total_retries=attempt_num,
                 )
 

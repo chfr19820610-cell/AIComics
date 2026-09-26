@@ -59,6 +59,32 @@ class SilentFailureRequest(BaseModel):
     episode_metadata: dict[str, Any]
 
 
+# ── v5.2 Request models ────────────────────────────────────────────────────
+
+
+class CascadeRouteRequest(BaseModel):
+    """Request body for v5.2 model cascade routing."""
+    shot_description: str = ""
+    motion_intensity: str = "medium"
+    character_count: int = 1
+    has_vfx: bool = False
+    budget_aware: bool = True
+
+
+class GuardrailCheckRequest(BaseModel):
+    """Request body for v5.2 guardrail check."""
+    text: str
+    is_output: bool = False
+
+
+class ConfidenceGateRequest(BaseModel):
+    """Request body for v5.2 confidence gate evaluation."""
+    score: float
+    confidence: float
+    stage: str = "quality_check"
+    force_escalate: bool = False
+
+
 class CostRecordRequest(BaseModel):
     """Request body for recording a generation cost."""
     provider: str
@@ -96,15 +122,15 @@ def create_app(state_dir: Path | str = "state") -> FastAPI:
     """
     app = FastAPI(
         title="AIComics API",
-        description="AI漫剧自动生成系统 — v5.1",
-        version="5.1.0",
+        description="AI漫剧自动生成系统 — v5.2",
+        version="5.2.0",
     )
 
     # ── Health ─────────────────────────────────────────────────────────
 
     @app.get("/api/health")
     def health() -> dict[str, str]:
-        return {"status": "ok", "version": "5.1.0"}
+        return {"status": "ok", "version": "5.2.0"}
 
     # ── Drift Gate ─────────────────────────────────────────────────────
 
@@ -241,5 +267,79 @@ def create_app(state_dir: Path | str = "state") -> FastAPI:
         app.include_router(build_character_router(state_dir=state_dir))
     except Exception:
         pass  # character router is optional
+
+    # ── v5.2: Jev Intelligence Layer endpoints ────────────────────────
+
+    @app.post("/api/cascade/route")
+    def cascade_route(req: CascadeRouteRequest) -> dict[str, Any]:
+        """Route a shot to the best provider using Jev-calibrated difficulty."""
+        from aicomic.intelligence.model_cascade import ModelCascade
+        cascade = ModelCascade()
+        result = cascade.route(
+            shot_description=req.shot_description,
+            motion_intensity=req.motion_intensity,
+            character_count=req.character_count,
+            has_vfx=req.has_vfx,
+            budget_aware=req.budget_aware,
+        )
+        return {
+            "provider": result.provider,
+            "difficulty": result.difficulty.value,
+            "confidence": result.confidence,
+            "reasoning": result.reasoning,
+            "estimated_cost": result.estimated_cost,
+            "should_escalate": result.should_escalate,
+        }
+
+    @app.post("/api/guardrail/check")
+    def guardrail_check(req: GuardrailCheckRequest) -> dict[str, Any]:
+        """Check text for content policy violations before sending to API."""
+        from aicomic.intelligence.guardrail import Guardrail
+        guard = Guardrail()
+        if req.is_output:
+            result = guard.check_output(req.text)
+        else:
+            result = guard.check_prompt(req.text)
+        return {
+            "level": result.level.value,
+            "score": result.score,
+            "confidence": result.confidence,
+            "reason": result.reason,
+            "flagged_categories": result.flagged_categories,
+        }
+
+    @app.post("/api/confidence-gate/evaluate")
+    def confidence_gate_evaluate(req: ConfidenceGateRequest) -> dict[str, Any]:
+        """Evaluate a score+confidence pair against configurable thresholds."""
+        from aicomic.intelligence.confidence_gate import ConfidenceGate
+        gate = ConfidenceGate.for_stage(req.stage)
+        decision = gate.evaluate(
+            score=req.score,
+            confidence=req.confidence,
+            stage=req.stage,
+            force_escalate=req.force_escalate,
+        )
+        return {
+            "action": decision.action.value,
+            "score": decision.score,
+            "confidence": decision.confidence,
+            "stage": decision.stage,
+            "reason": decision.reason,
+            "suggested_action": decision.suggested_action,
+        }
+
+    @app.get("/api/intelligence/modules")
+    def intelligence_modules() -> list[dict[str, str]]:
+        """List all v5.2 intelligence layer modules."""
+        return [
+            {"name": "calibrated_decision", "jev_primitive": "Noul/Choice/Score", "description": "校准概率+置信度替代硬阈值"},
+            {"name": "confidence_gate", "jev_primitive": "Confidence-gated routing", "description": "高→通过/中→复核/低→拒绝"},
+            {"name": "best_of_n", "jev_primitive": "Best-of-N arbitration", "description": "多候选取最优，替代串行重试"},
+            {"name": "loop_breaker", "jev_primitive": "Stuck detection", "description": "重试循环早停，省生成预算"},
+            {"name": "speculative_fanout", "jev_primitive": "Parallel fan-out", "description": "多检查一次性并行评估"},
+            {"name": "model_cascade", "jev_primitive": "Model cascade", "description": "难度→模型级联，省API成本"},
+            {"name": "guardrail", "jev_primitive": "Input/output guardrails", "description": "prompt送API前检测违禁内容"},
+            {"name": "patch_verifier", "jev_primitive": "Diff verification", "description": "分镜/配置/角色改动前验连续性"},
+        ]
 
     return app
