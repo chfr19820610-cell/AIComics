@@ -133,7 +133,14 @@ def extract_attributes(text: str) -> list[AttributeEntry]:
 
 def _dedup_attributes(attrs: list[AttributeEntry]) -> list[AttributeEntry]:
     seen: set[str] = set()
-    return [a for a in attrs if not (k := f"{a.category}:{a.attribute}", k in seen or seen.add(k))[0]]
+    deduped: list[AttributeEntry] = []
+    for a in attrs:
+        k = f"{a.category}:{a.attribute}"
+        if k in seen:
+            continue
+        seen.add(k)
+        deduped.append(a)
+    return deduped
 
 
 # ── Database schema ──────────────────────────────────────────────────────
