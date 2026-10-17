@@ -90,4 +90,29 @@ class TestAiLabelPresent:
         monkeypatch.setattr(ai, "_run_probe", lambda cmd: (1, ""))
         assert ai.ai_label_present(_stub_probe_video(tmp_path)) is False
 
+    def test_ffprobe_unavailable_ffmetadata_fallback(self, tmp_path, monkeypatch):
+        import aicomic.video_synthesis.ai_label as ai
+
+        cmds: list[list[str]] = []
+
+        def fake_probe(cmd):
+            cmds.append(cmd)
+            if "ffmetadata" in cmd:
+                return 0, ";FFMETADATA1\ncomment=xAiComics\nai_generated=true\n"
+            return 127, ""  # ffprobe ENOENT/坏架构
+
+        monkeypatch.setattr(ai, "_run_probe", fake_probe)
+        assert ai.ai_label_present(_stub_probe_video(tmp_path)) is True
+        assert len(cmds) == 2 and any("ffmetadata" in c for c in cmds)
+
+        def fake_probe_missing(cmd):
+            cmds.append(cmd)
+            if "ffmetadata" in cmd:
+                return 0, ";FFMETADATA1\ncomment=别的\n"
+            return 127, ""
+
+        cmds.clear()
+        monkeypatch.setattr(ai, "_run_probe", fake_probe_missing)
+        assert ai.ai_label_present(_stub_probe_video(tmp_path)) is False
+
         assert ai.ai_label_present(tmp_path / "missing.mp4") is False
