@@ -273,14 +273,21 @@ def enhance_via_llm(
     shot: dict[str, Any] | None = None,
     llm_url: str = "http://127.0.0.1:8081/v1/chat/completions",
     llm_model: str = "DeepSeek-V4-Flash",
-    llm_key: str = "thr_hermes001",
+    llm_key: str | None = None,
 ) -> str:
     """
     用LLM智能增强prompt (可选)。
     走ThriftLLM→DeepSeek-V4-Flash, 不额外花钱。
 
     流程: base_prompt → LLM Draft → 确定性validate → 返回增强prompt
+    密钥来源: llm_key 参数 或环境变量 AICOMIC_ENHANCE_LLM_KEY；
+    无密钥时确定性跳过（诚实降级，返回原始 prompt）。
     """
+    import os as _os
+    resolved_key = llm_key or _os.environ.get("AICOMIC_ENHANCE_LLM_KEY", "")
+    if not resolved_key:
+        return base_prompt
+
     import subprocess as _sp
     import json as _json
 
@@ -311,7 +318,7 @@ def enhance_via_llm(
         r = _sp.run(
             ["curl", "-s", "--max-time", "15", llm_url,
              "-H", "Content-Type: application/json",
-             "-H", f"Authorization: Bearer {llm_key}",
+             "-H", f"Authorization: Bearer {resolved_key}",
              "-d", payload],
             capture_output=True, text=True, timeout=20,
         )

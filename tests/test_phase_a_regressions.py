@@ -77,3 +77,38 @@ class TestAutoRetryScore:
         loop = AutoRetryLoop(max_retries=0, ffprobe_gate=_MockGate({"height": 1080}))
         result = loop.run(gen_fn, video, prompt="t")
         assert result.attempts[0].combined_score >= 90
+
+
+# ── 任务4: enhance_via_llm 密钥来源 ────────────────────────────────────
+
+import inspect
+import json
+from unittest.mock import patch
+
+from aicomic.providers.prompt_enhancer import PROFILES, enhance_via_llm
+
+
+class TestLLMKeyHandling:
+    def test_signature_has_no_hardcoded_key(self):
+        sig = inspect.signature(enhance_via_llm)
+        assert sig.parameters["llm_key"].default is None
+
+    def test_no_env_key_skips_curl(self, monkeypatch):
+        monkeypatch.delenv("AICOMIC_ENHANCE_LLM_KEY", raising=False)
+        with patch("subprocess.run") as fake:
+            out = enhance_via_llm("base prompt", PROFILES["anime_donghua"])
+        fake.assert_not_called()
+        assert out == "base prompt"
+
+    def test_env_key_used_in_header(self, monkeypatch):
+        monkeypatch.setenv("AICOMIC_ENHANCE_LLM_KEY", "testkey123")
+        captured = {}
+
+        def fake_run(cmd, **kwargs):
+            captured["cmd"] = cmd
+            out = json.dumps({"choices": [{"message": {"content": "augmented " + "x" * 200}}]})
+            return type("R", (), {"returncode": 0, "stdout": out})()
+
+        with patch("subprocess.run", fake_run):
+            enhance_via_llm("base", PROFILES["anime_donghua"])
+        assert any("testkey123" in part for part in captured["cmd"])
