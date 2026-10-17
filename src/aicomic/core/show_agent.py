@@ -55,6 +55,7 @@ class ShowAgent:
         providers_config_path: Any | None = None,
         output_root: Any | None = None,
         handoff_writer: Any | None = None,
+        self_reviewer: Any | None = None,
     ) -> None:
         self.state_dir = Path(state_dir) if state_dir else ProjectPaths.state_dir()
         self.coordinator = coordinator if coordinator is not None else PipelineCoordinator(self.state_dir)
@@ -63,6 +64,8 @@ class ShowAgent:
         self.providers_config_path = providers_config_path
         self.output_root = output_root
         self.handoff_writer = handoff_writer
+        self.self_reviewer = self_reviewer
+        self.last_self_review: dict[str, Any] | None = None
         self._last_budget_stop = False
         self._stage_results: dict[str, dict[str, Any]] = {}
 
@@ -172,9 +175,15 @@ class ShowAgent:
                 raise _NeedsInput("preview_render.render_plan")
             output_path = str(stage_inputs.get("output_path", "") or self.output_root or "")
             report_path = str(stage_inputs.get("report_path", "") or self.output_root or "")
-            return dict(
+            result = dict(
                 self.coordinator.execute_preview_render(episode_code, render_plan, output_path, report_path)
             )
+            # SOP §8.1：审片 Agent 审完 preview 才算闸门过（self_reviewer 注入点；失败 fail-soft）
+            shots = render_plan.get("shots") if isinstance(render_plan.get("shots"), list) else []
+            self.last_self_review = self._safe_self_review(shots)
+            if self.last_self_review is not None:
+                result["self_review"] = self.last_self_review
+            return result
 
         if stage_id == "publish_pack":
             if not isinstance(manifest, dict):
@@ -182,6 +191,15 @@ class ShowAgent:
             return dict(self.coordinator.execute_publish_pack(episode_code, manifest))
 
         return {"status": "skipped_unknown_stage"}
+
+    def _safe_self_review(self, shots: list[Any]) -> dict[str, Any] | None:
+        if self.self_reviewer is None:
+            return None
+        try:
+            raw = self.self_reviewer(list(shots))
+            return raw if isinstance(raw, dict) else {"verdict": "error", "issues": [], "model": ""}
+        except Exception as exc:  # noqa: BLE001 — 自审失败不反噬主流程
+            return {"verdict": "error", "issues": [{"code": "self_review_failed", "message": repr(exc)}], "model": ""}
 
     def _episode_manifest(self, stage_inputs: dict[str, Any], inputs: dict[str, Any]) -> Any:
         if isinstance(stage_inputs, dict) and isinstance(stage_inputs.get("episode_manifest"), dict):

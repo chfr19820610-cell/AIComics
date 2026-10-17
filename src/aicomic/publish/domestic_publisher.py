@@ -14,6 +14,8 @@ from typing import Any
 
 import yaml
 
+from aicomic.video_synthesis.ai_label import ai_label_present
+
 # Project root (src/aicomic/publish/ → ../../..  = project root)
 _PROJECT_ROOT = Path(__file__).resolve().parents[3]
 _CONFIG_PATH = _PROJECT_ROOT / "config" / "publish.yaml"
@@ -82,6 +84,10 @@ def publish_to_platforms(
         ready = check_platform_ready(plat, cfg)
         if not ready["ready"]:
             results[plat] = {"success": False, "error": ready["reason"]}
+            continue
+        # SOP §10 #7 联检：平台发布前必须挂 AI 生成标识（require_ai_label=False 显式豁免）
+        if cfg.get("require_ai_label", True) and not ai_label_present(payload.video_path):
+            results[plat] = {"success": False, "error": "ai_label missing: run `ai-label-embed` first"}
             continue
         if not payload.video_path.exists():
             results[plat] = {"success": False, "error": f"video not found: {payload.video_path}"}

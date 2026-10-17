@@ -156,3 +156,97 @@ class TestSelfReviewShots:
         out = sr.review_assets([{"shot_id": "S01"}])
         assert out["verdict"] == "error"
         assert "connection refused" in out["issues"][0]["message"]
+
+
+class TestShowAgentSelfReview:
+    """D3：preview_render 分发后注入 self_reviewer（fail-soft），结果可读。"""
+
+    def _agent(self, tmp_path, reviewer):
+        from aicomic.core.show_agent import ShowAgent
+        from aicomic.core.pipeline_coordinator import PipelineCoordinator
+
+        coordinator = PipelineCoordinator(tmp_path)
+        # 预推进到 preview_render（scripted：前 7 stage 完成+门前两道已批）
+        for sid in ("project_setup", "story_bible", "episode_outline", "tts_subtitle"):
+            coordinator.begin_stage("E01", sid)
+            coordinator.complete_stage("E01", sid)
+        for sid in ("shot_breakdown", "asset_generation"):
+            coordinator.begin_stage("E01", sid)
+            coordinator.complete_stage("E01", sid)
+            coordinator.approve_stage("E01", sid, reviewer="t")
+        coordinator.execute_preview_render = lambda ep, plan, out, rp: {"video": "v.mp4"}
+        return ShowAgent(state_dir=tmp_path, coordinator=coordinator, self_reviewer=reviewer)
+
+    def test_preview_render_triggers_review(self, tmp_path):
+        calls: list[list] = []
+
+        def reviewer(shots):
+            calls.append(list(shots))
+            return {"verdict": "revise", "issues": ["第2镜 构图失衡"], "model": "m"}
+
+        agent = self._agent(tmp_path, reviewer)
+        result = agent.run_until_human(
+            "E01", {"preview_render": {"render_plan": {"shots": [{"shot_id": "S01", "image": "x"}]}}}
+        )
+        assert calls and calls[0][0]["shot_id"] == "S01"
+        assert agent.last_self_review["verdict"] == "revise"
+        assert result.stop_reason in {"needs_input", "awaiting_human", "all_completed"}
+
+    def test_reviewer_error_fail_soft(self, tmp_path):
+        def reviewer(shots):
+            raise RuntimeError("boom")
+
+        agent = self._agent(tmp_path, reviewer)
+        agent.run_until_human("E01", {"preview_render": {"render_plan": {"shots": [{"shot_id": "S01"}]}}})
+        assert agent.last_self_review["verdict"] == "error"
+        assert "boom" in agent.last_self_review["issues"][0]["message"]
+
+    def test_no_reviewer_keeps_none(self, tmp_path):
+        agent = self._agent(tmp_path, None)
+        result = agent.run_until_human("E01", {"preview_render": {"render_plan": {"shots": [{"shot_id": "S01"}]}}})
+        assert agent.last_self_review is None
+        assert result.stop_reason in {"needs_input", "awaiting_human", "all_completed"}
+
+
+class TestPublishMetadataGang:
+    """D4：发布前 metadata 联检（SOP §10 #7 | #2 shim）——缺 AI 标签拒绝发。"""
+
+    def _cfg(self, tmp_path):
+        (tmp_path / "ck").write_text("ck", encoding="utf-8")
+        return {
+            "platforms": {"douyin": {"enabled": True, "cookie_path": str(tmp_path / "ck")}},
+            "social_auto_upload_path": str(tmp_path / "sau"),
+        }
+
+    def _payload(self, tmp_path):
+        from aicomic.publish.domestic_publisher import PublishPayload
+
+        video = tmp_path / "episode.mp4"
+        video.write_bytes(b"0" * 16)
+        return PublishPayload(video_path=video, title="T")
+
+    def test_missing_label_blocks(self, tmp_path, monkeypatch):
+        from aicomic.publish import domestic_publisher as dp
+
+        monkeypatch.setattr(dp, "ai_label_present", lambda v, **k: False)
+        results = dp.publish_to_platforms(self._payload(tmp_path), ["douyin"], self._cfg(tmp_path))
+        assert results["douyin"]["success"] is False
+        assert "ai_label" in results["douyin"]["error"]
+
+    def test_label_present_allows(self, tmp_path, monkeypatch):
+        from aicomic.publish import domestic_publisher as dp
+
+        monkeypatch.setattr(dp, "ai_label_present", lambda v, **k: True)
+        monkeypatch.setattr(dp, "_run_sau_upload", lambda *a, **k: {"success": True, "platform": "douyin"})
+        results = dp.publish_to_platforms(self._payload(tmp_path), ["douyin"], self._cfg(tmp_path))
+        assert results["douyin"]["success"] is True
+
+    def test_require_ai_label_false_opts_out(self, tmp_path, monkeypatch):
+        from aicomic.publish import domestic_publisher as dp
+
+        monkeypatch.setattr(dp, "ai_label_present", lambda v, **k: False)
+        monkeypatch.setattr(dp, "_run_sau_upload", lambda *a, **k: {"success": True, "platform": "douyin"})
+        cfg = self._cfg(tmp_path)
+        cfg["require_ai_label"] = False
+        results = dp.publish_to_platforms(self._payload(tmp_path), ["douyin"], cfg)
+        assert results["douyin"]["success"] is True
