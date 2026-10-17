@@ -22,3 +22,16 @@ def atomic_write_json(path: Path, data: Any, *, ensure_ascii: bool = False, inde
     except BaseException:
         tmp.unlink(missing_ok=True)
         raise
+
+
+def atomic_write_text(path: Path, text: str, *, encoding: str = "utf-8") -> None:
+    """原子写入文本文件：写临时文件 → rename覆盖（语义同 atomic_write_json）。"""
+    tmp = path.with_suffix(path.suffix + ".tmp." + os.urandom(4).hex())
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with open(tmp, "w", encoding=encoding) as f:
+            f.write(text)
+        tmp.replace(path)
+    except BaseException:
+        tmp.unlink(missing_ok=True)
+        raise
