@@ -1135,3 +1135,27 @@ class TestShowCommands:
         target = tmp_path / "handoff" / "showhand_T047_handoff.md"
         assert target.exists()
         assert str(target) in capsys.readouterr().out
+
+
+class TestHandleAiLabel:
+    def test_cli_embed_real(self, tmp_path, capsys):
+        video = tmp_path / "in.mp4"
+        video.write_bytes(b"0" * 64)
+        out = tmp_path / "out.mp4"
+        with mock.patch("aicomic.cli.main.embed_ai_label") as fake:
+            fake.return_value = out
+            rc = cli_main.handle_ai_label_embed(video, out, False)
+        assert rc == 0
+        text = capsys.readouterr().out
+        assert "output=" in text
+
+    def test_cli_check_semantics(self, tmp_path, capsys):
+        video = tmp_path / "in.mp4"
+        video.write_bytes(b"0" * 64)
+        with mock.patch("aicomic.cli.main.ai_label_check") as fake:
+            fake.return_value = True
+            assert cli_main.handle_ai_label_check(video) == 0
+        capsys.readouterr()
+        with mock.patch("aicomic.cli.main.ai_label_check") as fake:
+            fake.return_value = False
+            assert cli_main.handle_ai_label_check(video) == 1

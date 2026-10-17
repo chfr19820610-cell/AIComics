@@ -87,6 +87,11 @@ def ai_label_present(video_path: str | Path, *, ffprobe_bin: str | Path | None =
         return False
 
 
+def ai_label_check(video_path: str | Path, *, ffprobe_bin: str | Path | None = None) -> bool:
+    """发布前检查入口：语义同 ai_label_present，为 CLI/管线提供命名清晰的调用点。"""
+    return ai_label_present(video_path, ffprobe_bin=ffprobe_bin)
+
+
 def embed_ai_label(
     video_path: str | Path,
     output_path: str | Path | None = None,

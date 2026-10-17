@@ -75,6 +75,7 @@ from aicomic.core.keyframe_engine import generate_keyframe_prompts
 from aicomic.core.storyboard_grid import generate_grid_prompts
 from aicomic.core.novel_splitter import split_novel_to_episodes, build_manifest_from_episodes
 from aicomic.render.release_renderer import build_release_plan, render_release_video
+from aicomic.video_synthesis.ai_label import ai_label_check, embed_ai_label
 from aicomic.render.season_renderer import render_season
 from aicomic.render.subtitle_audio import build_audio_plan, build_subtitle_entries, write_audio_plan, write_silence_wav, write_srt
 from aicomic.cli.render_cmd import handle_render as _handle_render_cmd
@@ -476,6 +477,18 @@ def handle_render_release(ep: Path, code: str, root: Path, out: Path, ro: Path) 
     rpt = render_release_video(build_release_plan(load_json(ep), code, root), out, ro)
     print(f"render_profile={rpt['render_profile']}\noutput={out}")
     return 0
+
+
+def handle_ai_label_embed(video: Path, output: Path | None = None, watermark: bool = False) -> int:
+    target = embed_ai_label(str(video), str(output) if output is not None else None, watermark=watermark)
+    print(f"ai_label=ok\noutput={target}")
+    return 0
+
+
+def handle_ai_label_check(video: Path) -> int:
+    present = ai_label_check(video)
+    print(f"ai_label={'present' if present else 'missing'}")
+    return 0 if present else 1
 
 
 def handle_build_publish_pack(ep: Path, code: str, out: Path) -> int:
@@ -975,6 +988,14 @@ COMMANDS: dict[str, dict] = {
         (["--transition"], {"type": str, "default": "fade", "choices": ["fade", "slide", "wipe", "clock_wipe", "cross_zoom", "flip"]}),
     ],
         "handler": lambda a: handle_render_with_transitions(a.episode_manifest, a.episode_code, a.asset_root, a.output, a.report_output, a.transition)},
+    "ai-label-embed": {"help": "为视频写入 AI 生成元数据标识", "args": [
+        (["video"], {}),
+        (["--output"], {"type": Path, "default": None}),
+        (["--watermark"], {"action": "store_true"})],
+        "handler": lambda a: handle_ai_label_embed(a.video, a.output, a.watermark)},
+    "ai-label-check": {"help": "检测视频是否携带 AI 生成标识", "args": [
+        (["video"], {})],
+        "handler": lambda a: handle_ai_label_check(a.video)},
     "render-release": {"help": "渲染单集正式版视频", "args": [
         (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
         (["--episode-code"], {"default": "E01"}), (["--asset-root"], {"type": Path, "default": P("ProjectPaths.demo_assets_dir()")}),

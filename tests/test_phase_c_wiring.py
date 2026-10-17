@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 
 class TestAtomicWriteText:
@@ -133,3 +134,46 @@ class TestHandoffRecord:
         content = target.read_text(encoding="utf-8")
         assert "全角标点；代码与命令用半角" in content
         assert "续作指引" in content
+
+
+class TestReleaseAiLabel:
+    """Task 8：release 渲染完成后自动打 AI 标识（fail-soft，env 可关）。"""
+
+    def _run(self, tmp_path, monkeypatch, *, env="1", embed=None, render_report=None):
+        from aicomic.render import release_renderer
+
+        output = tmp_path / "release.mp4"
+        output.write_bytes(b"0" * 64)
+        report_path = tmp_path / "report.json"
+        calls: list[dict] = []
+
+        def fake_embed(video, output_path=None, **kw):
+            calls.append({"video": video, "out": output_path})
+            if embed is not None:
+                raise embed
+            return Path(video)
+
+        def fake_render(plan, output_path, report_path, **kw):
+            return dict(render_report or {"render_profile": "preview", "video": str(output_path)})
+
+        monkeypatch.setenv("AICOMIC_AI_LABEL", env)
+        monkeypatch.setattr(release_renderer, "render_preview_video", fake_render)
+        monkeypatch.setattr(release_renderer, "embed_ai_label", fake_embed)
+        plan = {"render_profile": "release", "shots": []}
+        report = release_renderer.render_release_video(plan, output, report_path)
+        return report, calls, output, report_path
+
+    def test_render_embeds_ai_label(self, tmp_path, monkeypatch):
+        report, calls, output, _ = self._run(tmp_path, monkeypatch)
+        assert report["ai_label"]["status"] == "ok", report["ai_label"]
+        assert calls and Path(calls[0]["video"]).resolve() == output.resolve()
+
+    def test_env_off_skips(self, tmp_path, monkeypatch):
+        report, calls, _, _ = self._run(tmp_path, monkeypatch, env="0")
+        assert report["ai_label"]["status"] == "skipped"
+        assert calls == []
+
+    def test_embed_failure_is_fail_soft(self, tmp_path, monkeypatch):
+        report, calls, _, _ = self._run(tmp_path, monkeypatch, embed=RuntimeError("ffmpeg 写标识失败"))
+        assert report["ai_label"]["status"] == "error"
+        assert "ffmpeg 写标识失败" in report["ai_label"]["message"]
