@@ -54,7 +54,36 @@ def _ffprobe_bin() -> str:
 
 
 def _probe_streams(video: Path) -> tuple[int, str]:
-    return _run_probe([_ffprobe_bin(), "-v", "quiet", "-show_streams", "-of", "json", str(video)])
+    rc, stdout = _run_probe([_ffprobe_bin(), "-v", "quiet", "-show_streams", "-of", "json", str(video)])
+    if rc == 0 and stdout.strip():
+        return 0, stdout
+    # ffprobe 不可用 / 坏架构 → ffmpeg banner 兜底（Duration + Video 行），不静默假绿
+    return _run_ffmpeg_banner(video)
+
+
+_DURATION_RE = re.compile(r"Duration:\s*(\d+):(\d+):(\d+)\.(\d+)")
+_VIDEO_RE = re.compile(r"Stream #\d+:\d+.*: Video:.*?(\d{2,5})x(\d{2,5})")
+
+
+def _run_ffmpeg_banner(video: Path) -> tuple[int, str]:
+    """ffmpeg -i 输出 stderr banner；规整为与 ffprobe 同形 json streams。"""
+    try:
+        proc = subprocess.run([_ffmpeg_bin(), "-hide_banner", "-i", str(video), "-f", "null", "-"], capture_output=True, text=True)
+        banner = str(proc.stderr)
+    except OSError:
+        return 127, ""
+    if proc.returncode != 0:
+        return proc.returncode, banner
+    duration = 0.0
+    m = _DURATION_RE.search(banner)
+    if m:
+        duration = int(m[1]) * 3600 + int(m[2]) * 60 + int(m[3]) + int(m[4]) / 100
+    width = height = 0
+    m = _VIDEO_RE.search(banner)
+    if m:
+        width, height = int(m[1]), int(m[2])
+    streams = [{"codec_type": "video", "width": width, "height": height, "duration": str(round(duration, 2))}]
+    return 0, json.dumps({"streams": streams})
 
 
 def _issues_add(issues: list[dict[str, Any]], code: str, message: str) -> None:
@@ -125,11 +154,12 @@ def check_asset(
     if width < min_width or height < min_height:
         _issues_add(issues, "resolution_too_small", f"分辨率 {width}x{height} 低于 {min_width}x{min_height}")
     black_rc, black_text = _run_blackdetect(video)
+    black_fraction = None
     if black_rc != 0:
         _issues_add(issues, "blackdetect_unavailable", "黑帧检查工具不可用（blackdetect 未运行）")
     else:
         black_total = _parse_black_lines(black_text)
-        black_fraction = (black_total / duration) if duration > 0 else None
+        black_fraction = ((black_total or 0.0) / duration) if duration > 0 else None
         if black_fraction is not None and black_fraction > BLACK_FRACTION_MAX:
             _issues_add(issues, "black_frames_excess", f"黑帧占比 {black_fraction:.0%} 超阈 {BLACK_FRACTION_MAX:.0%}")
-    return {"ok": not issues, "issues": issues, "black_fraction": black_fraction if black_rc == 0 else None}
+    return {"ok": not issues, "issues": issues, "black_fraction": black_fraction}

@@ -250,3 +250,30 @@ class TestPublishMetadataGang:
         cfg["require_ai_label"] = False
         results = dp.publish_to_platforms(self._payload(tmp_path), ["douyin"], cfg)
         assert results["douyin"]["success"] is True
+
+
+class TestQualityFfmpegFallback:
+    def test_ffprobe_unavailable_ffmpeg_banner_fallback(self, tmp_path, monkeypatch):
+        from aicomic.video_synthesis import quality_check as qc
+
+        video = tmp_path / "a.mp4"
+        video.write_bytes(b"0" * 32)
+
+        def fake_bd(video_path):
+            return 0, "[blackdetect] black_start:0 black_end:0.1 black_duration:0.1"
+
+        def fake_bd_unavailable(video_path):
+            return 1, ""
+
+        banner_json = json.dumps(
+            {"streams": [{"codec_type": "video", "width": 1080, "height": 1920, "duration": "8.0"}]}
+        )
+
+        monkeypatch.setattr(qc, "_run_probe", lambda cmd: (127, ""))  # ffprobe 不可用
+        monkeypatch.setattr(qc, "_run_ffmpeg_banner", lambda video_path: (0, banner_json))
+        monkeypatch.setattr(qc, "_run_blackdetect", fake_bd)
+        report = qc.check_asset(video)
+        assert report["ok"] is True and report["issues"] == []
+        monkeypatch.setattr(qc, "_run_ffmpeg_banner", lambda video_path: (1, ""))
+        report2 = qc.check_asset(video)
+        assert any(i["code"] == "probe_unavailable" for i in report2["issues"])
