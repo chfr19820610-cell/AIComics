@@ -37,3 +37,43 @@ class TestCostLedgerAtomic:
         dash.record_generation(provider="wan", cents=200)
         reloaded = CostDashboard(storage_dir=tmp_path, budget_cents=500)
         assert reloaded.get_budget_status().total_spent_cents == 200
+
+
+# ── 任务3: AutoRetryLoop combined_score 量纲 ───────────────────────────
+
+from aicomic.video_synthesis.auto_retry import AutoRetryLoop
+from aicomic.video_synthesis.quality_gate import FFprobeGate, QualityReport
+
+
+class _MockGate(FFprobeGate):
+    def __init__(self, metrics: dict):
+        super().__init__()
+        self._metrics = metrics
+
+    def check(self, video_path, expected_duration=None):
+        return QualityReport(status="PASS", file_path=str(video_path), metrics=self._metrics, issues=[])
+
+
+class TestAutoRetryScore:
+    def test_low_resolution_score_in_0_100_band(self, tmp_path: Path):
+        video = tmp_path / "shot.mp4"
+        video.write_bytes(b"dummy")
+
+        def gen_fn(prompt, **kwargs):
+            return {"status": "success", "video_path": str(video)}
+
+        # 旧行为: (360 + 100)//2 = 230 → 超量纲；新行为应 ≤100
+        loop = AutoRetryLoop(max_retries=0, ffprobe_gate=_MockGate({"height": 360}))
+        result = loop.run(gen_fn, video, prompt="t")
+        assert 0 <= result.attempts[0].combined_score <= 100
+
+    def test_hd_score_reflects_quality(self, tmp_path: Path):
+        video = tmp_path / "shot.mp4"
+        video.write_bytes(b"dummy")
+
+        def gen_fn(prompt, **kwargs):
+            return {"status": "success", "video_path": str(video)}
+
+        loop = AutoRetryLoop(max_retries=0, ffprobe_gate=_MockGate({"height": 1080}))
+        result = loop.run(gen_fn, video, prompt="t")
+        assert result.attempts[0].combined_score >= 90

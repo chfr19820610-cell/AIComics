@@ -155,8 +155,13 @@ class AutoRetryLoop:
                 # No metadata — just use quality gate
                 a_report = ArtifactReport(status="CLEAN", score=100, issues=[], checked_frames=0)
 
-            # Step 4: Combine scores
-            combined_score = (q_report.metrics.get("height", 0) + a_report.score) // 2 if q_report.metrics else a_report.score
+            # Step 4: Combine scores — normalize resolution to a 0-100 band first
+            if q_report.metrics:
+                height = int(q_report.metrics.get("height", 0))
+                quality_component = 100 if height >= 720 else (60 if height >= 480 else 20)
+                combined_score = (quality_component + a_report.score) // 2
+            else:
+                combined_score = a_report.score
             all_issues = q_report.issues + [i.description for i in a_report.issues]
 
             # Determine status
