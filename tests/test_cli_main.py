@@ -1094,3 +1094,44 @@ class TestExecuteProviderRequestsBudgetFlag:
 
         assert rc == 0
         assert captured["budget_sentinel"] is None
+
+
+class TestShowCommands:
+    def test_show_run_wires_agent(self, tmp_path, monkeypatch, capsys):
+        import types
+
+        captured: dict = {}
+
+        class _FakeAgent:
+            budget = {"status": "unlimited"}
+
+            def __init__(self, state_dir=None, **kw):
+                captured["init"] = kw
+
+            def run_until_human(self, episode_code, inputs, live=False):
+                captured["ep"], captured["inputs"] = episode_code, inputs
+                result = types.SimpleNamespace()
+                result.stop_reason, result.current_stage, result.message, result.body = "awaiting_human", "shot_breakdown", "", {}
+                return result
+
+        monkeypatch.setattr(cli_main, "ShowAgent", _FakeAgent)
+        monkeypatch.setenv("AICOMIC_STATE_DIR", str(tmp_path))
+        monkeypatch.delenv("AICOMIC_BUDGET_CENTS", raising=False)
+        out = tmp_path / "r.json"
+        rc = cli_main.handle_show_run(
+            tmp_path / "products.json", tmp_path / "providers.yaml", "kling", True, 0, 1, out, 50, "showrun_T046",
+        )
+        assert rc == 0
+        assert captured["ep"] == "showrun_T046"
+        assert captured["inputs"]["budget_cents"] == 50
+        body = json.loads(out.read_text(encoding="utf-8"))
+        assert body["stop_reason"] == "awaiting_human"
+        assert "stop_reason=" in capsys.readouterr().out
+
+    def test_show_handoff_writes_file(self, tmp_path, monkeypatch, capsys):
+        monkeypatch.setenv("AICOMIC_STATE_DIR", str(tmp_path))
+        rc = cli_main.handle_show_handoff("showhand_T047", None)
+        assert rc == 0
+        target = tmp_path / "handoff" / "showhand_T047_handoff.md"
+        assert target.exists()
+        assert str(target) in capsys.readouterr().out

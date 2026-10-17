@@ -228,3 +228,45 @@ class TestExecuteLive:
         agent.coordinator.approve_stage("liveok_T043", "asset_generation", reviewer="USER")
         final = agent.run_until_human("liveok_T043", inputs, live=True)
         assert final.stop_reason == "all_completed"
+
+
+class TestHandoffWriting:
+    def test_writes_handoff_on_awaiting_exit(self, tmp_path, monkeypatch):
+        agent = _agent(tmp_path)
+        monkeypatch.setattr(
+            agent.coordinator, "execute_shot_breakdown",
+            lambda ep, blueprint, template_name="", project_id="": {"shot_manifest": _manifest(), "status": "generated"},
+        )
+        result = agent.run_until_human(
+            "handoff_T044",
+            {"shot_breakdown": {"blueprint": _BLUEPRINT, "template_name": "horror"}},
+        )
+        assert result.stop_reason == "awaiting_human"
+        md_file = tmp_path / "handoff" / "handoff_T044_handoff.md"
+        assert md_file.exists()
+        body = md_file.read_text(encoding="utf-8")
+        assert "budget 汇报" in body
+        assert "shot_breakdown" in body
+
+    def test_writes_handoff_on_failed_exit(self, tmp_path, monkeypatch):
+        from aicomic.core.handoff import build_handoff_record
+
+        def boom(*a, **k):
+            raise RuntimeError("kaboom")
+
+        agent = _agent(tmp_path)
+        monkeypatch.setattr(
+            agent.coordinator, "execute_shot_breakdown",
+            lambda ep, blueprint, template_name="", project_id="": {"shot_manifest": _manifest(), "status": "generated"},
+        )
+        first = agent.run_until_human(
+            "handoff_T045",
+            {"shot_breakdown": {"blueprint": _BLUEPRINT, "template_name": "horror"}},
+        )
+        assert first.stop_reason == "awaiting_human"
+        agent.coordinator.approve_stage("handoff_T045", "shot_breakdown", reviewer="USER")
+        monkeypatch.setattr(agent.coordinator, "execute_asset_generation", boom)
+        second = agent.run_until_human("handoff_T045", {})
+        assert second.stop_reason == "failed"
+        body = (tmp_path / "handoff" / "handoff_T045_handoff.md").read_text(encoding="utf-8")
+        assert "责任断点" in body and "asset_generation" in body

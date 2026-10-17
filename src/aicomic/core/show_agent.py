@@ -102,7 +102,7 @@ class ShowAgent:
                         self.state_dir, episode_code, stage_id, CHECKPOINT_FAILED,
                         metadata={"error": repr(exc), "budget_status": self.budget},
                     )
-                    return self._exit(episode_code, "failed", stage_id, repr(exc))
+                    return self._exit(episode_code, "failed", stage_id, repr(exc), failed_stage=stage_id, notes=repr(exc))
                 self._stage_results[stage_id] = dispatch_out
                 self.coordinator.complete_stage(episode_code, stage_id)
 
@@ -194,7 +194,21 @@ class ShowAgent:
     def _budget_status(self) -> dict[str, Any]:
         return self.budget
 
-    # ---- 出口（Task 6 接 handoff）----
+    # ---- 出口（统一写交接包）----
 
-    def _exit(self, episode_code: str, stop_reason: str, current_stage: str = "", message: str = "") -> ShowRunResult:
-        return ShowRunResult(stop_reason, current_stage, message)
+    def _exit(self, episode_code: str, stop_reason: str, current_stage: str = "", message: str = "", *, failed_stage: str | None = None, notes: str | None = None) -> ShowRunResult:
+        result = ShowRunResult(stop_reason, current_stage, message)
+        try:
+            from aicomic.core.handoff import build_handoff_record, render_handoff_markdown, write_handoff
+
+            record = build_handoff_record(
+                episode_code, self.coordinator, budget=self.budget, failed_stage=failed_stage, notes=notes,
+            )
+            text = render_handoff_markdown(record)
+            if self.handoff_writer is not None:
+                self.handoff_writer(text, episode_code)
+            else:
+                write_handoff(text, episode_code, handoff_dir=self.state_dir / "handoff")
+        except Exception:
+            pass  # 交接包写失败不反噬主流程
+        return result

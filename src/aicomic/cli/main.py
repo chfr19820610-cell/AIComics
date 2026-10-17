@@ -19,6 +19,7 @@ from aicomic.batch.coordinator import (
 from aicomic.batch.reporter import build_batch_summary, write_batch_summary
 from aicomic.batch.retry_manager import retry_batch_jobs, write_retry_batch_report
 from aicomic.core.config import ProjectPaths
+from aicomic.core.show_agent import ShowAgent
 from aicomic.core.dispatcher import dispatch_jobs, write_dispatch_report
 from aicomic.core.episode_lifecycle import advance_status
 from aicomic.core.horror_pipeline import (
@@ -118,6 +119,83 @@ def P(path_expr: str) -> Path:
 # ---------------------------------------------------------------------------
 # Handler implementations
 # ---------------------------------------------------------------------------
+
+
+def _budget_sentinel_from(budget_cents: int):
+    if budget_cents <= 0:
+        return None
+    from aicomic.core.budget_sentinel import BudgetSentinel
+    from aicomic.core.cost_dashboard import CostDashboard
+
+    dashboard = CostDashboard(storage_dir=str(ProjectPaths.state_dir() / "costs"), budget_cents=budget_cents)
+    dashboard.set_budget(budget_cents)  # 显式传入的预算优先于落盘 ledger 中的历史预算
+    return BudgetSentinel(dashboard)
+
+
+def handle_show_run(rr: Path, pc: Path, pr: str, cl: bool, lim: int, mf: int, out: Path, budget_cents: int = 0, episode: str = "") -> int:
+    """SOP §6 Transformer 闭环：驱动 ShowAgent 到人工卡点/预算拦截/完成。"""
+    budget_cents = _budget_cents_normalize(budget_cents)
+    episode = episode or rr.stem or "show_run"
+    agent = ShowAgent(
+        state_dir=ProjectPaths.state_dir(),
+        budget_sentinel=_budget_sentinel_from(budget_cents),
+        providers_config_path=str(pc) if pc else None,
+        output_root=str(ProjectPaths.state_dir() / "show_agent_outputs"),
+    )
+    inputs: dict[str, object] = {"providers_config": str(pc) if pc else "", "budget_cents": budget_cents}
+    result = agent.run_until_human(episode, inputs, live=cl)
+    report = {
+        "episode": episode,
+        "stop_reason": result.stop_reason,
+        "current_stage": result.current_stage,
+        "message": result.message,
+        "budget": agent.budget,
+    }
+    report_path = out if out is not None else Path(ProjectPaths.state_dir()) / "show_run_report.json"
+    from aicomic.utils.atomic_io import atomic_write_text
+
+    atomic_write_text(Path(report_path), json.dumps(report, ensure_ascii=False, indent=2) + "\n")
+    for key in ("episode", "stop_reason", "current_stage"):
+        print(f"{key}={report.get(key)}")
+    print(f"output={report_path}")
+    return 0 if result.stop_reason in {"awaiting_human", "all_completed", "budget_stopped"} else 1
+
+
+def handle_show_handoff(episode: str, handoff_dir: Path | None = None) -> int:
+    """SOP 第 8 章：把当前状态 directory 的级机状态折叠成 handoff markdown。"""
+    from aicomic.core.handoff import build_handoff_record, render_handoff_markdown, write_handoff
+    from aicomic.core.pipeline_coordinator import PipelineCoordinator
+
+    budget = _budget_from_dashboard()
+    record = build_handoff_record(episode, PipelineCoordinator(ProjectPaths.state_dir()), budget=budget)
+    target = write_handoff(render_handoff_markdown(record), episode, handoff_dir=handoff_dir)
+    print(f"handoff={target}")
+    return 0
+
+
+def _budget_cents_normalize(budget_cents: int) -> int:
+    if budget_cents < 0:
+        budget_cents = 0
+    if budget_cents == 0:
+        raw = os.environ.get("AICOMIC_BUDGET_CENTS", "")
+        try:
+            budget_cents = int(raw)
+        except ValueError:
+            budget_cents = 0
+        if budget_cents < 0:
+            budget_cents = 0
+    return budget_cents
+
+
+def _budget_from_dashboard():
+    """读全局 dashboard（<state>/costs）；无预算文件则 unlimited。"""
+    try:
+        from aicomic.core.cost_dashboard import CostDashboard
+
+        dashboard = CostDashboard(storage_dir=str(ProjectPaths.state_dir() / "costs"), budget_cents=0)
+        return dashboard.get_budget_status().__dict__
+    except Exception:
+        return {"status": "unlimited"}
 
 def handle_status() -> int:
     print(f"project_root={ProjectPaths.project_root()}\nconfig_dir={ProjectPaths.config_dir()}\nmanifest_dir={ProjectPaths.manifest_dir()}\nstate_dir={ProjectPaths.state_dir()}")
@@ -954,6 +1032,21 @@ COMMANDS: dict[str, dict] = {
         (["--output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'provider_execution_report.json'")}),
         (["--budget-cents"], {"type": int, "default": 0, "help": "预算哨兵上限（分）；0=读 AICOMIC_BUDGET_CENTS，仍为 0 则关闭"})],
         "handler": lambda a: handle_execute_provider_requests(a.requests_report, a.providers_config, a.providers, a.dry_run, a.confirm_live, a.limit, a.max_failures, a.output, a.budget_cents)},
+    "show-run": {"help": "SOP §6 编排：驱动 ShowAgent 到人工卡点/预算拦截/完成", "args": [
+        (["--products-report"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'provider_requests.json'"), "help": "输入报告文件（episode 代号默认取其文件名）"}),
+        (["--providers-config"], {"type": Path, "default": P("ProjectPaths.providers_config_path()")}),
+        (["--providers"], {"default": ""}),
+        (["--confirm-live"], {"action": "store_true"}),
+        (["--limit"], {"type": int, "default": 0}),
+        (["--max-failures"], {"type": int, "default": 1}),
+        (["--output"], {"type": Path, "default": None}),
+        (["--budget-cents"], {"type": int, "default": 0, "help": "预算哨兵上限（分）；0=读 AICOMIC_BUDGET_CENTS"}),
+        (["--episode"], {"default": ""})],
+        "handler": lambda a: handle_show_run(a.products_report, a.providers_config, a.providers, a.confirm_live, a.limit, a.max_failures, a.output, a.budget_cents, a.episode)},
+    "show-handoff": {"help": "SOP 第 8 章：输出单集交接包 markdown", "args": [
+        (["episode"], {}),
+        (["--handoff-dir"], {"type": Path, "default": None})],
+        "handler": lambda a: handle_show_handoff(a.episode, a.handoff_dir)},
     "provider-readiness": {"help": "检查 Provider 上线前就绪状态", "args": [
         (["--providers-config"], {"type": Path, "default": P("ProjectPaths.providers_config_path()")}),
         (["--requests-report"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'provider_requests_local.json'")}),
