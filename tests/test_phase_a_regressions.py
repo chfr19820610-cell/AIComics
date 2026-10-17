@@ -141,3 +141,25 @@ class TestTripleLockHonesty:
         assert "generate" in result["stages_executed"]
         assert "triple_lock_plan_only" not in result["stages_executed"]
         assert result["output_path"] == str(fetched)
+
+
+# ── 任务6: master_sheet 稳定主键 ───────────────────────────────────────
+
+import sqlite3
+
+from aicomic.image_consistency.master_sheet import (
+    ensure_master_sheet_schema,
+    register_master,
+)
+
+
+class TestMasterSheetStableId:
+    def test_re_register_replaces_not_accumulates(self):
+        conn = sqlite3.connect(":memory:")
+        ensure_master_sheet_schema(conn)
+        register_master(conn, "c1", "林晚", "/a.png")
+        register_master(conn, "c1", "林晚", "/b.png")
+        count = conn.execute(
+            "SELECT COUNT(*) FROM master_sheets WHERE character_id='c1'"
+        ).fetchone()[0]
+        assert count == 1

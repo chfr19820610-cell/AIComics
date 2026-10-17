@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import json
 import sqlite3
-import uuid
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -121,7 +120,7 @@ def register_master(
 ) -> MasterSheetEntry:
     """注册（或覆盖）一个角色的立绘母版。"""
     now = now_utc_iso()
-    entry_id = str(uuid.uuid4())
+    entry_id = f"master_{character_id}"
     connection.execute(
         "INSERT OR REPLACE INTO master_sheets "
         "(id, character_id, character_name, master_image_path, dna, lock_config, "
