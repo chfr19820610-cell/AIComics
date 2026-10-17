@@ -16,22 +16,47 @@ from aicomic.image_consistency.triple_lock import build_triple_lock_workflow, bu
 class ImagePipeline:
     """5-stage pipeline: matting → generate → upscale → composite → output."""
 
-    def _try_post_comfyui(self, workflow: dict[str, Any], output_path: Path) -> bool:
-        """Try to post a ComfyUI workflow. Returns True if posted, False if ComfyUI not available."""
-        import logging
+    def _post_and_fetch_comfyui(self, workflow: dict[str, Any], work_dir: Path) -> Path | None:
+        """POST /prompt → poll /history → download outputs.
+
+        Returns the path of the first downloaded image, or None when ComfyUI
+        is unavailable / produced nothing (caller must treat as plan-only).
+        """
+        import json as _json
+        import time as _time
+        import urllib.request
+
+        base = "http://127.0.0.1:8188"
         try:
-            import urllib.request
-            import json as _json
             req = urllib.request.Request(
-                "http://127.0.0.1:8188/prompt",
+                f"{base}/prompt",
                 data=_json.dumps({"prompt": workflow}).encode("utf-8"),
                 headers={"Content-Type": "application/json"},
             )
-            urllib.request.urlopen(req, timeout=5)
-            return True
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                prompt_id = _json.loads(resp.read()).get("prompt_id")
+            if not prompt_id:
+                return None
+            for _ in range(20):  # 20 × 2s = 40s generation budget
+                _time.sleep(2)
+                with urllib.request.urlopen(f"{base}/history/{prompt_id}", timeout=5) as resp:
+                    entry = _json.loads(resp.read()).get(prompt_id)
+                if not entry:
+                    continue
+                for node_out in entry.get("outputs", {}).values():
+                    for idx, img in enumerate(node_out.get("images", [])):
+                        view_url = (
+                            f"{base}/view?filename={img.get('filename', '')}"
+                            f"&subfolder={img.get('subfolder', '')}"
+                            f"&type={img.get('type', 'output')}"
+                        )
+                        dest = work_dir / f"triple_lock_{idx}.png"
+                        with urllib.request.urlopen(view_url, timeout=30) as resp, open(dest, "wb") as f:
+                            f.write(resp.read())
+                        return dest
+            return None
         except Exception:
-            logging.debug("ComfyUI not available, falling back to standard generate")
-            return False
+            return None
 
     def __init__(
         self,
@@ -108,13 +133,14 @@ class ImagePipeline:
                 json.dumps(tl_workflow, ensure_ascii=False, indent=2),
                 encoding="utf-8",
             )
-            gen_output = work_dir / "generated.png"
-            # If ComfyUI is running, post the workflow; else fall through to standard generate
-            if not self._try_post_comfyui(tl_workflow, gen_output):
-                # ComfyUI offline — produce plan only, no actual generation
+            fetched = self._post_and_fetch_comfyui(tl_workflow, work_dir)
+            if fetched is not None:
+                gen_output = fetched
+                stages.append("generate")
+            else:
+                # ComfyUI unavailable or produced nothing — plan only, honestly labeled
                 gen_output = work_dir / "triple_lock_plan.json"
                 stages.append("triple_lock_plan_only")
-            stages.append("generate")
         elif reference_image:
             foreground = work_dir / "foreground.png"
             self.matting.remove_background(reference_image, foreground, rmbg_model)

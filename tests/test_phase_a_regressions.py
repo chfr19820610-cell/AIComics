@@ -112,3 +112,32 @@ class TestLLMKeyHandling:
         with patch("subprocess.run", fake_run):
             enhance_via_llm("base", PROFILES["anime_donghua"])
         assert any("testkey123" in part for part in captured["cmd"])
+
+
+# ── 任务5: ImagePipeline Triple-Lock 诚实标注 ──────────────────────────
+
+from aicomic.image_pipeline.pipeline import ImagePipeline
+
+
+def _make_pipeline(tmp_path: Path) -> ImagePipeline:
+    return ImagePipeline(comfyui_client=object(), output_dir=tmp_path / "out")
+
+
+class TestTripleLockHonesty:
+    def test_plan_only_when_comfyui_offline(self, tmp_path: Path):
+        pipe = _make_pipeline(tmp_path)
+        pipe._post_and_fetch_comfyui = lambda wf, wd: None  # 模拟 ComfyUI 不可达
+        result = pipe.run(prompt="test", reference_image=tmp_path, controlnet_image=tmp_path)
+        assert "triple_lock_plan_only" in result["stages_executed"]
+        assert "generate" not in result["stages_executed"]
+        assert result["metadata"]["triple_lock_used"] is True
+
+    def test_generate_when_output_fetched(self, tmp_path: Path):
+        pipe = _make_pipeline(tmp_path)
+        fetched = tmp_path / "fetched.png"
+        fetched.write_bytes(b"png")
+        pipe._post_and_fetch_comfyui = lambda wf, wd: fetched
+        result = pipe.run(prompt="test", reference_image=tmp_path, controlnet_image=tmp_path)
+        assert "generate" in result["stages_executed"]
+        assert "triple_lock_plan_only" not in result["stages_executed"]
+        assert result["output_path"] == str(fetched)
