@@ -115,8 +115,9 @@ class TestPublishToPlatforms:
         assert results["douyin"]["success"] is False
         assert "disabled" in results["douyin"]["error"].lower()
 
+    @patch("aicomic.publish.domestic_publisher.ai_label_present", return_value=True)
     @patch("aicomic.publish.domestic_publisher._run_sau_upload")
-    def test_mock_douyin_upload_success(self, mock_upload, tmp_path):
+    def test_mock_douyin_upload_success(self, mock_upload, mock_label, tmp_path):
         """Mock the actual upload — test orchestration logic only."""
         mock_upload.return_value = {"success": True, "platform": "douyin", "url": "https://douyin.com/xxx"}
         video = tmp_path / "test.mp4"
@@ -128,8 +129,9 @@ class TestPublishToPlatforms:
         results = publish_to_platforms(payload, ["douyin"], cfg)
         assert results["douyin"]["success"] is True
 
+    @patch("aicomic.publish.domestic_publisher.ai_label_present", return_value=True)
     @patch("aicomic.publish.domestic_publisher._run_sau_upload")
-    def test_multi_platform_publish(self, mock_upload, tmp_path):
+    def test_multi_platform_publish(self, mock_upload, mock_label, tmp_path):
         mock_upload.return_value = {"success": True, "platform": "test", "url": "test"}
         video = tmp_path / "test.mp4"
         video.write_bytes(b"fake")
@@ -146,8 +148,9 @@ class TestPublishToPlatforms:
         results = publish_to_platforms(payload, ["douyin", "xiaohongshu", "bilibili"], cfg)
         assert all(results[p]["success"] for p in ("douyin", "xiaohongshu", "bilibili"))
 
+    @patch("aicomic.publish.domestic_publisher.ai_label_present", return_value=True)
     @patch("aicomic.publish.domestic_publisher._run_sau_upload")
-    def test_partial_failure_continues(self, mock_upload, tmp_path):
+    def test_partial_failure_continues(self, mock_upload, mock_label, tmp_path):
         """If one platform fails, others should still be attempted."""
         mock_upload.side_effect = [
             {"success": False, "error": "network"},
