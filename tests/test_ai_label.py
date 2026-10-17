@@ -28,7 +28,7 @@ class TestEmbedAiLabel:
         out = ai.embed_ai_label(video, tmp_path / "out.mp4")
         cmd = recorded[0]
         assert out.name == "out.mp4"
-        for frag in ("-c", "copy", "-map_metadata", "0", "-movflags", "+faststart"):
+        for frag in ("-c", "copy", "-map_metadata", "0", "-movflags", "use_metadata_tags+faststart"):
             assert frag in cmd, frag
         for tag in ("ai_generated=true", "ai_generator=AIComics"):
             assert tag in cmd
@@ -82,14 +82,12 @@ class TestAiLabelPresent:
         import aicomic.video_synthesis.ai_label as ai
 
         def fake_probe(cmd):
-            out = cmd[-1]
-            Path(out).write_text(json.dumps({"format": {"tags": {"ai_generated": "true"}}}), encoding="utf-8")
-            return 0
+            return 0, json.dumps({"format": {"tags": {"ai_generated": "true"}}})
 
         monkeypatch.setattr(ai, "_run_probe", fake_probe)
         assert ai.ai_label_present(_stub_probe_video(tmp_path)) is True
 
-        monkeypatch.setattr(ai, "_run_probe", lambda cmd: 1)
+        monkeypatch.setattr(ai, "_run_probe", lambda cmd: (1, ""))
         assert ai.ai_label_present(_stub_probe_video(tmp_path)) is False
 
         assert ai.ai_label_present(tmp_path / "missing.mp4") is False

@@ -24,8 +24,12 @@ def _run_ffmpeg(cmd: list[str]) -> int:
     return subprocess.run(cmd, capture_output=True, text=True).returncode
 
 
-def _run_probe(cmd: list[str]) -> int:
-    return subprocess.run(cmd, capture_output=True, text=True).returncode
+def _run_probe(cmd: list[str]) -> tuple[int, str]:
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True)
+        return proc.returncode, proc.stdout
+    except OSError:
+        return 127, ""
 
 
 def _ffmpeg_bin(ffmpeg_bin: str | Path | None = None) -> str:
@@ -43,9 +47,44 @@ def _ffprobe_bin(ffprobe_bin: str | Path | None = None) -> str:
     if ffprobe_bin:
         return str(ffprobe_bin)
     try:
-        return str(Path(_ffmpeg_bin(None)).with_name("ffprobe"))
+        candidate = Path(_ffmpeg_bin(None)).with_name("ffprobe")
+        if candidate.exists():
+            return str(candidate)
     except Exception:
-        return "ffprobe"
+        pass
+    return "ffprobe"
+
+
+def _read_ai_generated_json(stdout: str) -> bool:
+    data: dict[str, Any] = json.loads(stdout)
+    tags = ((data.get("format") or {}).get("tags") or {})
+    return str(tags.get("ai_generated", "")).lower() == "true"
+
+
+def _read_ai_generated_ffmetadata(text: str) -> bool:
+    for line in text.splitlines():
+        line = line.strip()
+        value = line[13:] if line.startswith("ai_generated=") else None
+        if value is not None:
+            return value.strip().lower() == "true"  # 13 = len("ai_generated=")
+    return False
+
+
+def ai_label_present(video_path: str | Path, *, ffprobe_bin: str | Path | None = None) -> bool:
+    video = Path(video_path)
+    if not video.exists():
+        return False
+    try:
+        rc, stdout = _run_probe([_ffprobe_bin(ffprobe_bin), "-v", "quiet", "-show_format", "-of", "json", str(video)])
+        if rc == 0 and stdout.strip():
+            return _read_ai_generated_json(stdout)
+        # ffprobe 不可用（ENOENT/坏架构/rc!=0）→ ffmetadata 兜底读取，不静默假绿
+        frc, ftext = _run_probe([_ffmpeg_bin(None), "-i", str(video), "-f", "ffmetadata", "-"])
+        if frc == 0:
+            return _read_ai_generated_ffmetadata(ftext)
+        return False
+    except Exception:
+        return False
 
 
 def embed_ai_label(
@@ -71,33 +110,10 @@ def embed_ai_label(
     cmd += ["-map", "0", "-map_metadata", "0"]
     for key, value in AI_METADATA_TAGS.items():
         cmd += ["-metadata", f"{key}={value}"]
-    cmd += ["-c", "copy", "-movflags", "+faststart", str(tmp_out)]
+    cmd += ["-c", "copy", "-movflags", "use_metadata_tags+faststart", str(tmp_out)]
     rc = _run_ffmpeg(cmd)
     if rc != 0:
         tmp_out.unlink(missing_ok=True)
         raise RuntimeError(f"ffmpeg 写 AI 标识失败（rc={rc}）")
     tmp_out.replace(target)
     return target
-
-
-def ai_label_present(video_path: str | Path, *, ffprobe_bin: str | Path | None = None) -> bool:
-    video = Path(video_path)
-    if not video.exists():
-        return False
-    probe_out = video.with_name(f".{video.name}.ailabel.probe.json")
-    try:
-        cmd = [str(_ffprobe_bin(ffprobe_bin)), "-show_format", "-of", "json", str(video), "-o", str(probe_out)]
-        rc = _run_probe(cmd)
-        data: dict[str, Any] = {}
-        if rc == 0 and probe_out.exists():
-            data = json.loads(probe_out.read_text(encoding="utf-8"))
-        tags = ((data.get("format") or {}).get("tags") or {})
-        return str(tags.get("ai_generated", "")).lower() == "true"
-    except Exception:
-        return False
-    finally:
-        try:
-            if probe_out.exists():
-                probe_out.unlink()
-        except OSError:
-            pass
