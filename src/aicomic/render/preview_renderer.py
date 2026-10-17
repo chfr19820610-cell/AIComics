@@ -158,6 +158,16 @@ def _mix_audio_into_video(video_path: str, audio_dir: str, episode_code: str, sh
     return True
 
 
+def _resolve_ffmpeg_bin() -> str:
+    """Resolve ffmpeg via the shared resolver (env override → PATH → bundled imageio_ffmpeg).
+
+    Users with a preferred binary (e.g. ~/.hermes/bin/ffmpeg) can point
+    AICOMIC_FFMPEG at it explicitly.
+    """
+    from aicomic.video_synthesis.config import FFMPEG as _resolved
+    return str(_resolved)
+
+
 def render_preview_video_with_audio(render_plan: dict, output_path: Path, report_path: Path, asset_root: Path = None, **kwargs) -> dict:
     """Render preview video with TTS audio mixed in."""
     report = render_preview_video(render_plan, output_path, report_path, **kwargs)
@@ -168,10 +178,7 @@ def render_preview_video_with_audio(render_plan: dict, output_path: Path, report
 
     audio_base = str(asset_root) if asset_root else "state/local_provider_output"
 
-    ffmpeg_bin = "/Users/eric/.hermes/bin/ffmpeg"
-    if not _os.path.exists(ffmpeg_bin):
-        import shutil as _sh
-        ffmpeg_bin = _sh.which("ffmpeg") or "ffmpeg"
+    ffmpeg_bin = _resolve_ffmpeg_bin()
 
     try:
         _mix_audio_into_video(str(output_path), audio_base, render_plan["episode_code"], render_plan["shots"], str(output_path), ffmpeg_bin)

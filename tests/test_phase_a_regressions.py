@@ -163,3 +163,19 @@ class TestMasterSheetStableId:
             "SELECT COUNT(*) FROM master_sheets WHERE character_id='c1'"
         ).fetchone()[0]
         assert count == 1
+
+
+# ── 任务7: preview_renderer ffmpeg 解析统一 ───────────────────────────
+
+from aicomic.render import preview_renderer
+
+
+class TestFFmpegResolution:
+    def test_no_personal_absolute_path_in_source(self):
+        src = Path(preview_renderer.__file__).read_text(encoding="utf-8")
+        assert "/Users/eric" not in src
+        assert ".hermes" not in src
+
+    def test_shared_resolver_available(self):
+        from aicomic.video_synthesis.config import FFMPEG
+        assert str(FFMPEG)
