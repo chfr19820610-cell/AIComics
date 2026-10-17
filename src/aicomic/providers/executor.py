@@ -89,6 +89,7 @@ def execute_provider_requests(
     limit: int = 0,
     max_failures: int = 1,
     skip_existing: bool = False,
+    budget_sentinel: Any | None = None,
 ) -> dict[str, Any]:
     api_key_ready = bool(get_openai_api_key())
     results: list[dict[str, Any]] = []
@@ -101,6 +102,7 @@ def execute_provider_requests(
     provider_not_ready_count = 0
     execution_attempt_count = 0
     stopped_by_failure_guard = False
+    stopped_by_budget_guard = False
     normalized_limit = max(0, limit)
     normalized_max_failures = max(0, max_failures)
 
@@ -132,6 +134,12 @@ def execute_provider_requests(
 
         if stopped_by_failure_guard:
             result["status"] = "stopped_by_failure_guard"
+            skipped_count += 1
+            results.append(result)
+            continue
+
+        if stopped_by_budget_guard:
+            result["status"] = "stopped_by_budget"
             skipped_count += 1
             results.append(result)
             continue
@@ -168,6 +176,17 @@ def execute_provider_requests(
             results.append(result)
             continue
 
+        if budget_sentinel is not None:
+            if not budget_sentinel.guard(
+                request_item,
+                episode_code=str(payload.get("episode_code", "")),
+                job_id=str(payload.get("job_id", "")),
+            ):
+                result["status"] = "stopped_by_budget"
+                stopped_by_budget_guard = True
+                results.append(result)
+                continue
+
         try:
             execution_output = perform_provider_request(request_item, providers_config_path)
             result["status"] = "succeeded"
@@ -198,6 +217,12 @@ def execute_provider_requests(
         "max_failures": normalized_max_failures,
         "skip_existing": skip_existing,
         "stopped_by_failure_guard": stopped_by_failure_guard,
+        "budget_guard_enabled": budget_sentinel is not None,
+        "stopped_by_budget_guard": stopped_by_budget_guard,
+        "budget_status": (
+            budget_sentinel.dashboard.get_budget_status().status
+            if budget_sentinel is not None else "unlimited"
+        ),
         "api_key_ready": api_key_ready,
         "results": results,
     }

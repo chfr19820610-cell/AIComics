@@ -1035,3 +1035,62 @@ class TestMainModule:
         # --help causes argparse to exit 0
         assert result.returncode == 0
         assert "AI漫剧" in result.stdout or "aicomic" in result.stdout.lower()
+
+
+class TestExecuteProviderRequestsBudgetFlag:
+    def _fake(self, captured: dict):
+        def fake_execute(requests, pc, selected=None, **kwargs):
+            captured.update(kwargs)
+            return {
+                "request_count": 0, "success_count": 0, "failed_count": 0,
+                "dry_run_count": 0, "blocked_count": 0,
+                "stopped_by_failure_guard": False, "stopped_by_budget_guard": False,
+                "budget_guard_enabled": True, "budget_status": "ok",
+            }
+        return fake_execute
+
+    def test_budget_cents_builds_sentinel(self, tmp_path, monkeypatch):
+        rr = tmp_path / "requests.json"
+        rr.write_text('{"requests": []}', encoding="utf-8")
+        out = tmp_path / "report.json"
+        captured: dict = {}
+        monkeypatch.setattr(cli_main, "execute_provider_requests", self._fake(captured))
+        monkeypatch.delenv("AICOMIC_BUDGET_CENTS", raising=False)
+        monkeypatch.setenv("AICOMIC_STATE_DIR", str(tmp_path))
+
+        rc = cli_main.handle_execute_provider_requests(rr, tmp_path / "providers.yaml", "", True, False, 0, 1, out, 100)
+
+        assert rc == 0
+        sentinel = captured["budget_sentinel"]
+        assert sentinel is not None
+        assert sentinel.dashboard.get_budget_status().total_budget_cents == 100
+
+    def test_budget_cents_env_fallback(self, tmp_path, monkeypatch):
+        rr = tmp_path / "requests.json"
+        rr.write_text('{"requests": []}', encoding="utf-8")
+        out = tmp_path / "report.json"
+        captured: dict = {}
+        monkeypatch.setattr(cli_main, "execute_provider_requests", self._fake(captured))
+        monkeypatch.setenv("AICOMIC_BUDGET_CENTS", "77")
+        monkeypatch.setenv("AICOMIC_STATE_DIR", str(tmp_path))
+
+        rc = cli_main.handle_execute_provider_requests(rr, tmp_path / "providers.yaml", "", True, False, 0, 1, out, 0)
+
+        assert rc == 0
+        sentinel = captured["budget_sentinel"]
+        assert sentinel is not None
+        assert sentinel.dashboard.get_budget_status().total_budget_cents == 77
+
+    def test_budget_disabled_zero_env(self, tmp_path, monkeypatch):
+        rr = tmp_path / "requests.json"
+        rr.write_text('{"requests": []}', encoding="utf-8")
+        out = tmp_path / "report.json"
+        captured: dict = {}
+        monkeypatch.setattr(cli_main, "execute_provider_requests", self._fake(captured))
+        monkeypatch.delenv("AICOMIC_BUDGET_CENTS", raising=False)
+        monkeypatch.setenv("AICOMIC_STATE_DIR", str(tmp_path))
+
+        rc = cli_main.handle_execute_provider_requests(rr, tmp_path / "providers.yaml", "", True, False, 0, 1, out, 0)
+
+        assert rc == 0
+        assert captured["budget_sentinel"] is None

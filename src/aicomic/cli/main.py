@@ -546,10 +546,28 @@ def handle_manual_import_batch(rr: Path, jf: Path, ir: Path, iro: Path, wro: Pat
     return 0
 
 
-def handle_execute_provider_requests(rr: Path, pc: Path, pr: str, dry: bool, cl: bool, lim: int, mf: int, out: Path) -> int:
-    p = execute_provider_requests(load_json(rr), pc, parse_filter(pr) or None, dry_run=dry, confirm_live=cl, limit=lim, max_failures=mf)
+def handle_execute_provider_requests(rr: Path, pc: Path, pr: str, dry: bool, cl: bool, lim: int, mf: int, out: Path, budget_cents: int = 0) -> int:
+    if budget_cents < 0:
+        budget_cents = 0
+    if budget_cents == 0:
+        raw = os.environ.get("AICOMIC_BUDGET_CENTS", "")
+        try:
+            budget_cents = int(raw)
+        except ValueError:
+            budget_cents = 0
+        if budget_cents < 0:
+            budget_cents = 0
+    budget_sentinel = None
+    if budget_cents > 0:
+        from aicomic.core.budget_sentinel import BudgetSentinel
+        from aicomic.core.cost_dashboard import CostDashboard
+
+        dashboard = CostDashboard(storage_dir=str(ProjectPaths.state_dir() / "costs"), budget_cents=budget_cents)
+        dashboard.set_budget(budget_cents)  # 显式传入的预算优先于落盘 ledger 中的历史预算
+        budget_sentinel = BudgetSentinel(dashboard)
+    p = execute_provider_requests(load_json(rr), pc, parse_filter(pr) or None, dry_run=dry, confirm_live=cl, limit=lim, max_failures=mf, budget_sentinel=budget_sentinel)
     write_provider_execution_report(out, p)
-    for k in ("request_count", "success_count", "failed_count", "dry_run_count", "blocked_count", "stopped_by_failure_guard"):
+    for k in ("request_count", "success_count", "failed_count", "dry_run_count", "blocked_count", "stopped_by_failure_guard", "stopped_by_budget_guard"):
         print(f"{k}={p[k]}")
     print(f"output={out}")
     return 0
@@ -933,8 +951,9 @@ COMMANDS: dict[str, dict] = {
         (["--providers"], {"default": "", "help": "只执行指定 Provider，逗号分隔"}),
         (["--dry-run"], {"action": "store_true"}), (["--confirm-live"], {"action": "store_true"}),
         (["--limit"], {"type": int, "default": 0}), (["--max-failures"], {"type": int, "default": 1}),
-        (["--output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'provider_execution_report.json'")})],
-        "handler": lambda a: handle_execute_provider_requests(a.requests_report, a.providers_config, a.providers, a.dry_run, a.confirm_live, a.limit, a.max_failures, a.output)},
+        (["--output"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'provider_execution_report.json'")}),
+        (["--budget-cents"], {"type": int, "default": 0, "help": "预算哨兵上限（分）；0=读 AICOMIC_BUDGET_CENTS，仍为 0 则关闭"})],
+        "handler": lambda a: handle_execute_provider_requests(a.requests_report, a.providers_config, a.providers, a.dry_run, a.confirm_live, a.limit, a.max_failures, a.output, a.budget_cents)},
     "provider-readiness": {"help": "检查 Provider 上线前就绪状态", "args": [
         (["--providers-config"], {"type": Path, "default": P("ProjectPaths.providers_config_path()")}),
         (["--requests-report"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'provider_requests_local.json'")}),
