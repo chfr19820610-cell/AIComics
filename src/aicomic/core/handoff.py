@@ -49,7 +49,9 @@ def build_handoff_record(
         "schema_version": 1,
         "episode": episode_code,
         "stages": rows,
-        "budget": dict(budget) if budget else {"status": "unlimited"},
+        "budget": budget if budget is not None else {"status": "unlimited"},
+        "failed_stage": failed_stage,
+        "notes": notes if failed_stage else None,
     }
 
 
