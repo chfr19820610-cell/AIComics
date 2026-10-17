@@ -38,6 +38,50 @@ class TestCostLedgerAtomic:
         reloaded = CostDashboard(storage_dir=tmp_path, budget_cents=500)
         assert reloaded.get_budget_status().total_spent_cents == 200
 
+    def test_crash_during_write_keeps_old_ledger(self, tmp_path: Path, monkeypatch):
+        """写一半崩溃 → 磁盘账本仍为完整旧版本，目标文件不被截断。"""
+        import aicomic.utils.atomic_io as atomic_io
+
+        ledger = tmp_path / "cost_ledger.json"
+        dash = CostDashboard(storage_dir=tmp_path, budget_cents=1000)
+        dash.record_generation(provider="kling", cents=100)  # v1 落盘
+        old_content = ledger.read_text()
+
+        calls = {"n": 0}
+
+        def boom(obj, fp, **_kwargs):
+            if calls["n"] == 0:
+                calls["n"] += 1
+                fp.write("{partial")  # 写入半个字节流后崩溃
+            raise RuntimeError("simulated crash mid-write")
+
+        monkeypatch.setattr(atomic_io, "json", type("J", (), {"dump": staticmethod(boom)}))
+        import pytest
+
+        with pytest.raises(RuntimeError):
+            dash.record_generation(provider="kling", cents=200)
+        assert ledger.read_text() == old_content
+        assert not list(tmp_path.glob("*.tmp.*"))  # 崩溃后 tmp 必须被清理
+
+    def test_rename_failure_keeps_old_ledger(self, tmp_path: Path, monkeypatch):
+        """rename 阶段失败 → 旧账本内容原样保留且有错误抛出。"""
+        ledger = tmp_path / "cost_ledger.json"
+        dash = CostDashboard(storage_dir=tmp_path, budget_cents=1000)
+        dash.record_generation(provider="seedance", cents=50)
+        old_content = ledger.read_text()
+
+        import pathlib
+
+        import pytest
+
+        def boom(self, target):
+            raise RuntimeError("simulated rename failure")
+
+        monkeypatch.setattr(pathlib.Path, "replace", boom)
+        with pytest.raises(RuntimeError):
+            dash.record_generation(provider="kling", cents=200)
+        assert ledger.read_text() == old_content
+
 
 # ── 任务3: AutoRetryLoop combined_score 量纲 ───────────────────────────
 
