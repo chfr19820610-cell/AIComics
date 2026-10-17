@@ -189,3 +189,17 @@ class TestFFmpegResolution:
             if "/Users/eric" in py.read_text(encoding="utf-8"):
                 offenders.append(str(py.relative_to(src_dir)))
         assert offenders == []
+
+
+# ── 任务3(B5): OPENAI base_url 环境变量覆盖 ────────────────────────────
+
+class TestOpenAIBaseURLOverride:
+    def test_env_overrides_settings(self, monkeypatch):
+        from aicomic.providers.openai_adapter import get_openai_base_url
+        monkeypatch.setenv("AICOMIC_OPENAI_BASE_URL", "https://new-relay.example.com")
+        assert get_openai_base_url({}) == "https://new-relay.example.com"
+
+    def test_settings_used_when_no_env(self, monkeypatch):
+        from aicomic.providers.openai_adapter import get_openai_base_url
+        monkeypatch.delenv("AICOMIC_OPENAI_BASE_URL", raising=False)
+        assert get_openai_base_url({"openai_api": {"base_url": "https://api.old"}}) == "https://api.old"

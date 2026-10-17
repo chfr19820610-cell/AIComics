@@ -16,6 +16,9 @@ def get_openai_api_key() -> str:
 
 
 def get_openai_base_url(settings: dict[str, dict[str, object]]) -> str:
+    env_override = os.environ.get("AICOMIC_OPENAI_BASE_URL", "").strip()
+    if env_override:
+        return env_override.rstrip("/")
     openai_api = settings.get("openai_api", {})
     base_url = str(openai_api.get("base_url", "https://api.openai.com")).rstrip("/")
     return base_url
