@@ -161,8 +161,7 @@ def _mix_audio_into_video(video_path: str, audio_dir: str, episode_code: str, sh
 def _resolve_ffmpeg_bin() -> str:
     """Resolve ffmpeg via the shared resolver (env override → PATH → bundled imageio_ffmpeg).
 
-    Users with a preferred binary (e.g. ~/.hermes/bin/ffmpeg) can point
-    AICOMIC_FFMPEG at it explicitly.
+    Users with a preferred binary can point AICOMIC_FFMPEG at it explicitly.
     """
     from aicomic.video_synthesis.config import FFMPEG as _resolved
     return str(_resolved)
