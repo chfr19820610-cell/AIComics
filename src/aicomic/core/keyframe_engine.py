@@ -21,7 +21,7 @@ class KeyframeConfig:
     fps: int = 24
     width: int = 1024
     height: int = 1024
-    ffmpeg_bin: str = "/Users/eric/.hermes/bin/ffmpeg"
+    ffmpeg_bin: str = ""  # empty → resolved lazily via video_synthesis.config.FFMPEG
 
 
 # 运镜 → 首尾帧变化映射
@@ -110,13 +110,16 @@ def render_keyframe_transition(
     fps: int = 24,
     width: int = 1024,
     height: int = 1024,
-    ffmpeg_bin: str = "/Users/eric/.hermes/bin/ffmpeg",
+    ffmpeg_bin: str = "",
 ) -> bool:
     """用 ffmpeg 在首尾帧之间做插值过渡。
 
     mode: morph (帧混合) | zoom (推拉) | pan (平移)
     Returns: True if success
     """
+    if not ffmpeg_bin:
+        from aicomic.video_synthesis.config import FFMPEG
+        ffmpeg_bin = str(FFMPEG)
     if not os.path.exists(start_img) or not os.path.exists(end_img):
         return False
 

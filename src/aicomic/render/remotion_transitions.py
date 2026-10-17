@@ -22,7 +22,16 @@ import os
 from typing import Any
 from dataclasses import dataclass
 
-FFMPEG_BIN = os.environ.get("FFMPEG_BIN", "/Users/eric/.hermes/bin/ffmpeg")
+def _default_ffmpeg_bin() -> str:
+    """FFMPEG_BIN env 兼容优先，否则走统一解析链（AICOMIC_FFMPEG → PATH → 内置）。"""
+    env = os.environ.get("FFMPEG_BIN", "").strip()
+    if env:
+        return env
+    from aicomic.video_synthesis.config import FFMPEG
+    return str(FFMPEG)
+
+
+FFMPEG_BIN = _default_ffmpeg_bin()
 
 
 @dataclass

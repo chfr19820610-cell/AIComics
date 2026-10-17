@@ -179,3 +179,13 @@ class TestFFmpegResolution:
     def test_shared_resolver_available(self):
         from aicomic.video_synthesis.config import FFMPEG
         assert str(FFMPEG)
+
+    def test_no_personal_paths_anywhere_in_src(self):
+        src_dir = Path(preview_renderer.__file__).resolve().parent.parent.parent
+        offenders = []
+        for py in src_dir.rglob("*.py"):
+            if "__pycache__" in py.parts:
+                continue
+            if "/Users/eric" in py.read_text(encoding="utf-8"):
+                offenders.append(str(py.relative_to(src_dir)))
+        assert offenders == []

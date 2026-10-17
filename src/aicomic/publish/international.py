@@ -73,10 +73,13 @@ class TikTokUploader:
             return {"success": False, "platform": self.PLATFORM, "error": "tiktok_account_file not configured"}
         scheduled_at = config.get("scheduled_at", "")
         try:
+            import os
             import subprocess
 
-            # Call sau_cli.py for TikTok upload
-            sau_cli = config.get("sau_cli_path", "/Users/eric/social-auto-upload/sau_cli.py")
+            # Call sau_cli.py for TikTok upload (path must be configured in publish.yaml)
+            sau_cli = os.path.expanduser(config.get("sau_cli_path", ""))
+            if not sau_cli or not os.path.exists(sau_cli):
+                return {"success": False, "platform": self.PLATFORM, "error": "sau_cli_path not configured or missing"}
             cmd = [
                 "python", sau_cli, "upload",
                 "--platform", "tiktok",
