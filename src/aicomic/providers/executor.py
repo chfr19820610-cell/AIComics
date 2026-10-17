@@ -6,10 +6,17 @@ from typing import Any
 
 from aicomic.providers.local_adapter import LOCAL_EXECUTION_PROVIDERS, build_local_request_preview, perform_local_request
 from aicomic.providers.openai_adapter import build_openai_request_preview, get_openai_api_key, perform_openai_request
+from aicomic.providers.provider_registry import get_provider_registry
 
 
 OPENAI_EXECUTION_PROVIDERS = {"openai_image", "openai_tts"}
-SUPPORTED_EXECUTION_PROVIDERS = OPENAI_EXECUTION_PROVIDERS | LOCAL_EXECUTION_PROVIDERS
+IEXEC_DISPATCH_PROVIDERS = {"kling", "seedance", "wan", "comfyui", "dall_e"}
+SUPPORTED_EXECUTION_PROVIDERS = OPENAI_EXECUTION_PROVIDERS | LOCAL_EXECUTION_PROVIDERS | IEXEC_DISPATCH_PROVIDERS
+
+
+def _resolve_iexec_provider(provider: str):
+    """Resolve a class-based IProvider for dispatch (may return None)."""
+    return get_provider_registry().resolve_for_job(provider)
 
 
 def should_include_provider(provider: str, selected_providers: set[str] | None) -> bool:
@@ -25,6 +32,21 @@ def build_provider_request_preview(request_item: dict[str, Any], providers_confi
         return build_openai_request_preview(request_item, providers_config_path)
     if provider in LOCAL_EXECUTION_PROVIDERS:
         return build_local_request_preview(request_item, providers_config_path)
+    if provider in IEXEC_DISPATCH_PROVIDERS:
+        provider_instance = _resolve_iexec_provider(provider)
+        if provider_instance is not None:
+            preflight = provider_instance.validate_config()
+            try:
+                body = provider_instance.build_request(request_item, providers_config_path)
+            except Exception as exc:
+                body = {"error": str(exc)}
+            return {
+                "method": "POST",
+                "url": "",
+                "headers": {"Authorization": "Bearer ${PROVIDER}_API_KEY"},
+                "body": body,
+                "preflight": preflight,
+            }
     return {
         "method": "",
         "url": "",
@@ -41,6 +63,11 @@ def perform_provider_request(request_item: dict[str, Any], providers_config_path
         return perform_openai_request(request_item, providers_config_path)
     if provider in LOCAL_EXECUTION_PROVIDERS:
         return perform_local_request(request_item, providers_config_path)
+    if provider in IEXEC_DISPATCH_PROVIDERS:
+        provider_instance = _resolve_iexec_provider(provider)
+        if provider_instance is None:
+            raise RuntimeError(f"Provider not registered: {provider}")
+        return provider_instance.execute_request(request_item, providers_config_path)
     raise RuntimeError(f"Unsupported provider: {provider}")
 
 
