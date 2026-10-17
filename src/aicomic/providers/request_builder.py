@@ -689,18 +689,36 @@ def build_provider_requests(
             mapped_type = ShotType.DIALOGUE
 
         if router:
-            decision = router.route(mapped_type, flf=False)
+            # v5.2: cascade 优先按 shot 描述评估难度（省预算），失败回退 type-router
+            try:
+                decision = router.route_with_cascade(
+                    shot_description=str(payload.get("prompt") or payload.get("scene") or shot_type_str),
+                    motion_intensity={
+                        "action": "high", "wide": "low", "transition": "low",
+                    }.get(mapped_type, "medium"),
+                )
+                routing_source = "cascade"
+            except Exception:
+                decision = router.route(mapped_type, flf=False)
+                routing_source = "type_router"
+
             routing_decisions.append({
                 "request_id": req["request_id"],
                 "shot_type": mapped_type,
                 "routed_provider": decision.provider_name,
                 "reason": decision.reason,
+                "routing_source": routing_source,
             })
-            if decision.provider_name and decision.provider_name != payload.get("provider"):
+            if (
+                decision.provider_name
+                and decision.provider_name != payload.get("provider")
+                and decision.provider_name != "human"  # EXTREME → 人工升级，不改写 payload
+            ):
                 req["video_routing"] = {
                     "original_provider": payload.get("provider"),
                     "routed_provider": decision.provider_name,
                     "reason": decision.reason,
+                    "routing_source": routing_source,
                 }
                 payload["provider"] = decision.provider_name
 
