@@ -16,3 +16,24 @@ class TestDedupAttributes:
 
     def test_dedup_empty_input(self):
         assert _dedup_attributes([]) == []
+
+
+# ── 任务2: CostDashboard 原子写 ─────────────────────────────────────────
+
+from pathlib import Path
+
+from aicomic.core.cost_dashboard import CostDashboard
+
+
+class TestCostLedgerAtomic:
+    def test_save_leaves_no_tmp_residue(self, tmp_path: Path):
+        dash = CostDashboard(storage_dir=tmp_path, budget_cents=1000)
+        dash.record_generation(provider="kling", cents=100)
+        residue = [p for p in tmp_path.iterdir() if p.name != "cost_ledger.json"]
+        assert residue == []
+
+    def test_save_reload_consistent(self, tmp_path: Path):
+        dash = CostDashboard(storage_dir=tmp_path, budget_cents=500)
+        dash.record_generation(provider="wan", cents=200)
+        reloaded = CostDashboard(storage_dir=tmp_path, budget_cents=500)
+        assert reloaded.get_budget_status().total_spent_cents == 200

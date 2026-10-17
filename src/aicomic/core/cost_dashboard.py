@@ -24,6 +24,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from aicomic.utils.atomic_io import atomic_write_json
+
 
 @dataclass
 class CostEntry:
@@ -114,12 +116,12 @@ class CostDashboard:
             pass
 
     def _save(self) -> None:
-        """Save cost ledger to disk."""
+        """Save cost ledger to disk (atomic: tmp file + rename, crash-safe)."""
         data = {
             "budget_cents": self._budget_cents,
             "entries": [e.to_dict() for e in self._entries],
         }
-        self._ledger_path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+        atomic_write_json(self._ledger_path, data)
 
     def set_budget(self, cents: float) -> None:
         """Set or update the budget limit."""
