@@ -44,6 +44,14 @@ class QualityReport:
 class FFprobeGate:
     """Video quality gate using ffprobe.
 
+    Decision rules (code is the source of truth):
+      - resolution < min_resolution → FAIL
+      - no video stream → FAIL
+      - framerate < min_framerate → WARN (stays FAIL if already FAIL)
+      - bitrate < min_bitrate_kbps → WARN (stays FAIL if already FAIL)
+      - no audio stream → WARN (stays FAIL if already FAIL)
+      - |duration - expected| > tolerance → WARN
+
     Usage:
         gate = FFprobeGate(
             min_resolution=720,
