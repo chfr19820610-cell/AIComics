@@ -71,3 +71,33 @@ class TestKlingExecutionPath:
         ):
             out = perform_provider_request(_vid_item("kling"), PROVIDERS_CFG)
         assert out == {"status": "succeeded"}
+
+
+class TestWebUnify:
+    def test_creator_health_intact(self):
+        from fastapi.testclient import TestClient
+
+        from web.backend.app import app as backend_app
+
+        with TestClient(backend_app) as client:
+            assert client.get("/api/health").status_code == 200
+
+    def test_v5_mounted_endpoint_reachable(self):
+        from fastapi.testclient import TestClient
+
+        from web.backend.app import app as backend_app
+
+        with TestClient(backend_app) as client:
+            resp = client.get("/api/v5/api/health")
+            assert resp.status_code == 200
+            body = resp.json()
+            assert body.get("version")
+
+    def test_v5_data_endpoints_inherit_creator_auth(self):
+        from fastapi.testclient import TestClient
+
+        from web.backend.app import app as backend_app
+
+        with TestClient(backend_app) as client:
+            resp = client.get("/api/v5/api/intelligence/modules")
+            assert resp.status_code == 401

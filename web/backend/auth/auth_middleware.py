@@ -71,6 +71,10 @@ def register_auth_middleware(app: FastAPI) -> None:
             return await call_next(request)
         if request.url.path in PUBLIC_API_PATHS:
             return await call_next(request)
+        # Mounted v5 sub-app: only its liveness probe is public; all other /api/v5/*
+        # data endpoints stay behind the Creator JWT (inherited auth by design).
+        if request.url.path == "/api/v5/api/health":
+            return await call_next(request)
         # Prefix match for parameterized public paths
         if any(request.url.path.startswith(p + "/") for p in PUBLIC_API_PATHS if p != "/api/health"):
             return await call_next(request)

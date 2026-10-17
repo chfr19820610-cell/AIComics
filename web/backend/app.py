@@ -81,6 +81,22 @@ app.add_middleware(
 register_auth_middleware(app)
 app.include_router(auth_router)
 
+
+def _mount_v5_services() -> None:
+    """Mount aicomic.web.app (v5 quality/cost/intelligence endpoints) under /api/v5.
+
+    Disabled loudly if the package is unavailable — Creator auth/UX untouched.
+    """
+    try:
+        from aicomic.web.app import create_app as create_v5_app
+    except Exception as exc:  # pragma: no cover - optional dependency path
+        print(f"[web-unify] v5 services not mounted: {exc}")
+        return
+    app.mount("/api/v5", create_v5_app())
+
+
+_mount_v5_services()
+
 # Character management API
 character_router = build_character_router(state_dir=settings.state_dir)
 app.include_router(character_router)
