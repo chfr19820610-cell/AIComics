@@ -143,6 +143,26 @@ class TestAdCode:
         assert record["ad_code"] == code and record["pack"]["publish_title"] == "x"
 
 
+
+def _fake_salvage_ffmpeg(calls, default=3):
+    import re as _re
+
+    def fake(cmd):
+        calls.append(list(cmd))
+        try:
+            n = int(cmd[cmd.index("-frames:v") + 1])
+        except (ValueError, IndexError):
+            n = default
+        out_template = Path(str(cmd[-1]))
+        parent = out_template.parent
+        match = _re.search(r"%0(\d+)d", out_template.name)
+        width = int(match.group(1)) if match else 2
+        parent.mkdir(parents=True, exist_ok=True)
+        for i in range(n):
+            (parent / f"frame_{i:0{width}d}.png").write_bytes(b"P1" + b"\x00" * 8)
+        return 0
+    return fake
+
 class TestSalvageFrames:
     """G4：§4⑤ 废片截帧自动入库。"""
 
@@ -171,7 +191,8 @@ class TestSalvageFrames:
         video = tmp_path / "bad.mp4"
         video.write_bytes(b"0" * 16)
         calls: list[list[str]] = []
-        monkeypatch.setattr(sv, "_run_ffmpeg", self._fake_ffmpeg(calls))
+        monkeypatch.setattr(sv, "_probe_duration", lambda v: 4.0)
+        monkeypatch.setattr(sv, "_run_ffmpeg", _fake_salvage_ffmpeg(calls))
         out = sv.salvage_frames(video, tmp_path / "salvage", count=4)
         assert len(out["saved"]) == 4 and all(p.suffix == ".png" for p in out["saved"])
         assert "-vf" in " ".join(str(x) for x in calls[0])
@@ -187,6 +208,31 @@ class TestSalvageFrames:
 
         video = tmp_path / "bad.mp4"
         video.write_bytes(b"0" * 16)
+        monkeypatch.setattr(sv, "_probe_duration", lambda v: 4.0)
         monkeypatch.setattr(sv, "_run_ffmpeg", lambda cmd: 33)
         out = sv.salvage_frames(video, tmp_path / "s")
         assert out["saved"] == [] and "rc=33" in out["error"]
+
+
+class TestSalvageProbePath:
+    def test_probe_duration_feeds_fps(self, tmp_path, monkeypatch):
+        from aicomic.video_synthesis import salvage as sv
+
+        video = tmp_path / "v.mp4"
+        video.write_bytes(b"0" * 16)
+        calls: list[list[str]] = []
+        monkeypatch.setattr(sv, "_probe_duration", lambda v: 4.0)
+        monkeypatch.setattr(sv, "_probe_duration", lambda v: 4.0)
+        monkeypatch.setattr(sv, "_run_ffmpeg", _fake_salvage_ffmpeg(calls))
+        out = sv.salvage_frames(video, tmp_path / "s", count=4)
+        assert len(out["saved"]) == 4
+        assert "fps=" in " ".join(str(x) for x in calls[0])
+
+    def test_probe_unavailable_visible(self, tmp_path, monkeypatch):
+        from aicomic.video_synthesis import salvage as sv
+
+        video = tmp_path / "v.mp4"
+        video.write_bytes(b"0" * 16)
+        monkeypatch.setattr(sv, "_probe_duration", lambda v: None)
+        out = sv.salvage_frames(video, tmp_path / "s", count=4)
+        assert out["saved"] == [] and "probe" in out["error"]
