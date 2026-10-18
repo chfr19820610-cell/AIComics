@@ -5,16 +5,512 @@
     "schema": "{name, expected, shots:[{shot_id, black_fraction?, duration?, width?}]}"
   },
   "cases": [
-    {"name": "good_s01_黑帧低", "expected": "pass", "shots": [{"shot_id": "S01", "black_fraction": 0.02, "duration": 4.0, "width": 1080}]},
-    {"name": "good_s02_正常", "expected": "pass", "shots": [{"shot_id": "S02", "black_fraction": 0.05, "duration": 3.5, "width": 1080}]},
-    {"name": "good_s03_短镜头临界", "expected": "pass", "shots": [{"shot_id": "S03", "black_fraction": 0.08, "duration": 2.5, "width": 720}]},
-    {"name": "good_s04_多镜混合", "expected": "pass", "shots": [
-      {"shot_id": "S01", "black_fraction": 0.01, "duration": 5.0, "width": 1080},
-      {"shot_id": "S02", "black_fraction": 0.09, "duration": 3.0, "width": 1080}
-    ]},
-    {"name": "bad_s05_黑帧爆炸", "expected": "revise", "shots": [{"shot_id": "S05", "black_fraction": 0.35, "duration": 4.0, "width": 1080}]},
-    {"name": "bad_s06_无质检不出门", "expected": "revise", "shots": [{"shot_id": "S06"}]},
-    {"name": "bad_s07_分辨率不足", "expected": "revise", "shots": [{"shot_id": "S07", "black_fraction": 0.03, "duration": 4.0, "width": 480}]},
-    {"name": "bad_s08_时长过短", "expected": "revise", "shots": [{"shot_id": "S08", "black_fraction": 0.04, "duration": 1.2, "width": 1080}]}
+    {
+      "name": "good_s01_黑帧低",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "black_fraction": 0.02,
+          "duration": 4.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_s02_正常",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S02",
+          "black_fraction": 0.05,
+          "duration": 3.5,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_s03_短镜头临界",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S03",
+          "black_fraction": 0.08,
+          "duration": 2.5,
+          "width": 720
+        }
+      ]
+    },
+    {
+      "name": "good_s04_多镜混合",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "black_fraction": 0.01,
+          "duration": 5.0,
+          "width": 1080
+        },
+        {
+          "shot_id": "S02",
+          "black_fraction": 0.09,
+          "duration": 3.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_s05_黑帧爆炸",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "S05",
+          "black_fraction": 0.35,
+          "duration": 4.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_s06_无质检不出门",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "S06"
+        }
+      ]
+    },
+    {
+      "name": "bad_s07_分辨率不足",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "S07",
+          "black_fraction": 0.03,
+          "duration": 4.0,
+          "width": 480
+        }
+      ]
+    },
+    {
+      "name": "bad_s08_时长过短",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "S08",
+          "black_fraction": 0.04,
+          "duration": 1.2,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_10_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S10",
+          "black_fraction": 0.02,
+          "duration": 3.0,
+          "width": 720
+        }
+      ]
+    },
+    {
+      "name": "good_11_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S11",
+          "black_fraction": 0.04,
+          "duration": 4.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_12_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S12",
+          "black_fraction": 0.06,
+          "duration": 5.0,
+          "width": 1440
+        }
+      ]
+    },
+    {
+      "name": "good_13_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S13",
+          "black_fraction": 0.08,
+          "duration": 6.0,
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "name": "good_20_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S20",
+          "black_fraction": 0.095,
+          "duration": 2.5,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_21_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S21",
+          "black_fraction": 0.075,
+          "duration": 3.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_22_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S22",
+          "black_fraction": 0.055,
+          "duration": 3.5,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_23_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S23",
+          "black_fraction": 0.099,
+          "duration": 2.1,
+          "width": 721
+        }
+      ]
+    },
+    {
+      "name": "good_24_双镜混合",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "M01",
+          "black_fraction": 0.01,
+          "duration": 4.0,
+          "width": 1080
+        },
+        {
+          "shot_id": "M02",
+          "black_fraction": 0.08,
+          "duration": 3.2,
+          "width": 1440
+        }
+      ]
+    },
+    {
+      "name": "good_25_双镜混合宽幅",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "M03",
+          "black_fraction": 0.0,
+          "duration": 6.0,
+          "width": 1920
+        },
+        {
+          "shot_id": "M04",
+          "black_fraction": 0.05,
+          "duration": 2.2,
+          "width": 720
+        }
+      ]
+    },
+    {
+      "name": "good_26_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S26",
+          "black_fraction": 0.07,
+          "duration": 3.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_27_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S27",
+          "black_fraction": 0.06,
+          "duration": 3.8,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_28_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S28",
+          "black_fraction": 0.05,
+          "duration": 4.6,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_29_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S29",
+          "black_fraction": 0.04,
+          "duration": 5.4,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "good_30_梯度好",
+      "expected": "pass",
+      "shots": [
+        {
+          "shot_id": "S30",
+          "black_fraction": 0.03,
+          "duration": 6.2,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_30_超标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T30",
+          "black_fraction": 0.11,
+          "duration": 4.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_31_超标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T31",
+          "black_fraction": 0.31,
+          "duration": 4.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_32_超标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T32",
+          "black_fraction": 0.51,
+          "duration": 4.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_33_超标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T33",
+          "black_fraction": 0.02,
+          "duration": 1.9,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_34_超标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T34",
+          "black_fraction": 0.02,
+          "duration": 1.4,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_35_超标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T35",
+          "black_fraction": 0.02,
+          "duration": 0.8999999999999999,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_36_超标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T36",
+          "black_fraction": 0.02,
+          "duration": 4.0,
+          "width": 640
+        }
+      ]
+    },
+    {
+      "name": "bad_37_超标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T37",
+          "black_fraction": 0.02,
+          "duration": 4.0,
+          "width": 540
+        }
+      ]
+    },
+    {
+      "name": "bad_38_超标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T38",
+          "black_fraction": 0.02,
+          "duration": 4.0,
+          "width": 440
+        }
+      ]
+    },
+    {
+      "name": "bad_39_无指标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T39"
+        }
+      ]
+    },
+    {
+      "name": "bad_40_无指标",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "T40"
+        }
+      ]
+    },
+    {
+      "name": "bad_41_多镜一坏全红",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "X01",
+          "black_fraction": 0.01,
+          "duration": 4.0,
+          "width": 1080
+        },
+        {
+          "shot_id": "X02",
+          "black_fraction": 0.0,
+          "duration": 4.0,
+          "width": 1080
+        },
+        {
+          "shot_id": "X03",
+          "black_fraction": 0.9,
+          "duration": 4.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_42_多指标双坏",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "Y01",
+          "black_fraction": 0.5,
+          "duration": 1.0,
+          "width": 400
+        }
+      ]
+    },
+    {
+      "name": "bad_43_低黑帧超阈",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "Z01",
+          "black_fraction": 0.102,
+          "duration": 4.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "bad_44_临界时长破线",
+      "expected": "revise",
+      "shots": [
+        {
+          "shot_id": "Z02",
+          "black_fraction": 0.03,
+          "duration": 1.99,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "override_严格线_0_05",
+      "expected": "revise",
+      "threshold": {
+        "black_fraction_max": 0.05
+      },
+      "shots": [
+        {
+          "shot_id": "O01",
+          "black_fraction": 0.08,
+          "duration": 4.0,
+          "width": 1080
+        }
+      ]
+    },
+    {
+      "name": "override_宽松线_0_20",
+      "expected": "pass",
+      "threshold": {
+        "black_fraction_max": 0.2
+      },
+      "shots": [
+        {
+          "shot_id": "O02",
+          "black_fraction": 0.12,
+          "duration": 4.0,
+          "width": 1080
+        }
+      ]
+    }
   ]
 }

@@ -94,7 +94,7 @@ class TestGoldenEvaluate:
 
 
 class TestGoldenFixtureInRepo:
-    """SOP §8.4：入库 4 pass + 4 revise 指标样本。"""
+    """SOP §8.4：入库 20 好 + 20 坏指标样本（Phase F 扩充后）。"""
 
     def test_repo_golden_suite(self):
         fixture = Path(__file__).resolve().parents[1] / "evals" / "golden" / "workplace_E01.json"
@@ -102,7 +102,8 @@ class TestGoldenFixtureInRepo:
         from aicomic.core.self_review import review_with_golden
 
         report = review_with_golden(fixture)
-        assert report["total"] == 8 and report["passed"] == 8 and report["failed"] == []
+        assert report["total"] == 40 and report["passed"] == 40 and report["failed"] == []
+        assert report["skipped"] == []
 
 
 class TestConsistencyAudit:
@@ -187,3 +188,66 @@ class TestDefectBoard:
         path, board = write_defect_board(tmp_path, out)
         assert path.exists() and board["total_defects"] == 1
         assert (out.parent / "defect_board.md").exists()
+
+
+class TestGoldenScale40:
+    """F2：金样库 20 好+20 坏（SOP §8.4 字面量）合成指标级。"""
+
+    def test_expanded_fixture_40_green(self):
+        fixture = Path(__file__).resolve().parents[1] / "evals" / "golden" / "workplace_E01.json"
+        import json as j
+
+        cases = j.loads(fixture.read_text(encoding="utf-8"))["cases"]
+        assert len(cases) == 40
+        from aicomic.core.self_review import review_with_golden
+
+        report = review_with_golden(fixture)
+        assert report["passed"] == 40 and report["failed"] == [], report["failed"][:3]
+
+
+class TestShotThresholdOverrides:
+    """F3：金样 case 级阈值覆盖（线可动，不 hardcode）。"""
+
+    def test_case_level_override(self):
+        from aicomic.core.self_review import judge_shots
+
+        shots = [{"shot_id": "S01", "black_fraction": 0.12, "duration": 4.0, "width": 1080}]
+        base = judge_shots(shots)
+        assert base["verdict"] == "revise"  # 默认线 0.10 → 黑
+        strict = judge_shots(shots, threshold_overrides={"black_fraction_max": 0.05})
+        assert strict["verdict"] == "revise" and "黑帧" in strict["issues"][0]
+        relaxed = judge_shots(shots, threshold_overrides={"black_fraction_max": 0.20})
+        assert relaxed["verdict"] == "pass"
+
+    def test_golden_case_threshold_field(self):
+        fixture = Path(__file__).resolve().parents[1] / "evals" / "golden" / "workplace_E01.json"
+        from aicomic.core.self_review import review_with_golden
+
+        report = review_with_golden(fixture)
+        assert report["passed"] == 40  # 含 2 条 override 样本正常评估
+
+
+class TestEpisodeEfficiency:
+    """F4：成片有效率回归（pass-rate ≥ min_pass_rate 才算绿）。"""
+
+    def test_full_pass_green(self):
+        from aicomic.core.self_review import evaluate_episode_efficiency
+
+        shots = [{"shot_id": "S01", "black_fraction": 0.02, "duration": 4.0, "width": 1080}] * 10
+        out = evaluate_episode_efficiency(shots)
+        assert out["pass_rate"] == 1.0 and out["ok"] is True
+        assert out["passed"] == 10 and out["revise"] == 0
+
+    def test_below_threshold_red(self):
+        from aicomic.core.self_review import evaluate_episode_efficiency
+
+        shots = [{"shot_id": f"S{i}", "black_fraction": 0.02, "duration": 4.0, "width": 1080} for i in range(9)]
+        shots.append({"shot_id": "S10"})  # 无指标 → revise
+        out = evaluate_episode_efficiency(shots, min_pass_rate=1.0)
+        assert out["pass_rate"] == 0.9 and out["ok"] is False and out["revise"] == 1
+
+    def test_empty_structured(self):
+        from aicomic.core.self_review import evaluate_episode_efficiency
+
+        out = evaluate_episode_efficiency([])
+        assert out["ok"] is False and out["pass_rate"] == 0.0 and "error" in out

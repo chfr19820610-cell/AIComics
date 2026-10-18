@@ -25,10 +25,22 @@ SYSTEM_PROMPT = (
 RULE_BLACK_FRACTION_MAX = 0.10
 RULE_MIN_DURATION_S = 2.0
 RULE_MIN_WIDTH = 720
+_DEFAULT_THRESHOLDS: dict[str, float] = {
+    "black_fraction_max": RULE_BLACK_FRACTION_MAX,
+    "min_duration_s": RULE_MIN_DURATION_S,
+    "min_width": RULE_MIN_WIDTH,
+}
 
 
-def judge_shots(shots: list[dict[str, Any]], *, episode_code: str = "") -> dict[str, Any]:
-    """规则层融合 verdict：任何一个可判指标越线/缺失 ⇒ revise（不依赖 LLM）。"""
+def judge_shots(shots: list[dict[str, Any]], *, episode_code: str = "", threshold_overrides: dict[str, Any] | None = None) -> dict[str, Any]:
+    """规则层融合 verdict：任何一个可判指标越线/缺失 ⇒ revise（不依赖 LLM）。
+
+    threshold_overrides：可覆盖 black_fraction_max / min_duration_s / min_width（金样 case 级线可动）。
+    """
+    merged: dict[str, Any] = {**_DEFAULT_THRESHOLDS, **(threshold_overrides or {})}
+    line_black = merged["black_fraction_max"]
+    line_duration = merged["min_duration_s"]
+    line_width = merged["min_width"]
     issues: list[str] = []
     if not shots:
         return {"verdict": "error", "issues": ["无镜头可审"], "model": ""}
@@ -38,14 +50,14 @@ def judge_shots(shots: list[dict[str, Any]], *, episode_code: str = "") -> dict[
             issues.append(f"[{shot_id}] 无质检指标（missing/未跑质检）")
             continue
         black = shot.get("black_fraction")
-        if isinstance(black, (int, float)) and black > RULE_BLACK_FRACTION_MAX:
-            issues.append(f"[{shot_id}] 黑帧 {black:.0%} 超 {RULE_BLACK_FRACTION_MAX:.0%}（终局镜黑帧更严）")
+        if isinstance(black, (int, float)) and black > line_black:
+            issues.append(f"[{shot_id}] 黑帧 {black:.0%} 超 {line_black:.0%}（终局镜黑帧更严）")
         duration = shot.get("duration")
-        if isinstance(duration, (int, float)) and float(duration) < RULE_MIN_DURATION_S:
-            issues.append(f"[{shot_id}] 时长 {duration}s < {RULE_MIN_DURATION_S}s")
+        if isinstance(duration, (int, float)) and float(duration) < line_duration:
+            issues.append(f"[{shot_id}] 时长 {duration}s < {line_duration}s")
         width = shot.get("width")
-        if isinstance(width, (int, float)) and int(width) < RULE_MIN_WIDTH:
-            issues.append(f"[{shot_id}] 分辨率宽 {width} < {RULE_MIN_WIDTH}")
+        if isinstance(width, (int, float)) and int(width) < line_width:
+            issues.append(f"[{shot_id}] 分辨率宽 {width} < {line_width}")
     verdict = "revise" if issues else "pass"
     return {"verdict": verdict, "issues": issues, "model": "", "episode_code": episode_code}
 
@@ -146,7 +158,7 @@ def review_with_golden(golden_path: str | Path) -> dict[str, Any]:
         if not isinstance(shots, list):
             report["skipped"].append({"name": str(case.get("name", "?")), "reason": "shots 非列表"})
             continue
-        verdict = judge_shots(shots)["verdict"]
+        verdict = judge_shots(shots, threshold_overrides=case.get("threshold") if isinstance(case.get("threshold"), dict) else None)["verdict"]
         if expected == "error":
             report["skipped"].append({"name": str(case.get("name", "?")), "reason": f"模型通路未接入（expected={expected}）"})
             continue
@@ -160,3 +172,27 @@ def review_with_golden(golden_path: str | Path) -> dict[str, Any]:
 def issues_for(case: dict[str, Any], shots: list[dict[str, Any]]) -> list[str]:
     """只用于金样失败汇报：重跑一次取 issues（实现简洁优先）。"""
     return judge_shots(shots)["issues"]
+
+
+def evaluate_episode_efficiency(
+    shots: list[dict[str, Any]],
+    *,
+    min_pass_rate: float = 0.9,
+    threshold_overrides: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """成片有效率回归（SOP §8.1）：单集 pass-rate ≥ min_pass_rate 才算绿。"""
+    if not shots:
+        return {"ok": False, "pass_rate": 0.0, "passed": 0, "revise": 0, "error": 1,
+                "message": "无镜头可统计（error）", "min_pass_rate": min_pass_rate}
+    verdicts = [judge_shots([shot], threshold_overrides=threshold_overrides)["verdict"] for shot in shots]
+    passed_count = sum(1 for v in verdicts if v == "pass")
+    revise_count = sum(1 for v in verdicts if v == "revise")
+    pass_rate = round(passed_count / len(shots), 4)
+    return {
+        "ok": pass_rate >= min_pass_rate,
+        "pass_rate": pass_rate,
+        "passed": passed_count,
+        "revise": revise_count,
+        "error": 0,
+        "min_pass_rate": min_pass_rate,
+    }
