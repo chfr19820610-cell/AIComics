@@ -174,6 +174,21 @@ def handle_show_handoff(episode: str, handoff_dir: Path | None = None) -> int:
     return 0
 
 
+def handle_defect_board(output: Path | None = None) -> int:
+    """SOP §12：缺陷看板——checkpoint failed/awaiting 汇总反哺下一轮迭代。"""
+    from aicomic.core.defect_board import build_defect_board, render_defect_board_markdown, write_defect_board
+
+    state_dir = ProjectPaths.state_dir()
+    if output is None:
+        board = build_defect_board(state_dir)
+    else:
+        path, board = write_defect_board(state_dir, output)
+        print(f"output={path}")
+    md = render_defect_board_markdown(board)
+    print(md.strip())
+    return 0
+
+
 def _budget_cents_normalize(budget_cents: int) -> int:
     if budget_cents < 0:
         budget_cents = 0
@@ -1068,6 +1083,9 @@ COMMANDS: dict[str, dict] = {
         (["episode"], {}),
         (["--handoff-dir"], {"type": Path, "default": None})],
         "handler": lambda a: handle_show_handoff(a.episode, a.handoff_dir)},
+    "defect-board": {"help": "SOP §12：缺陷看板（checkpoint failed/awaiting 汇总）", "args": [
+        (["--output"], {"type": Path, "default": None})],
+        "handler": lambda a: handle_defect_board(a.output)},
     "provider-readiness": {"help": "检查 Provider 上线前就绪状态", "args": [
         (["--providers-config"], {"type": Path, "default": P("ProjectPaths.providers_config_path()")}),
         (["--requests-report"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'provider_requests_local.json'")}),
