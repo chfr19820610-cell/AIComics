@@ -20,3 +20,7 @@
 ## 纪律（沿用）
 
 红→绿分记；无外部新依赖（PIL/dHash 已在库内）；CLI 注册面 argparse 真机冒烟；不 push。
+
+## 执行进度
+
+✅ 全部完成：全套 1458+1 / pyflakes 零 / 变异×3 红过（judge恒pass 5红、阈值永过1红、看板忽略failed 2红）。
