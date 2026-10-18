@@ -189,6 +189,25 @@ def handle_defect_board(output: Path | None = None) -> int:
     return 0
 
 
+def handle_efficiency_report(manifest: Path, episode_code: str, min_pass_rate: float) -> int:
+    """SOP §8.1：成片有效率回归——manifest 该集 shots pass-rate 聚合。"""
+    from aicomic.core.self_review import evaluate_episode_efficiency
+
+    data = load_json(manifest)
+    episodes = {item["episode_code"]: item for item in data.get("episodes", [])}
+    episode = episodes.get(episode_code)
+    if not isinstance(episode, dict):
+        print(f"unknown_episode={episode_code}")
+        return 1
+    shots = [dict(shot) for shot in episode.get("shots", []) if isinstance(shot, dict)]
+    # 可用指标：shot 若带质检字段（black_fraction/duration/width）直接用；否则标注无指标
+    report = evaluate_episode_efficiency(shots, min_pass_rate=min_pass_rate)
+    print(f"episode={episode_code} shots={len(shots)} pass_rate={report['pass_rate']} "
+          f"passed={report['passed']} revise={report['revise']}")
+    print(f"min_pass_rate={min_pass_rate} ok={report['ok']}")
+    return 0 if report["ok"] else 1
+
+
 def _budget_cents_normalize(budget_cents: int) -> int:
     if budget_cents < 0:
         budget_cents = 0
@@ -1086,6 +1105,11 @@ COMMANDS: dict[str, dict] = {
     "defect-board": {"help": "SOP §12：缺陷看板（checkpoint failed/awaiting 汇总）", "args": [
         (["--output"], {"type": Path, "default": None})],
         "handler": lambda a: handle_defect_board(a.output)},
+    "efficiency-report": {"help": "SOP §8.1：成片有效率回归（pass-rate 聚合）", "args": [
+        (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
+        (["--episode-code"], {"default": "E01"}),
+        (["--min-pass-rate"], {"type": float, "default": 0.9})],
+        "handler": lambda a: handle_efficiency_report(a.episode_manifest, a.episode_code, a.min_pass_rate)},
     "provider-readiness": {"help": "检查 Provider 上线前就绪状态", "args": [
         (["--providers-config"], {"type": Path, "default": P("ProjectPaths.providers_config_path()")}),
         (["--requests-report"], {"type": Path, "default": P("ProjectPaths.reports_dir() / 'provider_requests_local.json'")}),
