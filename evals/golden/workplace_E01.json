@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "set": "workplace_E01 金样回归（SOP §8.4）",
+    "expected": "pass|revise（error=LLM 通路未接入，结构化 skip）",
+    "schema": "{name, expected, shots:[{shot_id, black_fraction?, duration?, width?}]}"
+  },
+  "cases": [
+    {"name": "good_s01_黑帧低", "expected": "pass", "shots": [{"shot_id": "S01", "black_fraction": 0.02, "duration": 4.0, "width": 1080}]},
+    {"name": "good_s02_正常", "expected": "pass", "shots": [{"shot_id": "S02", "black_fraction": 0.05, "duration": 3.5, "width": 1080}]},
+    {"name": "good_s03_短镜头临界", "expected": "pass", "shots": [{"shot_id": "S03", "black_fraction": 0.08, "duration": 2.5, "width": 720}]},
+    {"name": "good_s04_多镜混合", "expected": "pass", "shots": [
+      {"shot_id": "S01", "black_fraction": 0.01, "duration": 5.0, "width": 1080},
+      {"shot_id": "S02", "black_fraction": 0.09, "duration": 3.0, "width": 1080}
+    ]},
+    {"name": "bad_s05_黑帧爆炸", "expected": "revise", "shots": [{"shot_id": "S05", "black_fraction": 0.35, "duration": 4.0, "width": 1080}]},
+    {"name": "bad_s06_无质检不出门", "expected": "revise", "shots": [{"shot_id": "S06"}]},
+    {"name": "bad_s07_分辨率不足", "expected": "revise", "shots": [{"shot_id": "S07", "black_fraction": 0.03, "duration": 4.0, "width": 480}]},
+    {"name": "bad_s08_时长过短", "expected": "revise", "shots": [{"shot_id": "S08", "black_fraction": 0.04, "duration": 1.2, "width": 1080}]}
+  ]
+}
