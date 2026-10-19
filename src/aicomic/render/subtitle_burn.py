@@ -66,6 +66,7 @@ def render_title_card(
     background: str | Path,
     lines: list[str],
     *,
+    size: tuple[int, int] | None = None,
     font_sizes: list[int] | None = None,
     colors: list[tuple[int, int, int]] | None = None,
     y_fractions: list[float] | None = None,
@@ -74,6 +75,8 @@ def render_title_card(
 ) -> Path:
     """在底图上叠多行文字（片头/片尾卡）。默认标题白+描边、副行黄、页脚灰。"""
     bg = Image.open(background).convert("RGBA")
+    if size is not None:
+        bg = bg.resize(size, Image.LANCZOS)
     sizes = font_sizes or [52, 30, 20]
     colors_ = colors or [(255, 255, 255), (255, 214, 102), (187, 187, 187)]
     ys = y_fractions or [0.52, 0.62, 0.70]
@@ -144,7 +147,7 @@ def burn_subtitle(
         ff, "-hide_banner", "-loglevel", "error", "-y",
         "-i", str(video), "-i", str(bar),
         "-filter_complex",
-        f"[1:v]overlay={overlay_expr}[v]",
+        f"[1:v]format=yuva420p[b1];[0:v][b1]overlay={overlay_expr}:alpha=straight,format=yuv420p[v]",
         "-map", "[v]", "-map", "0:a?",
         "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "24",
         "-c:a", "copy",
