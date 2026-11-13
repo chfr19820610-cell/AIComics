@@ -60,7 +60,13 @@ class ComfyUIServiceConfig:
             "--temp-directory",
             str(self.temp_directory),
             "--log-stdout",
-        ]
+        ] + ([
+            # 2026-11-14: SDXL 在 MPS 上做大图（1024x1536）时，VAE 解码是内存峰值点，
+            # 会表现为进程 CPU 骤降、长时间不返回。把 VAE 解码放 CPU 可显著降低
+            # MPS 内存压力（上游指南的推荐缓解手段）。代价是解码稍慢。
+            # 需要纯 GPU 解码时设 AICOMIC_COMFYUI_CPU_VAE=0。
+            "--cpu-vae",
+        ] if os.environ.get("AICOMIC_COMFYUI_CPU_VAE", "1") == "1" else [])
 
 
 def now_iso() -> str:
