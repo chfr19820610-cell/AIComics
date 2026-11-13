@@ -87,6 +87,41 @@
 
 ---
 
+## 🆕 连续性三件套（2026-11-13 新增）
+
+漫剧的核心难题不是"出一张好图"，而是**跨镜连贯**。此前项目只有提示词层面的
+`prev_shot/next_shot` 文本上下文，缺像素层与全集层的手段。已补齐三项：
+
+### 1. 镜头承接 `aicomic shot-chain`
+把上一镜视频的**真实尾帧**直拷为本镜首帧（而不是让模型重新想象衔接）。
+
+```bash
+aicomic shot-chain --videos S01.mp4,S02.mp4,S03.mp4 --output-dir state/shot_chain
+# 输出 S02_start.png / S03_start.png …
+```
+实现：`core/shot_chain.py`，用 `ffmpeg -sseof -0.3 -frames:v 1` 取尾帧（比全片解码快，
+且避开尾部黑场补帧）；失败返回结构化 error 不抛异常。
+
+### 2. 分镜督导 `aicomic storyboard-supervise`
+**一次性读入全部分镜**做视觉连续性审核与批量重写，解决"单镜都对、连播跳戏"。
+
+```bash
+aicomic storyboard-supervise --episode-manifest manifests/episode_manifest.json --episode-code E01
+# --no-llm 则只跑规则层（不臆造内容）
+```
+实现：`intelligence/storyboard_supervisor.py`。实测能抓出「S01 撑伞但 S02 没交代伞的状态」
+这类道具连续性问题，并统一重写为「同一雨夜街道 / 仍右手撑深色雨伞」。
+
+### 3. 角色四视图 `characters/view_generator.py`
+用同一角色的正面/四分之三/侧/背四张参考图约束后续分镜的角色一致性。
+
+```python
+from aicomic.characters.view_generator import generate_views
+generate_views('林雪', 'long straight black hair, white shirt', 'state/char_views')
+```
+
+---
+
 ## ✨ 它能做什么
 
 AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v5.1 已支持从故事到发布的完整管线 + MLLM 智能层 + 质量控制闭环 + Agent 架构：
@@ -105,7 +140,7 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v5.1 已支持�
 
 ---
 
-## 🆕 v5.0 + v5.1 + v5.2 — 30新模块 · 303新测试 · **当前 1495 全绿**
+## 🆕 v5.0 + v5.1 + v5.2 — 30新模块 · 303新测试 · **当前 1525 全绿**
 
 基于 12 竞品深度调研 + DSH团队 godogen (7K⭐) 方法论对照，分5方向实施。
 
@@ -192,7 +227,7 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v5.1 已支持�
 
 ### 测试
 
-- v4.0 基线 1036 → v5.0 **1133** → v5.1 **1257** → v5.2 **1357** → 当前 **1494 passed, 1 skipped, 0 failed**（2026-11-13 实测）
+- v4.0 基线 1036 → v5.0 **1133** → v5.1 **1257** → v5.2 **1357** → 当前 **1524 passed, 1 skipped, 0 failed**（2026-11-13 实测）
 - 30 个新模块 · ~9,600 行新代码 · 321 个新测试（135 v5.x + 86 CLI + 82 v5.2 智能层 + 18 v5.2 管线集成）
 
 ### v5.2 — Jev System One 智能层 (8模块)
@@ -519,7 +554,7 @@ docker compose logs -f
 | 指标 | 值 |
 |------|----|
 | **版本** | **5.2.0** |
-| 测试通过率 | **1494/1495** (99.93%，2026-11-13 实测) |
+| 测试通过率 | **1524/1525** (99.93%，2026-11-13 实测) |
 | 验证脚本 | **23/23** (100% 端到端) |
 | API 端点 | **63** 个（含 17 个 v5.x 端点） |
 | 视频产出 | **5 集完整漫剧**（4 分 24 秒） |
@@ -532,7 +567,7 @@ docker compose logs -f
 ## 🧪 运行测试
 
 ```bash
-# 运行全部 1495 个测试
+# 运行全部 1525 个测试
 PYTHONPATH="src" .venv/bin/python -m pytest tests/ -v
 
 # 快速模式（跳过耗时测试）
@@ -575,7 +610,7 @@ tail -f logs/vf_loop.log
 | **🎬 视频合成管线** | 端到端视频合成：图片→场景→字幕→配音→合成，支持批量处理 |
 | **🏗️ 声明式管线** | YAML 清单定义生产流程，审批门+断点续跑+协调器，管线可编排可中断可恢复 |
 | **🎨 ComfyUI 真实出图** | SDXL 25步 1024×1024 真实出图验证脚本 + Docker 构建代理修复 |
-| **✅ 1495 测试覆盖** | 从 314 提升至 1495 测试，覆盖 Provider 抽象层、角色系统、分镜版本管理、管线基础设施、v4.0-v5.2 全部功能（含 Jev 智能层） |
+| **✅ 1525 测试覆盖** | 从 314 提升至 1495 测试，覆盖 Provider 抽象层、角色系统、分镜版本管理、管线基础设施、v4.0-v5.2 全部功能（含 Jev 智能层） |
 | **🎨 风格轮换引擎** | 自动轮换视觉风格和色板，每条漫剧可拥有不同艺术风格 |
 | **🔄 无限自循环** | vf_master_loop 后台守护，自动生产+补充+发布，无需人工干预 |
 | **🐳 Docker 全栈部署** | docker-compose 一键启动（前端+后端+PostgreSQL+Redis），支持 local/production 双环境 |
@@ -610,7 +645,7 @@ graph LR
     WEB --> BE["backend/ (FastAPI)"]
     WEB --> FE["frontend/ (React SPA)"]
 
-    TST --> T1495["1495 个测试用例"]
+    TST --> T1525["1525 个测试用例"]
 
     ST --> REL["releases/ (视频产出)"]
     ST --> PV["produced_videos/"]
@@ -628,7 +663,7 @@ graph LR
 | `desktop/` | Electron 桌面端 (v4.0) |
 | `config/` | 配置文件（ComfyUI 路径、Provider 配置、6题材模板） |
 | `scripts/` | 运维脚本（vf_master_loop、启动脚本） |
-| `tests/` | 1495 个测试用例 |
+| `tests/` | 1525 个测试用例 |
 | `state/releases/` | 已合成的 MP4 视频产出 |
 | `state/produced_videos/` | 视频工厂产出目录 |
 
