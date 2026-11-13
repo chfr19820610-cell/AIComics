@@ -1,0 +1,20 @@
+{
+  "style_profile": "东方仙侠动漫，赛璐璐线稿风，暗调电影光",
+  "tone": "前抑后扬，燃中带苍凉",
+  "aspect_ratio": "9:16",
+  "visual_direction": [
+    "人物和情绪特写优先",
+    "中近景为主，少量建立镜头",
+    "画面信息聚焦在角色冲突"
+  ],
+  "shot_guidelines": [
+    "每镜头 2-4 秒为主",
+    "对白镜头优先稳镜或轻推进",
+    "非关键镜头允许静态图加转场"
+  ],
+  "asset_strategy": {
+    "image": "single_keyframe_then_reuse",
+    "video": "use_motion_only_for_high_priority_hooks",
+    "tts": "one_voice_per_core_character"
+  }
+}

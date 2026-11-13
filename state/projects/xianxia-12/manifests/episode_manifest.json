@@ -1,0 +1,16 @@
+{
+  "project_id": "xianxia-12",
+  "season": 1,
+  "episodes": [
+    {
+      "episode_code": "E01",
+      "title": "第一集",
+      "status": "idea",
+      "publish_title": "第一集发布标题待定",
+      "cover_text": "封面文案待定",
+      "creator_goal": "完成 林昭 的第一次冲突与钩子建立",
+      "ending_hook": "第12集揭晓：封印解除之日，天道亲临",
+      "shots": []
+    }
+  ]
+}

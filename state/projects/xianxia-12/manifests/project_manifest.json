@@ -1,0 +1,47 @@
+{
+  "project_id": "xianxia-12",
+  "project_name": "仙侠·十二劫",
+  "genre": "仙侠",
+  "style_profile": "东方仙侠动漫，赛璐璐线稿风，暗调电影光",
+  "status": "initialized",
+  "target_platforms": [
+    "douyin",
+    "kuaishou",
+    "bilibili"
+  ],
+  "default_providers": {
+    "image": "manual_web",
+    "video": "manual_web",
+    "tts": "windows_tts"
+  },
+  "creator_profile": {
+    "project_name": "仙侠·十二劫",
+    "genre": "仙侠",
+    "style_profile": "东方仙侠动漫，赛璐璐线稿风，暗调电影光",
+    "logline": "封印不是困住他的枷锁，是保护他的最后一道屏障——他才是天道要抹杀的存在。",
+    "protagonist_name": "林昭",
+    "target_audience": "18-35岁，偏好仙侠/逆袭题材的竖屏短剧用户",
+    "tone": "前抑后扬，燃中带苍凉",
+    "season_hook": "第12集揭晓：封印解除之日，天道亲临",
+    "episode_target_count": 12,
+    "working_mode": "creator_single_user",
+    "workflow_goal": "idea_to_episode_release",
+    "pipeline_steps": [
+      "project_setup",
+      "story_bible",
+      "episode_outline",
+      "shot_breakdown",
+      "asset_generation",
+      "tts_subtitle",
+      "preview_render",
+      "publish_pack"
+    ]
+  },
+  "seasons": [
+    {
+      "season": 1,
+      "season_title": "第一季",
+      "status": "planning"
+    }
+  ]
+}

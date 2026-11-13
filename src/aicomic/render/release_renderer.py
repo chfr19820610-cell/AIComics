@@ -24,9 +24,12 @@ def render_release_video(
         release_plan,
         output_path,
         report_path,
-        width=1024,
-        height=1024,
-        fps=24,
+        # 竖屏漫剧 9:16（2026-11-14）：原来硬编码 1024x1024 正方形成片，
+        # 与关键帧 768x1152 不一致，成片被压回正方形。改为读环境变量，
+        # 默认 9:16，保证与分镜关键帧同比例。
+        width=int(os.environ.get("AICOMIC_RELEASE_WIDTH", "768")),
+        height=int(os.environ.get("AICOMIC_RELEASE_HEIGHT", "1152")),
+        fps=int(os.environ.get("AICOMIC_RELEASE_FPS", "24")),
     )
     report["render_profile"] = "release"
     # SOP §10 #7：正式版发布前必须带 AI 标签；env AICOMIC_AI_LABEL=0 可显式关闭（测试/特殊渠道）。

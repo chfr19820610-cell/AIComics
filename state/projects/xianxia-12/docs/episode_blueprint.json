@@ -1,0 +1,143 @@
+{
+  "episode_target_count": 12,
+  "arcs": [
+    {
+      "arc_id": "A01",
+      "title": "阶段剧情 1",
+      "goal": "推动 林昭 的身份反转或关系升级",
+      "episodes": [
+        "E01",
+        "E02",
+        "E03"
+      ]
+    },
+    {
+      "arc_id": "A02",
+      "title": "阶段剧情 2",
+      "goal": "推动 林昭 的身份反转或关系升级",
+      "episodes": [
+        "E04",
+        "E05",
+        "E06"
+      ]
+    },
+    {
+      "arc_id": "A03",
+      "title": "阶段剧情 3",
+      "goal": "推动 林昭 的身份反转或关系升级",
+      "episodes": [
+        "E07",
+        "E08",
+        "E09"
+      ]
+    },
+    {
+      "arc_id": "A04",
+      "title": "阶段剧情 4",
+      "goal": "推动 林昭 的身份反转或关系升级",
+      "episodes": [
+        "E10",
+        "E11",
+        "E12"
+      ]
+    }
+  ],
+  "episodes": [
+    {
+      "episode_code": "E01",
+      "title": "第 1 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "第12集揭晓：封印解除之日，天道亲临",
+      "suggested_shot_count": 8,
+      "status": "seeded"
+    },
+    {
+      "episode_code": "E02",
+      "title": "第 2 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    },
+    {
+      "episode_code": "E03",
+      "title": "第 3 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    },
+    {
+      "episode_code": "E04",
+      "title": "第 4 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    },
+    {
+      "episode_code": "E05",
+      "title": "第 5 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    },
+    {
+      "episode_code": "E06",
+      "title": "第 6 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    },
+    {
+      "episode_code": "E07",
+      "title": "第 7 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    },
+    {
+      "episode_code": "E08",
+      "title": "第 8 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    },
+    {
+      "episode_code": "E09",
+      "title": "第 9 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    },
+    {
+      "episode_code": "E10",
+      "title": "第 10 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    },
+    {
+      "episode_code": "E11",
+      "title": "第 11 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    },
+    {
+      "episode_code": "E12",
+      "title": "第 12 集待补标题",
+      "story_goal": "围绕 林昭 推进一次冲突与一次钩子回收",
+      "ending_hook": "下一集钩子待补充",
+      "suggested_shot_count": 10,
+      "status": "planned"
+    }
+  ]
+}

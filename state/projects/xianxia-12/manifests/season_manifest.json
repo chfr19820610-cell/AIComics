@@ -1,0 +1,26 @@
+{
+  "project_id": "xianxia-12",
+  "season": 1,
+  "season_title": "仙侠·十二劫 第一季",
+  "status": "planning",
+  "episodes": [
+    {
+      "episode_code": "E01",
+      "title": "第一集",
+      "status": "idea"
+    }
+  ],
+  "batch_policy": {
+    "default_scope": "season",
+    "default_steps": [
+      "build_jobs",
+      "build_provider_requests",
+      "scan_assets",
+      "render_preview"
+    ]
+  },
+  "creator_plan": {
+    "season_hook": "第12集揭晓：封印解除之日，天道亲临",
+    "episode_target_count": 12
+  }
+}
