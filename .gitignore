@@ -108,3 +108,8 @@ reports/pip-freeze-*.txt
 docs/AI*SOP.md
 # ComfyUI runtime 软链（指向 112G 的 comfyui_runtime，克隆后为断链，不入库）
 local_providers/comfyui/runtime/
+# Piper 语音权重（60MB+，按需下载，不入库；MODEL_CARD/LICENSE_REVIEW.json 保留）
+local_providers/piper/models/*.onnx
+local_providers/piper/models/*.onnx.json
+# g2pw 首次运行下载的中文 BERT 权重缓存（本机缓存，不入库）
+g2pW/

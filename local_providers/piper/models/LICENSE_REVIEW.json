@@ -1,0 +1,21 @@
+{
+  "voice": "zh_CN-chaowen-medium",
+  "reviewed_at": "2026-11-13",
+  "reviewed_by": "SH (AI CEO), source evidence from HuggingFace model card",
+  "repository_license": "MIT",
+  "dataset_license": "CC0",
+  "dataset_url": "https://github.com/OHF-Voice/voice-datasets",
+  "production_use_approved": true,
+  "commercial_use": "allowed",
+  "attribution_required": false,
+  "notes": [
+    "CC0 = public domain dedication: no attribution, no non-commercial clause.",
+    "Superseded voice: zh_CN-huayan-medium was rejected for production because its dataset license is 'Unknown' (https://github.com/PlayVoice/HuaYan_TTS).",
+    "Runtime deps g2pw (Apache-2.0) / unicode-rbnf / sentence-stream are separate packages, each under permissive licenses."
+  ],
+  "superseded_voice": {
+    "voice": "zh_CN-huayan-medium",
+    "dataset_license": "Unknown",
+    "reason": "dataset license undeclared, cannot clear commercial review"
+  }
+}

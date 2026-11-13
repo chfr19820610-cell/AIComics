@@ -198,10 +198,19 @@ def inspect_comfyui_model_requirements(provider: str, model_root: Path | None, m
         result["model_root_error"] = "model_root not configured."
     elif not mr_status["model_root_exists"]:
         result["model_root_error"] = "model_root does not exist."
-    elif not mr_status["model_root_is_file"]:
+    elif mr_status["model_root_is_file"]:
+        # model_root must be a *directory*; is_file being True is the error case.
+        # (2026-11-13 fix: this condition was inverted, so a valid models/ directory
+        #  was reported as "must be a directory" and every required model was
+        #  subsequently marked missing — keeping local_comfyui_* permanently
+        #  setup_required even when the weights were present.)
         result["model_root_error"] = "model_root must be a directory."
 
-    if model_root and mr_status["model_root_is_file"]:
+    # Scan the model directory only when model_root is a real directory
+    # (2026-11-13 fix: this guard was inverted — it required is_file=True, so a
+    #  valid models/ directory never got scanned and every requirement was
+    #  appended to missing_required_models.)
+    if model_root and mr_status["model_root_exists"] and not mr_status["model_root_is_file"]:
         for item in required_models:
             fn = str(item.get("filename", "")).strip()
             sd = str(item.get("subdir", "")).strip().strip("/")
@@ -227,7 +236,7 @@ def inspect_comfyui_model_requirements(provider: str, model_root: Path | None, m
     result["fixture_required_model_count"] = len(result["fixture_required_models"])
     result["required_models_ready"] = (mp_status["model_manifest_configured"] and mp_status["model_manifest_exists"]
                                        and mp_status["model_manifest_is_file"] and mr_status["model_root_configured"]
-                                       and mr_status["model_root_exists"] and result["model_root_is_file"]
+                                       and mr_status["model_root_exists"] and not result["model_root_is_file"]
                                        and len(required_models) > 0 and not result["missing_required_models"])
     return result
 

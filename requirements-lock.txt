@@ -52,10 +52,16 @@ typing-inspection==0.4.2
 urllib3==2.8.0
 uvicorn==0.46.0
 websocket-client==1.9.0
-
 # v5.0 optional deps (i18n LLM translation + multilang TTS + publish)
 google-api-python-client==2.154.0
 google-auth-oauthlib==1.2.1
 edge-tts==6.1.19
 openai==1.55.0
 selenium==4.25.0
+g2pw==0.1.2
+unicode-rbnf==2.4.1
+sentence-stream==1.4.0
+transformers==5.15.0
+tokenizers==0.22.2
+safetensors==0.8.0
+torch==2.15.0

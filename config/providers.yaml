@@ -134,9 +134,11 @@ local_comfyui_video_fast:
 local_piper_tts:
   base_url: null
   command: "{{python_executable}} scripts/run_local_piper.py"
-  model_path: ../local_providers/piper/models/zh_CN-huayan-medium.onnx
-  config_path: ../local_providers/piper/models/zh_CN-huayan-medium.onnx.json
+  # 2026-11-13 换用 chaowen（数据集许可 CC0，可商用）。
+  # 原 huayan 语音的数据集许可为 Unknown，无法通过商用审查，已弃用。
   model_card_path: ../local_providers/piper/models/MODEL_CARD
+  model_path: ../local_providers/piper/models/zh_CN-chaowen-medium.onnx
+  config_path: ../local_providers/piper/models/zh_CN-chaowen-medium.onnx.json
   speaker_id: null
   timeout_seconds: 120
   extra_args: null

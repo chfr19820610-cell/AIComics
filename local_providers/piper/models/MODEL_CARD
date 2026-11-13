@@ -1,0 +1,28 @@
+# Model card for chaowen (medium)
+
+* Language: zh_CN (Chinese, China)
+* Speakers: 1
+* Quality: medium
+* Samplerate: 22,050Hz
+* Gender: Female
+
+## Dataset
+
+* URL: https://github.com/OHF-Voice/voice-datasets
+* License: CC0
+
+## Training
+
+Finetuned from U.S. English lessac voice (medium quality).
+
+## Repository / Runtime
+
+* Model source: https://huggingface.co/rhasspy/piper-voices/tree/main/zh/zh_CN/chaowen/medium
+* Model repository license: MIT (piper-voices)
+* Runtime: piper-tts 1.4.2 (MIT)
+* Chinese phonemization: g2pw (Apache-2.0) + unicode-rbnf + sentence-stream
+
+## Production use
+
+CC0 places the training data in the public domain, so this voice carries no
+attribution or non-commercial restriction. Approved for commercial use.

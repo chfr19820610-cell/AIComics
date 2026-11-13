@@ -1,0 +1,26 @@
+{
+  "_comment": "Schema: {providers: {<provider_name>: [{filename, subdir, source}]}}. Paths are relative to model_root (local_providers/comfyui_runtime/ComfyUI/models). 2026-11-13: rewritten from the legacy flat {checkpoints:[...]} shape, which the readiness adapter could not read (it reported 'No model requirements for provider').",
+  "providers": {
+    "local_comfyui_image": [
+      {
+        "filename": "sd_xl_base_1.0.safetensors",
+        "subdir": "checkpoints",
+        "source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0"
+      }
+    ],
+    "local_comfyui_video": [
+      {
+        "filename": "minimax_h3_fl2va_pruned_int4_convrot.safetensors",
+        "subdir": "diffusion_models",
+        "source": "MiniMax-H3 fl2va 量化版（本机已有）"
+      }
+    ],
+    "local_comfyui_video_fast": [
+      {
+        "filename": "minimax_h3_fl2va_pruned_int4_convrot.safetensors",
+        "subdir": "diffusion_models",
+        "source": "MiniMax-H3 fl2va 量化版（本机已有）"
+      }
+    ]
+  }
+}

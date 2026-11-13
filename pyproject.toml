@@ -28,6 +28,17 @@ validation = [
 local-providers = [
     "piper-tts==1.4.2",
 ]
+# 中文 TTS：piper 的 zh_CN 语音走 PINYIN 音素类型，需要 g2pw 做多音字消歧，
+# 而 g2pw 通过 transformers 加载 BERT，间接需要 torch。
+# 单独成一个 extra，避免所有安装者都被拉进 ~1GB 的 torch。
+local-tts-zh = [
+    "piper-tts==1.4.2",
+    "g2pw>=0.1.2,<1",
+    "unicode-rbnf>=2.4,<3",
+    "sentence-stream>=1.4,<2",
+    "transformers>=4,<6",
+    "torch>=2,<3",
+]
 cloud = [
     "fastapi>=0.115,<1",
     "uvicorn>=0.30,<1",
