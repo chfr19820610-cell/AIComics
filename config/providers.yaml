@@ -89,6 +89,11 @@ local_comfyui_image:
   width: 1024
   height: 1536
   seed: 123456789
+  # 风格 LoRA（2026-11-13 接入）：strjkyy/anime-cel-shaded，
+  # base = stabilityai/stable-diffusion-xl-base-1.0，license openrail++
+  # strength 0 = 关闭；0.6-0.9 为常用区间
+  lora_name: anime-cel-shaded.safetensors
+  lora_strength: 0.8
   # SDXL 常规步数（原 4 是给快速模型的）
   steps: 28
   # SDXL 常规 CFG（原 1 是给快速模型的）

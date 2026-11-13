@@ -379,6 +379,10 @@ def get_comfyui_settings(settings: dict, providers_config_path: Path, payload: d
             "{{cfg}}": parse_float(str(section.get("cfg", "1")), 1.0),
             "{{video_length}}": parse_int(str(section.get("video_length", "9")), 9),
             "{{fps}}": parse_float(str(section.get("fps", "8")), 8.0),
+            # 风格 LoRA（2026-11-13）：strength=0 时等效于不启用，可在单个
+            # workflow 里保留 LoraLoader 节点而不必维护两份文件。
+            "{{lora_name}}": str(section.get("lora_name", "")).strip(),
+            "{{lora_strength}}": parse_float(str(section.get("lora_strength", "0.8")), 0.8),
             "{{output_prefix}}": f"{section.get('output_prefix', 'aicomic')}_{payload.get('episode_code', '')}_{payload.get('shot_id', '')}",
             "{{episode_code}}": str(payload.get("episode_code", "")),
             "{{shot_id}}": str(payload.get("shot_id", "")),

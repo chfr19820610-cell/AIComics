@@ -10,7 +10,7 @@
     "inputs": {
       "text": "{{prompt}}",
       "clip": [
-        "1",
+        "8",
         1
       ]
     }
@@ -20,7 +20,7 @@
     "inputs": {
       "text": "{{negative_prompt}}",
       "clip": [
-        "1",
+        "8",
         1
       ]
     }
@@ -43,7 +43,7 @@
       "scheduler": "karras",
       "denoise": 1.0,
       "model": [
-        "1",
+        "8",
         0
       ],
       "positive": [
@@ -81,6 +81,22 @@
         0
       ],
       "filename_prefix": "sdxl_output"
+    }
+  },
+  "8": {
+    "class_type": "LoraLoader",
+    "inputs": {
+      "lora_name": "{{lora_name}}",
+      "strength_model": "{{lora_strength}}",
+      "strength_clip": "{{lora_strength}}",
+      "model": [
+        "1",
+        0
+      ],
+      "clip": [
+        "1",
+        1
+      ]
     }
   }
 }
