@@ -1,0 +1,57 @@
+{
+  "characters": {
+    "林昭": {
+      "identity": "lin zhao, 1boy, solo, 16 year old xianxia boy, short messy black hair low ponytail, sharp narrow dark eyes, thin wiry build, tattered grey hemp robe over embroidered deep blue silk inner robe, rope belt, straw sandals, faint scar over left brow, resolute aura",
+      "views": {
+        "front": "front view, facing camera, looking straight ahead, full body standing, arms relaxed at sides, symmetrical pose, single character, plain white background, concept art",
+        "three_quarter": "three-quarter view, body turned 45 degrees, face toward camera, full body standing, single character, plain white background, concept art",
+        "side": "side view, true profile, facing left, standing straight, arms relaxed, single character, plain white background, concept art",
+        "back": "back view, seen from behind, head slightly turned, standing straight, single character, plain white background, concept art"
+      }
+    },
+    "玄阳长老": {
+      "identity": "xuan yang, 1boy, solo, elderly xianxia sect elder, long white hair, flowing white beard, heavy stern brows, hawk-like eyes, tall imposing build, layered white and gold daoist robe with cloud embroidery, jade crown, wide sleeves, oppressive dignified aura",
+      "views": {
+        "front": "front view, facing camera, chin lifted, severe stare, full body standing, hands folded behind back, single character, plain white background, concept art",
+        "three_quarter": "three-quarter view, body turned 45 degrees, face toward camera, chin lifted, severe stare, full body standing, single character, plain white background, concept art",
+        "side": "side view, true profile, facing left, hands folded behind back, standing straight, single character, plain white background, concept art",
+        "back": "back view, seen from behind, head slightly turned, wide sleeves hanging, standing straight, single character, plain white background, concept art"
+      }
+    },
+    "无名老者": {
+      "identity": "nameless elder, 1boy, solo, ancient ethereal spirit guide, translucent ghostly body, faint cyan glow, long flowing white hair and beard, hollow luminous eyes, ragged grey robe with tattered drifting hems, no feet, semi-transparent afterimage, solemn mysterious aura",
+      "views": {
+        "front": "front view, facing camera, hollow eyes forward, floating full body, tattered hem dissolving into light particles, single character, black void background, concept art",
+        "three_quarter": "three-quarter view, body turned 45 degrees, face toward camera, floating full body, tattered hem dissolving into light particles, single character, black void background, concept art",
+        "side": "side view, true profile, facing left, floating full body, ghostly double-exposure afterimage offset, single character, black void background, concept art",
+        "back": "back view, seen from behind, head slightly turned, floating full body, hair and hem trailing in slow drift, single character, black void background, concept art"
+      }
+    },
+    "苏清音": {
+      "identity": "su qingyin, 1girl, solo, 18 year old xianxia sword maiden, long straight black hair half tied with white jade hairpin, cold pale delicate face, calm distant eyes, slender graceful build, flowing plain white dress with pale blue sash, long ribbon sleeves, silver hair ornament, ethereal frosty aura",
+      "views": {
+        "front": "front view, facing camera, calm neutral expression, full body standing, hands folded at waist, single character, plain white background, concept art",
+        "three_quarter": "three-quarter view, body turned 45 degrees, face toward camera, calm neutral expression, full body standing, single character, plain white background, concept art",
+        "side": "side view, true profile, facing left, hands folded at waist, standing straight, single character, plain white background, concept art",
+        "back": "back view, seen from behind, head slightly turned, long hair and sash drifting, standing straight, single character, plain white background, concept art"
+      }
+    }
+  },
+  "scenes": {
+    "宗门山门": {"scene_prompt": "no humans, towering ancient stone mountain gate, jade archway carved with cloud patterns, thousand stone steps, floating peaks, sea of clouds below, old pine trees, cranes flying past, golden morning sunlight breaking through mist, epic scale, wide angle, vertical composition", "mood": "晨光破云，凡俗少年仰望仙门的第一眼，渺小与向往同时压在肩上。"},
+    "修炼密室": {"scene_prompt": "no humans, dim stone cultivation chamber, single candle flame, glowing spirit runes carved into walls, worn meditation cushion, drifting incense smoke, floating dust particles, dripping water, cold blue shadow against warm amber light, claustrophobic stillness, night", "mood": "万籁俱寂，只剩烛火与呼吸，孤独是每一分力量的定价。"},
+    "悬崖边": {"scene_prompt": "no humans, lone cliff edge above a bottomless abyss, jagged broken rock, wind-flattened grass, cracked stone markers, distant waterfall, clouds rushing below the ledge, sunset orange and violet sky, strong wind streaks, dramatic depth, vertical composition", "mood": "风把话都吹散了，退一步是宗门，进一步是万丈深渊。"},
+    "宗门大殿": {"scene_prompt": "no humans, vast ancient sect hall interior, towering red lacquer pillars, coiled dragon carvings, golden altar at far end, hanging silk banners, rows of bronze incense burners, thick light beams from high narrow windows, dust in shafts of light, solemn oppressive scale, dusk", "mood": "梁柱高得让人不敢抬头，规矩比人更古老、也更冷。"},
+    "灵脉深处": {"scene_prompt": "no humans, underground crystal spirit vein cavern, giant glowing blue crystal clusters, luminous veins running through rock, black underground river, floating light motes, ancient broken seal arrays on the floor, eerie bioluminescent glow, cold mist, deep night", "mood": "地脉在脚下呼吸，光越亮的地方，埋的东西越不干净。"},
+    "九天云海": {"scene_prompt": "no humans, high above the nine heavens, endless rolling sea of clouds, floating ancient stone platforms, star-filled twilight sky, faint aurora ribbons, distant thunderheads, god rays piercing cloud layers, tiny human silhouette scale, immense depth, vertical composition", "mood": "云海之上没有路，只有雷声在远处一遍遍点名。"}
+  },
+  "fx": {
+    "封印符文": {"fx_prompt": "glowing seal runes, circular talisman array, floating golden glyphs, concentric rings of light, ember particles, energy sparks, chain-like light threads, faint barrier shimmer, dark background, magical seal effect, high contrast glow", "usage": "封印空间开场、无名老者虚影显形、林昭血脉被锁与解封两个高潮镜头"},
+    "灵气漩涡": {"fx_prompt": "spirit qi vortex, swirling blue energy spiral, glowing particles pulled inward, wind streaks, long light trails, radial motion blur, transparent luminous mist, lens streaks, floating debris, centered composition, effect overlay", "usage": "林昭首次引气入体、吸走对手灵力的反杀镜头"},
+    "断剑": {"fx_prompt": "broken sword, cracked blade, glowing fracture line, floating shattered steel shards, orange sparks, faint blue spirit flame along the break, slow rotation, dust motes, dark backdrop, macro detail, effect overlay", "usage": "本命法器被折断的失利镜头、断剑残魂认主特写"},
+    "丹药": {"fx_prompt": "glowing pill, jade bottle uncorked, swirling golden elixir light, floating medicinal mist, glowing powder particles, expanding ripple halo, warm amber glow on dark surface, macro close-up, effect overlay", "usage": "疗伤与突破丹药服用特写，交易贿赂下毒等道具插入镜"},
+    "天劫雷云": {"fx_prompt": "heavenly tribulation storm, black thunderclouds spiraling into a funnel, purple lightning arcs, plasma glow, falling lightning pillars, scattered sparks and embers, rain streaks, ominous sky, overwhelming scale, vertical composition, effect overlay", "usage": "渡劫全段天空铺底与落雷空镜"}
+  },
+  "negative_prompt": "lowres, worst quality, low quality, jpeg artifacts, blurry, bad anatomy, bad hands, missing fingers, extra fingers, fused fingers, extra limbs, extra arms, deformed, disfigured, mutated hands, poorly drawn face, long neck, bad proportions, watermark, signature, text, username, logo, cropped, out of frame, duplicate, multiple views, photorealistic, 3d render, nsfw",
+  "style_suffix": "anime cel shading, clean lineart, xianxia fantasy, chinese ink wash accents, cinematic lighting, vertical composition, high resolution"
+}

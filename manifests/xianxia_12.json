@@ -1,0 +1,1468 @@
+{
+  "project_id": "xianxia-12",
+  "season": 1,
+  "title": "封印之下",
+  "logline": "全宗都笑他是丹田被封的废物，直到天雷降下、封印替他挡下第一击——他才明白那道锁不是困住他的枷锁，而是天道要抹杀他之前，最后一道护命的屏障。",
+  "episodes": [
+    {
+      "episode_code": "E01",
+      "title": "废柴有锁",
+      "status": "planned",
+      "publish_title": "全宗笑我废物，没人看见我胸口的锁",
+      "cover_text": "我是废物？",
+      "creator_goal": "立住被踩进泥里的杂役身份，并把胸口封印这一视觉符号钉进观众眼里。",
+      "ending_hook": "封印裂开一道细缝，他呕出的黑血里游着细小电弧。",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "一盆脏水兜头泼在少年脸上，林昭跪在演武场青石板上，水珠顺下颌滴落，晨光刺得他睁不开眼。",
+          "visual": "一盆脏水兜头泼在少年脸上，林昭跪在演武场青石板上，水珠顺下颌滴落，晨光刺得他睁不开眼。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "脏水泼出、水珠沿下巴滴落",
+          "dialogue": "",
+          "camera": "大特写/固定机位俯拍",
+          "emotion": "",
+          "act_id": "underdog",
+          "act_title": "废柴有锁",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "青冥剑宗演武场全景，弟子围成一圈，林昭跪在圈心，锦袍赵乾立在中央，远处山门浮在云海里。",
+          "visual": "青冥剑宗演武场全景，弟子围成一圈，林昭跪在圈心，锦袍赵乾立在中央，远处山门浮在云海里。",
+          "characters": [
+            "林昭",
+            "赵乾",
+            "青冥弟子"
+          ],
+          "action": "弟子窃笑，赵乾负手踱步",
+          "dialogue": "",
+          "camera": "大远景/航拍缓降",
+          "emotion": "",
+          "act_id": "underdog",
+          "act_title": "废柴有锁",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "dialogue",
+          "scene": "赵乾一脚踩住林昭手里的抹布，俯身捏起他的下巴，逆光下围观弟子哄笑，尘土在光柱里翻。",
+          "visual": "赵乾一脚踩住林昭手里的抹布，俯身捏起他的下巴，逆光下围观弟子哄笑，尘土在光柱里翻。",
+          "characters": [
+            "赵乾",
+            "林昭"
+          ],
+          "action": "踩住抹布、捏下巴抬起脸",
+          "dialogue": "赵乾：废物的手，也只配擦地。",
+          "camera": "中景/低角度仰拍缓推",
+          "emotion": "",
+          "act_id": "underdog",
+          "act_title": "废柴有锁",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "赵乾一掌拍出，林昭被击飞撞断木栏，翻滚着摔下石阶，衣袍翻卷，尘土在斜光里炸开。",
+          "visual": "赵乾一掌拍出，林昭被击飞撞断木栏，翻滚着摔下石阶，衣袍翻卷，尘土在斜光里炸开。",
+          "characters": [
+            "赵乾",
+            "林昭"
+          ],
+          "action": "被一掌击飞、撞断木栏滚落石阶",
+          "dialogue": "赵乾：爬起来啊，杂役。",
+          "camera": "全景/横向跟拍慢动作",
+          "emotion": "",
+          "act_id": "underdog",
+          "act_title": "废柴有锁",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "林昭仰躺在碎石上，胸口衣襟裂开，右腕旧布条松开，暗金锁链纹浮出，周围没人注意。",
+          "visual": "林昭仰躺在碎石上，胸口衣襟裂开，右腕旧布条松开，暗金锁链纹浮出，周围没人注意。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "锁链纹从皮肤下缓缓浮现",
+          "dialogue": "",
+          "camera": "特写/俯拍下压",
+          "emotion": "",
+          "act_id": "underdog",
+          "act_title": "废柴有锁",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "他撑地呕出一口黑血，血珠落在青石上迸出几缕细小电弧，背景是模糊走过的弟子靴影。",
+          "visual": "他撑地呕出一口黑血，血珠落在青石上迸出几缕细小电弧，背景是模糊走过的弟子靴影。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "撑地呕血、血珠迸出电弧",
+          "dialogue": "林昭：……又裂了。",
+          "camera": "微距特写/手持轻晃",
+          "emotion": "",
+          "act_id": "underdog",
+          "act_title": "废柴有锁",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E02",
+      "title": "别解开它",
+      "status": "planned",
+      "publish_title": "半夜天雷劈下，被一道锁链吞了",
+      "cover_text": "别解开",
+      "creator_goal": "首次展示封印吞雷的异象，并把守碑人的禁令压在主角头上。",
+      "ending_hook": "瞎眼老人攥住他手腕：「想活命，就别解开它。」",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "黑暗中林昭猛地睁眼，胸口锁链纹炸亮，金光从衣襟缝里透出，映亮他扭曲的脸和滚落的汗珠。",
+          "visual": "黑暗中林昭猛地睁眼，胸口锁链纹炸亮，金光从衣襟缝里透出，映亮他扭曲的脸和滚落的汗珠。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "猛然睁眼、锁链纹炸亮",
+          "dialogue": "",
+          "camera": "大特写/固定加急推",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "别解开它",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "深夜杂役柴房全景，月光从破窗漏进来，草席散乱，墙角立着几把锈剑，梁上挂着蛛网。",
+          "visual": "深夜杂役柴房全景，月光从破窗漏进来，草席散乱，墙角立着几把锈剑，梁上挂着蛛网。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "月光在地面缓慢移动",
+          "dialogue": "",
+          "camera": "全景/缓慢横移",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "别解开它",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "他痛得蜷缩着抓挠木板，指甲刮出木屑，油灯被气劲震灭，只剩月光勾出他绷紧的侧脸。",
+          "visual": "他痛得蜷缩着抓挠木板，指甲刮出木屑，油灯被气劲震灭，只剩月光勾出他绷紧的侧脸。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "蜷缩抓挠、油灯震灭",
+          "dialogue": "林昭：啊——！",
+          "camera": "中景/手持俯拍",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "别解开它",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "窗纸被雷光映得惨白，一道无声天雷破窗劈入，锁链纹腾空化作虚影，在半空把整条雷光吞下去。",
+          "visual": "窗纸被雷光映得惨白，一道无声天雷破窗劈入，锁链纹腾空化作虚影，在半空把整条雷光吞下去。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "锁链虚影腾空吞雷",
+          "dialogue": "",
+          "camera": "远景/固定长焦",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "别解开它",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "transition",
+          "scene": "雷光散尽，屋内陈设安然无恙，只有地面焦出一圈人形轮廓，窗外竹林还在冒青烟。",
+          "visual": "雷光散尽，屋内陈设安然无恙，只有地面焦出一圈人形轮廓，窗外竹林还在冒青烟。",
+          "characters": [],
+          "action": "青烟上升、焦痕余烬明灭",
+          "dialogue": "",
+          "camera": "全景/缓慢横摇",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "别解开它",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "dialogue",
+          "scene": "门口站着瞎眼灰袍老人老墨，铁杖点地，枯手攥住林昭手腕，月光照亮他空洞的眼窝。",
+          "visual": "门口站着瞎眼灰袍老人老墨，铁杖点地，枯手攥住林昭手腕，月光照亮他空洞的眼窝。",
+          "characters": [
+            "老墨",
+            "林昭"
+          ],
+          "action": "铁杖点地、攥住手腕",
+          "dialogue": "老墨：想活命，就别解开它。",
+          "camera": "中近景/背光低机位",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "别解开它",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E03",
+      "title": "渊底第一滴血",
+      "status": "planned",
+      "publish_title": "被推进妖兽坑，他第一次还手就秒了",
+      "cover_text": "第一次还手",
+      "creator_goal": "让主角在绝境中完成第一次反杀，兑现第一个爽点并埋下雷纹伏笔。",
+      "ending_hook": "他掌心的雷纹，和刚才劈落的那道天雷一模一样。",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "赵乾把林昭死死按在葬灵渊崖边，黑雾从脚下翻涌上来，众弟子围在身后抱臂冷笑。",
+          "visual": "赵乾把林昭死死按在葬灵渊崖边，黑雾从脚下翻涌上来，众弟子围在身后抱臂冷笑。",
+          "characters": [
+            "赵乾",
+            "林昭",
+            "青冥弟子"
+          ],
+          "action": "按肩压向崖边、黑雾上涌",
+          "dialogue": "",
+          "camera": "近景/手持跟拍",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "渊底第一滴血",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "葬灵渊全景，巨大地坑翻涌黑雾，铁链吊桥横跨渊上，渊底透出阴绿磷光，风声呜咽。",
+          "visual": "葬灵渊全景，巨大地坑翻涌黑雾，铁链吊桥横跨渊上，渊底透出阴绿磷光，风声呜咽。",
+          "characters": [
+            "林昭",
+            "赵乾"
+          ],
+          "action": "黑雾翻卷、铁链轻晃",
+          "dialogue": "赵乾：下去喂蛟吧，废物。",
+          "camera": "大远景/航拍俯冲",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "渊底第一滴血",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "林昭坠入黑雾，墨鳞蛟自雾中探头张口扑来，赤红瞳孔亮起，鳞片反着幽绿光。",
+          "visual": "林昭坠入黑雾，墨鳞蛟自雾中探头张口扑来，赤红瞳孔亮起，鳞片反着幽绿光。",
+          "characters": [
+            "林昭",
+            "墨鳞蛟"
+          ],
+          "action": "坠落、蛟首扑咬",
+          "dialogue": "",
+          "camera": "全景/水下感仰拍",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "渊底第一滴血",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "半空中林昭本能抬手，暗金锁链虚影自掌心炸开，如长枪贯穿蛟首，血雾在黑雾里炸散。",
+          "visual": "半空中林昭本能抬手，暗金锁链虚影自掌心炸开，如长枪贯穿蛟首，血雾在黑雾里炸散。",
+          "characters": [
+            "林昭",
+            "墨鳞蛟"
+          ],
+          "action": "抬手、锁链虚影贯穿蛟首",
+          "dialogue": "林昭：别过来！",
+          "camera": "中景/慢动作侧拍",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "渊底第一滴血",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "蛟血如雨落下，林昭悬停在渊口上空，锁链纹顺着右臂爬到颈侧，眼底泛起一层金光。",
+          "visual": "蛟血如雨落下，林昭悬停在渊口上空，锁链纹顺着右臂爬到颈侧，眼底泛起一层金光。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "悬停、锁链纹爬升",
+          "dialogue": "",
+          "camera": "中景/仰拍环绕",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "渊底第一滴血",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "他摊开手掌，掌心浮着一枚雷纹，与方才劈落的天雷纹路相同，眼里一半恐惧一半兴奋。",
+          "visual": "他摊开手掌，掌心浮着一枚雷纹，与方才劈落的天雷纹路相同，眼里一半恐惧一半兴奋。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "摊掌、雷纹在掌心亮起",
+          "dialogue": "林昭：这纹……和那道雷一样。",
+          "camera": "大特写/固定",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "渊底第一滴血",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E04",
+      "title": "测灵石炸了",
+      "status": "planned",
+      "publish_title": "测灵石当场炸裂，长老手都在抖",
+      "cover_text": "石头炸了",
+      "creator_goal": "把主角推进宗门权力中心，用测灵石炸裂制造全场震惊与高层恐慌。",
+      "ending_hook": "掌门捏着碎石，声音发抖：「这个纹……不该还在。」",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "两条铁链拖着林昭跪行穿过执法堂，膝盖在石面上擦出血痕，两侧弟子低头窃笑。",
+          "visual": "两条铁链拖着林昭跪行穿过执法堂，膝盖在石面上擦出血痕，两侧弟子低头窃笑。",
+          "characters": [
+            "林昭",
+            "执法弟子"
+          ],
+          "action": "被铁链拖行、膝盖擦出血痕",
+          "dialogue": "",
+          "camera": "全景/低角度跟拍",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "测灵石炸了",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "执法堂大殿，九根黑铁巨柱撑起穹顶，一道天窗光柱落在中央测灵石上，尘埃在光里浮动。",
+          "visual": "执法堂大殿，九根黑铁巨柱撑起穹顶，一道天窗光柱落在中央测灵石上，尘埃在光里浮动。",
+          "characters": [],
+          "action": "光柱缓慢移动",
+          "dialogue": "",
+          "camera": "大远景/对称构图横移",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "测灵石炸了",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "dialogue",
+          "scene": "严崇高坐铁椅俯视，林昭被按在光柱里，双手锁着铁链，两侧弟子交头接耳。",
+          "visual": "严崇高坐铁椅俯视，林昭被按在光柱里，双手锁着铁链，两侧弟子交头接耳。",
+          "characters": [
+            "严崇",
+            "林昭"
+          ],
+          "action": "俯身、抬手示意",
+          "dialogue": "严崇：把手放上去。",
+          "camera": "中景/正反打",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "测灵石炸了",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "林昭手掌按上测灵石，石内血丝状裂纹自掌心蔓延亮起，映亮他紧绷的下颌。",
+          "visual": "林昭手掌按上测灵石，石内血丝状裂纹自掌心蔓延亮起，映亮他紧绷的下颌。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "按掌、裂纹蔓延",
+          "dialogue": "",
+          "camera": "大特写/急推",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "测灵石炸了",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "测灵石轰然炸成齑粉，气浪掀翻前排弟子，碎石四射，严崇抬袖遮面。",
+          "visual": "测灵石轰然炸成齑粉，气浪掀翻前排弟子，碎石四射，严崇抬袖遮面。",
+          "characters": [
+            "林昭",
+            "严崇"
+          ],
+          "action": "炸裂、气浪掀人",
+          "dialogue": "弟子：他……没死？",
+          "camera": "全景/广角低机位",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "测灵石炸了",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "烟尘里林昭仍跪着，碎片悬停身周一寸；殿门处掌门捏着碎石，断指玉扳指反着冷光。",
+          "visual": "烟尘里林昭仍跪着，碎片悬停身周一寸；殿门处掌门捏着碎石，断指玉扳指反着冷光。",
+          "characters": [
+            "玄尘子",
+            "林昭"
+          ],
+          "action": "碎片悬停旋转",
+          "dialogue": "玄尘子：这个纹……不该还在。",
+          "camera": "特写/浅景深",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "测灵石炸了",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E05",
+      "title": "九锁只剩三道",
+      "status": "planned",
+      "publish_title": "老人说：那锁不是锁你，是锁天",
+      "cover_text": "锁的不是你",
+      "creator_goal": "揭开千年前铸锁的真相，把「枷锁」在观众心里重新定义为「护盾」。",
+      "ending_hook": "老墨说九道锁只剩三道，话音未落，第二道锁裂了。",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "磷火在断碑间亮起，映出一只枯手按住林昭肩膀，他猛地回头，瞳孔里映着幽蓝的火。",
+          "visual": "磷火在断碑间亮起，映出一只枯手按住林昭肩膀，他猛地回头，瞳孔里映着幽蓝的火。",
+          "characters": [
+            "林昭",
+            "老墨"
+          ],
+          "action": "枯手按肩、猛回头",
+          "dialogue": "",
+          "camera": "特写/浅景深手持",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "九锁只剩三道",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "葬灵渊底碑林，数百块断碑斜插黑土，蓝绿磷火在碑间漂浮，冷光笼罩整片洼地。",
+          "visual": "葬灵渊底碑林，数百块断碑斜插黑土，蓝绿磷火在碑间漂浮，冷光笼罩整片洼地。",
+          "characters": [
+            "林昭",
+            "老墨"
+          ],
+          "action": "磷火漂浮、雾气流动",
+          "dialogue": "",
+          "camera": "大远景/缓慢推轨",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "九锁只剩三道",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "老墨抡起铁杖重砸石碑，碑面荡开波纹，浮出九位大能围坐铸锁的古老壁画。",
+          "visual": "老墨抡起铁杖重砸石碑，碑面荡开波纹，浮出九位大能围坐铸锁的古老壁画。",
+          "characters": [
+            "老墨"
+          ],
+          "action": "铁杖砸碑、碑面波纹扩散",
+          "dialogue": "老墨：看清楚，这是你出生那天。",
+          "camera": "中景/低角度固定",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "九锁只剩三道",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "壁画特写，一条锁链从婴儿胸口生出，一圈圈缠住翻涌的黑雾，黑雾里浮出一张模糊的脸。",
+          "visual": "壁画特写，一条锁链从婴儿胸口生出，一圈圈缠住翻涌的黑雾，黑雾里浮出一张模糊的脸。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "锁链缠绕、黑雾翻涌",
+          "dialogue": "林昭：那团黑雾……是我？",
+          "camera": "大特写/微距推近",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "九锁只剩三道",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "dialogue",
+          "scene": "老墨掀开衣襟，胸口也有暗金锁链只剩一道未断，他平静地看着林昭，磷火映亮两张脸。",
+          "visual": "老墨掀开衣襟，胸口也有暗金锁链只剩一道未断，他平静地看着林昭，磷火映亮两张脸。",
+          "characters": [
+            "老墨",
+            "林昭"
+          ],
+          "action": "掀开衣襟、露出锁链",
+          "dialogue": "老墨：九道锁，只剩三道。",
+          "camera": "中景/正面平视",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "九锁只剩三道",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "林昭胸口传来一声脆响，他低头，第二道锁正裂开一道金缝，金光漏出照亮他的下巴。",
+          "visual": "林昭胸口传来一声脆响，他低头，第二道锁正裂开一道金缝，金光漏出照亮他的下巴。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "低头、金缝裂开、金光漏出",
+          "dialogue": "林昭：又裂了。",
+          "camera": "大特写/急速推近",
+          "emotion": "",
+          "act_id": "awakening",
+          "act_title": "九锁只剩三道",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E06",
+      "title": "封印护我",
+      "status": "planned",
+      "publish_title": "他们想解我封印，结果天雷劈了全宗",
+      "cover_text": "封印护我",
+      "creator_goal": "完成全剧核心反转：封印不是枷锁而是护盾，天雷真正要抹杀的是他。",
+      "ending_hook": "天穹裂开一只金色巨眼，第一次「看」向他。",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "九十九盏魂灯同时点燃，火浪扑向祭柱，被铁链绑住的林昭在火光里缓缓抬头。",
+          "visual": "九十九盏魂灯同时点燃，火浪扑向祭柱，被铁链绑住的林昭在火光里缓缓抬头。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "魂灯齐燃、火浪扑向祭柱",
+          "dialogue": "",
+          "camera": "中景/逆光仰拍",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "封印护我",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "祭天台全景，魂灯围成圆阵，雷云压顶翻涌，众弟子持剑列阵，火光在风里摇晃。",
+          "visual": "祭天台全景，魂灯围成圆阵，雷云压顶翻涌，众弟子持剑列阵，火光在风里摇晃。",
+          "characters": [
+            "林昭",
+            "严崇",
+            "苏璃"
+          ],
+          "action": "雷云翻卷、火焰摇曳",
+          "dialogue": "",
+          "camera": "大远景/航拍环绕",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "封印护我",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "苏璃握剑的手部特写，指节泛白，剑柄缠绳被攥出褶皱，背景是严崇在高台宣令的虚化身影。",
+          "visual": "苏璃握剑的手部特写，指节泛白，剑柄缠绳被攥出褶皱，背景是严崇在高台宣令的虚化身影。",
+          "characters": [
+            "苏璃",
+            "严崇"
+          ],
+          "action": "手指收紧、缠绳起褶",
+          "dialogue": "严崇（画外）：解封献祭，全宗同证。",
+          "camera": "大特写/浅景深",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "封印护我",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "七名长老合力挥剑斩向林昭胸口锁链，金光迸裂，第一道锁应声而断，气浪掀飞魂灯。",
+          "visual": "七名长老合力挥剑斩向林昭胸口锁链，金光迸裂，第一道锁应声而断，气浪掀飞魂灯。",
+          "characters": [
+            "七位长老",
+            "林昭"
+          ],
+          "action": "齐剑斩落、锁链断裂",
+          "dialogue": "长老：断！",
+          "camera": "中景/高速摄影",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "封印护我",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "天雷如瀑布砸落，锁链虚影暴涨成穹顶护住全宗，反震之力把三名长老震得倒飞出去。",
+          "visual": "天雷如瀑布砸落，锁链虚影暴涨成穹顶护住全宗，反震之力把三名长老震得倒飞出去。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "天雷砸落、锁链成穹顶、长老被震飞",
+          "dialogue": "",
+          "camera": "全景/广角俯拍",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "封印护我",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "林昭跪在焦土中央毫发无伤，四周横七竖八倒着焦黑的人影，他低头看胸口；云层裂开一只金瞳。",
+          "visual": "林昭跪在焦土中央毫发无伤，四周横七竖八倒着焦黑的人影，他低头看胸口；云层裂开一只金瞳。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "低头看锁链、金瞳睁开",
+          "dialogue": "林昭：原来……一直在护我的，是它。",
+          "camera": "中景/仰拍缓慢拉远",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "封印护我",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E07",
+      "title": "全宗追杀令",
+      "status": "planned",
+      "publish_title": "昨天叫我废物，今天叫我灾星",
+      "cover_text": "叫我灾星",
+      "creator_goal": "完成立场翻转，让苏璃公开护他，主角从自卑转向冷硬。",
+      "ending_hook": "苏璃剑指宗门：「我守的是他，不是封印。」",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "火把连成长龙围住山门，严崇一剑劈开雨幕，剑气朝石阶下的林昭压去。",
+          "visual": "火把连成长龙围住山门，严崇一剑劈开雨幕，剑气朝石阶下的林昭压去。",
+          "characters": [
+            "严崇",
+            "林昭"
+          ],
+          "action": "剑劈雨幕、剑气下压",
+          "dialogue": "严崇：灾星，留下命。",
+          "camera": "中景/手持跟拍",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "全宗追杀令",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "雨夜青冥剑宗石阶，火把长龙绕山，数百弟子持剑合围，雨水砸在剑身上溅起白雾。",
+          "visual": "雨夜青冥剑宗石阶，火把长龙绕山，数百弟子持剑合围，雨水砸在剑身上溅起白雾。",
+          "characters": [
+            "林昭",
+            "苏璃",
+            "青冥弟子"
+          ],
+          "action": "雨幕倾泻、火把摇曳",
+          "dialogue": "",
+          "camera": "大远景/雨夜航拍",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "全宗追杀令",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "苏璃立在人群最前，雨水顺着剑锋滴落，她抿着唇，眼底有挣扎，火光照亮半张脸。",
+          "visual": "苏璃立在人群最前，雨水顺着剑锋滴落，她抿着唇，眼底有挣扎，火光照亮半张脸。",
+          "characters": [
+            "苏璃"
+          ],
+          "action": "雨滴顺剑锋滑落",
+          "dialogue": "",
+          "camera": "特写/浅景深",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "全宗追杀令",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "林昭被三道剑气逼退，后背旧伤渗血，脚跟踏碎青石台阶，掌心雷纹忽明忽暗。",
+          "visual": "林昭被三道剑气逼退，后背旧伤渗血，脚跟踏碎青石台阶，掌心雷纹忽明忽暗。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "被剑气逼退、踏碎石阶",
+          "dialogue": "",
+          "camera": "中景/侧向跟拍",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "全宗追杀令",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "严崇一剑刺向林昭后心，苏璃横剑挡下，火星在两人之间炸开，映亮交错的剑身。",
+          "visual": "严崇一剑刺向林昭后心，苏璃横剑挡下，火星在两人之间炸开，映亮交错的剑身。",
+          "characters": [
+            "严崇",
+            "苏璃",
+            "林昭"
+          ],
+          "action": "回身横剑格挡、火星四溅",
+          "dialogue": "严崇：你要护这灾星？",
+          "camera": "中景/正反打高速",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "全宗追杀令",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "苏璃剑尖转向宗门，雨幕被剑气撕开一道口子，她挡在林昭身前，一字一句开口。",
+          "visual": "苏璃剑尖转向宗门，雨幕被剑气撕开一道口子，她挡在林昭身前，一字一句开口。",
+          "characters": [
+            "苏璃",
+            "林昭"
+          ],
+          "action": "剑尖转向、雨幕裂开",
+          "dialogue": "苏璃：我守的是他，不是封印。",
+          "camera": "近景/仰拍推近",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "全宗追杀令",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E08",
+      "title": "以雷炼剑",
+      "status": "planned",
+      "publish_title": "别人渡劫求活，他拿天雷当饭吃",
+      "cover_text": "拿雷炼剑",
+      "creator_goal": "让主角主动逆炼诛杀之力，完成能力质变，把爽点集中释放。",
+      "ending_hook": "雷云散开，一缕天雷落在他肩头，温顺得像只小兽。",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "一道紫雷劈落焦土，林昭站在雷坑中央张开双臂，衣袍烧焦，雷光顺着胸口灌进去。",
+          "visual": "一道紫雷劈落焦土，林昭站在雷坑中央张开双臂，衣袍烧焦，雷光顺着胸口灌进去。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "紫雷劈落、张臂承雷",
+          "dialogue": "",
+          "camera": "中景/低机位广角",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "以雷炼剑",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "荒原雷泽全景，紫色闪电如林立在焦黑大地上，天空低垂翻涌，空气里全是焦味。",
+          "visual": "荒原雷泽全景，紫色闪电如林立在焦黑大地上，天空低垂翻涌，空气里全是焦味。",
+          "characters": [
+            "林昭",
+            "老墨"
+          ],
+          "action": "电林明灭、云层翻卷",
+          "dialogue": "",
+          "camera": "大远景/航拍横移",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "以雷炼剑",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "dialogue",
+          "scene": "老墨拄着断杖站在雷光里，抬手指天，对林昭大声喊话，衣袍被狂风撕开。",
+          "visual": "老墨拄着断杖站在雷光里，抬手指天，对林昭大声喊话，衣袍被狂风撕开。",
+          "characters": [
+            "老墨",
+            "林昭"
+          ],
+          "action": "抬手指天、衣袍被风撕开",
+          "dialogue": "老墨：别躲。吞下去！",
+          "camera": "中景/背光剪影",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "以雷炼剑",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "林昭咬牙仰头，喉间低吼，第二道锁在雷光里崩断，锁链纹把雷光收进骨血，瞳孔变作雷色。",
+          "visual": "林昭咬牙仰头，喉间低吼，第二道锁在雷光里崩断，锁链纹把雷光收进骨血，瞳孔变作雷色。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "仰头低吼、第二道锁崩断、雷光入体",
+          "dialogue": "林昭：第二道……也断了。",
+          "camera": "大特写/推近",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "以雷炼剑",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "他抬手一挥，掌心雷光凝成一把长刀斜劈出去，整片雷云被从中劈开。",
+          "visual": "他抬手一挥，掌心雷光凝成一把长刀斜劈出去，整片雷云被从中劈开。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "抬手凝刀、斜劈雷云",
+          "dialogue": "",
+          "camera": "全景/仰拍甩镜",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "以雷炼剑",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "云开天晴，一缕残余雷光落在他肩头蜷成小兽形状，他第一次笑了，眼角挂着泪。",
+          "visual": "云开天晴，一缕残余雷光落在他肩头蜷成小兽形状，他第一次笑了，眼角挂着泪。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "雷光落肩蜷成兽形、他笑起来",
+          "dialogue": "林昭：原来雷，也会认人。",
+          "camera": "特写/浅景深固定",
+          "emotion": "",
+          "act_id": "breakthrough",
+          "act_title": "以雷炼剑",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E09",
+      "title": "一剑压全宗",
+      "status": "planned",
+      "publish_title": "他回宗那天，全宗长老跪着迎",
+      "cover_text": "跪着迎",
+      "creator_goal": "兑现最强打脸爽点，让宗门权力结构当场崩塌，抛出「天道备份」新悬念。",
+      "ending_hook": "掌门跪地说出：「你不是天弃之子，你是天道的备份。」",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "山门前百名弟子拔剑齐指，林昭一步踏上石阶，剑尖在晨光里抖成一片寒芒。",
+          "visual": "山门前百名弟子拔剑齐指，林昭一步踏上石阶，剑尖在晨光里抖成一片寒芒。",
+          "characters": [
+            "林昭",
+            "青冥弟子"
+          ],
+          "action": "拔剑齐指、踏阶而上",
+          "dialogue": "",
+          "camera": "中景/低角度推轨",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "一剑压全宗",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "清晨青冥剑宗山门，晨雾未散，千级石阶直上云端，云海翻着金边。",
+          "visual": "清晨青冥剑宗山门，晨雾未散，千级石阶直上云端，云海翻着金边。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "云雾流动、金边浮动",
+          "dialogue": "",
+          "camera": "大远景/航拍上升",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "一剑压全宗",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "数十名长老联手布下剑阵镇压，林昭抬手一记雷刀，剑阵如琉璃碎裂，光屑四散。",
+          "visual": "数十名长老联手布下剑阵镇压，林昭抬手一记雷刀，剑阵如琉璃碎裂，光屑四散。",
+          "characters": [
+            "长老",
+            "林昭"
+          ],
+          "action": "剑阵展开、雷刀劈碎",
+          "dialogue": "长老：镇压！",
+          "camera": "全景/高速摄影",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "一剑压全宗",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "严崇跌坐在碎剑堆里，铁面裂开一道缝，瞳孔放大，手撑着地面往后退。",
+          "visual": "严崇跌坐在碎剑堆里，铁面裂开一道缝，瞳孔放大，手撑着地面往后退。",
+          "characters": [
+            "严崇"
+          ],
+          "action": "跌坐、撑地后退",
+          "dialogue": "严崇：不可能……",
+          "camera": "特写/俯拍",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "一剑压全宗",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "赵乾跪爬着扑到林昭脚边磕头，林昭目不斜视跨过他，靴底碾过一片碎玉。",
+          "visual": "赵乾跪爬着扑到林昭脚边磕头，林昭目不斜视跨过他，靴底碾过一片碎玉。",
+          "characters": [
+            "赵乾",
+            "林昭"
+          ],
+          "action": "跪爬磕头、跨步越过",
+          "dialogue": "赵乾：饶命！饶命！",
+          "camera": "中景/侧跟",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "一剑压全宗",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "掌门玄尘子双膝跪地，额头磕在石阶上，抬头说话，晨光刺得他睁不开眼。",
+          "visual": "掌门玄尘子双膝跪地，额头磕在石阶上，抬头说话，晨光刺得他睁不开眼。",
+          "characters": [
+            "玄尘子",
+            "林昭"
+          ],
+          "action": "双膝跪地、额头触石",
+          "dialogue": "玄尘子：你不是天弃之子……你是天道的备份。",
+          "camera": "特写/浅景深俯拍",
+          "emotion": "",
+          "act_id": "confrontation",
+          "act_title": "一剑压全宗",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E10",
+      "title": "天梯尽头",
+      "status": "planned",
+      "publish_title": "天梯尽头，全是和他一样的人的骨头",
+      "cover_text": "天梯尽头",
+      "creator_goal": "抬升世界观，揭示历代天弃之子都被抹杀，并完成老墨身份反转。",
+      "ending_hook": "老墨摘下眼布，露出一双和他一模一样的雷纹眼。",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "林昭抬脚踏上第一级白玉阶，脚下云海轰然炸开，衣袍被罡风猛地掀起。",
+          "visual": "林昭抬脚踏上第一级白玉阶，脚下云海轰然炸开，衣袍被罡风猛地掀起。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "踏阶、云海炸开",
+          "dialogue": "",
+          "camera": "中景/仰拍",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "天梯尽头",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "云海之上白玉天梯直插天穹，看不到尽头，金霞铺满台阶，风把云吹成河流。",
+          "visual": "云海之上白玉天梯直插天穹，看不到尽头，金霞铺满台阶，风把云吹成河流。",
+          "characters": [],
+          "action": "云河奔涌、金霞流动",
+          "dialogue": "",
+          "camera": "大远景/航拍拉升",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "天梯尽头",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "他一步步踏阶而上，玉阶被踩出裂纹，身后宗门缩成一个黑点，脚下云层翻涌。",
+          "visual": "他一步步踏阶而上，玉阶被踩出裂纹，身后宗门缩成一个黑点，脚下云层翻涌。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "拾级而上、玉阶开裂",
+          "dialogue": "",
+          "camera": "全景/背后跟拍",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "天梯尽头",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "天梯尽头的骸骨长廊，数十具白骨靠壁而坐，每具胸口都嵌着一段断裂的锁链。",
+          "visual": "天梯尽头的骸骨长廊，数十具白骨靠壁而坐，每具胸口都嵌着一段断裂的锁链。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "穿行长廊、锁链残片轻晃",
+          "dialogue": "林昭：第九个……我是第九个？",
+          "camera": "全景/缓慢横移",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "天梯尽头",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "一具白骨的手骨攥着一块残碑，碑上刻着「第九个」三字，指骨已经嵌进石缝。",
+          "visual": "一具白骨的手骨攥着一块残碑，碑上刻着「第九个」三字，指骨已经嵌进石缝。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "手骨攥碑、尘屑掉落",
+          "dialogue": "",
+          "camera": "大特写/微距",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "天梯尽头",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "老墨在长廊尽头解下蒙眼的旧布，睁开眼，瞳孔是与林昭相同的雷纹，金光在纹路里流动。",
+          "visual": "老墨在长廊尽头解下蒙眼的旧布，睁开眼，瞳孔是与林昭相同的雷纹，金光在纹路里流动。",
+          "characters": [
+            "老墨",
+            "林昭"
+          ],
+          "action": "解下眼布、睁眼露雷纹",
+          "dialogue": "老墨：我是第一个。",
+          "camera": "特写/正面推近",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "天梯尽头",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E11",
+      "title": "第三道锁",
+      "status": "planned",
+      "publish_title": "最后一道锁断的时候，天道亲自来了",
+      "cover_text": "第三道锁",
+      "creator_goal": "决战与牺牲，主角主动解封以身为饵，天道第一次以人形降世。",
+      "ending_hook": "封印全崩，天穹金眼化作人形落地，单膝跪在他面前。",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "天穹裂开巨大缺口，金色雨水倒灌人间，白衣无面的天道使者从裂缝里缓缓垂落。",
+          "visual": "天穹裂开巨大缺口，金色雨水倒灌人间，白衣无面的天道使者从裂缝里缓缓垂落。",
+          "characters": [
+            "天道使者"
+          ],
+          "action": "裂口张开、金雨倒灌",
+          "dialogue": "天道使者：天弃之子，归位。",
+          "camera": "远景/仰拍",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "第三道锁",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "天穹裂口下方，金雨落在焦土上冒起白烟，云层被撕成碎片，光柱贯穿天地。",
+          "visual": "天穹裂口下方，金雨落在焦土上冒起白烟，云层被撕成碎片，光柱贯穿天地。",
+          "characters": [],
+          "action": "金雨落土冒烟、光柱摇晃",
+          "dialogue": "",
+          "camera": "大远景/垂直俯拍",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "第三道锁",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "使者抬手一指，金光贯穿老墨胸口，铁杖断成两截落地，老人跪倒，血滴在焦土上。",
+          "visual": "使者抬手一指，金光贯穿老墨胸口，铁杖断成两截落地，老人跪倒，血滴在焦土上。",
+          "characters": [
+            "天道使者",
+            "老墨",
+            "林昭"
+          ],
+          "action": "一指贯穿、铁杖断裂",
+          "dialogue": "老墨：锁……是门。别开太久。",
+          "camera": "中景/高速",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "第三道锁",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "林昭低头看胸口，第三道锁正在崩解，金光从裂缝里漏出，映亮他半张脸和发红的眼眶。",
+          "visual": "林昭低头看胸口，第三道锁正在崩解，金光从裂缝里漏出，映亮他半张脸和发红的眼眶。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "低头、锁链崩解、金光漏出",
+          "dialogue": "",
+          "camera": "大特写/推近",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "第三道锁",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "他抬手捏碎最后一道锁，雷海冲天而起，把白衣使者撕成漫天金屑，云层当场退开。",
+          "visual": "他抬手捏碎最后一道锁，雷海冲天而起，把白衣使者撕成漫天金屑，云层当场退开。",
+          "characters": [
+            "林昭",
+            "天道使者"
+          ],
+          "action": "捏碎锁链、雷海冲天",
+          "dialogue": "林昭：那就都别活了。",
+          "camera": "全景/仰拍环绕",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "第三道锁",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "雷海散尽，天穹金眼闭合又睁开，金光凝成一个金袍人形落在他面前，单膝跪下低头行礼。",
+          "visual": "雷海散尽，天穹金眼闭合又睁开，金光凝成一个金袍人形落在他面前，单膝跪下低头行礼。",
+          "characters": [
+            "金袍人形",
+            "林昭"
+          ],
+          "action": "金光凝聚成形、单膝跪地",
+          "dialogue": "金袍人形：终于，见到你了。",
+          "camera": "中景/仰拍缓推",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "第三道锁",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    },
+    {
+      "episode_code": "E12",
+      "title": "封印之外",
+      "status": "planned",
+      "publish_title": "他封住自己，才发现天道一直想进这扇门",
+      "cover_text": "门在响",
+      "creator_goal": "终局反转：他才是那个威胁，天道抹杀是自保；他自愿重铸封印，留下续作钩子。",
+      "ending_hook": "黑屏，他封死的胸口传来敲门声：「找到你了。」",
+      "shots": [
+        {
+          "shot_id": "S01",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "黑水倒映星河，金袍人形在水中央缓缓抬头，衣袍不沾一滴水，四周静得听不见风。",
+          "visual": "黑水倒映星河，金袍人形在水中央缓缓抬头，衣袍不沾一滴水，四周静得听不见风。",
+          "characters": [
+            "金袍人形",
+            "林昭"
+          ],
+          "action": "缓缓抬头、水面涟漪扩散",
+          "dialogue": "",
+          "camera": "中景/对称构图",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "封印之外",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S02",
+          "duration": 7.0,
+          "shot_type": "establishing",
+          "scene": "虚无之境全景，黑色水面如镜倒映整条星河，四周无天无地，只剩一片死寂。",
+          "visual": "虚无之境全景，黑色水面如镜倒映整条星河，四周无天无地，只剩一片死寂。",
+          "characters": [],
+          "action": "星河倒影缓慢流动",
+          "dialogue": "",
+          "camera": "大远景/缓慢横移",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "封印之外",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S03",
+          "duration": 7.0,
+          "shot_type": "dialogue",
+          "scene": "金袍人形与林昭隔水对峙，他抬起头开口，水面随话音荡开一圈圈涟漪。",
+          "visual": "金袍人形与林昭隔水对峙，他抬起头开口，水面随话音荡开一圈圈涟漪。",
+          "characters": [
+            "金袍人形",
+            "林昭"
+          ],
+          "action": "抬头开口、涟漪荡开",
+          "dialogue": "金袍人形：我不是来杀你，我是来拦你。",
+          "camera": "中景/正反打",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "封印之外",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S04",
+          "duration": 7.0,
+          "shot_type": "key_moment",
+          "scene": "水面炸开一段闪回：失控的林昭立在废墟中央，山河成灰，九位大能才合力铸锁。",
+          "visual": "水面炸开一段闪回：失控的林昭立在废墟中央，山河成灰，九位大能才合力铸锁。",
+          "characters": [
+            "林昭"
+          ],
+          "action": "闪回画面翻涌、废墟崩塌",
+          "dialogue": "金袍人形：那一世，你吞了半个人间。",
+          "camera": "全景/闪回手持",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "封印之外",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S05",
+          "duration": 7.0,
+          "shot_type": "action",
+          "scene": "林昭抬手从体内抽出锁链，一根根回钉进胸口，雷海倒卷回身，他咬紧牙没出声。",
+          "visual": "林昭抬手从体内抽出锁链，一根根回钉进胸口，雷海倒卷回身，他咬紧牙没出声。",
+          "characters": [
+            "林昭",
+            "金袍人形"
+          ],
+          "action": "抽出锁链、回钉胸口",
+          "dialogue": "林昭：这次，我自己锁。",
+          "camera": "中景/侧拍",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "封印之外",
+          "sound_cue": "",
+          "priority": "normal"
+        },
+        {
+          "shot_id": "S06",
+          "duration": 7.0,
+          "shot_type": "closeup",
+          "scene": "封印合拢，金袍人形在岸边拱手微笑；画面转黑，只剩他封死的胸口特写，锁链缝里金光一明一暗，像有人在敲。",
+          "visual": "封印合拢，金袍人形在岸边拱手微笑；画面转黑，只剩他封死的胸口特写，锁链缝里金光一明一暗，像有人在敲。",
+          "characters": [
+            "林昭",
+            "金袍人形"
+          ],
+          "action": "封印合拢、画面转黑、胸口起伏",
+          "dialogue": "金袍人形：下次见。画外音：找到你了。",
+          "camera": "大特写/固定",
+          "emotion": "",
+          "act_id": "ascension",
+          "act_title": "封印之外",
+          "sound_cue": "",
+          "priority": "normal"
+        }
+      ]
+    }
+  ]
+}
