@@ -96,3 +96,15 @@ local_providers/comfyui_runtime/ComfyUI/.venv/
 audio/
 # 工具脚本（内部用）
 scripts/skill_master_check.py
+
+# 运行时日志与报告（2026-11-13 补：旧规则只忽略 *.json，导致 comfyui_service_*.log 会误入库）
+reports/*.log
+reports/git-recovery/
+reports/pip-freeze-*.txt
+# 编辑器/AI 工具留下的 package 备份
+*.bak-codex-major
+*.bak-*
+# 内部方法论 SOP（基于全网资料整理的产线秘籍，不随开源仓库发布）
+docs/AI*SOP.md
+# ComfyUI runtime 软链（指向 112G 的 comfyui_runtime，克隆后为断链，不入库）
+local_providers/comfyui/runtime/

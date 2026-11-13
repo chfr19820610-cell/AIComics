@@ -1,0 +1,104 @@
+{
+ "1": {
+  "class_type": "UnetLoaderGGUF",
+  "inputs": {
+   "unet_name": "MiniMax-H3-fl2va-Q4_0.gguf",
+   "weight_dtype": "default"
+  }
+ },
+ "2": {
+  "class_type": "CLIPLoaderGGUF",
+  "inputs": {
+   "clip_name": "MiniMax-H3-encoder-Q4_K_M.gguf",
+   "type": "minimax"
+  }
+ },
+ "3": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "{{prompt}}",
+   "clip": [
+    "2",
+    0
+   ]
+  }
+ },
+ "4": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "模糊",
+   "clip": [
+    "2",
+    0
+   ]
+  }
+ },
+ "5": {
+  "class_type": "EmptyMiniMaxH3LatentAV",
+  "inputs": {
+   "width": 320,
+   "height": 568,
+   "length": 24
+  }
+ },
+ "6": {
+  "class_type": "KSampler",
+  "inputs": {
+   "seed": 11,
+   "steps": 2,
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "normal",
+   "denoise": 1.0,
+   "model": [
+    "1",
+    0
+   ],
+   "positive": [
+    "3",
+    0
+   ],
+   "negative": [
+    "4",
+    0
+   ],
+   "latent_image": [
+    "5",
+    0
+   ]
+  }
+ },
+ "7": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+  }
+ },
+ "8": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "6",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "9": {
+  "class_type": "SaveAnimatedWEBP",
+  "inputs": {
+   "images": [
+    "8",
+    0
+   ],
+   "filename_prefix": "{{output_prefix}}",
+   "fps": 8.0,
+   "lossless": false,
+   "quality": 80,
+   "method": "default"
+  }
+ }
+}

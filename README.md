@@ -73,11 +73,17 @@
 | Painterly 3D Noir 风格 (E01) | Painterly 3D Noir 风格 (E03) |
 |---|---|
 | ![E01 预览](assets/screenshots/preview_e01.jpg) | ![E03 预览](assets/screenshots/preview_e03.jpg) |
-| E01 · 00:24 · 1280×720 | E03 · 01:31 · 1280×720 |
+| E01 · 20s · 1920×1080 | E03 · 49s · 448×800 |
 
-> 🎥 **5 集完整漫剧已产出** — 《我变成僵尸后全校跪求我别死》全 5 集，每集 6 个分镜，总计 **4 分 24 秒** 完整视频内容。
+> 🎥 **当前仓库内的真实成片**（`state/` 为运行时目录，`git clone` 后不存在，需自行产出）
+> - `state/releases/E01_full.mp4` — **1920×1080 / 20.06s**（历史发布版，2026-08-02）
+> - `state/runs/E01_full/composite/E01_full.mp4` — **448×800 / 49.39s**（近期管线版，2026-10-19）
+> - `state/runs/E03/composite/E03.mp4` — **448×800 / 49.39s**（近期管线版，2026-10-22）
+>
+> ⚠️ 近期管线输出为 **448×800 / ≈261 kbps**，低于 `quality_gate` 的 720p/500kbps 门限，
+> 质量门会判 `WARN`（码率不足）。要出 1080p 成片需在 ComfyUI 侧提高分辨率与码率档位。
+> 规格可用 `aicomic` 或 `ffmpeg -i <file>` 复核。
 > 风格: **Painterly 3D Noir** (`#1A1A2E` `#16213E` `#E94560` `#0F3460` `#FFD700`)
-> 产出路径: [`state/releases/`](state/releases/) · [`state/produced_videos/`](state/produced_videos/)
 
 ---
 
@@ -99,7 +105,7 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v5.1 已支持�
 
 ---
 
-## 🆕 v5.0 + v5.1 + v5.2 — 30新模块 · 303新测试 · 1357全绿
+## 🆕 v5.0 + v5.1 + v5.2 — 30新模块 · 303新测试 · **当前 1495 全绿**
 
 基于 12 竞品深度调研 + DSH团队 godogen (7K⭐) 方法论对照，分5方向实施。
 
@@ -186,7 +192,7 @@ AIComics 是一个**全本地运行**的 AI 漫剧创作系统。v5.1 已支持�
 
 ### 测试
 
-- v4.0 基线 1036 → v5.0 **1133** → v5.1 **1257** → v5.2 **1357 passed, 1 skipped, 0 failed**（零回归）
+- v4.0 基线 1036 → v5.0 **1133** → v5.1 **1257** → v5.2 **1357** → 当前 **1494 passed, 1 skipped, 0 failed**（2026-11-13 实测）
 - 30 个新模块 · ~9,600 行新代码 · 321 个新测试（135 v5.x + 86 CLI + 82 v5.2 智能层 + 18 v5.2 管线集成）
 
 ### v5.2 — Jev System One 智能层 (8模块)
@@ -513,7 +519,7 @@ docker compose logs -f
 | 指标 | 值 |
 |------|----|
 | **版本** | **5.2.0** |
-| 测试通过率 | **1357/1358** (99.9%) |
+| 测试通过率 | **1494/1495** (99.93%，2026-11-13 实测) |
 | 验证脚本 | **23/23** (100% 端到端) |
 | API 端点 | **63** 个（含 17 个 v5.x 端点） |
 | 视频产出 | **5 集完整漫剧**（4 分 24 秒） |
@@ -526,7 +532,7 @@ docker compose logs -f
 ## 🧪 运行测试
 
 ```bash
-# 运行全部 1357 个测试
+# 运行全部 1495 个测试
 PYTHONPATH="src" .venv/bin/python -m pytest tests/ -v
 
 # 快速模式（跳过耗时测试）
@@ -569,7 +575,7 @@ tail -f logs/vf_loop.log
 | **🎬 视频合成管线** | 端到端视频合成：图片→场景→字幕→配音→合成，支持批量处理 |
 | **🏗️ 声明式管线** | YAML 清单定义生产流程，审批门+断点续跑+协调器，管线可编排可中断可恢复 |
 | **🎨 ComfyUI 真实出图** | SDXL 25步 1024×1024 真实出图验证脚本 + Docker 构建代理修复 |
-| **✅ 1357 测试覆盖** | 从 314 提升至 1357 测试，覆盖 Provider 抽象层、角色系统、分镜版本管理、管线基础设施、v4.0-v5.2 全部功能（含 Jev 智能层） |
+| **✅ 1495 测试覆盖** | 从 314 提升至 1495 测试，覆盖 Provider 抽象层、角色系统、分镜版本管理、管线基础设施、v4.0-v5.2 全部功能（含 Jev 智能层） |
 | **🎨 风格轮换引擎** | 自动轮换视觉风格和色板，每条漫剧可拥有不同艺术风格 |
 | **🔄 无限自循环** | vf_master_loop 后台守护，自动生产+补充+发布，无需人工干预 |
 | **🐳 Docker 全栈部署** | docker-compose 一键启动（前端+后端+PostgreSQL+Redis），支持 local/production 双环境 |
@@ -604,7 +610,7 @@ graph LR
     WEB --> BE["backend/ (FastAPI)"]
     WEB --> FE["frontend/ (React SPA)"]
 
-    TST --> T1357["1357 个测试用例"]
+    TST --> T1495["1495 个测试用例"]
 
     ST --> REL["releases/ (视频产出)"]
     ST --> PV["produced_videos/"]
@@ -622,7 +628,7 @@ graph LR
 | `desktop/` | Electron 桌面端 (v4.0) |
 | `config/` | 配置文件（ComfyUI 路径、Provider 配置、6题材模板） |
 | `scripts/` | 运维脚本（vf_master_loop、启动脚本） |
-| `tests/` | 1357 个测试用例 |
+| `tests/` | 1495 个测试用例 |
 | `state/releases/` | 已合成的 MP4 视频产出 |
 | `state/produced_videos/` | 视频工厂产出目录 |
 

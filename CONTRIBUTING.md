@@ -85,6 +85,16 @@ src/aicomic/
 - [Open a discussion](https://github.com/chfr19820610-cell/AIComics/discussions)
 - [Email](mailto:chfr19820610@gmail.com)
 
-## 📄 License
+## 📄 License & Contributor Agreement
 
-By contributing, you agree your contributions are licensed under Apache 2.0.
+By contributing to AIComics, you agree that:
+
+1. **Your contributions are licensed under Apache 2.0** — All contributions are licensed under the project's Apache License 2.0.
+
+2. **You hold the copyright to your contributions** — You retain copyright in your contributions, but grant a perpetual, worldwide, non-exclusive, royalty-free license to use, modify, and distribute your contributions under the Apache 2.0 license.
+
+3. **Your contributions are original or properly licensed** — You represent that your contributions are your own original work or that you have the necessary rights to contribute them, and that they do not infringe any third-party intellectual property rights.
+
+4. **No patent retaliation** — Consistent with Apache 2.0, you grant a patent license for any patents you hold that are necessary to use your contributions.
+
+For the full license terms, see [LICENSE](LICENSE).

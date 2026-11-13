@@ -40,5 +40,13 @@ RUN mkdir -p reports state logs \
     && python -m pip install --no-cache-dir --constraint requirements-lock.txt -e ".[web,validation,local-providers]"
 
 ENV PYTHONPATH=/app/src:/app
+EXPOSE 7860
 
-CMD ["sh", "-lc", "python scripts/run_demo_validation.py && python scripts/validate_full_system_suite.py"]
+# 默认启动 Web 服务（与 Dockerfile.cloud 一致）。compose 文件里的 `command:`
+# 会覆盖此行，因此那里可以保持自定义启动方式不变。
+#
+# 注意：这里**不再**把一次性验证脚本当 CMD —— 那会让 `docker run` 跑完就退出，
+# 看起来像"容器起不来"。要跑自检请显式执行：
+#   docker run --rm aicomic-system:1.0.0-production \
+#     sh -lc "python scripts/run_demo_validation.py && python scripts/validate_full_system_suite.py"
+CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
