@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any
 
@@ -19,6 +20,38 @@ DEFAULT_JWT_SECRETS = {
     "dev-secret",
     "secret",
 }
+
+# Placeholder shapes commonly shipped in `.env.example` / `*.example.yaml`.
+# These are dangerous precisely because they LOOK long and random enough to
+# satisfy a bare `len(secret) < 32` check — e.g.
+# `replace-with-at-least-64-random-hex-chars` is 41 chars and slipped through.
+PLACEHOLDER_SECRET_PATTERNS: tuple[re.Pattern[str], ...] = (
+    re.compile(r"^\s*replace[-_ ]?with\b", re.IGNORECASE),
+    re.compile(r"^\s*change[-_ ]?(me|this)\b", re.IGNORECASE),
+    re.compile(r"\byour[-_ ]?(secret|key|token|password|api)\b", re.IGNORECASE),
+    re.compile(r"^\s*<[^>]*>\s*$"),
+    re.compile(r"^\s*(secret|password|token|placeholder|todo|fixme|xxx+)\s*$", re.IGNORECASE),
+    # whole-value placeholder words (hyphen/underscore separated), e.g.
+    # "my-placeholder-secret" — but NOT a long random key that merely contains
+    # the substring "random".
+    re.compile(
+        r"^[a-z0-9_-]*[-_](placeholder|dummy|sample|example|changeme|fixme|todo)[-_][a-z0-9_-]*$",
+        re.IGNORECASE,
+    ),
+)
+
+
+def is_placeholder_secret(value: str) -> bool:
+    """True when `value` looks like an unedited template placeholder.
+
+    An empty value is handled by the caller's length check; this helper targets
+    non-empty strings that merely *look* strong (length >= 32) but are copied
+    verbatim from an example file.
+    """
+    candidate = (value or "").strip()
+    if not candidate:
+        return False
+    return any(pattern.search(candidate) for pattern in PLACEHOLDER_SECRET_PATTERNS)
 
 
 def parse_scalar(raw_value: str) -> Any:
@@ -146,7 +179,12 @@ def collect_auth_risks(web_config_path: Path) -> list[dict[str, Any]]:
                 True,
             )
         )
-    if jwt_secret in DEFAULT_JWT_SECRETS or "${" in jwt_secret or len(jwt_secret) < 32:
+    if (
+        jwt_secret in DEFAULT_JWT_SECRETS
+        or "${" in jwt_secret
+        or len(jwt_secret) < 32
+        or is_placeholder_secret(jwt_secret)
+    ):
         risks.append(
             make_risk(
                 "prod-jwt-secret-unsafe",
@@ -155,6 +193,25 @@ def collect_auth_risks(web_config_path: Path) -> list[dict[str, Any]]:
                 "critical",
                 f"{web_config_path}: auth.jwt_secret is default, placeholder, or too short.",
                 "Set AICOMIC_JWT_SECRET to a long random secret and load it through the production web config.",
+                True,
+            )
+        )
+
+    login_password = str(auth.get("password_user_password", ""))
+    if bool(auth.get("password_login_enabled", False)) and (
+        not login_password
+        or "${" in login_password
+        or len(login_password) < 12
+        or is_placeholder_secret(login_password)
+    ):
+        risks.append(
+            make_risk(
+                "prod-login-password-unsafe",
+                "Password login uses a placeholder or weak password",
+                "web_auth",
+                "critical",
+                f"{web_config_path}: auth.password_user_password is unset, placeholder, or shorter than 12 chars.",
+                "Set AICOMIC_NORMAL_USER_PASSWORD to a strong unique password and load it through the production web config.",
                 True,
             )
         )
