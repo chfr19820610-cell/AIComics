@@ -160,23 +160,42 @@ def create_app(state_dir: Path | str = "state") -> FastAPI:
         report = detector.detect_from_metadata(req.frame_metadata)
         return report.to_dict()
 
-    # ── Quality Gate (ffprobe) ─────────────────────────────────────────
+    # ── Quality Gate (ffprobe, with ffmpeg-banner fallback) ────────────
 
     @app.post("/api/quality/check")
     def quality_check(req: QualityCheckRequest) -> dict[str, Any]:
-        """Check video quality via ffprobe."""
+        """Check video quality.
+
+        Never raises: a broken probe toolchain must surface as a FAIL report with
+        an explicit `probe_unavailable` issue instead of an HTTP 500 (and instead
+        of a silently green result).
+        """
         gate = FFprobeGate(
             min_resolution=req.min_resolution,
             min_framerate=req.min_framerate,
             min_bitrate_kbps=req.min_bitrate_kbps,
         )
-        report = gate.check(req.video_path, expected_duration=req.expected_duration)
+        try:
+            report = gate.check(req.video_path, expected_duration=req.expected_duration)
+        except Exception as exc:  # noqa: BLE001 - probe failures are data, not crashes
+            return {
+                "status": "FAIL",
+                "file_path": str(req.video_path),
+                "metrics": {},
+                "issues": [f"probe_unavailable: {type(exc).__name__}: {exc}"],
+                "confidence": 0.0,
+            }
         return report.to_dict()
 
     @app.get("/api/quality/available")
     def quality_available() -> dict[str, Any]:
-        """Check if ffprobe is available on this system."""
-        return {"ffprobe_available": FFprobeGate.is_available()}
+        """Report probe availability plus which backend would be used."""
+        backend = FFprobeGate.probe_backend()
+        return {
+            "ffprobe_available": backend == "ffprobe",
+            "probe_available": backend != "none",
+            "probe_backend": backend,
+        }
 
     # ── Silent Failure Check (v5.1) ────────────────────────────────────
 

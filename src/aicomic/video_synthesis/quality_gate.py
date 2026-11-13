@@ -7,17 +7,177 @@ Uses ffprobe (bundled with FFmpeg) to inspect video metadata:
   - duration (matches expected ±10%)
   - audio/video stream sync
 
+Probe backends (ordered, first healthy wins):
+  1. ffprobe — full fidelity (`-show_format -show_streams` JSON)
+  2. ffmpeg banner — fallback when ffprobe is missing OR unusable
+     (e.g. an x86_64 ffprobe on an arm64 host without Rosetta, which fails
+     with `Bad CPU type in executable`). `ffmpeg -hide_banner -i <file>`
+     prints Duration / bitrate / resolution / fps / codec / audio presence to
+     stderr in ~40ms and then exits non-zero; we normalize that banner into
+     the same shape as ffprobe JSON.
+  Neither backend silently passes: if both fail, the report carries an explicit
+  `probe_unavailable` issue instead of a green result.
+
 Returns PASS/WARN/FAIL with detailed metrics.
 """
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+# ── probe backend resolution ─────────────────────────────────────────────
+
+_FFMPEG_PATH_CACHE: str | None = None
+_FFPROBE_HEALTH_CACHE: bool | None = None
+
+_DURATION_RE = re.compile(r"Duration:\s*(\d+):(\d+):(\d+)\.(\d+)")
+_FORMAT_BITRATE_RE = re.compile(r"Duration:.*?bitrate:\s*(\d+)\s*kb/s")
+_VIDEO_STREAM_RE = re.compile(
+    r"Stream #\d+:\d+(?:\[[^\]]*\])?(?:\([^)]*\))?:\s*Video:\s*([A-Za-z0-9_]+).*?(\d{2,5})x(\d{2,5})"
+)
+_FPS_RE = re.compile(r"([\d.]+)\s+fps")
+_AUDIO_STREAM_RE = re.compile(
+    r"Stream #\d+:\d+(?:\[[^\]]*\])?(?:\([^)]*\))?:\s*Audio:\s*([A-Za-z0-9_]+)"
+)
+
+
+def _ffmpeg_bin() -> str:
+    """Resolve an executable ffmpeg (prefers imageio-ffmpeg's bundled build)."""
+    global _FFMPEG_PATH_CACHE
+    if _FFMPEG_PATH_CACHE is not None:
+        return _FFMPEG_PATH_CACHE
+    resolved = ""
+    try:
+        import imageio_ffmpeg
+
+        resolved = imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:
+        resolved = shutil.which("ffmpeg") or "ffmpeg"
+    _FFMPEG_PATH_CACHE = resolved
+    return resolved
+
+
+def _ffprobe_bin() -> str | None:
+    """Resolve an ffprobe candidate path, or None when nothing is discoverable."""
+    found = shutil.which("ffprobe")
+    if found:
+        return found
+    try:
+        candidate = Path(_ffmpeg_bin()).with_name("ffprobe")
+        if candidate.exists():
+            return str(candidate)
+    except Exception:
+        pass
+    return None
+
+
+def _ffprobe_healthy() -> bool:
+    """Probe ffprobe once for real (cached) — `which` alone yields false positives.
+
+    A binary can exist on PATH yet be unrunnable (wrong CPU arch, missing shared
+    library, quarantine bit). Only an actual `ffprobe -version` with rc==0 counts.
+    """
+    global _FFPROBE_HEALTH_CACHE
+    if _FFPROBE_HEALTH_CACHE is not None:
+        return _FFPROBE_HEALTH_CACHE
+    binary = _ffprobe_bin()
+    healthy = False
+    if binary:
+        try:
+            proc = subprocess.run(
+                [binary, "-version"],
+                capture_output=True,
+                text=True,
+                timeout=15,
+            )
+            healthy = proc.returncode == 0 and "ffprobe" in (proc.stdout or "").lower()
+        except (OSError, subprocess.SubprocessError):
+            healthy = False
+    _FFPROBE_HEALTH_CACHE = healthy
+    return healthy
+
+
+def _reset_probe_cache() -> None:
+    """Clear cached backend probes (test seam; also useful after installing ffprobe)."""
+    global _FFMPEG_PATH_CACHE, _FFPROBE_HEALTH_CACHE
+    _FFMPEG_PATH_CACHE = None
+    _FFPROBE_HEALTH_CACHE = None
+
+
+def _probe_via_ffprobe(binary: str, video: Path) -> dict[str, Any]:
+    result = subprocess.run(
+        [
+            binary,
+            "-v", "quiet",
+            "-print_format", "json",
+            "-show_format",
+            "-show_streams",
+            str(video),
+        ],
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"ffprobe failed: {(result.stderr or '')[:200]}")
+    return json.loads(result.stdout)
+
+
+def _probe_via_banner(video: Path) -> dict[str, Any]:
+    """Parse `ffmpeg -hide_banner -i <file>` stderr into ffprobe-shaped JSON.
+
+    ffmpeg exits non-zero here on purpose (no output target given); the banner on
+    stderr is still complete, and parsing takes ~40ms regardless of duration
+    because no decoding happens.
+    """
+    proc = subprocess.run(
+        [_ffmpeg_bin(), "-hide_banner", "-i", str(video)],
+        capture_output=True,
+        text=True,
+        timeout=60,
+    )
+    banner = f"{proc.stderr or ''}{proc.stdout or ''}"
+    if not banner.strip():
+        raise RuntimeError("ffmpeg banner probe produced no output")
+
+    format_info: dict[str, Any] = {}
+    match = _DURATION_RE.search(banner)
+    if match:
+        hours, minutes, seconds, hundredths = match.groups()
+        total = int(hours) * 3600 + int(minutes) * 60 + int(seconds) + int(hundredths) / 100
+        format_info["duration"] = f"{total:.2f}"
+    bitrate_match = _FORMAT_BITRATE_RE.search(banner)
+    if bitrate_match:
+        format_info["bit_rate"] = str(int(bitrate_match.group(1)) * 1000)
+
+    streams: list[dict[str, Any]] = []
+    video_match = _VIDEO_STREAM_RE.search(banner)
+    if video_match:
+        codec, width, height = video_match.groups()
+        stream: dict[str, Any] = {
+            "codec_type": "video",
+            "codec_name": codec,
+            "width": int(width),
+            "height": int(height),
+        }
+        fps_match = _FPS_RE.search(banner[video_match.start():])
+        if fps_match:
+            stream["r_frame_rate"] = f"{fps_match.group(1)}/1"
+        streams.append(stream)
+
+    audio_match = _AUDIO_STREAM_RE.search(banner)
+    if audio_match:
+        streams.append({"codec_type": "audio", "codec_name": audio_match.group(1)})
+
+    if not format_info and not streams:
+        raise RuntimeError("ffmpeg banner had no recognizable Duration/Stream lines")
+
+    return {"format": format_info, "streams": streams}
 
 
 
@@ -77,27 +237,68 @@ class FFprobeGate:
 
     @staticmethod
     def is_available() -> bool:
-        """Check if ffprobe is installed."""
-        return shutil.which("ffprobe") is not None
+        """True when a *working* probe backend exists (ffprobe or ffmpeg banner).
+
+        `shutil.which("ffprobe")` alone is a false positive on hosts where the
+        binary exists but cannot execute (wrong CPU arch / no Rosetta). We verify
+        ffprobe by actually running it, and accept ffmpeg's banner parser as the
+        fallback backend.
+        """
+        if _ffprobe_healthy():
+            return True
+        try:
+            proc = subprocess.run(
+                [_ffmpeg_bin(), "-version"],
+                capture_output=True,
+                text=True,
+                timeout=15,
+            )
+            return proc.returncode == 0
+        except (OSError, subprocess.SubprocessError):
+            return False
+
+    @staticmethod
+    def probe_backend() -> str:
+        """Report which backend would be used: `ffprobe`, `ffmpeg-banner`, or `none`."""
+        if _ffprobe_healthy():
+            return "ffprobe"
+        try:
+            proc = subprocess.run(
+                [_ffmpeg_bin(), "-version"],
+                capture_output=True,
+                text=True,
+                timeout=15,
+            )
+            if proc.returncode == 0:
+                return "ffmpeg-banner"
+        except (OSError, subprocess.SubprocessError):
+            pass
+        return "none"
 
     def _probe(self, video_path: Path) -> dict[str, Any]:
-        """Run ffprobe and return parsed metadata."""
-        result = subprocess.run(
-            [
-                "ffprobe",
-                "-v", "quiet",
-                "-print_format", "json",
-                "-show_format",
-                "-show_streams",
-                str(video_path),
-            ],
-            capture_output=True,
-            text=True,
-            timeout=30,
-        )
-        if result.returncode != 0:
-            raise RuntimeError(f"ffprobe failed: {result.stderr[:200]}")
-        return json.loads(result.stdout)
+        """Probe video metadata, falling back to the ffmpeg banner parser.
+
+        Raises RuntimeError only when *both* backends fail, so callers can never
+        mistake a broken toolchain for a passing asset.
+        """
+        errors: list[str] = []
+        binary = _ffprobe_bin()
+        if binary and _ffprobe_healthy():
+            try:
+                return _probe_via_ffprobe(binary, video_path)
+            except (RuntimeError, json.JSONDecodeError, subprocess.TimeoutExpired) as exc:
+                errors.append(f"ffprobe: {exc}")
+        elif binary:
+            errors.append("ffprobe: present on PATH but not runnable")
+
+        try:
+            data = _probe_via_banner(video_path)
+            data["probe_backend"] = "ffmpeg-banner"
+            return data
+        except (RuntimeError, subprocess.TimeoutExpired, OSError) as exc:
+            errors.append(f"ffmpeg-banner: {exc}")
+
+        raise RuntimeError("; ".join(errors) or "no probe backend available")
 
     def check(
         self,
@@ -125,16 +326,16 @@ class FFprobeGate:
             return QualityReport(
                 status="WARN",
                 file_path=str(path),
-                issues=["ffprobe not installed — cannot validate"],
+                issues=["probe_unavailable: neither ffprobe nor ffmpeg is runnable — cannot validate"],
             )
 
         try:
             data = self._probe(path)
-        except (RuntimeError, json.JSONDecodeError, subprocess.TimeoutExpired) as exc:
+        except (RuntimeError, json.JSONDecodeError, subprocess.TimeoutExpired, OSError) as exc:
             return QualityReport(
                 status="FAIL",
                 file_path=str(path),
-                issues=[f"ffprobe error: {exc}"],
+                issues=[f"probe_unavailable: {exc}"],
             )
 
         # Extract metrics
