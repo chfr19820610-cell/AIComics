@@ -1,0 +1,14 @@
+{
+  "episode_code": "E04",
+  "render_mode": "mp4",
+  "output_path": "state/projects/xianxia-12/assets/E04/release_E04.mp4",
+  "report_path": "state/projects/xianxia-12/reports/release_E04.json",
+  "shot_count": 6,
+  "total_frames": 1008,
+  "fps": 24,
+  "used_placeholder_count": 0,
+  "render_profile": "release",
+  "ai_label": {
+    "status": "ok"
+  }
+}
