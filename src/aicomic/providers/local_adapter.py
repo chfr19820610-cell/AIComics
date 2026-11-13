@@ -345,6 +345,68 @@ def limit_clip_tokens(text: str, max_tokens: int = 77) -> str:
     return " ".join(text.split()[:max_tokens])
 
 
+def expand_multi_lora(workflow: dict, lora_names: list[str], lora_strengths: list[float]) -> dict:
+    """把 workflow 里单个 LoraLoader 展开成 N 个串联的 LoraLoader。
+
+    ComfyUI 本身支持多个 LoraLoader 串联叠加风格。这里按配置里的
+    `lora_name`（逗号分隔）与 `lora_strengths` 自动生成节点，避免手工改 workflow。
+
+    - 少于 2 个 LoRA 时原样返回（零开销）
+    - 找不到 LoraLoader 时原样返回（该 workflow 未启用 LoRA）
+    - 串联顺序按配置顺序：先加载的在内层，后加载的在外层
+    """
+    if not lora_names or len(lora_names) < 2:
+        return workflow
+    base_ids = [nid for nid, n in workflow.items()
+                if isinstance(n, dict) and n.get("class_type") == "LoraLoader"]
+    if not base_ids:
+        return workflow
+
+    first = str(sorted(base_ids, key=lambda x: int(x) if str(x).isdigit() else 0)[0])
+    template = workflow[first]
+    src_model = list(template.get("inputs", {}).get("model") or ["1", 0])
+    src_clip = list(template.get("inputs", {}).get("clip") or ["1", 1])
+
+    # 记录哪些节点的 model/clip 引用了原 LoraLoader 输出
+    old_out_model = [first, 0]
+    old_out_clip = [first, 1]
+
+    chain_ids: list[str] = []
+    prev_model, prev_clip = src_model, src_clip
+    next_id = max([int(x) for x in workflow if str(x).isdigit()] or [0]) + 1
+    for i, name in enumerate(lora_names):
+        strength = lora_strengths[i] if i < len(lora_strengths) else lora_strengths[-1]
+        nid = str(next_id + i)
+        workflow[nid] = {
+            "class_type": "LoraLoader",
+            "inputs": {
+                "lora_name": name,
+                "strength_model": strength,
+                "strength_clip": strength,
+                "model": prev_model,
+                "clip": prev_clip,
+            },
+        }
+        chain_ids.append(nid)
+        prev_model = [nid, 0]
+        prev_clip = [nid, 1]
+
+    # 删除原节点，把所有指向它的引用重定向到链尾
+    workflow.pop(first, None)
+    for node in workflow.values():
+        if not isinstance(node, dict):
+            continue
+        ins = node.get("inputs")
+        if not isinstance(ins, dict):
+            continue
+        for k, v in list(ins.items()):
+            if v == old_out_model:
+                ins[k] = prev_model
+            elif v == old_out_clip:
+                ins[k] = prev_clip
+    return workflow
+
+
 def get_comfyui_settings(settings: dict, providers_config_path: Path, payload: dict, provider: str) -> dict:
     section = settings.get(provider, {})
     is_video = provider == LOCAL_COMFYUI_VIDEO_PROVIDER
@@ -383,6 +445,13 @@ def get_comfyui_settings(settings: dict, providers_config_path: Path, payload: d
             # workflow 里保留 LoraLoader 节点而不必维护两份文件。
             "{{lora_name}}": str(section.get("lora_name", "")).strip(),
             "{{lora_strength}}": parse_float(str(section.get("lora_strength", "0.8")), 0.8),
+            # 多 LoRA 链：逗号分隔，与 lora_strengths 按序对应（不足时复用最后一个）
+            "lora_names": [s.strip() for s in str(section.get("lora_name", "")).split(",") if s.strip()],
+            "lora_strengths": [
+                parse_float(s.strip(), 0.8)
+                for s in str(section.get("lora_strengths", "")).split(",")
+                if s.strip()
+            ] or [parse_float(str(section.get("lora_strength", "0.8")), 0.8)],
             "{{output_prefix}}": f"{section.get('output_prefix', 'aicomic')}_{payload.get('episode_code', '')}_{payload.get('shot_id', '')}",
             "{{episode_code}}": str(payload.get("episode_code", "")),
             "{{shot_id}}": str(payload.get("shot_id", "")),
@@ -397,7 +466,15 @@ def load_comfyui_workflow(local_settings: dict) -> dict:
     st = _inspect_workflow_json(wf)
     if not st["workflow_api_format"]:
         raise RuntimeError(f"ComfyUI workflow not usable: {st['workflow_error']}")
-    return substitute_placeholders(deepcopy(json.loads(wf.read_text(encoding="utf-8"))), local_settings["replacements"])
+    workflow = substitute_placeholders(
+        deepcopy(json.loads(wf.read_text(encoding="utf-8"))), local_settings["replacements"])
+    # 多 LoRA 链（2026-11-14）：配置里 lora_name 可逗号分隔多个风格，
+    # 少于 2 个时本调用零开销原样返回。
+    return expand_multi_lora(
+        workflow,
+        list(local_settings.get("lora_names") or []),
+        list(local_settings.get("lora_strengths") or []),
+    )
 
 
 def probe_comfyui_server(base_url: str, timeout: float = 1.0) -> dict:

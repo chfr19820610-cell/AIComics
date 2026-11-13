@@ -139,3 +139,54 @@ class TestEpisode:
         ]
         r = fs.decide_episode(shots, llm_fn=fake)
         assert r["shot_count"] == 2
+
+
+class TestMultiLora:
+    """多 LoRA 链展开测试。"""
+
+    def _wf(self):
+        return {
+            "1": {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": "x.safetensors"}},
+            "2": {"class_type": "CLIPTextEncode", "inputs": {"text": "p", "clip": ["8", 1]}},
+            "5": {"class_type": "KSampler", "inputs": {"model": ["8", 0], "positive": ["2", 0]}},
+            "8": {"class_type": "LoraLoader", "inputs": {
+                "lora_name": "a.safetensors", "strength_model": 0.8, "strength_clip": 0.8,
+                "model": ["1", 0], "clip": ["1", 1]}},
+        }
+
+    def test_single_lora_unchanged(self):
+        from aicomic.providers.local_adapter import expand_multi_lora
+
+        wf = self._wf()
+        out = expand_multi_lora(wf, ["a.safetensors"], [0.8])
+        assert len([k for k, v in out.items() if v.get("class_type") == "LoraLoader"]) == 1
+
+    def test_two_loras_chain(self):
+        from aicomic.providers.local_adapter import expand_multi_lora
+
+        out = expand_multi_lora(self._wf(), ["a.safetensors", "b.safetensors"], [0.8, 0.4])
+        loras = {k: v for k, v in out.items() if v.get("class_type") == "LoraLoader"}
+        assert len(loras) == 2
+        # 第一个吃 checkpoint，第二个吃第一个
+        first = next(v for v in loras.values() if v["inputs"]["model"] == ["1", 0])
+        second = next(v for v in loras.values() if v["inputs"]["model"] != ["1", 0])
+        assert first["inputs"]["lora_name"] == "a.safetensors"
+        assert second["inputs"]["lora_name"] == "b.safetensors"
+        # KSampler / CLIP 都指向链尾（即 b 自己的节点 id）
+        tail_id = next(k for k, v in loras.items() if v is second)
+        assert out["5"]["inputs"]["model"] == [tail_id, 0]
+        assert out["2"]["inputs"]["clip"] == [tail_id, 1]
+
+    def test_no_lora_nodes_untouched(self):
+        from aicomic.providers.local_adapter import expand_multi_lora
+
+        wf = {"1": {"class_type": "CheckpointLoaderSimple", "inputs": {}}}
+        out = expand_multi_lora(dict(wf), ["a", "b"], [1.0, 1.0])
+        assert out == wf
+
+    def test_strength_fallback_uses_last(self):
+        from aicomic.providers.local_adapter import expand_multi_lora
+
+        out = expand_multi_lora(self._wf(), ["a.safetensors", "b.safetensors", "c.safetensors"], [0.5])
+        loras = [v for v in out.values() if v.get("class_type") == "LoraLoader"]
+        assert all(v["inputs"]["strength_model"] == 0.5 for v in loras)
