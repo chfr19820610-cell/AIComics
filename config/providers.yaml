@@ -30,13 +30,11 @@ video_providers:
     - kling
     - manual_web
     - local_comfyui_video
-    - local_comfyui_video_fast
 
 tts_providers:
   default: local_piper_tts
   available:
     - openai_tts
-    - windows_tts
     - local_piper_tts
 
 openai_api:
@@ -116,24 +114,6 @@ local_comfyui_video:
   video_length: 9
   fps: 8
   output_prefix: aicomic_video
-  negative_prompt: low quality, blurry, watermark, flicker, distorted hands, text, subtitles, captions, Chinese characters, letters, logo
-
-local_comfyui_video_fast:
-  base_url: http://127.0.0.1:8188
-  workflow_path: ../local_providers/comfyui_runtime/workflows/video_workflow_fast.json
-  model_root: ../local_providers/comfyui_runtime/ComfyUI/models
-  model_manifest_path: ../local_providers/comfyui_runtime/model_requirements.json
-  timeout_seconds: 60
-  poll_timeout_seconds: 1800
-  poll_interval_seconds: 2
-  width: 256
-  height: 144
-  seed: 123456789
-  steps: 4
-  cfg: 4
-  video_length: 12
-  fps: 6
-  output_prefix: aicomic_video_fast
   negative_prompt: low quality, blurry, watermark, flicker, distorted hands, text, subtitles, captions, Chinese characters, letters, logo
 
 local_piper_tts:
