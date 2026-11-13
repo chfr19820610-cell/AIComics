@@ -174,6 +174,51 @@ def handle_show_handoff(episode: str, handoff_dir: Path | None = None) -> int:
     return 0
 
 
+def handle_frame_strategy(episode_manifest: Path, episode_code: str, use_llm: bool) -> int:
+    """首尾帧三层决策：规则 → LLM → 兜底，输出每镜用单帧还是双帧。"""
+    import json as _json
+
+    from aicomic.core.frame_strategy import decide_episode
+
+    if not episode_manifest.is_file():
+        print(f"❌ manifest 不存在: {episode_manifest}")
+        return 2
+    manifest = _json.loads(episode_manifest.read_text(encoding="utf-8"))
+    shots = manifest.get("shots") or []
+    for ep in manifest.get("episodes", []):
+        if str(ep.get("episode_code", "")) == episode_code:
+            shots = ep.get("shots", shots)
+            break
+    if not shots:
+        print(f"❌ 找不到分镜（episode={episode_code}）")
+        return 2
+
+    llm_fn = None
+    if use_llm:
+        from aicomic.core.runtime_env import load_local_secrets
+        from aicomic.core.self_review import _config, _request
+
+        load_local_secrets()
+        cfg = _config()
+        if cfg.get("key"):
+            def llm_fn(prompt_text: str) -> str:
+                body = _json.dumps({"model": cfg["model"],
+                                    "messages": [{"role": "user", "content": prompt_text}],
+                                    "max_tokens": 300, "temperature": 0.1}).encode()
+                raw = _request(f"{cfg['base']}/chat/completions", body,
+                               {"Content-Type": "application/json",
+                                "Authorization": f"Bearer {cfg['key']}"}, 60.0)
+                return _json.loads(raw)["choices"][0]["message"]["content"]
+        else:
+            print("⚠️ 未配置 LLM key，仅规则层 + 兜底")
+
+    r = decide_episode(shots, llm_fn=llm_fn)
+    print(f"shots={r['shot_count']} dual={r['dual_count']} single={r['single_count']} by_layer={r['by_layer']}")
+    for d in r["decisions"]:
+        print(f"  {d['shot_id']}: {d['mode']:6} [{d['layer']:8}] conf={d['confidence']:.2f} {d['reason'][:70]}")
+    return 0
+
+
 def handle_storyboard_supervise(episode_manifest: Path, episode_code: str, use_llm: bool) -> int:
     """全集分镜督导：一次性视觉连续性审核 + 批量重写（借鉴 ai-comic-studio）。"""
     import json as _json
@@ -1189,6 +1234,11 @@ COMMANDS: dict[str, dict] = {
     "defect-board": {"help": "SOP §12：缺陷看板（checkpoint failed/awaiting 汇总）", "args": [
         (["--output"], {"type": Path, "default": None})],
         "handler": lambda a: handle_defect_board(a.output)},
+    "frame-strategy": {"help": "首尾帧三层决策：每镜用单帧还是首尾帧", "args": [
+        (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
+        (["--episode-code"], {"default": "E01"}),
+        (["--no-llm"], {"action": "store_true"})],
+        "handler": lambda a: handle_frame_strategy(a.episode_manifest, a.episode_code, not a.no_llm)},
     "storyboard-supervise": {"help": "全集分镜督导：视觉连续性审核 + 批量重写", "args": [
         (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
         (["--episode-code"], {"default": "E01"}),

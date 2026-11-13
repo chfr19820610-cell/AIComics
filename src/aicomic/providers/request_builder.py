@@ -672,10 +672,31 @@ def build_provider_requests(
         router = None
 
     video_keyframes: dict[str, list[str]] = {}
+    frame_decisions: dict[str, list[dict[str, Any]]] = {}
     for req in requests:
         payload = req.get("payload", {})
         if payload.get("job_type") != "video":
             continue
+        # v3.1: 首尾帧三层决策（规则 → LLM → 兜底），标注该镜头是否需要双帧。
+        # 只做"标注"，不改写既有 chain 构建，避免影响已通过的用例。
+        try:
+            from aicomic.core.frame_strategy import decide_frames
+
+            _vp = video_keyframes.get(str(payload.get("episode_code", "")))
+            _prev = None
+            if _vp:
+                # 上一镜只保留决策所需的轻量字段
+                _prev = {"description": str(payload.get("prev_shot_description", ""))}
+            _fd = decide_frames(payload, prev_shot=_prev)
+            frame_decisions.setdefault(str(payload.get("episode_code", "")), []).append({
+                "shot_id": str(payload.get("shot_id", "")),
+                "mode": _fd["mode"],
+                "layer": _fd["layer"],
+                "confidence": _fd["confidence"],
+                "reason": _fd["reason"],
+            })
+        except Exception:  # noqa: BLE001 - 决策失败不应阻断请求构建
+            pass
         shot_type_str = str(payload.get("shot_type", payload.get("camera", "dialogue"))).lower()
         if any(k in shot_type_str for k in ("action", "打斗", "追", "跑")):
             mapped_type = ShotType.ACTION
@@ -754,6 +775,16 @@ def build_provider_requests(
         "skipped_jobs": skipped_jobs,
         "video_routing": routing_decisions,
         "flf_chains": flf_chains,
+        "frame_decisions": frame_decisions,
+        "frame_strategy_summary": {
+            ep: {
+                "shot_count": len(ds),
+                "dual_count": sum(1 for d in ds if d["mode"] == "dual"),
+                "by_layer": {ly: sum(1 for d in ds if d["layer"] == ly)
+                             for ly in {d["layer"] for d in ds}},
+            }
+            for ep, ds in frame_decisions.items()
+        },
     }
 
 
