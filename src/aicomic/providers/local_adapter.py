@@ -304,6 +304,47 @@ def get_bytes(url: str, timeout: int) -> tuple[bytes, str]:
 # ComfyUI settings, preflight, request building
 # ---------------------------------------------------------------------------
 
+def _approx_clip_tokens(text: str) -> int:
+    """Cheap CLIP-token estimate (no tokenizer dependency).
+
+    English word count plus punctuation marks tracks CLIP-BPE closely enough for
+    a truncation guard; we intentionally stay approximate to avoid pulling
+    `transformers` into the hot path.
+    """
+    if not text:
+        return 0
+    words = len(text.split())
+    punct = sum(1 for ch in text if ch in ",.;:!?")
+    return words + punct
+
+
+def limit_clip_tokens(text: str, max_tokens: int = 77) -> str:
+    """Trim a prompt to SDXL's CLIP 77-token window, clause by clause.
+
+    SDXL's CLIP-L text encoder only consumes the first 77 tokens and silently
+    drops the rest. An LLM-enhanced prompt is routinely 300+ tokens, so ~80% of
+    the expansion never reaches the model (2026-11-13: measured 944 chars ≈ 372
+    tokens for a typical enhanced shot prompt).
+
+    We accumulate comma-separated clauses until the next one would overflow, so
+    we never cut mid-phrase. Subject/style clauses come first in this codebase's
+    prompt templates, which is the ordering that matters.
+    """
+    if not text:
+        return text
+    if _approx_clip_tokens(text) <= max_tokens:
+        return text
+    parts = [p.strip() for p in text.split(",") if p.strip()]
+    # 从尾部逐段丢弃直到达标：该项目的 prompt 模板把主体/风格放前面，
+    # 丢尾部的构图/技术修饰词损失最小。
+    while parts and _approx_clip_tokens(", ".join(parts)) > max_tokens:
+        parts.pop()
+    if parts:
+        return ", ".join(parts)
+    # 单句就超限：按词硬切，保证不是整段丢弃
+    return " ".join(text.split()[:max_tokens])
+
+
 def get_comfyui_settings(settings: dict, providers_config_path: Path, payload: dict, provider: str) -> dict:
     section = settings.get(provider, {})
     is_video = provider == LOCAL_COMFYUI_VIDEO_PROVIDER
@@ -323,7 +364,13 @@ def get_comfyui_settings(settings: dict, providers_config_path: Path, payload: d
         "height": str(section.get("height", "1536")).strip() or "1536",
         "output_prefix": str(section.get("output_prefix", "aicomic")).strip() or "aicomic",
         "replacements": {
-            "{{prompt}}": str(payload.get("prompt", "")),
+            # SDXL CLIP 只有 77 token 窗口，超出部分被静默丢弃；
+            # 增强后的长 prompt（常 300+ token）必须先裁剪才真正生效。
+            "{{prompt}}": (
+                str(payload.get("prompt", ""))
+                if is_video
+                else limit_clip_tokens(str(payload.get("prompt", "")))
+            ),
             "{{negative_prompt}}": str(section.get("negative_prompt", "")),
             "{{seed}}": parse_int(str(section.get("seed", "123456789")), 123456789),
             "{{width}}": parse_int(str(section.get("width", "1024")), 1024),
