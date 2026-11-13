@@ -47,13 +47,31 @@ class PublishPayload:
         )
 
 
+def _expand_paths(value: Any) -> Any:
+    """Expand `$VAR` / `~` inside path-like config strings.
+
+    Keeps publish.yaml portable: an open-source checkout can point at
+    `${SOCIAL_AUTO_UPLOAD_PATH}/cookies/douyin.json` instead of hard-coding one
+    developer's home directory.
+    """
+    if isinstance(value, str):
+        expanded = os.path.expanduser(os.path.expandvars(value))
+        return expanded or value
+    if isinstance(value, list):
+        return [_expand_paths(item) for item in value]
+    if isinstance(value, dict):
+        return {key: _expand_paths(item) for key, item in value.items()}
+    return value
+
+
 def load_publish_config(path: Path | None = None) -> dict[str, Any]:
-    """Load publish.yaml config."""
+    """Load publish.yaml config (with env-var / ~ expansion)."""
     p = path or _CONFIG_PATH
     if not p.exists():
         return {"platforms": {}, "social_auto_upload_path": "", "defaults": {}}
     with open(p, encoding="utf-8") as f:
-        return yaml.safe_load(f) or {}
+        raw = yaml.safe_load(f) or {}
+    return _expand_paths(raw)
 
 
 def check_platform_ready(platform: str, cfg: dict[str, Any]) -> dict[str, Any]:

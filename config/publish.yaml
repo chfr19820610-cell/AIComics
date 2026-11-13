@@ -1,25 +1,32 @@
 # 发布平台配置
 # cookie 文件路径：每个平台一个 storage_state JSON（从浏览器导出）
-# social-auto-upload 安装路径
-social_auto_upload_path: /Users/eric/social-auto-upload
+# social-auto-upload 安装路径（可用 SOCIAL_AUTO_UPLOAD_PATH 环境变量覆盖）
+# 用 ${SOCIAL_AUTO_UPLOAD_PATH} 占位，值由 .env（或 shell 环境）提供，
+# 开源用户无需改本文件；未设置时回落到下面的默认值（由代码 expandvars 展开）。
+social_auto_upload_path: ${SOCIAL_AUTO_UPLOAD_PATH}
 
 # 平台配置
+# 2026-11-13 实测 cookie 落地情况（cookies/ 目录）：
+#   douyin.json ✅   xhs.json ✅（但本文件旧路径写的是 xiaohongshu.json，不存在）
+#   bilibili  ❌ 无 cookie，保持 enabled: false 直到导出 cookies/bilibili.json
 platforms:
   douyin:
-    enabled: false
-    cookie_path: /Users/eric/social-auto-upload/cookies/douyin.json
+    enabled: true
+    cookie_path: ${SOCIAL_AUTO_UPLOAD_PATH}/cookies/douyin.json
     headless: true
     account_name: aicomic
 
   xiaohongshu:
+    # 已导出到 cookies/xhs.json；未启用，需要时改 enabled: true 并核对下面的路径
     enabled: false
-    cookie_path: /Users/eric/social-auto-upload/cookies/xiaohongshu.json
+    cookie_path: ${SOCIAL_AUTO_UPLOAD_PATH}/cookies/xhs.json
     headless: true
     account_name: aicomic
 
   bilibili:
+    # ❌ cookies/bilibili.json 不存在，导出前不要开启
     enabled: false
-    cookie_path: /Users/eric/social-auto-upload/cookies/bilibili.json
+    cookie_path: ${SOCIAL_AUTO_UPLOAD_PATH}/cookies/bilibili.json
     headless: true
     account_name: aicomic
 
@@ -33,15 +40,15 @@ defaults:
 international:
   youtube:
     enabled: false
-    client_secret_path: /Users/eric/credentials/youtube_client_secret.json
-    credentials_path: /Users/eric/credentials/youtube_credentials.json
+    client_secret_path: ${YOUTUBE_CREDENTIALS_DIR}/youtube_client_secret.json
+    credentials_path: ${YOUTUBE_CREDENTIALS_DIR}/youtube_credentials.json
     # Requires: pip install google-api-python-client google-auth-oauthlib
     # Get credentials: https://console.cloud.google.com/apis/credentials
 
   tiktok:
     enabled: false
     # Uses social-auto-upload tk_uploader (playwright-based)
-    cookie_path: /Users/eric/social-auto-upload/cookies/tiktok.json
+    cookie_path: ${SOCIAL_AUTO_UPLOAD_PATH}/cookies/tiktok.json
     headless: true
     account_name: aicomic
 

@@ -1,5 +1,23 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Provider 默认路由（2026-11-13 校准）
+#
+# 事实基础（`aicomic provider-readiness` 实测，全部 setup_required）：
+#   openai_image / openai_tts        → 上游 jieyouai 返回 HTTP 401（见下方 openai_api）
+#   local_comfyui_image/video        → ComfyUI:8188 未启动
+#   local_piper_tts                  → Piper runtime/voice 未安装
+#
+# 因此默认路由不能再指向"确定失败"的 API，改为诚实的人工兜底：
+#   image → manual_web（人工网页出图，报告里标记 manual，不假装自动）
+#   video → local_comfyui_video（本地，启动 ComfyUI 即可用；这是唯一真正免费可控的通路）
+#   tts   → openai_tts（保持，但需在 .env 配好有效 key；否则执行时会明确报 401）
+#
+# 切回自动 API 出图：把 image_providers.default 改回 openai_image，并在 .env 设置
+#   AICOMIC_OPENAI_BASE_URL=<可用上游>   AICOMIC_OPENAI_API_KEY=<key>
+# （B5 已支持 env 覆盖 base_url，无需改本文件）
+# ─────────────────────────────────────────────────────────────────────────────
+
 image_providers:
-  default: openai_image
+  default: manual_web
   available:
     - openai_image
     - manual_web
@@ -22,8 +40,9 @@ tts_providers:
     - local_piper_tts
 
 openai_api:
-  # JieYou: 401(2026-08-10确认), 暂时不用, 待修复key后重新启用
-  # AlComics图像生成(gpt-image-1.5)和TTS(gpt-4o-mini-tts)依赖此API
+  # ⚠️ 2026-08-10 实测该上游返回 401（2026-11-13 复测仍为 401）。
+  # 图像(gpt-image-1.5) 与 TTS(gpt-4o-mini-tts) 都依赖此 base_url。
+  # 换上游无需改本文件：export AICOMIC_OPENAI_BASE_URL=<url> 即可覆盖。
   base_url: https://api.jieyouai.it.com/v1
   timeout_seconds: 120
 
