@@ -174,6 +174,90 @@ def handle_show_handoff(episode: str, handoff_dir: Path | None = None) -> int:
     return 0
 
 
+def handle_storyboard_supervise(episode_manifest: Path, episode_code: str, use_llm: bool) -> int:
+    """全集分镜督导：一次性视觉连续性审核 + 批量重写（借鉴 ai-comic-studio）。"""
+    import json as _json
+
+    from aicomic.intelligence.storyboard_supervisor import apply_rewrites, review_episode
+
+    if not episode_manifest.is_file():
+        print(f"❌ manifest 不存在: {episode_manifest}")
+        return 2
+    manifest = _json.loads(episode_manifest.read_text(encoding="utf-8"))
+    shots = manifest.get("shots") or []
+    for ep in manifest.get("episodes", []):
+        if str(ep.get("episode_code", "")) == episode_code:
+            shots = ep.get("shots", shots)
+            break
+    if not shots:
+        print(f"❌ 找不到分镜（episode={episode_code}, manifest={episode_manifest}）")
+        return 2
+
+    llm_fn = None
+    if use_llm:
+        from aicomic.core.runtime_env import load_local_secrets
+        from aicomic.core.self_review import _config, _request
+
+        load_local_secrets()
+        cfg = _config()
+        if not cfg.get("key"):
+            print("⚠️ 未配置 LLM key，退化为规则层审核（不臆造内容）")
+        else:
+            def llm_fn(prompt_text: str) -> str:
+                body = _json.dumps({
+                    "model": cfg["model"],
+                    "messages": [{"role": "user", "content": prompt_text}],
+                    "max_tokens": 1200, "temperature": 0.2,
+                }).encode()
+                raw = _request(
+                    f"{cfg['base']}/chat/completions", body,
+                    {"Content-Type": "application/json", "Authorization": f"Bearer {cfg['key']}"},
+                    90.0,
+                )
+                return _json.loads(raw)["choices"][0]["message"]["content"]
+
+    report = review_episode(shots, episode_code=episode_code, llm_fn=llm_fn)
+    print(f"shots={len(shots)} llm_used={report['llm_used']} ok={report['ok']}")
+    if report.get("error"):
+        print(f"error={report['error']}")
+    rule_codes = [i.get("code", "") for i in report.get("issues", [])]
+    if rule_codes:
+        print(f"规则层 issues={rule_codes}")
+    llm_issues = report.get("llm_issues") or []
+    if llm_issues:
+        print(f"LLM 级 issues={len(llm_issues)}")
+        for it in llm_issues[:10]:
+            print(f"  [{it.get('code', '?')}] {it.get('shot_id', '?')}: {str(it.get('message', ''))[:120]}")
+    rewrites = report.get("rewrites") or []
+    print(f"rewrites={len(rewrites)}")
+    if rewrites:
+        merged = apply_rewrites(shots, rewrites)
+        for before, after in zip(shots, merged):
+            key = next((k for k in ("scene", "scene_desc", "location", "description", "prompt")
+                        if isinstance(before.get(k), str) and before.get(k, "").strip()), None)
+            if key and before.get(key) != after.get(key):
+                print(f"  {before.get('shot_id', '?')}: {before[key][:60]}")
+                print(f"    → {after[key][:120]}")
+    return 0 if report["ok"] else 1
+
+
+def handle_shot_chain(videos: str, output_dir: Path) -> int:
+    """镜头承接：把上一镜真实尾帧直拷为本镜首帧。"""
+    from aicomic.core.shot_chain import chain_shots
+
+    paths = [Path(v.strip()) for v in videos.split(",") if v.strip()]
+    if not paths:
+        print("❌ 未提供视频路径（--videos a.mp4,b.mp4）")
+        return 2
+    result = chain_shots(paths, output_dir)
+    print(f"chain_count={result['chain_count']} failed={result['failed_count']} ok={result['ok']}")
+    for c in result["chains"]:
+        status = "✅" if c.get("ok") else "❌"
+        print(f"  {status} {Path(c['source']).parent.name} → {Path(c['target']).name}"
+              + (f" ({c['bytes']} B)" if c.get("ok") else f" :: {c.get('error')}"))
+    return 0 if result["ok"] else 1
+
+
 def handle_defect_board(output: Path | None = None) -> int:
     """SOP §12：缺陷看板——checkpoint failed/awaiting 汇总反哺下一轮迭代。"""
     from aicomic.core.defect_board import build_defect_board, render_defect_board_markdown, write_defect_board
@@ -1105,6 +1189,15 @@ COMMANDS: dict[str, dict] = {
     "defect-board": {"help": "SOP §12：缺陷看板（checkpoint failed/awaiting 汇总）", "args": [
         (["--output"], {"type": Path, "default": None})],
         "handler": lambda a: handle_defect_board(a.output)},
+    "storyboard-supervise": {"help": "全集分镜督导：视觉连续性审核 + 批量重写", "args": [
+        (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
+        (["--episode-code"], {"default": "E01"}),
+        (["--no-llm"], {"action": "store_true"})],
+        "handler": lambda a: handle_storyboard_supervise(a.episode_manifest, a.episode_code, not a.no_llm)},
+    "shot-chain": {"help": "镜头承接：上一镜尾帧直拷为本镜首帧", "args": [
+        (["--videos"], {"required": True}),
+        (["--output-dir"], {"type": Path, "default": P("ProjectPaths.state_dir() / 'shot_chain'")})],
+        "handler": lambda a: handle_shot_chain(a.videos, a.output_dir)},
     "efficiency-report": {"help": "SOP §8.1：成片有效率回归（pass-rate 聚合）", "args": [
         (["--episode-manifest"], {"type": Path, "default": P("ProjectPaths.manifest_dir() / 'episode_manifest.json'")}),
         (["--episode-code"], {"default": "E01"}),
