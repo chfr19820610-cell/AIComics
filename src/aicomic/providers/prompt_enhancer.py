@@ -271,22 +271,29 @@ def enhance_via_llm(
     base_prompt: str,
     profile: PEProfile,
     shot: dict[str, Any] | None = None,
-    llm_url: str = "http://127.0.0.1:8081/v1/chat/completions",
-    llm_model: str = "DeepSeek-V4-Flash",
+    llm_url: str | None = None,
+    llm_model: str | None = None,
     llm_key: str | None = None,
 ) -> str:
     """
     用LLM智能增强prompt (可选)。
-    走ThriftLLM→DeepSeek-V4-Flash, 不额外花钱。
+    走本机 ThriftLLM(8080) → 由它路由到上游模型, 不额外花钱。
 
     流程: base_prompt → LLM Draft → 确定性validate → 返回增强prompt
-    密钥来源: llm_key 参数 或环境变量 AICOMIC_ENHANCE_LLM_KEY；
+    地址来源: llm_url 参数 或 AICOMIC_ENHANCE_LLM_URL（默认 thriftllm 8080；
+    2026-11-13 修正：旧默认 8081 上没有服务，调用必失败）。
+    密钥来源: llm_key 参数 或 AICOMIC_ENHANCE_LLM_KEY；
     无密钥时确定性跳过（诚实降级，返回原始 prompt）。
     """
     import os as _os
     resolved_key = llm_key or _os.environ.get("AICOMIC_ENHANCE_LLM_KEY", "")
     if not resolved_key:
         return base_prompt
+    resolved_url = (
+        llm_url
+        or _os.environ.get("AICOMIC_ENHANCE_LLM_URL", "http://127.0.0.1:8080/v1/chat/completions")
+    )
+    resolved_model = llm_model or _os.environ.get("AICOMIC_ENHANCE_LLM_MODEL", "DeepSeek-V4-Flash")
 
     import subprocess as _sp
     import json as _json
@@ -305,7 +312,7 @@ def enhance_via_llm(
     user_msg += "增强后prompt:"
 
     payload = _json.dumps({
-        "model": llm_model,
+        "model": resolved_model,
         "messages": [
             {"role": "system", "content": system_msg},
             {"role": "user", "content": user_msg},
@@ -316,7 +323,7 @@ def enhance_via_llm(
 
     try:
         r = _sp.run(
-            ["curl", "-s", "--max-time", "15", llm_url,
+            ["curl", "-s", "--max-time", "15", resolved_url,
              "-H", "Content-Type: application/json",
              "-H", f"Authorization: Bearer {resolved_key}",
              "-d", payload],
