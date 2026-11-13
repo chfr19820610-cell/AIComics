@@ -47,15 +47,30 @@ class PublishPayload:
         )
 
 
+_PATH_ENV_DEFAULTS: dict[str, str] = {
+    # 未设置环境变量时的回落值。没有这一步，`${SOCIAL_AUTO_UPLOAD_PATH}` 会被
+    # expandvars 原样保留成字面量，导致 cookie 路径必然 "missing"
+    # （2026-11-13 回归：抖音就绪从 ok 变 missing，根因在此）。
+    "SOCIAL_AUTO_UPLOAD_PATH": str(Path.home() / "social-auto-upload"),
+    "YOUTUBE_CREDENTIALS_DIR": str(Path.home() / "credentials"),
+}
+
+
 def _expand_paths(value: Any) -> Any:
     """Expand `$VAR` / `~` inside path-like config strings.
 
     Keeps publish.yaml portable: an open-source checkout can point at
     `${SOCIAL_AUTO_UPLOAD_PATH}/cookies/douyin.json` instead of hard-coding one
-    developer's home directory.
+    developer's home directory. When the variable is unset, fall back to the
+    conventional location under the user's home rather than leaving the literal
+    `${...}` text in place.
     """
     if isinstance(value, str):
         expanded = os.path.expanduser(os.path.expandvars(value))
+        if "${" in expanded:
+            for env_name, fallback in _PATH_ENV_DEFAULTS.items():
+                expanded = expanded.replace(f"${{{env_name}}}", fallback)
+                expanded = expanded.replace(f"${env_name}", fallback)
         return expanded or value
     if isinstance(value, list):
         return [_expand_paths(item) for item in value]
