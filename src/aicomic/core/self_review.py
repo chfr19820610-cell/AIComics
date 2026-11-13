@@ -13,8 +13,8 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-DEFAULT_BASE_URL = "http://127.0.0.1:1234/v1"
-DEFAULT_MODEL = "aicomic-self-review"
+DEFAULT_BASE_URL = "https://api.deepseek.com/v1"
+DEFAULT_MODEL = "deepseek-chat"
 
 SYSTEM_PROMPT = (
     "你是漫剧自审员。针对单镜指标，输出 JSON {\"verdict\": \"pass\"|\"revise\", \"issues\": [str]}。"
@@ -63,7 +63,14 @@ def judge_shots(shots: list[dict[str, Any]], *, episode_code: str = "", threshol
 
 
 def _config() -> dict[str, str]:
-    key = os.environ.get("AICOMIC_OPENAI_API_KEY", "")
+    from aicomic.core.runtime_env import load_local_secrets
+
+    load_local_secrets()  # 使 .env.local 里的 AICOMIC_OPENAI_* / SELF_REVIEW_* 生效
+    key = (
+        os.environ.get("AICOMIC_OPENAI_API_KEY", "")
+        or os.environ.get("AICOMIC_ENHANCE_LLM_KEY", "")
+        or os.environ.get("DEEPSEEK_API_KEY", "")
+    )
     base = os.environ.get("AICOMIC_OPENAI_BASE_URL", DEFAULT_BASE_URL).rstrip("/")
     model = os.environ.get("AICOMIC_SELF_REVIEW_MODEL", DEFAULT_MODEL)
     return {"key": key, "base": base, "model": model}

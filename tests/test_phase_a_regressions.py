@@ -139,6 +139,8 @@ class TestLLMKeyHandling:
 
     def test_no_env_key_skips_curl(self, monkeypatch):
         monkeypatch.delenv("AICOMIC_ENHANCE_LLM_KEY", raising=False)
+        # 2026-11-13: 现在会自动加载 .env.local 的 LLM 密钥，需显式关闭以验证降级路径
+        monkeypatch.setenv("AICOMIC_DISABLE_DOTENV", "1")
         with patch("subprocess.run") as fake:
             out = enhance_via_llm("base prompt", PROFILES["anime_donghua"])
         fake.assert_not_called()

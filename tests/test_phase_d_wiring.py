@@ -128,7 +128,7 @@ class TestSelfReviewShots:
         out = sr.review_assets([{"shot_id": "S01", "duration": 8.0}], episode_code="E01")
         assert out["verdict"] == "revise"
         assert out["issues"] == ["第2镜 黑帧超阈"]
-        assert out["model"] == "aicomic-self-review"
+        assert out["model"] == "deepseek-chat"  # 2026-11-13: 默认后端由 LM Studio 改为 DeepSeek 官方
         req = calls[0]
         assert "chat/completions" in req["url"]
         assert "Authorization" in req["headers"]

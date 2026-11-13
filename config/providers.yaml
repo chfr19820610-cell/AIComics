@@ -17,7 +17,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 image_providers:
-  default: manual_web
+  default: local_comfyui_image
   available:
     - openai_image
     - manual_web
@@ -33,7 +33,7 @@ video_providers:
     - local_comfyui_video_fast
 
 tts_providers:
-  default: openai_tts
+  default: local_piper_tts
   available:
     - openai_tts
     - windows_tts
@@ -87,13 +87,18 @@ local_comfyui_image:
   timeout_seconds: 120
   poll_timeout_seconds: 3600
   poll_interval_seconds: 2
+  # 9:16 竖屏（自制 YAML 解析器不剥行内注释，注释必须独立成行）
   width: 1024
-  height: 1024
+  height: 1536
   seed: 123456789
-  steps: 4
-  cfg: 1
+  # SDXL 常规步数（原 4 是给快速模型的）
+  steps: 28
+  # SDXL 常规 CFG（原 1 是给快速模型的）
+  cfg: 7.0
   output_prefix: aicomic
-  negative_prompt: low quality, blurry, watermark, distorted hands, text, subtitles, captions, Chinese characters, letters, logo, readable talisman script, calligraphy, glyphs, symbols on paper, printed markings, signage, stamps, seals, labels, posted notices, inscriptions on stone, writing on bowls
+  # 自制 YAML 解析器不支持 `>` 折叠语法，负面词必须单行
+  # 自制解析器也不剥引号，负面词必须裸写
+  negative_prompt: low quality, blurry, deformed, extra limbs, extra fingers, bad anatomy, watermark, text, subtitles, letters, logo, nsfw, oversaturated, flat lighting
 
 local_comfyui_video:
   base_url: http://127.0.0.1:8188

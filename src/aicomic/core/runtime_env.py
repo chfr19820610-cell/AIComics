@@ -77,3 +77,37 @@ def prime_runtime_env_for_web_config(web_config_path: Path, *, override: bool = 
         if loaded:
             loaded_files.append(str(env_path))
     return loaded_files
+
+
+# LLM 相关开关：这些键允许从 `.env.local` 自动加载（不影响其它任意变量）。
+LLM_ENV_KEYS = {
+    "AICOMIC_ENHANCE_LLM_KEY",
+    "AICOMIC_ENHANCE_LLM_URL",
+    "AICOMIC_ENHANCE_LLM_MODEL",
+    "AICOMIC_OPENAI_API_KEY",
+    "AICOMIC_OPENAI_BASE_URL",
+    "AICOMIC_SELF_REVIEW_MODEL",
+}
+
+_LOCAL_SECRETS_LOADED = False
+
+
+def load_local_secrets(project_root: Path | None = None, *, override: bool = False) -> dict[str, str]:
+    """Load `.env.local` (LLM keys) into os.environ once per process.
+
+    `.env.local` 是 gitignored 的私密文件，此前**从未被自动读取** ——
+    所以写进去的 `AICOMIC_ENHANCE_LLM_KEY` 等键不会生效，调用方会静默降级。
+    这里按白名单加载，避免把任意变量灌进环境。
+
+    Existing environment variables win unless ``override=True``.
+    """
+    global _LOCAL_SECRETS_LOADED
+    if os.environ.get("AICOMIC_DISABLE_DOTENV") == "1":
+        # 测试隔离开关：让"无 key 降级"路径可被确定性地验证。
+        return {}
+    if _LOCAL_SECRETS_LOADED and not override:
+        return {}
+    root = project_root or Path(__file__).resolve().parents[3]
+    loaded = load_dotenv_file(root / ".env.local", override=override, allowed_keys=LLM_ENV_KEYS)
+    _LOCAL_SECRETS_LOADED = True
+    return loaded

@@ -286,14 +286,21 @@ def enhance_via_llm(
     无密钥时确定性跳过（诚实降级，返回原始 prompt）。
     """
     import os as _os
-    resolved_key = llm_key or _os.environ.get("AICOMIC_ENHANCE_LLM_KEY", "")
+    from aicomic.core.runtime_env import load_local_secrets
+
+    load_local_secrets()  # 使 .env.local 里的 AICOMIC_ENHANCE_LLM_* 生效
+    resolved_key = (
+        llm_key
+        or _os.environ.get("AICOMIC_ENHANCE_LLM_KEY", "")
+        or _os.environ.get("DEEPSEEK_API_KEY", "")
+    )
     if not resolved_key:
         return base_prompt
     resolved_url = (
         llm_url
-        or _os.environ.get("AICOMIC_ENHANCE_LLM_URL", "http://127.0.0.1:8080/v1/chat/completions")
+        or _os.environ.get("AICOMIC_ENHANCE_LLM_URL", "https://api.deepseek.com/v1/chat/completions")
     )
-    resolved_model = llm_model or _os.environ.get("AICOMIC_ENHANCE_LLM_MODEL", "DeepSeek-V4-Flash")
+    resolved_model = llm_model or _os.environ.get("AICOMIC_ENHANCE_LLM_MODEL", "deepseek-chat")
 
     import subprocess as _sp
     import json as _json
