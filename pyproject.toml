@@ -21,7 +21,7 @@ validation = [
     "imageio>=2.37,<3",
     "imageio-ffmpeg>=0.6,<1",
     "numpy>=2,<3",
-    "pillow>=12,<13",
+    "pillow>=13,<14",
     "pip-audit>=2.10,<3",
     "websocket-client>=1.9,<2",
 ]
