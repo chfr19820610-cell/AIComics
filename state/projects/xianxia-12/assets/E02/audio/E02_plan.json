@@ -1,0 +1,20 @@
+{
+  "episode_code": "E02",
+  "track_count": 2,
+  "tracks": [
+    {
+      "shot_id": "S03",
+      "text": "林昭：啊——！",
+      "start": 14,
+      "end": 21,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S06",
+      "text": "老墨：想活命，就别解开它。",
+      "start": 35,
+      "end": 42,
+      "voice": "local_piper_tts"
+    }
+  ]
+}
