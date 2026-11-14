@@ -1,0 +1,8 @@
+aicomic_runtime:
+  base_path: ../../comfyui_runtime/models
+  is_default: false
+  checkpoints: checkpoints/
+  diffusion_models: "fl2va/\ndiffusion_models/\nwan22/diffusion_models/"
+  text_encoders: "text_encoders/\nwan22/text_encoders/"
+  vae: "vae/\nwan22/vae/"
+  loras: loras/
