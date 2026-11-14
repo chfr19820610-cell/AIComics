@@ -180,3 +180,65 @@ final_*.mp4（真运动版）
 3. 最后用官方 API（需 API key）
 
 **当前已交付的 12 集动态漫成片不受影响，可随时发布。**
+
+---
+
+## 八、实际执行记录（2026-11-15 凌晨）
+
+### 实测数据（修正预期）
+
+| 项 | 计划值 | 实测值 |
+|---|---|---|
+| 单镜耗时 | 11.4 分钟 | **11–15 分钟**（prompt 越长越慢） |
+| 3 秒视频 swap | 3.7 GB | **3.4–3.7 GB** 稳定 |
+| DiT active | 0.62 GiB | **0.62 GiB** 稳定 |
+| 每步耗时 | 69 秒 | **60–69 秒** |
+
+### 完成的成片
+
+| 集 | 文件 | 大小 | 状态 |
+|---|---|---|---|
+| E01 | `assets/E01/E01_H3_REAL.mp4` | 1.8M | ✅ |
+| E02 | `assets/E02/E02_H3_REAL.mp4` | 1.2M | ✅ |
+| E03 | `assets/E03/E03_H3_REAL.mp4` | 1.7M | ✅ |
+| E04 | `assets/E04/E04_H3_REAL.mp4` | 2.2M | ✅ |
+
+规格：18 秒 / 512×384 / 24fps / h264 + AAC / 烧录中文字幕
+
+### 关键 prompt（有效）
+
+```
+2d anime, flat cel shading, bold black outlines, hand-drawn animation,
+Japanese anime style, xianxia wuxia, animation frames, <场景描述>
+```
+
+### 已知问题（实测）
+
+**1. 风格漂移**
+同一组风格词配不同场景，输出子风格会变：
+- 单人/特写场景 → 写实向动漫（正常）
+- **多人群像+冲突场景 → Q 版卡通**（E03/S01 实测）
+- 巨兽特写 → 正常动漫
+
+**缓解方案（待验证）**：prompt 加 `serious tone, dramatic, not chibi, realistic proportions`
+
+**2. 角色跨镜漂移（硬限制）**
+h3stream 无 first_frame/图生视频，无法用关键帧约束：
+- 年龄偏小（生成 12-14 岁 vs 设定 16 岁）
+- 服饰颜色不稳定（灰 vs 绿）
+- 同一角色在不同镜的形象不一致
+
+**这是模型能力边界，不是配置问题。**
+
+**3. 偶发卡住**
+E03/S01 曾 35 分钟只走 1 步（正常 1 分钟/步）。
+处理：kill → `--run-dir` 续传重跑 → 恢复。
+h3stream 有原子 checkpoint，卡住重启不丢进度。
+
+### 自动化脚本
+
+| 脚本 | 用途 |
+|---|---|
+| `/tmp/p4_all.sh` | 批量生成 72 镜 |
+| `/tmp/composite_all.sh` | 六镜拼接 + 裁配音 + 重算 SRT + 烧录混音 |
+| `/tmp/watch_p4.sh` | 守护：P4 结束后自动触发合成 |
