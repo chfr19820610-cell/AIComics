@@ -169,3 +169,40 @@ cp runs/EXX/cut/final_r2.mp4 assets/EXX/EXX_H3_REAL.mp4
 | `scripts/fill_gaps.py` | 补漏 |
 | `scripts/rebuild_episode.py` | 单集合成 |
 | `scripts/accept_12ep.py` | 12 集验收 |
+
+---
+
+## 2026-11-16 03:17 · E01/S16 重跑记录
+
+### 背景
+E01/S16 是唯一"口型保护失效"的已生成镜：
+- 原 shot_type: extreme_closeup（特写）
+- 有台词："赵乾：废物的手，也只配擦地。"
+- 生成为 extreme_closeup（应该降级为 medium）
+- 原因：prompt 里写死 "Extreme close-up"，align_episode 的降级没传播到 prompt（SOP §20）
+
+### 处理
+1. 备份原视频：`assets/_backup_s16/E01_S16_h3.mp4`（178K）
+2. 删除 `assets/E01/h3video/E01_S16_h3.mp4`
+3. prompt 已修正为 `Medium shot of Zhao Qian's fingers squeezing Lin Zhao's chin...`
+
+### 自动重跑机制
+E01 剩余 53 镜跑完后（约 10 小时后），P6 脚本会：
+1. `fill_gaps.py --ep E01 --run` 检测到 S16 缺失
+2. 用新 prompt（Medium shot）重跑 S16（12 分钟）
+3. `rebuild_episode.py` 合成 70 镜
+
+**无需人工干预。**
+
+### 如果 fill_gaps 失败
+手动重跑：
+```bash
+cd /Users/eric/Desktop/hermes/AlComics
+.venv/bin/python scripts/fill_gaps.py --ep E01 --run
+```
+
+### 或恢复原视频（如果不接受重跑）
+```bash
+cp state/projects/xianxia-12/assets/_backup_s16/E01_S16_h3.mp4 \
+   state/projects/xianxia-12/assets/E01/h3video/
+```
