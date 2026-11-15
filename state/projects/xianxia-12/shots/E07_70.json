@@ -50,7 +50,7 @@
     },
     {
       "shot_id": "S04",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "火把长龙沿山道蜿蜒而上，将山门围成半圆",
       "characters": [],
       "action": "火光连成弧线，雨幕被映成橙红",
@@ -128,7 +128,7 @@
     },
     {
       "shot_id": "S09",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "雨夜青冥剑宗石阶全景，火把绕山如龙",
       "characters": [],
       "action": "数百弟子持剑合围，雨水砸剑溅白雾",
@@ -184,7 +184,7 @@
     },
     {
       "shot_id": "S13",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "山门匾额在火光中忽明忽暗，雨帘遮字",
       "characters": [],
       "action": "匾上“青冥”二字被雨冲刷",
@@ -246,7 +246,7 @@
     },
     {
       "shot_id": "S17",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "苏璃背影立于剑阵前，与林昭隔阶相望",
       "characters": [
         "苏璃",
@@ -359,7 +359,7 @@
     },
     {
       "shot_id": "S24",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭被逼退至石阶中段，三面剑光逼近",
       "characters": [
         "林昭"
@@ -423,7 +423,7 @@
     },
     {
       "shot_id": "S28",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "严崇身形暴起，一剑直刺林昭后心",
       "characters": [
         "严崇",
@@ -522,7 +522,7 @@
     },
     {
       "shot_id": "S34",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "四周弟子哗然，剑阵出现松动",
       "characters": [],
       "action": "数人交头接耳，剑尖下垂",
@@ -601,7 +601,7 @@
     },
     {
       "shot_id": "S39",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "苏璃剑尖转向，雨幕被剑气撕开一道口子",
       "characters": [
         "苏璃"
@@ -695,7 +695,7 @@
     },
     {
       "shot_id": "S45",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "全场死寂，雨声忽然清晰可闻",
       "characters": [],
       "action": "数百弟子僵立，火把噼啪",
@@ -758,7 +758,7 @@
     },
     {
       "shot_id": "S49",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "严崇挥剑下令，剑阵重新合拢",
       "characters": [
         "严崇"
@@ -834,7 +834,7 @@
     },
     {
       "shot_id": "S54",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "两人配合撕开缺口，朝山门侧廊退去",
       "characters": [
         "林昭",
@@ -900,7 +900,7 @@
     },
     {
       "shot_id": "S58",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "两人冲入侧廊，火把长龙在身后合拢",
       "characters": [
         "林昭",
@@ -1012,7 +1012,7 @@
     },
     {
       "shot_id": "S65",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "廊道尽头出现岔路，火光从后方逼近",
       "characters": [
         "林昭",
@@ -1076,7 +1076,7 @@
     },
     {
       "shot_id": "S69",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "石门合拢前，火光照进窄道一瞬",
       "characters": [],
       "action": "追兵扑到，石门轰然闭合",

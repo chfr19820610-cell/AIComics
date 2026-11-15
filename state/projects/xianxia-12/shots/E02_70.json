@@ -4,7 +4,7 @@
   "shots": [
     {
       "shot_id": "S01",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "黑暗中林昭的眼皮猛地掀开，瞳孔收缩",
       "characters": [
         "林昭"
@@ -20,7 +20,7 @@
     },
     {
       "shot_id": "S02",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "胸口锁链纹突然炸亮，金光刺破黑暗",
       "characters": [
         "林昭"
@@ -36,7 +36,7 @@
     },
     {
       "shot_id": "S03",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "金光从衣襟缝里透出，映亮他扭曲的脸",
       "characters": [
         "林昭"
@@ -52,7 +52,7 @@
     },
     {
       "shot_id": "S04",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "一颗汗珠从额角滚落，砸在草席上",
       "characters": [
         "林昭"
@@ -68,7 +68,7 @@
     },
     {
       "shot_id": "S05",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "深夜杂役柴房全景，月光从破窗漏进来",
       "characters": [],
       "action": "环境空镜",
@@ -82,7 +82,7 @@
     },
     {
       "shot_id": "S06",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "草席散乱一地，墙角立着几把锈剑",
       "characters": [],
       "action": "环境细节",
@@ -96,7 +96,7 @@
     },
     {
       "shot_id": "S07",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "梁上蛛网在月光里轻晃，挂着灰尘",
       "characters": [],
       "action": "蛛网摇晃",
@@ -110,7 +110,7 @@
     },
     {
       "shot_id": "S08",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭指甲抠进木板缝，木屑翻起",
       "characters": [
         "林昭"
@@ -126,7 +126,7 @@
     },
     {
       "shot_id": "S09",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "他痛得蜷缩成团，肩背弓起",
       "characters": [
         "林昭"
@@ -142,7 +142,7 @@
     },
     {
       "shot_id": "S10",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "油灯被气劲震灭，一缕青烟升起",
       "characters": [
         "林昭"
@@ -158,7 +158,7 @@
     },
     {
       "shot_id": "S11",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "月光勾出他绷紧的侧脸，青筋暴起",
       "characters": [
         "林昭"
@@ -174,7 +174,7 @@
     },
     {
       "shot_id": "S12",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "他仰头嘶吼，喉咙绷出线条",
       "characters": [
         "林昭"
@@ -190,7 +190,7 @@
     },
     {
       "shot_id": "S13",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "柴房外竹林被风压得齐齐弯腰",
       "characters": [],
       "action": "竹林摇曳",
@@ -204,7 +204,7 @@
     },
     {
       "shot_id": "S14",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "窗纸被雷光映得惨白，树影乱晃",
       "characters": [],
       "action": "窗纸发白",
@@ -218,7 +218,7 @@
     },
     {
       "shot_id": "S15",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭瞳孔里倒映出一线白光",
       "characters": [
         "林昭"
@@ -234,7 +234,7 @@
     },
     {
       "shot_id": "S16",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "一道无声天雷破窗劈入，屋梁震落灰尘",
       "characters": [],
       "action": "雷光破窗",
@@ -248,7 +248,7 @@
     },
     {
       "shot_id": "S17",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "锁链纹腾空化作虚影，在半空展开",
       "characters": [
         "林昭"
@@ -264,7 +264,7 @@
     },
     {
       "shot_id": "S18",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "虚影锁链张口，把整条雷光吞下去",
       "characters": [
         "林昭"
@@ -280,7 +280,7 @@
     },
     {
       "shot_id": "S19",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "雷光被吸尽，屋内瞬间暗回月色",
       "characters": [
         "林昭"
@@ -296,7 +296,7 @@
     },
     {
       "shot_id": "S20",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭瘫在草席上，胸口纹路缓缓暗下",
       "characters": [
         "林昭"
@@ -312,7 +312,7 @@
     },
     {
       "shot_id": "S21",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "屋内陈设安然无恙，桌椅未倒",
       "characters": [],
       "action": "环境对比",
@@ -326,7 +326,7 @@
     },
     {
       "shot_id": "S22",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "地面焦出一圈人形轮廓，边缘冒烟",
       "characters": [],
       "action": "焦痕显现",
@@ -340,7 +340,7 @@
     },
     {
       "shot_id": "S23",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "窗外竹林还在冒青烟，月光斜照",
       "characters": [],
       "action": "竹林青烟",
@@ -354,7 +354,7 @@
     },
     {
       "shot_id": "S24",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭撑起身，低头看自己胸口",
       "characters": [
         "林昭"
@@ -370,7 +370,7 @@
     },
     {
       "shot_id": "S25",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "门口出现一道佝偻灰影，铁杖点地",
       "characters": [
         "老墨"
@@ -386,7 +386,7 @@
     },
     {
       "shot_id": "S26",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "铁杖头磕在门槛上，火星微溅",
       "characters": [
         "老墨"
@@ -402,7 +402,7 @@
     },
     {
       "shot_id": "S27",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "老墨灰袍破旧，枯手攥住林昭手腕",
       "characters": [
         "老墨",
@@ -419,7 +419,7 @@
     },
     {
       "shot_id": "S28",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "月光照亮老墨空洞的眼窝，深不见底",
       "characters": [
         "老墨"
@@ -435,7 +435,7 @@
     },
     {
       "shot_id": "S29",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "老墨侧脸对着月光，嘴唇开合",
       "characters": [
         "老墨"
@@ -451,7 +451,7 @@
     },
     {
       "shot_id": "S30",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭手腕上锁链纹映着月光微微发亮",
       "characters": [
         "林昭"
@@ -467,7 +467,7 @@
     },
     {
       "shot_id": "S31",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "林昭想抽回手，却被枯手钳住",
       "characters": [
         "林昭",
@@ -484,7 +484,7 @@
     },
     {
       "shot_id": "S32",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "柴房门口一老一少对峙，月光切出明暗",
       "characters": [
         "林昭",
@@ -501,7 +501,7 @@
     },
     {
       "shot_id": "S33",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "老墨松开手，铁杖横在身前",
       "characters": [
         "老墨"
@@ -517,7 +517,7 @@
     },
     {
       "shot_id": "S34",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭喉结滚动，咽下一口唾沫",
       "characters": [
         "林昭"
@@ -533,7 +533,7 @@
     },
     {
       "shot_id": "S35",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "老墨转身欲走，灰袍扫过门槛",
       "characters": [
         "老墨"
@@ -549,7 +549,7 @@
     },
     {
       "shot_id": "S36",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "老墨停步，却不回头，铁杖顿地",
       "characters": [
         "老墨"
@@ -565,7 +565,7 @@
     },
     {
       "shot_id": "S37",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭胸口锁链纹忽然又闪了一下",
       "characters": [
         "林昭"
@@ -581,7 +581,7 @@
     },
     {
       "shot_id": "S38",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "老墨身影没入门外夜色，只剩铁杖声",
       "characters": [
         "老墨"
@@ -597,7 +597,7 @@
     },
     {
       "shot_id": "S39",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "林昭独自坐在焦痕圈里，抱紧双臂",
       "characters": [
         "林昭"
@@ -613,7 +613,7 @@
     },
     {
       "shot_id": "S40",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "他指尖抚过胸口纹路，触感冰凉",
       "characters": [
         "林昭"
@@ -629,7 +629,7 @@
     },
     {
       "shot_id": "S41",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "窗外竹林青烟未散，隐约有影子晃动",
       "characters": [],
       "action": "竹影晃动",
@@ -643,7 +643,7 @@
     },
     {
       "shot_id": "S42",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "林昭猛地起身，抄起墙角锈剑",
       "characters": [
         "林昭"
@@ -659,7 +659,7 @@
     },
     {
       "shot_id": "S43",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "竹林深处几道黑影掠过，无声无息",
       "characters": [],
       "action": "黑影掠过",
@@ -673,7 +673,7 @@
     },
     {
       "shot_id": "S44",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "锈剑刃口映出林昭紧绷的眼",
       "characters": [
         "林昭"
@@ -689,7 +689,7 @@
     },
     {
       "shot_id": "S45",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "他压低身形，贴墙挪向窗边",
       "characters": [
         "林昭"
@@ -705,7 +705,7 @@
     },
     {
       "shot_id": "S46",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "窗纸破洞外，一双赤红眼睛一闪而逝",
       "characters": [],
       "action": "红眼闪过",
@@ -719,7 +719,7 @@
     },
     {
       "shot_id": "S47",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭呼吸一滞，握剑的手青筋凸起",
       "characters": [
         "林昭"
@@ -735,7 +735,7 @@
     },
     {
       "shot_id": "S48",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "柴房外传来瓦片轻响，有人上了屋顶",
       "characters": [],
       "action": "屋顶异响",
@@ -749,7 +749,7 @@
     },
     {
       "shot_id": "S49",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭吹灭残灯余烬，屋内全黑",
       "characters": [
         "林昭"
@@ -765,7 +765,7 @@
     },
     {
       "shot_id": "S50",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "黑暗中只剩他胸口纹路一明一暗",
       "characters": [
         "林昭"
@@ -781,7 +781,7 @@
     },
     {
       "shot_id": "S51",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "门缝下透进一线月光，有影子逼近",
       "characters": [],
       "action": "影子逼近",
@@ -795,7 +795,7 @@
     },
     {
       "shot_id": "S52",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭背贴门板，剑尖朝下蓄势",
       "characters": [
         "林昭"
@@ -811,7 +811,7 @@
     },
     {
       "shot_id": "S53",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "门闩被外力轻轻顶起，木屑掉落",
       "characters": [],
       "action": "门闩松动",
@@ -825,7 +825,7 @@
     },
     {
       "shot_id": "S54",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "门被推开半尺，一只黑爪探入",
       "characters": [],
       "action": "黑爪探入",
@@ -839,7 +839,7 @@
     },
     {
       "shot_id": "S55",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭暴起，锈剑劈向黑爪",
       "characters": [
         "林昭"
@@ -855,7 +855,7 @@
     },
     {
       "shot_id": "S56",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "锈剑砍在黑爪上，迸出一串火星",
       "characters": [
         "林昭"
@@ -871,7 +871,7 @@
     },
     {
       "shot_id": "S57",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "黑爪缩回，门外传来一声痛嚎远去",
       "characters": [],
       "action": "黑影退去",
@@ -885,7 +885,7 @@
     },
     {
       "shot_id": "S58",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭喘着气，剑刃缺了一角",
       "characters": [
         "林昭"
@@ -901,7 +901,7 @@
     },
     {
       "shot_id": "S59",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "他胸口锁链纹忽然亮得刺眼，烫得他闷哼",
       "characters": [
         "林昭"
@@ -917,7 +917,7 @@
     },
     {
       "shot_id": "S60",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "金光透出衣襟，把整间柴房照得通明",
       "characters": [
         "林昭"
@@ -933,7 +933,7 @@
     },
     {
       "shot_id": "S61",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "锁链虚影再次浮现，这次锁环在缓缓转动",
       "characters": [
         "林昭"
@@ -949,7 +949,7 @@
     },
     {
       "shot_id": "S62",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "虚影锁链一端指向后山方向，微微震颤",
       "characters": [
         "林昭"
@@ -965,7 +965,7 @@
     },
     {
       "shot_id": "S63",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "后山方向夜空泛起一线诡异红光",
       "characters": [],
       "action": "后山红光",
@@ -979,7 +979,7 @@
     },
     {
       "shot_id": "S64",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭望着红光，眼神从恐惧转为坚定",
       "characters": [
         "林昭"
@@ -995,7 +995,7 @@
     },
     {
       "shot_id": "S65",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "他撕下衣角，缠紧握剑的手",
       "characters": [
         "林昭"
@@ -1011,7 +1011,7 @@
     },
     {
       "shot_id": "S66",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "林昭推门而出，月光洒满肩头",
       "characters": [
         "林昭"
@@ -1027,7 +1027,7 @@
     },
     {
       "shot_id": "S67",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "他沿小径走向后山，竹林在两侧合拢",
       "characters": [
         "林昭"
@@ -1043,7 +1043,7 @@
     },
     {
       "shot_id": "S68",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "他胸口锁链纹在暗处幽幽发光，像在倒计时",
       "characters": [
         "林昭"
@@ -1059,7 +1059,7 @@
     },
     {
       "shot_id": "S69",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "后山入口立着一块残碑，刻着锁链图案",
       "characters": [
         "林昭"
@@ -1075,7 +1075,7 @@
     },
     {
       "shot_id": "S70",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "碑后黑暗中，一双赤红眼睛缓缓睁开",
       "characters": [],
       "action": "红眼睁开",

@@ -4,7 +4,7 @@
   "shots": [
     {
       "shot_id": "S01",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "黑暗祭坛地面，九十九盏魂灯灯芯同时亮起火星",
       "characters": [],
       "action": "火星窜起",
@@ -18,7 +18,7 @@
     },
     {
       "shot_id": "S02",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "魂灯火焰暴涨成火浪，扑向中央祭柱",
       "characters": [],
       "action": "火浪翻卷",
@@ -32,7 +32,7 @@
     },
     {
       "shot_id": "S03",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "铁链绑缚的林昭垂头跪在祭柱前，火光映亮侧脸",
       "characters": [
         "林昭"
@@ -48,7 +48,7 @@
     },
     {
       "shot_id": "S04",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭眼皮微动，睫毛上落着火星",
       "characters": [
         "林昭"
@@ -64,7 +64,7 @@
     },
     {
       "shot_id": "S05",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "祭天台外围，火光照亮层层石阶与夜空",
       "characters": [],
       "action": "火浪冲天",
@@ -78,7 +78,7 @@
     },
     {
       "shot_id": "S06",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭在火光里缓缓抬头，脸上无伤",
       "characters": [
         "林昭"
@@ -94,7 +94,7 @@
     },
     {
       "shot_id": "S07",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "祭柱四周铁链被火浪烤得发红",
       "characters": [],
       "action": "铁链震颤",
@@ -108,7 +108,7 @@
     },
     {
       "shot_id": "S08",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭瞳孔里倒映九十九团火",
       "characters": [
         "林昭"
@@ -124,7 +124,7 @@
     },
     {
       "shot_id": "S09",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "祭天台全景，魂灯围成圆阵，雷云压顶",
       "characters": [],
       "action": "云层翻涌",
@@ -138,7 +138,7 @@
     },
     {
       "shot_id": "S10",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "众弟子持剑列阵，火光照亮剑锋",
       "characters": [
         "弟子群"
@@ -154,7 +154,7 @@
     },
     {
       "shot_id": "S11",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "风把魂灯火焰吹得歪斜，光斑扫过弟子脸",
       "characters": [
         "弟子群"
@@ -170,7 +170,7 @@
     },
     {
       "shot_id": "S12",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "苏璃握剑的手，指节泛白",
       "characters": [
         "苏璃"
@@ -186,7 +186,7 @@
     },
     {
       "shot_id": "S13",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "剑柄缠绳被攥出褶皱，微微发抖",
       "characters": [
         "苏璃"
@@ -202,7 +202,7 @@
     },
     {
       "shot_id": "S14",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "背景虚化，严崇在高台举令宣示",
       "characters": [
         "严崇",
@@ -219,7 +219,7 @@
     },
     {
       "shot_id": "S15",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "苏璃侧脸，火光在她眼中跳动",
       "characters": [
         "苏璃"
@@ -235,7 +235,7 @@
     },
     {
       "shot_id": "S16",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "高台之上严崇俯视全场，令旗猎猎",
       "characters": [
         "严崇"
@@ -251,7 +251,7 @@
     },
     {
       "shot_id": "S17",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "七名长老并排立于祭柱前，长剑出鞘",
       "characters": [
         "长老群"
@@ -267,7 +267,7 @@
     },
     {
       "shot_id": "S18",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "长老剑锋映出林昭被绑的身影",
       "characters": [
         "长老群"
@@ -283,7 +283,7 @@
     },
     {
       "shot_id": "S19",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭听见剑鸣，缓缓转头",
       "characters": [
         "林昭"
@@ -299,7 +299,7 @@
     },
     {
       "shot_id": "S20",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "七长老举剑齐斩，金光在剑尖汇聚",
       "characters": [
         "长老群"
@@ -315,7 +315,7 @@
     },
     {
       "shot_id": "S21",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "剑锋斩向林昭胸口第一道锁链",
       "characters": [
         "林昭"
@@ -331,7 +331,7 @@
     },
     {
       "shot_id": "S22",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "金光迸裂，第一道锁应声而断",
       "characters": [
         "林昭",
@@ -348,7 +348,7 @@
     },
     {
       "shot_id": "S23",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "气浪掀飞四周魂灯，火焰四散",
       "characters": [],
       "action": "魂灯翻飞",
@@ -362,7 +362,7 @@
     },
     {
       "shot_id": "S24",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭被气浪吹得发丝狂舞，胸口锁链碎屑飞溅",
       "characters": [
         "林昭"
@@ -378,7 +378,7 @@
     },
     {
       "shot_id": "S25",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭胸口旧伤处浮起淡淡金光",
       "characters": [
         "林昭"
@@ -394,7 +394,7 @@
     },
     {
       "shot_id": "S26",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "长老们收剑后退半步，面面相觑",
       "characters": [
         "长老群"
@@ -410,7 +410,7 @@
     },
     {
       "shot_id": "S27",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "雷云骤然压低，电光在云层里游走",
       "characters": [],
       "action": "云层旋转",
@@ -424,7 +424,7 @@
     },
     {
       "shot_id": "S28",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "第一道天雷在云心凝聚成白点",
       "characters": [],
       "action": "雷光凝聚",
@@ -438,7 +438,7 @@
     },
     {
       "shot_id": "S29",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "苏璃猛地抬头看天",
       "characters": [
         "苏璃"
@@ -454,7 +454,7 @@
     },
     {
       "shot_id": "S30",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "严崇令旗一挥，示意继续",
       "characters": [
         "严崇"
@@ -470,7 +470,7 @@
     },
     {
       "shot_id": "S31",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "天雷如瀑布砸落，白光吞没祭天台",
       "characters": [],
       "action": "雷瀑落下",
@@ -484,7 +484,7 @@
     },
     {
       "shot_id": "S32",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭胸口锁链虚影暴涨成穹顶",
       "characters": [
         "林昭"
@@ -500,7 +500,7 @@
     },
     {
       "shot_id": "S33",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "穹顶护住全宗，雷光在罩外炸开",
       "characters": [
         "弟子群"
@@ -516,7 +516,7 @@
     },
     {
       "shot_id": "S34",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "三名长老被反震之力掀得倒飞",
       "characters": [
         "长老群"
@@ -532,7 +532,7 @@
     },
     {
       "shot_id": "S35",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "长老摔落石阶，剑脱手飞出",
       "characters": [
         "长老群"
@@ -548,7 +548,7 @@
     },
     {
       "shot_id": "S36",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭跪在焦土中央，衣角无伤",
       "characters": [
         "林昭"
@@ -564,7 +564,7 @@
     },
     {
       "shot_id": "S37",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "四周横七竖八倒着焦黑人影",
       "characters": [
         "弟子群"
@@ -580,7 +580,7 @@
     },
     {
       "shot_id": "S38",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "苏璃跪坐在不远处，剑插地撑身",
       "characters": [
         "苏璃"
@@ -596,7 +596,7 @@
     },
     {
       "shot_id": "S39",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭低头看自己胸口，金光缓缓隐去",
       "characters": [
         "林昭"
@@ -612,7 +612,7 @@
     },
     {
       "shot_id": "S40",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭抬手按在胸口，指尖微颤",
       "characters": [
         "林昭"
@@ -628,7 +628,7 @@
     },
     {
       "shot_id": "S41",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "雷云裂开一道缝，金光漏下",
       "characters": [],
       "action": "云层开裂",
@@ -642,7 +642,7 @@
     },
     {
       "shot_id": "S42",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "裂缝中露出一只金色竖瞳",
       "characters": [],
       "action": "金瞳转动",
@@ -656,7 +656,7 @@
     },
     {
       "shot_id": "S43",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭仰头与金瞳对视",
       "characters": [
         "林昭"
@@ -672,7 +672,7 @@
     },
     {
       "shot_id": "S44",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "金瞳目光扫过祭天台，焦黑人影微微抽搐",
       "characters": [],
       "action": "目光扫过",
@@ -686,7 +686,7 @@
     },
     {
       "shot_id": "S45",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭嘴唇微动，眼中映着金瞳",
       "characters": [
         "林昭"
@@ -702,7 +702,7 @@
     },
     {
       "shot_id": "S46",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭低头看胸口，又看天",
       "characters": [
         "林昭"
@@ -718,7 +718,7 @@
     },
     {
       "shot_id": "S47",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭眼中泛起泪光与金光交织",
       "characters": [
         "林昭"
@@ -734,7 +734,7 @@
     },
     {
       "shot_id": "S48",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "金瞳缓缓闭合，云层重新合拢",
       "characters": [],
       "action": "云层合拢",
@@ -748,7 +748,7 @@
     },
     {
       "shot_id": "S49",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "严崇在高台后退一步，令旗落地",
       "characters": [
         "严崇"
@@ -764,7 +764,7 @@
     },
     {
       "shot_id": "S50",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "苏璃拔剑站起，望向林昭方向",
       "characters": [
         "苏璃"
@@ -780,7 +780,7 @@
     },
     {
       "shot_id": "S51",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "焦土中一截断锁链仍在冒金光",
       "characters": [],
       "action": "金光跳动",
@@ -794,7 +794,7 @@
     },
     {
       "shot_id": "S52",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "弟子们挣扎爬起，望向林昭",
       "characters": [
         "弟子群"
@@ -810,7 +810,7 @@
     },
     {
       "shot_id": "S53",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭缓缓站起，铁链残片从身上滑落",
       "characters": [
         "林昭"
@@ -826,7 +826,7 @@
     },
     {
       "shot_id": "S54",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "祭天台一片狼藉，魂灯只剩几盏残火",
       "characters": [],
       "action": "残火摇曳",
@@ -840,7 +840,7 @@
     },
     {
       "shot_id": "S55",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭掌心浮起一枚金色瞳纹",
       "characters": [
         "林昭"
@@ -856,7 +856,7 @@
     },
     {
       "shot_id": "S56",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "严崇指着林昭厉喝，众长老重新聚拢",
       "characters": [
         "严崇",
@@ -873,7 +873,7 @@
     },
     {
       "shot_id": "S57",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭抬眼，金瞳虚影在身后一闪",
       "characters": [
         "林昭"
@@ -889,7 +889,7 @@
     },
     {
       "shot_id": "S58",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "金色气浪从林昭脚下炸开，掀翻冲来的长老",
       "characters": [
         "林昭",
@@ -906,7 +906,7 @@
     },
     {
       "shot_id": "S59",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "长老剑锋在金光中寸寸碎裂",
       "characters": [
         "长老群"
@@ -922,7 +922,7 @@
     },
     {
       "shot_id": "S60",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "苏璃挡在弟子前，剑指林昭又迟疑",
       "characters": [
         "苏璃"
@@ -938,7 +938,7 @@
     },
     {
       "shot_id": "S61",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭看向苏璃，眼中金光稍敛",
       "characters": [
         "林昭",
@@ -955,7 +955,7 @@
     },
     {
       "shot_id": "S62",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "天空残云旋成漩涡，金瞳再现",
       "characters": [],
       "action": "漩涡成形",
@@ -969,7 +969,7 @@
     },
     {
       "shot_id": "S63",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "金瞳锁定严崇，严崇脸色惨白",
       "characters": [
         "严崇"
@@ -985,7 +985,7 @@
     },
     {
       "shot_id": "S64",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "一道金光从天而降，击穿高台一角",
       "characters": [
         "严崇"
@@ -1001,7 +1001,7 @@
     },
     {
       "shot_id": "S65",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "严崇狼狈滚落石阶，令旗烧成灰",
       "characters": [
         "严崇"
@@ -1017,7 +1017,7 @@
     },
     {
       "shot_id": "S66",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "林昭立于焦土中央，金瞳悬于头顶",
       "characters": [
         "林昭"
@@ -1033,7 +1033,7 @@
     },
     {
       "shot_id": "S67",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭掌心瞳纹与天上金瞳同时一闪",
       "characters": [
         "林昭"
@@ -1049,7 +1049,7 @@
     },
     {
       "shot_id": "S68",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "苏璃收剑，低声开口",
       "characters": [
         "苏璃"
@@ -1065,7 +1065,7 @@
     },
     {
       "shot_id": "S69",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "林昭转身背对众人，金瞳在云中缓缓隐去",
       "characters": [
         "林昭"
@@ -1081,7 +1081,7 @@
     },
     {
       "shot_id": "S70",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭侧脸，眼中金纹一闪，嘴角微动",
       "characters": [
         "林昭"

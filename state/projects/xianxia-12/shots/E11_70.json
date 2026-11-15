@@ -51,7 +51,7 @@
     },
     {
       "shot_id": "S04",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "焦土旷野两人渺小如尘",
       "characters": [
         "林昭",
@@ -112,7 +112,7 @@
     },
     {
       "shot_id": "S08",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "金雨落地冒起大片白烟",
       "characters": [],
       "action": "焦土被灼烧",
@@ -172,7 +172,7 @@
     },
     {
       "shot_id": "S12",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "光柱贯穿天地照在使者身上",
       "characters": [
         "天道使者"
@@ -236,7 +236,7 @@
     },
     {
       "shot_id": "S16",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "金光贯穿老墨胸口",
       "characters": [
         "老墨",
@@ -299,7 +299,7 @@
     },
     {
       "shot_id": "S20",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭扑向老墨身后金雨如幕",
       "characters": [
         "林昭",
@@ -364,7 +364,7 @@
     },
     {
       "shot_id": "S24",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "金雨中的林昭孤身跪地",
       "characters": [
         "林昭"
@@ -429,7 +429,7 @@
     },
     {
       "shot_id": "S28",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "天穹金眼缓缓睁开",
       "characters": [],
       "action": "巨眼凝视",
@@ -491,7 +491,7 @@
     },
     {
       "shot_id": "S32",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "地面碎石被气浪掀飞",
       "characters": [
         "林昭"
@@ -539,7 +539,7 @@
     },
     {
       "shot_id": "S35",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "雷海从林昭脚下冲天而起",
       "characters": [
         "林昭"
@@ -603,7 +603,7 @@
     },
     {
       "shot_id": "S39",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "雷海席卷云层当场退开",
       "characters": [],
       "action": "云层翻涌退散",
@@ -663,7 +663,7 @@
     },
     {
       "shot_id": "S43",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "天穹金眼闭合又缓缓睁开",
       "characters": [],
       "action": "巨眼眨动",
@@ -723,7 +723,7 @@
     },
     {
       "shot_id": "S47",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "金袍人形立于焦土与林昭对峙",
       "characters": [
         "金袍人形",
@@ -788,7 +788,7 @@
     },
     {
       "shot_id": "S51",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭呆立原地雷光余烬未散",
       "characters": [
         "林昭",
@@ -853,7 +853,7 @@
     },
     {
       "shot_id": "S55",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "天穹金眼在两人头顶缓缓闭合",
       "characters": [],
       "action": "巨眼合拢",
@@ -913,7 +913,7 @@
     },
     {
       "shot_id": "S59",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭将金锁狠狠砸向地面",
       "characters": [
         "林昭"
@@ -973,7 +973,7 @@
     },
     {
       "shot_id": "S63",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "金袍人形抬头望向门影",
       "characters": [
         "金袍人形"
@@ -1035,7 +1035,7 @@
     },
     {
       "shot_id": "S67",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "门影暴涨吞没半片焦土",
       "characters": [
         "林昭",
@@ -1084,7 +1084,7 @@
     },
     {
       "shot_id": "S70",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "黑门吞天林昭孤影立于门前",
       "characters": [
         "林昭"

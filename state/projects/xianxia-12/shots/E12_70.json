@@ -4,7 +4,7 @@
   "shots": [
     {
       "shot_id": "S01",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "漆黑水面倒映星河，波纹细碎",
       "characters": [],
       "action": "水面微光闪动",
@@ -18,7 +18,7 @@
     },
     {
       "shot_id": "S02",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "金袍衣角垂落水面，不沾一滴",
       "characters": [
         "金袍人形"
@@ -34,7 +34,7 @@
     },
     {
       "shot_id": "S03",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "金袍人形立于水中央，星河倒影环身",
       "characters": [
         "金袍人形"
@@ -50,7 +50,7 @@
     },
     {
       "shot_id": "S04",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "虚无之境无天无地，黑水如镜",
       "characters": [],
       "action": "星河倒影铺满水面",
@@ -64,7 +64,7 @@
     },
     {
       "shot_id": "S05",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "金袍人形双眼映出星河",
       "characters": [
         "金袍人形"
@@ -80,7 +80,7 @@
     },
     {
       "shot_id": "S06",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭身影出现在水面对岸",
       "characters": [
         "林昭"
@@ -96,7 +96,7 @@
     },
     {
       "shot_id": "S07",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "两人隔水对峙，水面平静如镜",
       "characters": [
         "林昭",
@@ -113,7 +113,7 @@
     },
     {
       "shot_id": "S08",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "黑水倒映整条星河，两人如棋",
       "characters": [
         "林昭",
@@ -130,7 +130,7 @@
     },
     {
       "shot_id": "S09",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "金袍人形嘴唇微启",
       "characters": [
         "金袍人形"
@@ -146,7 +146,7 @@
     },
     {
       "shot_id": "S10",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "水面随话音荡开一圈涟漪",
       "characters": [],
       "action": "涟漪扩散",
@@ -160,7 +160,7 @@
     },
     {
       "shot_id": "S11",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "林昭眉头微皱，衣袍无风自动",
       "characters": [
         "林昭"
@@ -176,7 +176,7 @@
     },
     {
       "shot_id": "S12",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "虚无之境远处星河缓缓旋转",
       "characters": [],
       "action": "星河流动",
@@ -190,7 +190,7 @@
     },
     {
       "shot_id": "S13",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "金袍人形眼中闪过残影",
       "characters": [
         "金袍人形"
@@ -206,7 +206,7 @@
     },
     {
       "shot_id": "S14",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭冷笑，水面对岸倒影扭曲",
       "characters": [
         "林昭"
@@ -222,7 +222,7 @@
     },
     {
       "shot_id": "S15",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "金袍人形抬手，水面泛起黑雾",
       "characters": [
         "金袍人形"
@@ -238,7 +238,7 @@
     },
     {
       "shot_id": "S16",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "黑雾在水面铺开成镜面",
       "characters": [
         "林昭",
@@ -255,7 +255,7 @@
     },
     {
       "shot_id": "S17",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "雾镜中映出废墟一角",
       "characters": [],
       "action": "残垣断壁",
@@ -269,7 +269,7 @@
     },
     {
       "shot_id": "S18",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭盯着雾镜，呼吸一滞",
       "characters": [
         "林昭"
@@ -285,7 +285,7 @@
     },
     {
       "shot_id": "S19",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "水面炸开，闪回画面迸裂",
       "characters": [],
       "action": "水花四溅",
@@ -299,7 +299,7 @@
     },
     {
       "shot_id": "S20",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "闪回：废墟中央林昭独立",
       "characters": [
         "林昭"
@@ -315,7 +315,7 @@
     },
     {
       "shot_id": "S21",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭双眼漆黑无光",
       "characters": [
         "林昭"
@@ -331,7 +331,7 @@
     },
     {
       "shot_id": "S22",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "山河成灰，天空赤红",
       "characters": [],
       "action": "灰烬飘落",
@@ -345,7 +345,7 @@
     },
     {
       "shot_id": "S23",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "九位大能悬空合力铸锁",
       "characters": [],
       "action": "锁链交织成网",
@@ -359,7 +359,7 @@
     },
     {
       "shot_id": "S24",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "锁链从天而降罩住林昭",
       "characters": [
         "林昭"
@@ -375,7 +375,7 @@
     },
     {
       "shot_id": "S25",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "金袍人形声音从画外传来",
       "characters": [
         "金袍人形"
@@ -391,7 +391,7 @@
     },
     {
       "shot_id": "S26",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭从闪回中回神，面色苍白",
       "characters": [
         "林昭"
@@ -407,7 +407,7 @@
     },
     {
       "shot_id": "S27",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "金袍人形静立水面，等待回应",
       "characters": [
         "金袍人形"
@@ -423,7 +423,7 @@
     },
     {
       "shot_id": "S28",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "虚无之境星河黯淡几分",
       "characters": [],
       "action": "星光微弱",
@@ -437,7 +437,7 @@
     },
     {
       "shot_id": "S29",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭掌心浮现锁链虚影",
       "characters": [
         "林昭"
@@ -453,7 +453,7 @@
     },
     {
       "shot_id": "S30",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "锁链从体内被一寸寸抽出",
       "characters": [
         "林昭"
@@ -469,7 +469,7 @@
     },
     {
       "shot_id": "S31",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "雷海在身后倒卷翻涌",
       "characters": [
         "林昭"
@@ -485,7 +485,7 @@
     },
     {
       "shot_id": "S32",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "雷海倒卷回身，锁链横空",
       "characters": [
         "林昭"
@@ -501,7 +501,7 @@
     },
     {
       "shot_id": "S33",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "锁链钉入胸口，血花溅出",
       "characters": [
         "林昭"
@@ -517,7 +517,7 @@
     },
     {
       "shot_id": "S34",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭咬紧牙关，不出声",
       "characters": [
         "林昭"
@@ -533,7 +533,7 @@
     },
     {
       "shot_id": "S35",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "金袍人形注视，衣袍轻动",
       "characters": [
         "金袍人形"
@@ -549,7 +549,7 @@
     },
     {
       "shot_id": "S36",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "雷海与黑水交界，光暗撕裂",
       "characters": [
         "林昭"
@@ -565,7 +565,7 @@
     },
     {
       "shot_id": "S37",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭胸口锁链缝金光隐现",
       "characters": [
         "林昭"
@@ -581,7 +581,7 @@
     },
     {
       "shot_id": "S38",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭低头看胸口，眼神复杂",
       "characters": [
         "林昭"
@@ -597,7 +597,7 @@
     },
     {
       "shot_id": "S39",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "金袍人形后退半步，拱手",
       "characters": [
         "金袍人形"
@@ -613,7 +613,7 @@
     },
     {
       "shot_id": "S40",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "封印光纹从林昭脚下蔓延",
       "characters": [
         "林昭"
@@ -629,7 +629,7 @@
     },
     {
       "shot_id": "S41",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "锁链末端嵌入皮肉",
       "characters": [
         "林昭"
@@ -645,7 +645,7 @@
     },
     {
       "shot_id": "S42",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭闭眼，雷海渐息",
       "characters": [
         "林昭"
@@ -661,7 +661,7 @@
     },
     {
       "shot_id": "S43",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "金袍人形微笑，立于岸边",
       "characters": [
         "金袍人形"
@@ -677,7 +677,7 @@
     },
     {
       "shot_id": "S44",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "虚无之境星河重归平静",
       "characters": [
         "林昭",
@@ -694,7 +694,7 @@
     },
     {
       "shot_id": "S45",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "封印合拢，光纹封死胸口",
       "characters": [
         "林昭"
@@ -710,7 +710,7 @@
     },
     {
       "shot_id": "S46",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "金袍人形转身，衣袍没入黑暗",
       "characters": [
         "金袍人形"
@@ -726,7 +726,7 @@
     },
     {
       "shot_id": "S47",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "画面转黑，只剩胸口轮廓",
       "characters": [
         "林昭"
@@ -742,7 +742,7 @@
     },
     {
       "shot_id": "S48",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "漆黑一片，锁链缝金光一明一暗",
       "characters": [],
       "action": "金光脉动",
@@ -756,7 +756,7 @@
     },
     {
       "shot_id": "S49",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "锁链缝隙里金光如眼",
       "characters": [],
       "action": "金光收缩",
@@ -770,7 +770,7 @@
     },
     {
       "shot_id": "S50",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "金光一明一暗，像有人在敲",
       "characters": [],
       "action": "节奏加快",
@@ -784,7 +784,7 @@
     },
     {
       "shot_id": "S51",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "黑暗中锁链微微震颤",
       "characters": [],
       "action": "锁链抖动",
@@ -798,7 +798,7 @@
     },
     {
       "shot_id": "S52",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "虚无之境尽头一点金光亮起",
       "characters": [],
       "action": "金光扩大",
@@ -812,7 +812,7 @@
     },
     {
       "shot_id": "S53",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "金光中浮现模糊人影",
       "characters": [],
       "action": "人影抬手",
@@ -826,7 +826,7 @@
     },
     {
       "shot_id": "S54",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "人影手指轻叩锁链",
       "characters": [],
       "action": "指尖触碰",
@@ -840,7 +840,7 @@
     },
     {
       "shot_id": "S55",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "锁链应声裂开一道细缝",
       "characters": [],
       "action": "缝隙渗出金光",
@@ -854,7 +854,7 @@
     },
     {
       "shot_id": "S56",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "裂缝金光暴涨，照亮黑暗",
       "characters": [],
       "action": "光芒四射",
@@ -868,7 +868,7 @@
     },
     {
       "shot_id": "S57",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭胸口锁链剧烈震颤",
       "characters": [
         "林昭"
@@ -884,7 +884,7 @@
     },
     {
       "shot_id": "S58",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭猛然睁眼，瞳孔映出金光",
       "characters": [
         "林昭"
@@ -900,7 +900,7 @@
     },
     {
       "shot_id": "S59",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "金光中传来低沉画外音",
       "characters": [],
       "action": "光芒脉动",
@@ -914,7 +914,7 @@
     },
     {
       "shot_id": "S60",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "虚无之境被金光撕开一道口子",
       "characters": [],
       "action": "空间崩裂",
@@ -928,7 +928,7 @@
     },
     {
       "shot_id": "S61",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "裂缝中伸出一只苍白的手",
       "characters": [],
       "action": "五指张开",
@@ -942,7 +942,7 @@
     },
     {
       "shot_id": "S62",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭锁链回缩护体",
       "characters": [
         "林昭"
@@ -958,7 +958,7 @@
     },
     {
       "shot_id": "S63",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "苍白之手按在封印上",
       "characters": [],
       "action": "缓缓用力",
@@ -972,7 +972,7 @@
     },
     {
       "shot_id": "S64",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "封印光纹寸寸崩裂",
       "characters": [
         "林昭"
@@ -988,7 +988,7 @@
     },
     {
       "shot_id": "S65",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭胸口锁链缝里金光刺目",
       "characters": [
         "林昭"
@@ -1004,7 +1004,7 @@
     },
     {
       "shot_id": "S66",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭咬牙，双手结印",
       "characters": [
         "林昭"
@@ -1020,7 +1020,7 @@
     },
     {
       "shot_id": "S67",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "锁链重新收紧，金光被压回",
       "characters": [
         "林昭"
@@ -1036,7 +1036,7 @@
     },
     {
       "shot_id": "S68",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "裂缝缓缓闭合，金光不甘退去",
       "characters": [],
       "action": "空间弥合",
@@ -1050,7 +1050,7 @@
     },
     {
       "shot_id": "S69",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "锁链缝里金光最后一闪",
       "characters": [],
       "action": "金光隐没",
@@ -1064,7 +1064,7 @@
     },
     {
       "shot_id": "S70",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "黑暗中林昭睁眼，目光如刀",
       "characters": [
         "林昭"

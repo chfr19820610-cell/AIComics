@@ -4,7 +4,7 @@
   "shots": [
     {
       "shot_id": "S01",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "漆黑断碑缝隙间一点幽蓝磷火骤然亮起",
       "characters": [],
       "action": "磷火燃起",
@@ -18,7 +18,7 @@
     },
     {
       "shot_id": "S02",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "枯手从碑后伸出，五指扣住林昭肩头",
       "characters": [
         "林昭"
@@ -34,7 +34,7 @@
     },
     {
       "shot_id": "S03",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭猛地回头，肩头衣料被攥出褶皱",
       "characters": [
         "林昭"
@@ -50,7 +50,7 @@
     },
     {
       "shot_id": "S04",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭瞳孔中映出一簇幽蓝火苗",
       "characters": [
         "林昭"
@@ -66,7 +66,7 @@
     },
     {
       "shot_id": "S05",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "葬灵渊底碑林全貌，数百断碑斜插黑土",
       "characters": [],
       "action": "磷火漂浮",
@@ -80,7 +80,7 @@
     },
     {
       "shot_id": "S06",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "蓝绿磷火在碑间缓缓游走，冷光铺地",
       "characters": [],
       "action": "火团漂移",
@@ -94,7 +94,7 @@
     },
     {
       "shot_id": "S07",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭立于碑林中央，环顾四周",
       "characters": [
         "林昭"
@@ -110,7 +110,7 @@
     },
     {
       "shot_id": "S08",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "老墨拄铁杖从碑影里走出半步",
       "characters": [
         "老墨"
@@ -126,7 +126,7 @@
     },
     {
       "shot_id": "S09",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "两人隔着三块断碑相对而立",
       "characters": [
         "林昭",
@@ -143,7 +143,7 @@
     },
     {
       "shot_id": "S10",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭松了半口气，眉头仍皱着",
       "characters": [
         "林昭"
@@ -159,7 +159,7 @@
     },
     {
       "shot_id": "S11",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "老墨铁杖杖头缠着旧布条，磨得发亮",
       "characters": [],
       "action": "杖头微颤",
@@ -173,7 +173,7 @@
     },
     {
       "shot_id": "S12",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "磷火映出两人拉长的影子投在黑土上",
       "characters": [
         "林昭",
@@ -190,7 +190,7 @@
     },
     {
       "shot_id": "S13",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "老墨抬手示意林昭退后两步",
       "characters": [
         "老墨",
@@ -207,7 +207,7 @@
     },
     {
       "shot_id": "S14",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭退到一块断碑旁，手扶碑沿",
       "characters": [
         "林昭"
@@ -223,7 +223,7 @@
     },
     {
       "shot_id": "S15",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "老墨双手握杖，指节泛白",
       "characters": [
         "老墨"
@@ -239,7 +239,7 @@
     },
     {
       "shot_id": "S16",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "老墨抡起铁杖，杖身划出弧线",
       "characters": [
         "老墨"
@@ -255,7 +255,7 @@
     },
     {
       "shot_id": "S17",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "铁杖重砸碑面，石屑迸溅",
       "characters": [],
       "action": "杖击石碑",
@@ -269,7 +269,7 @@
     },
     {
       "shot_id": "S18",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "碑面荡开一圈水波般的涟漪",
       "characters": [],
       "action": "波纹扩散",
@@ -283,7 +283,7 @@
     },
     {
       "shot_id": "S19",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "老墨收杖而立，盯着碑面",
       "characters": [
         "老墨"
@@ -299,7 +299,7 @@
     },
     {
       "shot_id": "S20",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "碑面浮出九位大能围坐的古老壁画",
       "characters": [],
       "action": "壁画浮现",
@@ -313,7 +313,7 @@
     },
     {
       "shot_id": "S21",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "壁画铺满整块碑面，九人衣袍翻飞",
       "characters": [],
       "action": "画面展开",
@@ -327,7 +327,7 @@
     },
     {
       "shot_id": "S22",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "九双手同时按向中央一团黑雾",
       "characters": [],
       "action": "九手齐按",
@@ -341,7 +341,7 @@
     },
     {
       "shot_id": "S23",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "壁画中央，一条锁链从婴儿胸口生出",
       "characters": [],
       "action": "锁链显形",
@@ -355,7 +355,7 @@
     },
     {
       "shot_id": "S24",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭凑近碑面，眼睛睁大",
       "characters": [
         "林昭"
@@ -371,7 +371,7 @@
     },
     {
       "shot_id": "S25",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "锁链一圈圈缠住翻涌的黑雾",
       "characters": [],
       "action": "锁链缠绕",
@@ -385,7 +385,7 @@
     },
     {
       "shot_id": "S26",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "黑雾里浮出一张模糊的人脸轮廓",
       "characters": [],
       "action": "人脸浮现",
@@ -399,7 +399,7 @@
     },
     {
       "shot_id": "S27",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭后退半步，脸色发白",
       "characters": [
         "林昭"
@@ -415,7 +415,7 @@
     },
     {
       "shot_id": "S28",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "林昭喉结滚动，艰难咽下话头",
       "characters": [
         "林昭"
@@ -431,7 +431,7 @@
     },
     {
       "shot_id": "S29",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "老墨沉默不语，磷火掠过他侧脸",
       "characters": [
         "老墨"
@@ -447,7 +447,7 @@
     },
     {
       "shot_id": "S30",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "碑林间磷火忽然齐齐一暗",
       "characters": [],
       "action": "火光变暗",
@@ -461,7 +461,7 @@
     },
     {
       "shot_id": "S31",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "老墨伸手掀开自己衣襟",
       "characters": [
         "老墨"
@@ -477,7 +477,7 @@
     },
     {
       "shot_id": "S32",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "老墨胸口嵌着暗金锁链，只剩一道未断",
       "characters": [
         "老墨"
@@ -493,7 +493,7 @@
     },
     {
       "shot_id": "S33",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "那道未断锁链上已有细密裂纹",
       "characters": [],
       "action": "裂纹微光",
@@ -507,7 +507,7 @@
     },
     {
       "shot_id": "S34",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "老墨平静地看着林昭，眼神不避",
       "characters": [
         "老墨",
@@ -524,7 +524,7 @@
     },
     {
       "shot_id": "S35",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "磷火映亮两张脸，一老一少",
       "characters": [
         "林昭",
@@ -541,7 +541,7 @@
     },
     {
       "shot_id": "S36",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭胸口衣料下透出一点暗金",
       "characters": [
         "林昭"
@@ -557,7 +557,7 @@
     },
     {
       "shot_id": "S37",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "林昭低头看向自己胸口",
       "characters": [
         "林昭"
@@ -573,7 +573,7 @@
     },
     {
       "shot_id": "S38",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "老墨脸色一变，铁杖横挡在前",
       "characters": [
         "老墨"
@@ -589,7 +589,7 @@
     },
     {
       "shot_id": "S39",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭胸口传来一声脆响，衣料鼓起",
       "characters": [
         "林昭"
@@ -605,7 +605,7 @@
     },
     {
       "shot_id": "S40",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "第二道锁正裂开一道金缝",
       "characters": [],
       "action": "锁链开裂",
@@ -619,7 +619,7 @@
     },
     {
       "shot_id": "S41",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "金光从裂缝漏出，照亮林昭下巴",
       "characters": [
         "林昭"
@@ -635,7 +635,7 @@
     },
     {
       "shot_id": "S42",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "老墨猛退一步，杖尖点地画圈",
       "characters": [
         "老墨"
@@ -651,7 +651,7 @@
     },
     {
       "shot_id": "S43",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "地面亮起一圈暗金阵纹",
       "characters": [],
       "action": "阵纹亮起",
@@ -665,7 +665,7 @@
     },
     {
       "shot_id": "S44",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "林昭双手按住胸口，指缝漏金光",
       "characters": [
         "林昭"
@@ -681,7 +681,7 @@
     },
     {
       "shot_id": "S45",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "金缝里渗出一缕黑雾，如活物扭动",
       "characters": [],
       "action": "黑雾渗出",
@@ -695,7 +695,7 @@
     },
     {
       "shot_id": "S46",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "老墨额角冒汗，杖身压向林昭胸口",
       "characters": [
         "老墨"
@@ -711,7 +711,7 @@
     },
     {
       "shot_id": "S47",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "黑雾被杖身逼回，金缝勉强合拢半分",
       "characters": [
         "林昭",
@@ -728,7 +728,7 @@
     },
     {
       "shot_id": "S48",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "碑林磷火齐齐朝两人涌来",
       "characters": [],
       "action": "磷火汇聚",
@@ -742,7 +742,7 @@
     },
     {
       "shot_id": "S49",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "磷火绕林昭旋转，冷光刺目",
       "characters": [
         "林昭"
@@ -758,7 +758,7 @@
     },
     {
       "shot_id": "S50",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭单膝跪地，额头抵着碑面",
       "characters": [
         "林昭"
@@ -774,7 +774,7 @@
     },
     {
       "shot_id": "S51",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "金缝边缘残留一丝黑气，悄然缩回",
       "characters": [],
       "action": "黑气缩回",
@@ -788,7 +788,7 @@
     },
     {
       "shot_id": "S52",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "老墨收杖，喘着粗气看林昭",
       "characters": [
         "老墨",
@@ -805,7 +805,7 @@
     },
     {
       "shot_id": "S53",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭抬头，眼底映着残余金光",
       "characters": [
         "林昭"
@@ -821,7 +821,7 @@
     },
     {
       "shot_id": "S54",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "老墨避开目光，望向碑林深处",
       "characters": [
         "老墨"
@@ -837,7 +837,7 @@
     },
     {
       "shot_id": "S55",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "碑林深处一片漆黑，只有磷火飘摇",
       "characters": [],
       "action": "深处幽暗",
@@ -851,7 +851,7 @@
     },
     {
       "shot_id": "S56",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭胸口金缝忽然又亮一下",
       "characters": [
         "林昭"
@@ -867,7 +867,7 @@
     },
     {
       "shot_id": "S57",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "金缝里映出一只竖瞳，一闪而逝",
       "characters": [],
       "action": "竖瞳闪现",
@@ -881,7 +881,7 @@
     },
     {
       "shot_id": "S58",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭猛地捂住胸口，冷汗直下",
       "characters": [
         "林昭"
@@ -897,7 +897,7 @@
     },
     {
       "shot_id": "S59",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "老墨脸色剧变，一把拽起林昭",
       "characters": [
         "老墨",
@@ -914,7 +914,7 @@
     },
     {
       "shot_id": "S60",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "两人朝碑林外狂奔，磷火被风卷散",
       "characters": [
         "林昭",
@@ -931,7 +931,7 @@
     },
     {
       "shot_id": "S61",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "身后断碑一块接一块自行崩裂",
       "characters": [],
       "action": "碑石崩裂",
@@ -945,7 +945,7 @@
     },
     {
       "shot_id": "S62",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "崩裂碑缝里伸出无数黑雾细手",
       "characters": [],
       "action": "雾手伸出",
@@ -959,7 +959,7 @@
     },
     {
       "shot_id": "S63",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "老墨回身一杖扫散扑来的雾手",
       "characters": [
         "老墨"
@@ -975,7 +975,7 @@
     },
     {
       "shot_id": "S64",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "林昭边跑边回头，胸口金光乱闪",
       "characters": [
         "林昭"
@@ -991,7 +991,7 @@
     },
     {
       "shot_id": "S65",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "整片碑林开始倾斜下沉，黑土翻涌",
       "characters": [],
       "action": "碑林下沉",
@@ -1005,7 +1005,7 @@
     },
     {
       "shot_id": "S66",
-      "shot_type": "特写",
+      "shot_type": "closeup",
       "scene": "林昭胸口第二道锁彻底裂成两截",
       "characters": [
         "林昭"
@@ -1021,7 +1021,7 @@
     },
     {
       "shot_id": "S67",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "断锁金光炸开，映亮林昭整张脸",
       "characters": [
         "林昭"
@@ -1037,7 +1037,7 @@
     },
     {
       "shot_id": "S68",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭被金光托起半尺，衣袍鼓荡",
       "characters": [
         "林昭"
@@ -1053,7 +1053,7 @@
     },
     {
       "shot_id": "S69",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "老墨停步回望，眼中映着金光",
       "characters": [
         "老墨"
@@ -1069,7 +1069,7 @@
     },
     {
       "shot_id": "S70",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "金光中浮现九道锁链虚影，第八道正寸寸碎裂",
       "characters": [
         "林昭",

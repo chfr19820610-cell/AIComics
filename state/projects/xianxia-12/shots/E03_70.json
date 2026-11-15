@@ -4,7 +4,7 @@
   "shots": [
     {
       "shot_id": "S01",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "崖边碎石被靴底碾碎，尘土飞散",
       "characters": [
         "赵乾",
@@ -21,7 +21,7 @@
     },
     {
       "shot_id": "S02",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭侧脸贴地，嘴角渗血",
       "characters": [
         "林昭"
@@ -37,7 +37,7 @@
     },
     {
       "shot_id": "S03",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "赵乾单膝压住林昭后背，众弟子围成半圈",
       "characters": [
         "赵乾",
@@ -55,7 +55,7 @@
     },
     {
       "shot_id": "S04",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "葬灵渊崖口，黑雾从崖缝里往上爬",
       "characters": [
         "赵乾",
@@ -73,7 +73,7 @@
     },
     {
       "shot_id": "S05",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "黑雾缠上林昭手腕，像活物收紧",
       "characters": [
         "林昭"
@@ -89,7 +89,7 @@
     },
     {
       "shot_id": "S06",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "众弟子抱臂，嘴角挂着冷笑",
       "characters": [
         "众弟子"
@@ -105,7 +105,7 @@
     },
     {
       "shot_id": "S07",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "赵乾俯身，脸凑近林昭耳边",
       "characters": [
         "赵乾",
@@ -122,7 +122,7 @@
     },
     {
       "shot_id": "S08",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "葬灵渊全貌，巨大地坑翻涌黑雾",
       "characters": [],
       "action": "铁链吊桥横跨渊上，随风轻晃",
@@ -136,7 +136,7 @@
     },
     {
       "shot_id": "S09",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "渊底透出阴绿磷光，一闪一灭",
       "characters": [],
       "action": "磷光在雾底缓缓游动",
@@ -150,7 +150,7 @@
     },
     {
       "shot_id": "S10",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭瞳孔映出渊底绿光",
       "characters": [
         "林昭"
@@ -166,7 +166,7 @@
     },
     {
       "shot_id": "S11",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "赵乾把林昭拖到崖沿，半身悬空",
       "characters": [
         "赵乾",
@@ -183,7 +183,7 @@
     },
     {
       "shot_id": "S12",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "崖边众人身影被黑雾半吞",
       "characters": [
         "赵乾",
@@ -201,7 +201,7 @@
     },
     {
       "shot_id": "S13",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭手指从崖沿滑脱",
       "characters": [
         "林昭"
@@ -217,7 +217,7 @@
     },
     {
       "shot_id": "S14",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭身体坠入黑雾，衣袍翻飞",
       "characters": [
         "林昭"
@@ -233,7 +233,7 @@
     },
     {
       "shot_id": "S15",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "崖上众人俯身往下看",
       "characters": [
         "赵乾",
@@ -250,7 +250,7 @@
     },
     {
       "shot_id": "S16",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "黑雾合拢吞没崖口，只剩风声",
       "characters": [],
       "action": "雾面翻涌如沸水",
@@ -264,7 +264,7 @@
     },
     {
       "shot_id": "S17",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "雾中一只赤红瞳孔骤然亮起",
       "characters": [
         "墨鳞蛟"
@@ -280,7 +280,7 @@
     },
     {
       "shot_id": "S18",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "墨鳞蛟自雾中探出巨头",
       "characters": [
         "墨鳞蛟"
@@ -296,7 +296,7 @@
     },
     {
       "shot_id": "S19",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "林昭在黑雾中下坠，蛟口逼近",
       "characters": [
         "林昭",
@@ -313,7 +313,7 @@
     },
     {
       "shot_id": "S20",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "渊壁铁链被蛟身撞得乱晃",
       "characters": [
         "墨鳞蛟"
@@ -329,7 +329,7 @@
     },
     {
       "shot_id": "S21",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "蛟口獠牙间滴下黏液",
       "characters": [
         "墨鳞蛟"
@@ -345,7 +345,7 @@
     },
     {
       "shot_id": "S22",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭闭眼抬手护头",
       "characters": [
         "林昭"
@@ -361,7 +361,7 @@
     },
     {
       "shot_id": "S23",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "暗金锁链虚影自林昭掌心炸开",
       "characters": [
         "林昭"
@@ -377,7 +377,7 @@
     },
     {
       "shot_id": "S24",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "金链贯穿蛟首，血雾在黑雾里炸散",
       "characters": [
         "林昭",
@@ -394,7 +394,7 @@
     },
     {
       "shot_id": "S25",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "蛟血如雨溅上林昭脸颊",
       "characters": [
         "林昭"
@@ -410,7 +410,7 @@
     },
     {
       "shot_id": "S26",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭悬停在渊口上空，衣袍猎猎",
       "characters": [
         "林昭"
@@ -426,7 +426,7 @@
     },
     {
       "shot_id": "S27",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "锁链纹顺着林昭右臂爬到颈侧",
       "characters": [
         "林昭"
@@ -442,7 +442,7 @@
     },
     {
       "shot_id": "S28",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "崖上众人僵在原地，探头下望",
       "characters": [
         "赵乾",
@@ -459,7 +459,7 @@
     },
     {
       "shot_id": "S29",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭眼底泛起一层金光",
       "characters": [
         "林昭"
@@ -475,7 +475,7 @@
     },
     {
       "shot_id": "S30",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭缓缓摊开右手掌",
       "characters": [
         "林昭"
@@ -491,7 +491,7 @@
     },
     {
       "shot_id": "S31",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "雷纹与先前天雷纹路在记忆中重叠",
       "characters": [
         "林昭"
@@ -507,7 +507,7 @@
     },
     {
       "shot_id": "S32",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "渊口黑雾翻涌，林昭悬立雾上",
       "characters": [
         "林昭"
@@ -523,7 +523,7 @@
     },
     {
       "shot_id": "S33",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭眼里一半恐惧一半兴奋",
       "characters": [
         "林昭"
@@ -539,7 +539,7 @@
     },
     {
       "shot_id": "S34",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭攥拳又松开，雷纹隐现",
       "characters": [
         "林昭"
@@ -555,7 +555,7 @@
     },
     {
       "shot_id": "S35",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "崖上赵乾攥紧栏杆，指节发白",
       "characters": [
         "赵乾",
@@ -572,7 +572,7 @@
     },
     {
       "shot_id": "S36",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "渊底磷光骤亮，黑雾倒卷成涡",
       "characters": [
         "林昭"
@@ -588,7 +588,7 @@
     },
     {
       "shot_id": "S37",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "雷纹从掌心蔓延至腕骨",
       "characters": [
         "林昭"
@@ -604,7 +604,7 @@
     },
     {
       "shot_id": "S38",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭闷哼一声，单膝虚跪半空",
       "characters": [
         "林昭"
@@ -620,7 +620,7 @@
     },
     {
       "shot_id": "S39",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "雾中浮出无数细碎蛟影残像",
       "characters": [
         "墨鳞蛟残影"
@@ -636,7 +636,7 @@
     },
     {
       "shot_id": "S40",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "铁链吊桥被气浪掀得横飞",
       "characters": [],
       "action": "桥板断裂坠入渊底",
@@ -650,7 +650,7 @@
     },
     {
       "shot_id": "S41",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "赵乾瞳孔映出金链虚影",
       "characters": [
         "赵乾"
@@ -666,7 +666,7 @@
     },
     {
       "shot_id": "S42",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "众弟子交头接耳，脸色发白",
       "characters": [
         "众弟子"
@@ -682,7 +682,7 @@
     },
     {
       "shot_id": "S43",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "黑雾如潮往林昭右臂灌注",
       "characters": [
         "林昭"
@@ -698,7 +698,7 @@
     },
     {
       "shot_id": "S44",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "渊口上空金黑二气绞成旋柱",
       "characters": [
         "林昭"
@@ -714,7 +714,7 @@
     },
     {
       "shot_id": "S45",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭咬破下唇，强行收掌",
       "characters": [
         "林昭"
@@ -730,7 +730,7 @@
     },
     {
       "shot_id": "S46",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "旋柱炸散，林昭被反震落地",
       "characters": [
         "林昭"
@@ -746,7 +746,7 @@
     },
     {
       "shot_id": "S47",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "赵乾拔剑指向林昭后心",
       "characters": [
         "赵乾",
@@ -763,7 +763,7 @@
     },
     {
       "shot_id": "S48",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "众弟子围拢成圈，剑光如林",
       "characters": [
         "赵乾",
@@ -781,7 +781,7 @@
     },
     {
       "shot_id": "S49",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭掌心雷纹感应般骤亮",
       "characters": [
         "林昭"
@@ -797,7 +797,7 @@
     },
     {
       "shot_id": "S50",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "电弧击偏赵乾剑锋，火星四溅",
       "characters": [
         "赵乾",
@@ -814,7 +814,7 @@
     },
     {
       "shot_id": "S51",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "林昭撑地起身，右臂金纹未褪",
       "characters": [
         "林昭"
@@ -830,7 +830,7 @@
     },
     {
       "shot_id": "S52",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "崖口风停一瞬，众人僵持",
       "characters": [
         "赵乾",
@@ -848,7 +848,7 @@
     },
     {
       "shot_id": "S53",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "赵乾眼底闪过怯意，喉结滚动",
       "characters": [
         "赵乾"
@@ -864,7 +864,7 @@
     },
     {
       "shot_id": "S54",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭低头看掌心，雷纹渐隐",
       "characters": [
         "林昭"
@@ -880,7 +880,7 @@
     },
     {
       "shot_id": "S55",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "渊底传来一声悠长蛟吟",
       "characters": [],
       "action": "雾面荡开一圈巨大涟漪",
@@ -894,7 +894,7 @@
     },
     {
       "shot_id": "S56",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "整座葬灵渊黑雾倒灌冲天",
       "characters": [
         "林昭",
@@ -912,7 +912,7 @@
     },
     {
       "shot_id": "S57",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭掌心雷纹与雾中某种纹路共鸣",
       "characters": [
         "林昭"
@@ -928,7 +928,7 @@
     },
     {
       "shot_id": "S58",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭被雾柱托起，双脚离地",
       "characters": [
         "林昭"
@@ -944,7 +944,7 @@
     },
     {
       "shot_id": "S59",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "赵乾等人被气浪掀翻在地",
       "characters": [
         "赵乾",
@@ -961,7 +961,7 @@
     },
     {
       "shot_id": "S60",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "雾柱中浮出一具巨大蛟骨虚影",
       "characters": [
         "蛟骨虚影"
@@ -977,7 +977,7 @@
     },
     {
       "shot_id": "S61",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "蛟骨赤瞳锁定林昭掌心雷纹",
       "characters": [
         "蛟骨虚影",
@@ -994,7 +994,7 @@
     },
     {
       "shot_id": "S62",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭与蛟骨对视，金纹暴涨",
       "characters": [
         "林昭"
@@ -1010,7 +1010,7 @@
     },
     {
       "shot_id": "S63",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "蛟骨虚影俯首，绕林昭盘旋",
       "characters": [
         "蛟骨虚影",
@@ -1027,7 +1027,7 @@
     },
     {
       "shot_id": "S64",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "崖上众人仰头，面无人色",
       "characters": [
         "赵乾",
@@ -1044,7 +1044,7 @@
     },
     {
       "shot_id": "S65",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "林昭眼底金光与蛟瞳赤光交映",
       "characters": [
         "林昭"
@@ -1060,7 +1060,7 @@
     },
     {
       "shot_id": "S66",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭悬于渊口，俯视崖上众人",
       "characters": [
         "林昭"
@@ -1076,7 +1076,7 @@
     },
     {
       "shot_id": "S67",
-      "shot_type": "中景",
+      "shot_type": "medium",
       "scene": "赵乾连滚带爬往后退",
       "characters": [
         "赵乾",
@@ -1093,7 +1093,7 @@
     },
     {
       "shot_id": "S68",
-      "shot_type": "全景",
+      "shot_type": "wide",
       "scene": "林昭踏雾而起，立于蛟骨之上",
       "characters": [
         "林昭",
@@ -1110,7 +1110,7 @@
     },
     {
       "shot_id": "S69",
-      "shot_type": "大特写",
+      "shot_type": "extreme_closeup",
       "scene": "雷纹深处浮出一个古老符文",
       "characters": [
         "林昭"
@@ -1126,7 +1126,7 @@
     },
     {
       "shot_id": "S70",
-      "shot_type": "近景",
+      "shot_type": "closeup",
       "scene": "林昭望向渊底，眼神沉下去",
       "characters": [
         "林昭"

@@ -4,7 +4,7 @@
   "shots": [
     {
       "shot_id": "S01",
-      "shot_type": "establishing",
+      "shot_type": "environment",
       "scene": "晨雾漫过青冥剑宗山门，千级石阶隐入云海，云边镀金",
       "characters": [],
       "action": "云海翻涌，石阶尽头山门轮廓渐显",
@@ -66,7 +66,7 @@
     },
     {
       "shot_id": "S05",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "百柄长剑同时出鞘，剑尖齐指石阶下方",
       "characters": [
         "众弟子"
@@ -130,7 +130,7 @@
     },
     {
       "shot_id": "S09",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭孤身面对百剑，石阶如天梯压在身后",
       "characters": [
         "林昭",
@@ -179,7 +179,7 @@
     },
     {
       "shot_id": "S12",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "剑阵光纹从地面升起，罩住整段石阶",
       "characters": [
         "众长老",
@@ -228,7 +228,7 @@
     },
     {
       "shot_id": "S15",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "剑阵如巨碗倒扣，将林昭困在中央",
       "characters": [
         "林昭",
@@ -277,7 +277,7 @@
     },
     {
       "shot_id": "S18",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭挥刀上撩，雷光劈入剑阵光罩",
       "characters": [
         "林昭"
@@ -307,7 +307,7 @@
     },
     {
       "shot_id": "S20",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "整座剑阵如琉璃崩解，光屑四散如雪",
       "characters": [
         "林昭",
@@ -356,7 +356,7 @@
     },
     {
       "shot_id": "S23",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "碎剑堆散落石阶，严崇跌坐其中",
       "characters": [
         "严崇"
@@ -421,7 +421,7 @@
     },
     {
       "shot_id": "S27",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭越过严崇身侧，没有停步",
       "characters": [
         "林昭",
@@ -504,7 +504,7 @@
     },
     {
       "shot_id": "S32",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "赵乾伏在地上发抖，身后弟子无人敢动",
       "characters": [
         "赵乾",
@@ -553,7 +553,7 @@
     },
     {
       "shot_id": "S35",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭停在石阶中段，仰头与掌门对视",
       "characters": [
         "林昭",
@@ -683,7 +683,7 @@
     },
     {
       "shot_id": "S43",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "满山弟子跪伏如浪，石阶上只剩林昭站立",
       "characters": [
         "林昭",
@@ -748,7 +748,7 @@
     },
     {
       "shot_id": "S47",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "云海翻涌，金光从云缝里泼下",
       "characters": [],
       "action": "云层裂开，光柱落下",
@@ -794,7 +794,7 @@
     },
     {
       "shot_id": "S50",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "整座山门震动，碎石从檐角滚落",
       "characters": [
         "众弟子",
@@ -843,7 +843,7 @@
     },
     {
       "shot_id": "S53",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "光柱罩住林昭，衣袍猎猎翻飞",
       "characters": [
         "林昭"
@@ -891,7 +891,7 @@
     },
     {
       "shot_id": "S56",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭抬脚继续登阶，光柱随他移动",
       "characters": [
         "林昭"
@@ -955,7 +955,7 @@
     },
     {
       "shot_id": "S60",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭走到山门之前，千级石阶已在脚下",
       "characters": [
         "林昭"
@@ -1019,7 +1019,7 @@
     },
     {
       "shot_id": "S64",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "林昭跨过山门，光柱冲散晨雾",
       "characters": [
         "林昭"
@@ -1063,7 +1063,7 @@
     },
     {
       "shot_id": "S67",
-      "shot_type": "full",
+      "shot_type": "wide",
       "scene": "云海深处一道巨大光柱冲天而起，与林昭呼应",
       "characters": [
         "林昭"
