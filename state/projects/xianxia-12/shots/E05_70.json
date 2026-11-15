@@ -111,7 +111,7 @@
     {
       "shot_id": "S08",
       "shot_type": "closeup",
-      "scene": "老墨拄铁杖从碑影里走出半步",
+      "scene": "老墨拄铁杖从碑影里缓缓走出半步",
       "characters": [
         "老墨"
       ],
@@ -160,7 +160,7 @@
     {
       "shot_id": "S11",
       "shot_type": "extreme_closeup",
-      "scene": "老墨铁杖杖头缠着旧布条，磨得发亮",
+      "scene": "老墨铁杖杖头缠着旧布条，磨得发亮，微微颤动",
       "characters": [],
       "action": "杖头微颤",
       "dialogue": "",
@@ -256,7 +256,7 @@
     {
       "shot_id": "S17",
       "shot_type": "extreme_closeup",
-      "scene": "铁杖重砸碑面，石屑迸溅",
+      "scene": "铁杖重砸碑面，石屑迸溅，手臂青筋暴起",
       "characters": [],
       "action": "杖击石碑",
       "dialogue": "",
@@ -574,7 +574,7 @@
     {
       "shot_id": "S38",
       "shot_type": "closeup",
-      "scene": "老墨脸色一变，铁杖横挡在前",
+      "scene": "老墨脸色一变，铁杖横挡在前，手指握紧",
       "characters": [
         "老墨"
       ],
