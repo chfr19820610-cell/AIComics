@@ -52,15 +52,26 @@ print(f\"{p['shot_id']}\t{p['frames']}\t{pr.get(p['shot_id'],'')}\")
       [ -s "$out" ] && { log "  ⏭ $sid 已有"; continue; }
 
       log "🎬 $ep/$sid frames=$frames ($((i+1))/$count)"
-      cd "$H3" && .venv/bin/h3stream generate --model-dir models \
-        --width 512 --height 384 --frames "$frames" --steps 8 \
-        --i-understand-experimental \
-        --prompt "$STYLE, $ANTI, $en" \
-        --output "$out" --run-dir "runs/p6_${ep}_${sid}" >> "$LOG" 2>&1
+      local attempt=0
+      local max_attempts=3
+      while [ $attempt -lt $max_attempts ]; do
+        attempt=$((attempt+1))
+        [ $attempt -gt 1 ] && log "  🔄 第 $attempt 次尝试（续传）"
+        cd "$H3" && .venv/bin/h3stream generate --model-dir models \
+          --width 512 --height 384 --frames "$frames" --steps 8 \
+          --i-understand-experimental \
+          --prompt "$STYLE, $ANTI, $en" \
+          --output "$out" --run-dir "runs/p6_${ep}_${sid}" >> "$LOG" 2>&1
+        if [ -s "$out" ]; then
+          break
+        fi
+        log "  ⚠️ 第 $attempt 次失败"
+        sleep 5
+      done
       if [ -s "$out" ]; then
         done=$((done+1)); log "  ✅ $(du -h "$out" | cut -f1)"
       else
-        fail=$((fail+1)); log "  ❌ 失败"
+        fail=$((fail+1)); log "  ❌ 最终失败（已试 $max_attempts 次）"
       fi
     done
 
