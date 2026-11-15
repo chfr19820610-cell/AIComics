@@ -1,0 +1,1091 @@
+{
+  "episode_code": "E02",
+  "shot_count": 70,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "大特写",
+      "scene": "黑暗中林昭的眼皮猛地掀开，瞳孔收缩",
+      "characters": [
+        "林昭"
+      ],
+      "action": "睁眼",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "惊恐",
+      "duration": 3.0,
+      "sound_cue": "心跳声骤起",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "大特写",
+      "scene": "胸口锁链纹突然炸亮，金光刺破黑暗",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路发光",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "剧痛",
+      "duration": 3.0,
+      "sound_cue": "金属嗡鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "近景",
+      "scene": "金光从衣襟缝里透出，映亮他扭曲的脸",
+      "characters": [
+        "林昭"
+      ],
+      "action": "咬牙",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "痛苦",
+      "duration": 3.0,
+      "sound_cue": "粗重喘息",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "大特写",
+      "scene": "一颗汗珠从额角滚落，砸在草席上",
+      "characters": [
+        "林昭"
+      ],
+      "action": "汗珠滚落",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "煎熬",
+      "duration": 3.0,
+      "sound_cue": "汗滴落声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "全景",
+      "scene": "深夜杂役柴房全景，月光从破窗漏进来",
+      "characters": [],
+      "action": "环境空镜",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "压抑",
+      "duration": 3.0,
+      "sound_cue": "夜风穿窗",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "中景",
+      "scene": "草席散乱一地，墙角立着几把锈剑",
+      "characters": [],
+      "action": "环境细节",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "破败",
+      "duration": 3.0,
+      "sound_cue": "远处虫鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S07",
+      "shot_type": "近景",
+      "scene": "梁上蛛网在月光里轻晃，挂着灰尘",
+      "characters": [],
+      "action": "蛛网摇晃",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "荒凉",
+      "duration": 3.0,
+      "sound_cue": "细微风声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S08",
+      "shot_type": "大特写",
+      "scene": "林昭指甲抠进木板缝，木屑翻起",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抓挠木板",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "挣扎",
+      "duration": 3.0,
+      "sound_cue": "指甲刮木声",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S09",
+      "shot_type": "近景",
+      "scene": "他痛得蜷缩成团，肩背弓起",
+      "characters": [
+        "林昭"
+      ],
+      "action": "蜷缩",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "剧痛",
+      "duration": 3.0,
+      "sound_cue": "闷哼",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S10",
+      "shot_type": "中景",
+      "scene": "油灯被气劲震灭，一缕青烟升起",
+      "characters": [
+        "林昭"
+      ],
+      "action": "灯灭",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "惊变",
+      "duration": 3.0,
+      "sound_cue": "灯芯爆响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S11",
+      "shot_type": "大特写",
+      "scene": "月光勾出他绷紧的侧脸，青筋暴起",
+      "characters": [
+        "林昭"
+      ],
+      "action": "绷紧侧脸",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "隐忍",
+      "duration": 3.0,
+      "sound_cue": "牙关紧咬",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S12",
+      "shot_type": "近景",
+      "scene": "他仰头嘶吼，喉咙绷出线条",
+      "characters": [
+        "林昭"
+      ],
+      "action": "嘶吼",
+      "dialogue": "林昭：啊——！",
+      "camera": "急推",
+      "emotion": "爆发",
+      "duration": 3.0,
+      "sound_cue": "惨叫回响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S13",
+      "shot_type": "全景",
+      "scene": "柴房外竹林被风压得齐齐弯腰",
+      "characters": [],
+      "action": "竹林摇曳",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "不祥",
+      "duration": 3.0,
+      "sound_cue": "竹叶哗响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S14",
+      "shot_type": "中景",
+      "scene": "窗纸被雷光映得惨白，树影乱晃",
+      "characters": [],
+      "action": "窗纸发白",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "紧张",
+      "duration": 3.0,
+      "sound_cue": "低鸣渐强",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S15",
+      "shot_type": "大特写",
+      "scene": "林昭瞳孔里倒映出一线白光",
+      "characters": [
+        "林昭"
+      ],
+      "action": "瞳孔收缩",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "惊惧",
+      "duration": 3.0,
+      "sound_cue": "耳鸣声",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S16",
+      "shot_type": "近景",
+      "scene": "一道无声天雷破窗劈入，屋梁震落灰尘",
+      "characters": [],
+      "action": "雷光破窗",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "震撼",
+      "duration": 3.0,
+      "sound_cue": "无声爆闪",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S17",
+      "shot_type": "大特写",
+      "scene": "锁链纹腾空化作虚影，在半空展开",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路化虚影",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "锁链铿锵",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S18",
+      "shot_type": "中景",
+      "scene": "虚影锁链张口，把整条雷光吞下去",
+      "characters": [
+        "林昭"
+      ],
+      "action": "吞雷",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "震撼",
+      "duration": 3.0,
+      "sound_cue": "吞咽轰鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S19",
+      "shot_type": "全景",
+      "scene": "雷光被吸尽，屋内瞬间暗回月色",
+      "characters": [
+        "林昭"
+      ],
+      "action": "光散",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "余悸",
+      "duration": 3.0,
+      "sound_cue": "余音消散",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S20",
+      "shot_type": "近景",
+      "scene": "林昭瘫在草席上，胸口纹路缓缓暗下",
+      "characters": [
+        "林昭"
+      ],
+      "action": "瘫倒",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "虚脱",
+      "duration": 3.0,
+      "sound_cue": "急促喘息",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S21",
+      "shot_type": "中景",
+      "scene": "屋内陈设安然无恙，桌椅未倒",
+      "characters": [],
+      "action": "环境对比",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "寂静",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S22",
+      "shot_type": "大特写",
+      "scene": "地面焦出一圈人形轮廓，边缘冒烟",
+      "characters": [],
+      "action": "焦痕显现",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊悚",
+      "duration": 3.0,
+      "sound_cue": "焦裂细响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S23",
+      "shot_type": "全景",
+      "scene": "窗外竹林还在冒青烟，月光斜照",
+      "characters": [],
+      "action": "竹林青烟",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "不安",
+      "duration": 3.0,
+      "sound_cue": "风过竹梢",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S24",
+      "shot_type": "近景",
+      "scene": "林昭撑起身，低头看自己胸口",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低头查看",
+      "dialogue": "林昭：这……是什么？",
+      "camera": "固定",
+      "emotion": "困惑",
+      "duration": 3.0,
+      "sound_cue": "衣料摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S25",
+      "shot_type": "中景",
+      "scene": "门口出现一道佝偻灰影，铁杖点地",
+      "characters": [
+        "老墨"
+      ],
+      "action": "老人现身",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "神秘",
+      "duration": 3.0,
+      "sound_cue": "铁杖点地",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S26",
+      "shot_type": "大特写",
+      "scene": "铁杖头磕在门槛上，火星微溅",
+      "characters": [
+        "老墨"
+      ],
+      "action": "铁杖点地",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "压迫",
+      "duration": 3.0,
+      "sound_cue": "金属脆响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S27",
+      "shot_type": "近景",
+      "scene": "老墨灰袍破旧，枯手攥住林昭手腕",
+      "characters": [
+        "老墨",
+        "林昭"
+      ],
+      "action": "攥腕",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "强硬",
+      "duration": 3.0,
+      "sound_cue": "枯指收紧",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S28",
+      "shot_type": "大特写",
+      "scene": "月光照亮老墨空洞的眼窝，深不见底",
+      "characters": [
+        "老墨"
+      ],
+      "action": "眼窝特写",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "低风",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S29",
+      "shot_type": "近景",
+      "scene": "老墨侧脸对着月光，嘴唇开合",
+      "characters": [
+        "老墨"
+      ],
+      "action": "开口",
+      "dialogue": "老墨：想活命，就别解开它。",
+      "camera": "固定",
+      "emotion": "警告",
+      "duration": 3.0,
+      "sound_cue": "话音低沉",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S30",
+      "shot_type": "大特写",
+      "scene": "林昭手腕上锁链纹映着月光微微发亮",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路微光",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "悬疑",
+      "duration": 3.0,
+      "sound_cue": "细微嗡鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S31",
+      "shot_type": "中景",
+      "scene": "林昭想抽回手，却被枯手钳住",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "挣扎抽手",
+      "dialogue": "林昭：你是谁？",
+      "camera": "跟拍",
+      "emotion": "警惕",
+      "duration": 3.0,
+      "sound_cue": "衣袖拉扯",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S32",
+      "shot_type": "全景",
+      "scene": "柴房门口一老一少对峙，月光切出明暗",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "对峙",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "紧张",
+      "duration": 3.0,
+      "sound_cue": "夜风",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S33",
+      "shot_type": "近景",
+      "scene": "老墨松开手，铁杖横在身前",
+      "characters": [
+        "老墨"
+      ],
+      "action": "松手横杖",
+      "dialogue": "老墨：解它的人，都死了。",
+      "camera": "慢推",
+      "emotion": "冷峻",
+      "duration": 3.0,
+      "sound_cue": "铁杖轻磕",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S34",
+      "shot_type": "大特写",
+      "scene": "林昭喉结滚动，咽下一口唾沫",
+      "characters": [
+        "林昭"
+      ],
+      "action": "咽口水",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "发怵",
+      "duration": 3.0,
+      "sound_cue": "吞咽声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S35",
+      "shot_type": "中景",
+      "scene": "老墨转身欲走，灰袍扫过门槛",
+      "characters": [
+        "老墨"
+      ],
+      "action": "转身",
+      "dialogue": "林昭：等等！",
+      "camera": "跟拍",
+      "emotion": "急切",
+      "duration": 3.0,
+      "sound_cue": "袍角摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S36",
+      "shot_type": "近景",
+      "scene": "老墨停步，却不回头，铁杖顿地",
+      "characters": [
+        "老墨"
+      ],
+      "action": "顿杖停步",
+      "dialogue": "老墨：明夜子时，后山。",
+      "camera": "固定",
+      "emotion": "神秘",
+      "duration": 3.0,
+      "sound_cue": "杖声回响",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S37",
+      "shot_type": "大特写",
+      "scene": "林昭胸口锁链纹忽然又闪了一下",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路闪烁",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊疑",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣短促",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S38",
+      "shot_type": "全景",
+      "scene": "老墨身影没入门外夜色，只剩铁杖声",
+      "characters": [
+        "老墨"
+      ],
+      "action": "消失夜色",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "孤寂",
+      "duration": 3.0,
+      "sound_cue": "杖声渐远",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S39",
+      "shot_type": "中景",
+      "scene": "林昭独自坐在焦痕圈里，抱紧双臂",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抱臂",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "茫然",
+      "duration": 3.0,
+      "sound_cue": "夜风穿堂",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S40",
+      "shot_type": "大特写",
+      "scene": "他指尖抚过胸口纹路，触感冰凉",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抚摸纹路",
+      "dialogue": "林昭：别解开……",
+      "camera": "固定",
+      "emotion": "犹豫",
+      "duration": 3.0,
+      "sound_cue": "指尖摩擦",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S41",
+      "shot_type": "近景",
+      "scene": "窗外竹林青烟未散，隐约有影子晃动",
+      "characters": [],
+      "action": "竹影晃动",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "警觉",
+      "duration": 3.0,
+      "sound_cue": "竹叶簌响",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S42",
+      "shot_type": "中景",
+      "scene": "林昭猛地起身，抄起墙角锈剑",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抄剑起身",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "戒备",
+      "duration": 3.0,
+      "sound_cue": "锈剑出鞘",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S43",
+      "shot_type": "全景",
+      "scene": "竹林深处几道黑影掠过，无声无息",
+      "characters": [],
+      "action": "黑影掠过",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "危机",
+      "duration": 3.0,
+      "sound_cue": "枝叶轻颤",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S44",
+      "shot_type": "大特写",
+      "scene": "锈剑刃口映出林昭紧绷的眼",
+      "characters": [
+        "林昭"
+      ],
+      "action": "剑映眼",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "决然",
+      "duration": 3.0,
+      "sound_cue": "剑身轻鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S45",
+      "shot_type": "近景",
+      "scene": "他压低身形，贴墙挪向窗边",
+      "characters": [
+        "林昭"
+      ],
+      "action": "贴墙挪动",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "紧张",
+      "duration": 3.0,
+      "sound_cue": "脚步轻擦",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S46",
+      "shot_type": "中景",
+      "scene": "窗纸破洞外，一双赤红眼睛一闪而逝",
+      "characters": [],
+      "action": "红眼闪过",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "惊悚",
+      "duration": 3.0,
+      "sound_cue": "低吼",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S47",
+      "shot_type": "大特写",
+      "scene": "林昭呼吸一滞，握剑的手青筋凸起",
+      "characters": [
+        "林昭"
+      ],
+      "action": "握紧剑柄",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "恐惧",
+      "duration": 3.0,
+      "sound_cue": "心跳加速",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S48",
+      "shot_type": "全景",
+      "scene": "柴房外传来瓦片轻响，有人上了屋顶",
+      "characters": [],
+      "action": "屋顶异响",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "压迫",
+      "duration": 3.0,
+      "sound_cue": "瓦片摩擦",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S49",
+      "shot_type": "近景",
+      "scene": "林昭吹灭残灯余烬，屋内全黑",
+      "characters": [
+        "林昭"
+      ],
+      "action": "灭灯",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "冷静",
+      "duration": 3.0,
+      "sound_cue": "余烬熄灭",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S50",
+      "shot_type": "大特写",
+      "scene": "黑暗中只剩他胸口纹路一明一暗",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路明灭",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣起伏",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S51",
+      "shot_type": "中景",
+      "scene": "门缝下透进一线月光，有影子逼近",
+      "characters": [],
+      "action": "影子逼近",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "紧张",
+      "duration": 3.0,
+      "sound_cue": "脚步逼近",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S52",
+      "shot_type": "近景",
+      "scene": "林昭背贴门板，剑尖朝下蓄势",
+      "characters": [
+        "林昭"
+      ],
+      "action": "贴门蓄势",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "决绝",
+      "duration": 3.0,
+      "sound_cue": "呼吸压低",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S53",
+      "shot_type": "大特写",
+      "scene": "门闩被外力轻轻顶起，木屑掉落",
+      "characters": [],
+      "action": "门闩松动",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "危急",
+      "duration": 3.0,
+      "sound_cue": "木闩吱呀",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S54",
+      "shot_type": "中景",
+      "scene": "门被推开半尺，一只黑爪探入",
+      "characters": [],
+      "action": "黑爪探入",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "惊悚",
+      "duration": 3.0,
+      "sound_cue": "低哑嘶鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S55",
+      "shot_type": "近景",
+      "scene": "林昭暴起，锈剑劈向黑爪",
+      "characters": [
+        "林昭"
+      ],
+      "action": "挥剑劈爪",
+      "dialogue": "林昭：滚开！",
+      "camera": "跟拍",
+      "emotion": "爆发",
+      "duration": 3.0,
+      "sound_cue": "剑风破空",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S56",
+      "shot_type": "大特写",
+      "scene": "锈剑砍在黑爪上，迸出一串火星",
+      "characters": [
+        "林昭"
+      ],
+      "action": "剑爪相击",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "激烈",
+      "duration": 3.0,
+      "sound_cue": "金铁交鸣",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S57",
+      "shot_type": "全景",
+      "scene": "黑爪缩回，门外传来一声痛嚎远去",
+      "characters": [],
+      "action": "黑影退去",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "暂缓",
+      "duration": 3.0,
+      "sound_cue": "嚎叫渐远",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S58",
+      "shot_type": "近景",
+      "scene": "林昭喘着气，剑刃缺了一角",
+      "characters": [
+        "林昭"
+      ],
+      "action": "查看剑刃",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "后怕",
+      "duration": 3.0,
+      "sound_cue": "粗喘",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S59",
+      "shot_type": "大特写",
+      "scene": "他胸口锁链纹忽然亮得刺眼，烫得他闷哼",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路暴亮",
+      "dialogue": "林昭：呃！",
+      "camera": "急推",
+      "emotion": "剧痛",
+      "duration": 3.0,
+      "sound_cue": "灼烧声",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S60",
+      "shot_type": "中景",
+      "scene": "金光透出衣襟，把整间柴房照得通明",
+      "characters": [
+        "林昭"
+      ],
+      "action": "金光外泄",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "震撼",
+      "duration": 3.0,
+      "sound_cue": "能量嗡鸣",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S61",
+      "shot_type": "大特写",
+      "scene": "锁链虚影再次浮现，这次锁环在缓缓转动",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁环转动",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "锁链摩擦",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S62",
+      "shot_type": "近景",
+      "scene": "虚影锁链一端指向后山方向，微微震颤",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链指路",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "指引",
+      "duration": 3.0,
+      "sound_cue": "震颤低鸣",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S63",
+      "shot_type": "全景",
+      "scene": "后山方向夜空泛起一线诡异红光",
+      "characters": [],
+      "action": "后山红光",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "不祥",
+      "duration": 3.0,
+      "sound_cue": "远雷闷响",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S64",
+      "shot_type": "大特写",
+      "scene": "林昭望着红光，眼神从恐惧转为坚定",
+      "characters": [
+        "林昭"
+      ],
+      "action": "眼神转变",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "决意",
+      "duration": 3.0,
+      "sound_cue": "心跳沉稳",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S65",
+      "shot_type": "近景",
+      "scene": "他撕下衣角，缠紧握剑的手",
+      "characters": [
+        "林昭"
+      ],
+      "action": "缠手",
+      "dialogue": "林昭：躲不过，就去。",
+      "camera": "固定",
+      "emotion": "果决",
+      "duration": 3.0,
+      "sound_cue": "布条绷紧",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S66",
+      "shot_type": "中景",
+      "scene": "林昭推门而出，月光洒满肩头",
+      "characters": [
+        "林昭"
+      ],
+      "action": "推门出屋",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "孤勇",
+      "duration": 3.0,
+      "sound_cue": "门轴轻响",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S67",
+      "shot_type": "全景",
+      "scene": "他沿小径走向后山，竹林在两侧合拢",
+      "characters": [
+        "林昭"
+      ],
+      "action": "走向后山",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "肃杀",
+      "duration": 3.0,
+      "sound_cue": "竹叶沙沙",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S68",
+      "shot_type": "大特写",
+      "scene": "他胸口锁链纹在暗处幽幽发光，像在倒计时",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路幽光",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "悬疑",
+      "duration": 3.0,
+      "sound_cue": "滴答般嗡鸣",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S69",
+      "shot_type": "近景",
+      "scene": "后山入口立着一块残碑，刻着锁链图案",
+      "characters": [
+        "林昭"
+      ],
+      "action": "残碑入眼",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "凝重",
+      "duration": 3.0,
+      "sound_cue": "风声骤停",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S70",
+      "shot_type": "大特写",
+      "scene": "碑后黑暗中，一双赤红眼睛缓缓睁开",
+      "characters": [],
+      "action": "红眼睁开",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊悚",
+      "duration": 3.0,
+      "sound_cue": "低沉兽吼",
+      "act_id": "truth",
+      "priority": "high"
+    }
+  ]
+}

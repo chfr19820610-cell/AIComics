@@ -1,0 +1,1144 @@
+{
+  "episode_code": "E03",
+  "shot_count": 70,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "大特写",
+      "scene": "崖边碎石被靴底碾碎，尘土飞散",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "赵乾靴底死死压住林昭肩胛",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "压迫",
+      "duration": 3.0,
+      "sound_cue": "碎石摩擦声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "近景",
+      "scene": "林昭侧脸贴地，嘴角渗血",
+      "characters": [
+        "林昭"
+      ],
+      "action": "林昭咬牙挣扎，指节抠进泥里",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "屈辱",
+      "duration": 3.0,
+      "sound_cue": "粗重喘息",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "中景",
+      "scene": "赵乾单膝压住林昭后背，众弟子围成半圈",
+      "characters": [
+        "赵乾",
+        "林昭",
+        "众弟子"
+      ],
+      "action": "赵乾抬手示意众人安静",
+      "dialogue": "赵乾：别挣扎了。",
+      "camera": "摇移",
+      "emotion": "轻蔑",
+      "duration": 3.0,
+      "sound_cue": "衣料摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "全景",
+      "scene": "葬灵渊崖口，黑雾从崖缝里往上爬",
+      "characters": [
+        "赵乾",
+        "林昭",
+        "众弟子"
+      ],
+      "action": "黑雾漫过众人脚踝",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "阴森",
+      "duration": 3.0,
+      "sound_cue": "低风声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "大特写",
+      "scene": "黑雾缠上林昭手腕，像活物收紧",
+      "characters": [
+        "林昭"
+      ],
+      "action": "林昭手腕被雾勒出红痕",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊惧",
+      "duration": 3.0,
+      "sound_cue": "雾气嘶嘶声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "近景",
+      "scene": "众弟子抱臂，嘴角挂着冷笑",
+      "characters": [
+        "众弟子"
+      ],
+      "action": "为首弟子嗤笑摇头",
+      "dialogue": "弟子甲：废物配深渊。",
+      "camera": "摇移",
+      "emotion": "嘲弄",
+      "duration": 3.0,
+      "sound_cue": "窃笑声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S07",
+      "shot_type": "中景",
+      "scene": "赵乾俯身，脸凑近林昭耳边",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "赵乾揪住林昭后领往上提",
+      "dialogue": "赵乾：抬头看看。",
+      "camera": "慢推",
+      "emotion": "恶意",
+      "duration": 3.0,
+      "sound_cue": "布料绷紧声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S08",
+      "shot_type": "全景",
+      "scene": "葬灵渊全貌，巨大地坑翻涌黑雾",
+      "characters": [],
+      "action": "铁链吊桥横跨渊上，随风轻晃",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "壮阔",
+      "duration": 3.0,
+      "sound_cue": "铁链叮当",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S09",
+      "shot_type": "大特写",
+      "scene": "渊底透出阴绿磷光，一闪一灭",
+      "characters": [],
+      "action": "磷光在雾底缓缓游动",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "幽咽风声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S10",
+      "shot_type": "近景",
+      "scene": "林昭瞳孔映出渊底绿光",
+      "characters": [
+        "林昭"
+      ],
+      "action": "林昭喉结滚动，呼吸变急",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "恐惧",
+      "duration": 3.0,
+      "sound_cue": "心跳声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S11",
+      "shot_type": "中景",
+      "scene": "赵乾把林昭拖到崖沿，半身悬空",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "赵乾一脚踩住林昭手指",
+      "dialogue": "赵乾：下去喂蛟吧。",
+      "camera": "跟拍",
+      "emotion": "残忍",
+      "duration": 3.0,
+      "sound_cue": "骨节轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S12",
+      "shot_type": "全景",
+      "scene": "崖边众人身影被黑雾半吞",
+      "characters": [
+        "赵乾",
+        "林昭",
+        "众弟子"
+      ],
+      "action": "赵乾松手前顿了一瞬",
+      "dialogue": "赵乾：废物。",
+      "camera": "固定",
+      "emotion": "冷酷",
+      "duration": 3.0,
+      "sound_cue": "风声骤紧",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S13",
+      "shot_type": "大特写",
+      "scene": "林昭手指从崖沿滑脱",
+      "characters": [
+        "林昭"
+      ],
+      "action": "指尖抓空，碎石坠落",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "失重",
+      "duration": 3.0,
+      "sound_cue": "碎石落渊声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S14",
+      "shot_type": "近景",
+      "scene": "林昭身体坠入黑雾，衣袍翻飞",
+      "characters": [
+        "林昭"
+      ],
+      "action": "林昭张嘴却喊不出声",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "惊恐",
+      "duration": 3.0,
+      "sound_cue": "风灌衣袍",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S15",
+      "shot_type": "中景",
+      "scene": "崖上众人俯身往下看",
+      "characters": [
+        "赵乾",
+        "众弟子"
+      ],
+      "action": "赵乾拍拍手上灰，转身",
+      "dialogue": "弟子乙：没声了。",
+      "camera": "摇移",
+      "emotion": "冷漠",
+      "duration": 3.0,
+      "sound_cue": "雾涌声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S16",
+      "shot_type": "全景",
+      "scene": "黑雾合拢吞没崖口，只剩风声",
+      "characters": [],
+      "action": "雾面翻涌如沸水",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "压抑",
+      "duration": 3.0,
+      "sound_cue": "呜咽风声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S17",
+      "shot_type": "大特写",
+      "scene": "雾中一只赤红瞳孔骤然亮起",
+      "characters": [
+        "墨鳞蛟"
+      ],
+      "action": "瞳孔竖缩，锁定下落人影",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "凶险",
+      "duration": 3.0,
+      "sound_cue": "低吼",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S18",
+      "shot_type": "近景",
+      "scene": "墨鳞蛟自雾中探出巨头",
+      "characters": [
+        "墨鳞蛟"
+      ],
+      "action": "鳞片反着幽绿光，张口扑来",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "惊骇",
+      "duration": 3.0,
+      "sound_cue": "鳞片刮擦声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S19",
+      "shot_type": "中景",
+      "scene": "林昭在黑雾中下坠，蛟口逼近",
+      "characters": [
+        "林昭",
+        "墨鳞蛟"
+      ],
+      "action": "林昭双臂乱抓，无处借力",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "绝望",
+      "duration": 3.0,
+      "sound_cue": "蛟吼震耳",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S20",
+      "shot_type": "全景",
+      "scene": "渊壁铁链被蛟身撞得乱晃",
+      "characters": [
+        "墨鳞蛟"
+      ],
+      "action": "铁链崩出火星，碎石纷落",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "混乱",
+      "duration": 3.0,
+      "sound_cue": "铁链巨响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S21",
+      "shot_type": "大特写",
+      "scene": "蛟口獠牙间滴下黏液",
+      "characters": [
+        "墨鳞蛟"
+      ],
+      "action": "獠牙距林昭面门不足三尺",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "窒息",
+      "duration": 3.0,
+      "sound_cue": "黏液滴落",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S22",
+      "shot_type": "近景",
+      "scene": "林昭闭眼抬手护头",
+      "characters": [
+        "林昭"
+      ],
+      "action": "掌心朝向蛟首，本能一挡",
+      "dialogue": "林昭：别过来！",
+      "camera": "固定",
+      "emotion": "惊恐",
+      "duration": 3.0,
+      "sound_cue": "喊声破音",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S23",
+      "shot_type": "中景",
+      "scene": "暗金锁链虚影自林昭掌心炸开",
+      "characters": [
+        "林昭"
+      ],
+      "action": "虚影如长枪直刺蛟首",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "爆发",
+      "duration": 3.0,
+      "sound_cue": "金鸣炸响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S24",
+      "shot_type": "全景",
+      "scene": "金链贯穿蛟首，血雾在黑雾里炸散",
+      "characters": [
+        "林昭",
+        "墨鳞蛟"
+      ],
+      "action": "蛟身猛甩，撞塌半面渊壁",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "震撼",
+      "duration": 3.0,
+      "sound_cue": "血雾爆裂声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S25",
+      "shot_type": "大特写",
+      "scene": "蛟血如雨溅上林昭脸颊",
+      "characters": [
+        "林昭"
+      ],
+      "action": "血珠顺着下颌滴落",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "怔愣",
+      "duration": 3.0,
+      "sound_cue": "血滴声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S26",
+      "shot_type": "近景",
+      "scene": "林昭悬停在渊口上空，衣袍猎猎",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他睁眼，四下黑雾退开半圈",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "茫然",
+      "duration": 3.0,
+      "sound_cue": "风声回旋",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S27",
+      "shot_type": "中景",
+      "scene": "锁链纹顺着林昭右臂爬到颈侧",
+      "characters": [
+        "林昭"
+      ],
+      "action": "金纹在皮肤下游走发亮",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "惊异",
+      "duration": 3.0,
+      "sound_cue": "细微金鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S28",
+      "shot_type": "全景",
+      "scene": "崖上众人僵在原地，探头下望",
+      "characters": [
+        "赵乾",
+        "众弟子"
+      ],
+      "action": "赵乾脸色骤变，后退半步",
+      "dialogue": "弟子甲：那是什么？",
+      "camera": "固定",
+      "emotion": "震动",
+      "duration": 3.0,
+      "sound_cue": "倒吸冷气",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S29",
+      "shot_type": "大特写",
+      "scene": "林昭眼底泛起一层金光",
+      "characters": [
+        "林昭"
+      ],
+      "action": "金芒在瞳孔里流转",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "觉醒",
+      "duration": 3.0,
+      "sound_cue": "低鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S30",
+      "shot_type": "近景",
+      "scene": "林昭缓缓摊开右手掌",
+      "characters": [
+        "林昭"
+      ],
+      "action": "掌心浮出一枚雷纹，微微跳动",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "疑惑",
+      "duration": 3.0,
+      "sound_cue": "电弧轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S31",
+      "shot_type": "中景",
+      "scene": "雷纹与先前天雷纹路在记忆中重叠",
+      "characters": [
+        "林昭"
+      ],
+      "action": "林昭指尖轻触雷纹，微麻",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "恍然",
+      "duration": 3.0,
+      "sound_cue": "记忆回响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S32",
+      "shot_type": "全景",
+      "scene": "渊口黑雾翻涌，林昭悬立雾上",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雾中残蛟血缓缓沉降",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "肃穆",
+      "duration": 3.0,
+      "sound_cue": "雾流声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S33",
+      "shot_type": "大特写",
+      "scene": "林昭眼里一半恐惧一半兴奋",
+      "characters": [
+        "林昭"
+      ],
+      "action": "瞳孔微颤，嘴角却抽动",
+      "dialogue": "林昭：这纹……",
+      "camera": "急推",
+      "emotion": "复杂",
+      "duration": 3.0,
+      "sound_cue": "心跳加快",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S34",
+      "shot_type": "近景",
+      "scene": "林昭攥拳又松开，雷纹隐现",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他低头看掌，呼吸渐稳",
+      "dialogue": "林昭：和那道雷一样。",
+      "camera": "固定",
+      "emotion": "震动",
+      "duration": 3.0,
+      "sound_cue": "低电鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S35",
+      "shot_type": "中景",
+      "scene": "崖上赵乾攥紧栏杆，指节发白",
+      "characters": [
+        "赵乾",
+        "众弟子"
+      ],
+      "action": "赵乾咬牙盯住雾中人影",
+      "dialogue": "赵乾：他还没死。",
+      "camera": "慢推",
+      "emotion": "忌惮",
+      "duration": 3.0,
+      "sound_cue": "栏杆轻颤",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S36",
+      "shot_type": "全景",
+      "scene": "渊底磷光骤亮，黑雾倒卷成涡",
+      "characters": [
+        "林昭"
+      ],
+      "action": "林昭被气浪托得再升三尺",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "异变",
+      "duration": 3.0,
+      "sound_cue": "涡流轰鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S37",
+      "shot_type": "大特写",
+      "scene": "雷纹从掌心蔓延至腕骨",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路如活蛇游走，灼出微光",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "灼痛",
+      "duration": 3.0,
+      "sound_cue": "皮肉灼响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S38",
+      "shot_type": "近景",
+      "scene": "林昭闷哼一声，单膝虚跪半空",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他咬牙撑住，金血从鼻下渗出",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "强忍",
+      "duration": 3.0,
+      "sound_cue": "闷哼",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S39",
+      "shot_type": "中景",
+      "scene": "雾中浮出无数细碎蛟影残像",
+      "characters": [
+        "墨鳞蛟残影"
+      ],
+      "action": "残影绕林昭盘旋嘶鸣",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "诡谲",
+      "duration": 3.0,
+      "sound_cue": "群蛟低吟",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S40",
+      "shot_type": "全景",
+      "scene": "铁链吊桥被气浪掀得横飞",
+      "characters": [],
+      "action": "桥板断裂坠入渊底",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "崩坏",
+      "duration": 3.0,
+      "sound_cue": "木裂铁崩",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S41",
+      "shot_type": "大特写",
+      "scene": "赵乾瞳孔映出金链虚影",
+      "characters": [
+        "赵乾"
+      ],
+      "action": "他下意识后退，撞到身后弟子",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "心惊",
+      "duration": 3.0,
+      "sound_cue": "脚步踉跄",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S42",
+      "shot_type": "近景",
+      "scene": "众弟子交头接耳，脸色发白",
+      "characters": [
+        "众弟子"
+      ],
+      "action": "有人悄悄往崖后缩",
+      "dialogue": "弟子乙：他……在吸雾。",
+      "camera": "摇移",
+      "emotion": "慌乱",
+      "duration": 3.0,
+      "sound_cue": "低语声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S43",
+      "shot_type": "中景",
+      "scene": "黑雾如潮往林昭右臂灌注",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链纹越爬越密，亮得刺眼",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "失控",
+      "duration": 3.0,
+      "sound_cue": "雾啸",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S44",
+      "shot_type": "全景",
+      "scene": "渊口上空金黑二气绞成旋柱",
+      "characters": [
+        "林昭"
+      ],
+      "action": "旋柱压得崖石簌簌剥落",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "磅礴",
+      "duration": 3.0,
+      "sound_cue": "气流轰鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S45",
+      "shot_type": "大特写",
+      "scene": "林昭咬破下唇，强行收掌",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他五指猛攥，雷纹一暗",
+      "dialogue": "林昭：给我停！",
+      "camera": "急推",
+      "emotion": "倔强",
+      "duration": 3.0,
+      "sound_cue": "金鸣骤止",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S46",
+      "shot_type": "近景",
+      "scene": "旋柱炸散，林昭被反震落地",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他单膝砸在崖沿，碎石飞溅",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "脱力",
+      "duration": 3.0,
+      "sound_cue": "重物落地",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S47",
+      "shot_type": "中景",
+      "scene": "赵乾拔剑指向林昭后心",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "剑尖距背心三寸，寒光一闪",
+      "dialogue": "赵乾：趁他虚，杀。",
+      "camera": "甩镜",
+      "emotion": "杀机",
+      "duration": 3.0,
+      "sound_cue": "拔剑出鞘",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S48",
+      "shot_type": "全景",
+      "scene": "众弟子围拢成圈，剑光如林",
+      "characters": [
+        "赵乾",
+        "林昭",
+        "众弟子"
+      ],
+      "action": "包围圈缓缓收紧",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "围杀",
+      "duration": 3.0,
+      "sound_cue": "脚步合围",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S49",
+      "shot_type": "大特写",
+      "scene": "林昭掌心雷纹感应般骤亮",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雷纹自行弹出一道电弧",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "警觉",
+      "duration": 3.0,
+      "sound_cue": "电弧噼啪",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S50",
+      "shot_type": "近景",
+      "scene": "电弧击偏赵乾剑锋，火星四溅",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "赵乾虎口震裂，剑脱手",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "惊怒",
+      "duration": 3.0,
+      "sound_cue": "金铁交鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S51",
+      "shot_type": "中景",
+      "scene": "林昭撑地起身，右臂金纹未褪",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他抬眼扫过众人，目光发沉",
+      "dialogue": "林昭：谁先来？",
+      "camera": "摇移",
+      "emotion": "冷硬",
+      "duration": 3.0,
+      "sound_cue": "衣袍轻响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S52",
+      "shot_type": "全景",
+      "scene": "崖口风停一瞬，众人僵持",
+      "characters": [
+        "赵乾",
+        "林昭",
+        "众弟子"
+      ],
+      "action": "无人敢先上前半步",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "对峙",
+      "duration": 3.0,
+      "sound_cue": "死寂",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S53",
+      "shot_type": "大特写",
+      "scene": "赵乾眼底闪过怯意，喉结滚动",
+      "characters": [
+        "赵乾"
+      ],
+      "action": "他悄悄把脚往后挪",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "心虚",
+      "duration": 3.0,
+      "sound_cue": "吞咽声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S54",
+      "shot_type": "近景",
+      "scene": "林昭低头看掌心，雷纹渐隐",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他指尖轻颤，若有所思",
+      "dialogue": "林昭：这力量……",
+      "camera": "固定",
+      "emotion": "沉思",
+      "duration": 3.0,
+      "sound_cue": "低鸣余韵",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S55",
+      "shot_type": "中景",
+      "scene": "渊底传来一声悠长蛟吟",
+      "characters": [],
+      "action": "雾面荡开一圈巨大涟漪",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "不祥",
+      "duration": 3.0,
+      "sound_cue": "深蛟长吟",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S56",
+      "shot_type": "全景",
+      "scene": "整座葬灵渊黑雾倒灌冲天",
+      "characters": [
+        "林昭",
+        "赵乾",
+        "众弟子"
+      ],
+      "action": "雾柱直冲云霄，天光被吞",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "骇然",
+      "duration": 3.0,
+      "sound_cue": "轰鸣震地",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S57",
+      "shot_type": "大特写",
+      "scene": "林昭掌心雷纹与雾中某种纹路共鸣",
+      "characters": [
+        "林昭"
+      ],
+      "action": "两纹同频闪动，如心跳",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊疑",
+      "duration": 3.0,
+      "sound_cue": "共鸣低震",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S58",
+      "shot_type": "近景",
+      "scene": "林昭被雾柱托起，双脚离地",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他伸手抓向崖沿，抓空",
+      "dialogue": "林昭：不对——",
+      "camera": "跟拍",
+      "emotion": "失控",
+      "duration": 3.0,
+      "sound_cue": "风啸",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S59",
+      "shot_type": "中景",
+      "scene": "赵乾等人被气浪掀翻在地",
+      "characters": [
+        "赵乾",
+        "众弟子"
+      ],
+      "action": "众人抱头伏地，剑散一地",
+      "dialogue": "弟子甲：快退！",
+      "camera": "甩镜",
+      "emotion": "溃乱",
+      "duration": 3.0,
+      "sound_cue": "惊呼四起",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S60",
+      "shot_type": "全景",
+      "scene": "雾柱中浮出一具巨大蛟骨虚影",
+      "characters": [
+        "蛟骨虚影"
+      ],
+      "action": "骨影盘渊而上，赤瞳如灯",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "震慑",
+      "duration": 3.0,
+      "sound_cue": "骨鸣如雷",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S61",
+      "shot_type": "大特写",
+      "scene": "蛟骨赤瞳锁定林昭掌心雷纹",
+      "characters": [
+        "蛟骨虚影",
+        "林昭"
+      ],
+      "action": "骨首缓缓低下，似在辨认",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "骨节轻响",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S62",
+      "shot_type": "近景",
+      "scene": "林昭与蛟骨对视，金纹暴涨",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他右臂不受控地抬起",
+      "dialogue": "林昭：它认得这纹。",
+      "camera": "固定",
+      "emotion": "恍然",
+      "duration": 3.0,
+      "sound_cue": "金纹嗡鸣",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S63",
+      "shot_type": "中景",
+      "scene": "蛟骨虚影俯首，绕林昭盘旋",
+      "characters": [
+        "蛟骨虚影",
+        "林昭"
+      ],
+      "action": "骨尾扫过崖壁，刻出深痕",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "臣服",
+      "duration": 3.0,
+      "sound_cue": "石壁崩裂",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S64",
+      "shot_type": "全景",
+      "scene": "崖上众人仰头，面无人色",
+      "characters": [
+        "赵乾",
+        "众弟子"
+      ],
+      "action": "赵乾瘫坐在地，剑都忘了捡",
+      "dialogue": "赵乾：这……不可能。",
+      "camera": "固定",
+      "emotion": "崩溃",
+      "duration": 3.0,
+      "sound_cue": "风声呜咽",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S65",
+      "shot_type": "大特写",
+      "scene": "林昭眼底金光与蛟瞳赤光交映",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他缓缓握拳，雷纹烙进掌心",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "蜕变",
+      "duration": 3.0,
+      "sound_cue": "双声低鸣",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S66",
+      "shot_type": "近景",
+      "scene": "林昭悬于渊口，俯视崖上众人",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他抹去鼻下血迹，站直",
+      "dialogue": "林昭：赵乾。",
+      "camera": "慢推",
+      "emotion": "冷冽",
+      "duration": 3.0,
+      "sound_cue": "衣袍猎猎",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S67",
+      "shot_type": "中景",
+      "scene": "赵乾连滚带爬往后退",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "他撞翻同门，狼狈不堪",
+      "dialogue": "赵乾：你别过来！",
+      "camera": "甩镜",
+      "emotion": "恐惧",
+      "duration": 3.0,
+      "sound_cue": "踉跄碰撞",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S68",
+      "shot_type": "全景",
+      "scene": "林昭踏雾而起，立于蛟骨之上",
+      "characters": [
+        "林昭",
+        "蛟骨虚影"
+      ],
+      "action": "一人一骨悬在渊口，黑雾环伺",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "逆转",
+      "duration": 3.0,
+      "sound_cue": "雾啸渐平",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S69",
+      "shot_type": "大特写",
+      "scene": "雷纹深处浮出一个古老符文",
+      "characters": [
+        "林昭"
+      ],
+      "action": "符文一闪，似有低语传来",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "悬念",
+      "duration": 3.0,
+      "sound_cue": "远古低语",
+      "act_id": "truth",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S70",
+      "shot_type": "近景",
+      "scene": "林昭望向渊底，眼神沉下去",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他低声开口，雾中赤瞳再亮",
+      "dialogue": "林昭：渊底……有东西在叫我。",
+      "camera": "慢推",
+      "emotion": "钩子",
+      "duration": 3.0,
+      "sound_cue": "深吟收尾",
+      "act_id": "truth",
+      "priority": "normal"
+    }
+  ]
+}

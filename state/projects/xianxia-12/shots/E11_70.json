@@ -566,7 +566,7 @@
       "emotion": "暴烈",
       "duration": 3.0,
       "sound_cue": "撕裂",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -582,7 +582,7 @@
       "emotion": "惊变",
       "duration": 3.0,
       "sound_cue": "崩裂",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -598,7 +598,7 @@
       "emotion": "畅快",
       "duration": 3.0,
       "sound_cue": "爆散",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -612,7 +612,7 @@
       "emotion": "壮阔",
       "duration": 3.0,
       "sound_cue": "风雷",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -628,7 +628,7 @@
       "emotion": "癫狂",
       "duration": 3.0,
       "sound_cue": "怒吼",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -642,7 +642,7 @@
       "emotion": "哀悼",
       "duration": 3.0,
       "sound_cue": "轻响",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -658,7 +658,7 @@
       "emotion": "余悸",
       "duration": 3.0,
       "sound_cue": "余雷",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -672,7 +672,7 @@
       "emotion": "诡异",
       "duration": 3.0,
       "sound_cue": "低鸣",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -688,7 +688,7 @@
       "emotion": "不祥",
       "duration": 3.0,
       "sound_cue": "嗡鸣",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -702,7 +702,7 @@
       "emotion": "神圣",
       "duration": 3.0,
       "sound_cue": "钟鸣",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -718,7 +718,7 @@
       "emotion": "威严",
       "duration": 3.0,
       "sound_cue": "落地",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -735,7 +735,7 @@
       "emotion": "紧张",
       "duration": 3.0,
       "sound_cue": "风声",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -751,7 +751,7 @@
       "emotion": "震惊",
       "duration": 3.0,
       "sound_cue": "心跳",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -767,7 +767,7 @@
       "emotion": "莫测",
       "duration": 3.0,
       "sound_cue": "低鸣",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -783,7 +783,7 @@
       "emotion": "虔诚",
       "duration": 3.0,
       "sound_cue": "衣袍声",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -800,7 +800,7 @@
       "emotion": "茫然",
       "duration": 3.0,
       "sound_cue": "静默",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -816,7 +816,7 @@
       "emotion": "动摇",
       "duration": 3.0,
       "sound_cue": "呼吸",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -832,7 +832,7 @@
       "emotion": "神秘",
       "duration": 3.0,
       "sound_cue": "锁鸣",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -848,7 +848,7 @@
       "emotion": "警惕",
       "duration": 3.0,
       "sound_cue": "脚步",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -862,7 +862,7 @@
       "emotion": "压抑",
       "duration": 3.0,
       "sound_cue": "轰鸣",
-      "act_id": "underdog",
+      "act_id": "awaken",
       "priority": "normal"
     },
     {
@@ -876,7 +876,7 @@
       "emotion": "惊悚",
       "duration": 3.0,
       "sound_cue": "嗡鸣",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -892,7 +892,7 @@
       "emotion": "愤怒",
       "duration": 3.0,
       "sound_cue": "金属碰撞",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -908,7 +908,7 @@
       "emotion": "顺从",
       "duration": 3.0,
       "sound_cue": "静默",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -924,7 +924,7 @@
       "emotion": "暴怒",
       "duration": 3.0,
       "sound_cue": "砸响",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -938,7 +938,7 @@
       "emotion": "决绝",
       "duration": 3.0,
       "sound_cue": "碎裂",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -952,7 +952,7 @@
       "emotion": "诡异",
       "duration": 3.0,
       "sound_cue": "嘶鸣",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -968,7 +968,7 @@
       "emotion": "惊疑",
       "duration": 3.0,
       "sound_cue": "低鸣",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -984,7 +984,7 @@
       "emotion": "狂热",
       "duration": 3.0,
       "sound_cue": "衣袍",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -1000,7 +1000,7 @@
       "emotion": "震撼",
       "duration": 3.0,
       "sound_cue": "心跳",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -1014,7 +1014,7 @@
       "emotion": "恐怖",
       "duration": 3.0,
       "sound_cue": "抓挠",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -1030,7 +1030,7 @@
       "emotion": "惊骇",
       "duration": 3.0,
       "sound_cue": "气浪",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -1047,7 +1047,7 @@
       "emotion": "失控",
       "duration": 3.0,
       "sound_cue": "轰鸣",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -1063,7 +1063,7 @@
       "emotion": "决死",
       "duration": 3.0,
       "sound_cue": "雷声",
-      "act_id": "underdog",
+      "act_id": "rise",
       "priority": "normal"
     },
     {
@@ -1079,7 +1079,7 @@
       "emotion": "阴森",
       "duration": 3.0,
       "sound_cue": "回响",
-      "act_id": "underdog",
+      "act_id": "truth",
       "priority": "normal"
     },
     {
@@ -1095,7 +1095,7 @@
       "emotion": "悬念",
       "duration": 3.0,
       "sound_cue": "骤停",
-      "act_id": "underdog",
+      "act_id": "truth",
       "priority": "normal"
     }
   ]

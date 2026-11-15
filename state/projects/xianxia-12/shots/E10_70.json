@@ -1,0 +1,1103 @@
+{
+  "episode_code": "E10",
+  "title": "天梯尽头",
+  "shot_count": 70,
+  "total_seconds": 210,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "extreme_closeup",
+      "scene": "一只沾着尘土的布靴悬在白玉阶前，阶面光洁如镜，映出模糊的人影与翻涌云气。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抬脚悬停阶前",
+      "dialogue": "",
+      "camera": "微距固定，焦点由靴尖拉至阶面倒影",
+      "emotion": "凝重、蓄势",
+      "duration": 3.0,
+      "sound_cue": "风声低鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "closeup",
+      "scene": "林昭侧脸，下颌线绷紧，目光自下而上望向看不见尽头的天梯，睫毛被风吹动。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "仰头凝望",
+      "dialogue": "",
+      "camera": "侧脸近景，慢推",
+      "emotion": "决然、沉静",
+      "duration": 3.0,
+      "sound_cue": "衣料轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "wide",
+      "scene": "云海之上，白玉天梯自画面底部直插天穹，金霞铺满每级台阶，云被风扯成奔涌的河流。",
+      "characters": [],
+      "action": "云河奔涌、金霞流动",
+      "dialogue": "这就是……天梯？",
+      "camera": "大全景固定，仰角构图",
+      "emotion": "恢弘、苍茫",
+      "duration": 3.0,
+      "sound_cue": "云海轰鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "environment",
+      "scene": "金霞沿阶面缓缓流淌，如熔金注入玉槽，光带一级级向上蔓延，映亮云层边缘。",
+      "characters": [],
+      "action": "金霞流动",
+      "dialogue": "",
+      "camera": "横移跟光，缓慢摇移",
+      "emotion": "神圣、静谧",
+      "duration": 3.0,
+      "sound_cue": "流光细响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "closeup",
+      "scene": "林昭的靴底终于落下，踏在第一级玉阶正中，接触点泛起一圈细微白光。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "踏阶落足",
+      "dialogue": "",
+      "camera": "俯拍特写，急推至接触点",
+      "emotion": "坚定、临界",
+      "duration": 3.0,
+      "sound_cue": "足音闷响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "action",
+      "scene": "脚下云海轰然炸开，白色云浪向四周翻卷爆散，气浪冲击玉阶边缘，碎云四溅。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "云海炸开",
+      "dialogue": "",
+      "camera": "低角度仰拍，甩镜跟随云浪扩散",
+      "emotion": "震撼、暴烈",
+      "duration": 3.0,
+      "sound_cue": "轰然爆响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S07",
+      "shot_type": "medium",
+      "scene": "罡风自下而上猛掀，林昭衣袍猎猎翻飞，发丝狂舞，身形却钉在阶上纹丝不动。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "衣袍被风掀起",
+      "dialogue": "好大的风。",
+      "camera": "中景固定，风动衣摆占满画面",
+      "emotion": "凌厉、不屈",
+      "duration": 3.0,
+      "sound_cue": "罡风呼啸",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S08",
+      "shot_type": "closeup",
+      "scene": "林昭眯起眼，风沙掠过面颊，他抬手挡在眉前，指缝间露出上方的天梯轮廓。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抬手挡风",
+      "dialogue": "",
+      "camera": "近景，轻微手持晃动",
+      "emotion": "警觉、坚毅",
+      "duration": 3.0,
+      "sound_cue": "风沙扑打",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S09",
+      "shot_type": "environment",
+      "scene": "云海在脚下裂开巨大漩涡，云浪层层叠叠向天梯两侧退去，露出深不见底的虚空。",
+      "characters": [],
+      "action": "云海退散成漩涡",
+      "dialogue": "",
+      "camera": "高空俯拍，缓慢旋转摇移",
+      "emotion": "险峻、深不可测",
+      "duration": 3.0,
+      "sound_cue": "云流回旋",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S10",
+      "shot_type": "medium",
+      "scene": "林昭稳住身形，双脚踏定第二级台阶，抬头望向漫长天梯，背影渺小却笔直。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "稳住身形再抬步",
+      "dialogue": "",
+      "camera": "背后中景，慢推",
+      "emotion": "孤勇、笃定",
+      "duration": 3.0,
+      "sound_cue": "脚步轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S11",
+      "shot_type": "closeup",
+      "scene": "他一步步拾级而上，靴底碾过玉阶，阶面先现细纹，继而裂纹如蛛网蔓延。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "踏阶踩出裂纹",
+      "dialogue": "",
+      "camera": "脚部特写，跟拍上移",
+      "emotion": "沉重、压迫",
+      "duration": 3.0,
+      "sound_cue": "玉石开裂",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S12",
+      "shot_type": "extreme_closeup",
+      "scene": "一道裂纹自阶心炸开，碎玉屑弹起，在金光中翻了个身又落下。",
+      "characters": [],
+      "action": "碎玉飞溅",
+      "dialogue": "",
+      "camera": "微距固定，高速感",
+      "emotion": "脆裂、紧张",
+      "duration": 3.0,
+      "sound_cue": "碎玉轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S13",
+      "shot_type": "wide",
+      "scene": "林昭已攀上数十级，身后宗门缩成一个黑点，脚下云层翻涌如沸，天梯在云中若隐若现。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "拾级而上、宗门远去",
+      "dialogue": "",
+      "camera": "大全景侧拍，缓慢拉远",
+      "emotion": "孤绝、渺远",
+      "duration": 3.0,
+      "sound_cue": "云海低吼",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S14",
+      "shot_type": "medium",
+      "scene": "他停步回望，风把衣角吹向身后，脚下云河奔流，那个黑点已小得几乎看不见。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "回望宗门",
+      "dialogue": "",
+      "camera": "中景，摇移跟随视线",
+      "emotion": "怅然、决绝",
+      "duration": 3.0,
+      "sound_cue": "风声呜咽",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S15",
+      "shot_type": "closeup",
+      "scene": "林昭收回目光，喉结微动，低声自语，唇边呼出的白气被风瞬间扯散。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低声自语",
+      "dialogue": "既来了，就没有回头的路。",
+      "camera": "近景，固定",
+      "emotion": "自勉、坚定",
+      "duration": 3.0,
+      "sound_cue": "低语被风吞没",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S16",
+      "shot_type": "action",
+      "scene": "他加快脚步，连踏数阶，玉阶接连炸裂，碎石沿梯滚落，坠入云海无声无息。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "连踏数阶",
+      "dialogue": "",
+      "camera": "跟拍上移，镜头随脚步颠动",
+      "emotion": "急迫、凌厉",
+      "duration": 3.0,
+      "sound_cue": "连串碎裂",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S17",
+      "shot_type": "environment",
+      "scene": "云层在梯侧翻涌成浪，金霞被风撕成丝缕，天光自穹顶倾泻而下，照亮半截天梯。",
+      "characters": [],
+      "action": "云浪翻涌、天光倾泻",
+      "dialogue": "",
+      "camera": "仰拍全景，缓慢摇移",
+      "emotion": "壮阔、肃穆",
+      "duration": 3.0,
+      "sound_cue": "天风浩荡",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S18",
+      "shot_type": "closeup",
+      "scene": "林昭额角渗出汗珠，顺着鬓边滑落，他抬手一抹，掌心全是灰尘与玉屑。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抹汗",
+      "dialogue": "才一半……",
+      "camera": "面部特写，微推",
+      "emotion": "疲惫、坚韧",
+      "duration": 3.0,
+      "sound_cue": "粗重呼吸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S19",
+      "shot_type": "medium",
+      "scene": "天梯中段云雾渐薄，前方隐约现出一道长廊轮廓，白骨般的颜色在金光里泛冷。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "望见长廊轮廓",
+      "dialogue": "",
+      "camera": "中景，急推向前方轮廓",
+      "emotion": "疑惑、警觉",
+      "duration": 3.0,
+      "sound_cue": "风声转低",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S20",
+      "shot_type": "wide",
+      "scene": "天梯尽头，骸骨长廊横陈于云台之上，两侧石壁森然，长廊深处漆黑一片。",
+      "characters": [],
+      "action": "长廊全景显现",
+      "dialogue": "",
+      "camera": "大全景固定，仰角",
+      "emotion": "阴森、压抑",
+      "duration": 3.0,
+      "sound_cue": "低沉回响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S21",
+      "shot_type": "closeup",
+      "scene": "林昭踏上最后一级台阶，脚步放轻，目光扫过长廊入口，瞳孔微微收缩。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "踏上云台、扫视",
+      "dialogue": "这是什么地方？",
+      "camera": "近景，轻微摇移",
+      "emotion": "戒备、凝重",
+      "duration": 3.0,
+      "sound_cue": "脚步顿止",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S22",
+      "shot_type": "medium",
+      "scene": "长廊两侧，数十具白骨靠壁而坐，姿态各异，有的低头，有的仰面，皆朝着入口方向。",
+      "characters": [],
+      "action": "白骨静坐",
+      "dialogue": "",
+      "camera": "中景横移，缓慢扫过",
+      "emotion": "死寂、诡异",
+      "duration": 3.0,
+      "sound_cue": "空旷回音",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S23",
+      "shot_type": "extreme_closeup",
+      "scene": "一具白骨的胸口嵌着一段断裂锁链，链环锈蚀发黑，断口处泛着暗红。",
+      "characters": [],
+      "action": "锁链嵌胸",
+      "dialogue": "",
+      "camera": "微距固定，焦点在断口",
+      "emotion": "残酷、沉重",
+      "duration": 3.0,
+      "sound_cue": "金属微鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S24",
+      "shot_type": "closeup",
+      "scene": "林昭缓步穿行，衣袖擦过一具白骨的肩胛，锁链残片轻轻晃动，发出细响。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "穿行、衣袖擦骨",
+      "dialogue": "",
+      "camera": "近景跟拍，侧向移动",
+      "emotion": "谨慎、压抑",
+      "duration": 3.0,
+      "sound_cue": "锁链轻晃",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S25",
+      "shot_type": "medium",
+      "scene": "他停下脚步，目光逐一数过靠壁的白骨，嘴唇无声翕动，像在清点数目。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "清点白骨数目",
+      "dialogue": "",
+      "camera": "中景，慢推至面部",
+      "emotion": "惊疑、计算",
+      "duration": 3.0,
+      "sound_cue": "心跳渐显",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S26",
+      "shot_type": "closeup",
+      "scene": "林昭眉头紧锁，喉头滚动，声音压得极低，带着一丝不易察觉的颤。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低声发问",
+      "dialogue": "第九个……我是第九个？",
+      "camera": "面部近景，固定",
+      "emotion": "震惊、不安",
+      "duration": 3.0,
+      "sound_cue": "低语回荡",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S27",
+      "shot_type": "environment",
+      "scene": "长廊深处传来极轻的回音，把他的话重复了一遍，声音撞在石壁上又折回来。",
+      "characters": [],
+      "action": "回音折返",
+      "dialogue": "",
+      "camera": "空镜固定，声源方向摇移",
+      "emotion": "诡异、空旷",
+      "duration": 3.0,
+      "sound_cue": "回音重叠",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S28",
+      "shot_type": "extreme_closeup",
+      "scene": "一具白骨的手骨死死攥着一块残碑，指骨关节凸起，骨缝里嵌满石屑与灰尘。",
+      "characters": [],
+      "action": "手骨攥碑",
+      "dialogue": "",
+      "camera": "微距固定，缓慢下压",
+      "emotion": "执念、凄厉",
+      "duration": 3.0,
+      "sound_cue": "骨节轻响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S29",
+      "shot_type": "closeup",
+      "scene": "残碑表面刻着三个字，笔画深峻，被岁月磨得圆钝，却仍清晰可辨。",
+      "characters": [],
+      "action": "碑面刻字显现",
+      "dialogue": "",
+      "camera": "近景，慢推至字面",
+      "emotion": "森然、宿命",
+      "duration": 3.0,
+      "sound_cue": "低鸣渐起",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S30",
+      "shot_type": "extreme_closeup",
+      "scene": "「第九个」三字占满画面，石缝里积着灰，指骨边缘已深深嵌进碑侧裂口。",
+      "characters": [],
+      "action": "指骨嵌进石缝",
+      "dialogue": "",
+      "camera": "大特写固定",
+      "emotion": "窒息、沉重",
+      "duration": 3.0,
+      "sound_cue": "尘埃落定",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S31",
+      "shot_type": "closeup",
+      "scene": "林昭蹲下身，伸手悬在残碑上方，迟迟没有触碰，指尖微微发颤。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "蹲身、伸手悬停",
+      "dialogue": "第九个……前面还有八个？",
+      "camera": "近景俯拍，微推",
+      "emotion": "迟疑、敬畏",
+      "duration": 3.0,
+      "sound_cue": "呼吸放轻",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S32",
+      "shot_type": "medium",
+      "scene": "他缓缓收回手，站起身，环顾四周白骨，每具胸口的锁链断口都朝着同一个方向。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "起身环顾",
+      "dialogue": "",
+      "camera": "中景环绕摇移半周",
+      "emotion": "恍然、寒意",
+      "duration": 3.0,
+      "sound_cue": "衣袍摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S33",
+      "shot_type": "environment",
+      "scene": "长廊顶部垂着残破的幡布，被穿堂风吹得轻轻摆动，影子在白骨上晃来晃去。",
+      "characters": [],
+      "action": "幡布摆动、影晃",
+      "dialogue": "",
+      "camera": "仰拍空镜，缓慢摇移",
+      "emotion": "荒凉、阴冷",
+      "duration": 3.0,
+      "sound_cue": "布帛轻拍",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S34",
+      "shot_type": "closeup",
+      "scene": "林昭的目光落在长廊尽头，那里有一道模糊的人影背对着他，静立不动。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "望见尽头人影",
+      "dialogue": "",
+      "camera": "过肩近景，急推至人影",
+      "emotion": "警觉、凝滞",
+      "duration": 3.0,
+      "sound_cue": "风声骤停",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S35",
+      "shot_type": "medium",
+      "scene": "他握紧拳头，一步步朝长廊尽头走去，脚下碎石被踩得咯吱作响，白骨在两侧后退。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "握拳前行",
+      "dialogue": "",
+      "camera": "背后跟拍，稳定推进",
+      "emotion": "决然、戒备",
+      "duration": 3.0,
+      "sound_cue": "碎石咯吱",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S36",
+      "shot_type": "wide",
+      "scene": "长廊尽头，老墨背对而立，身形枯瘦，眼上蒙着一块洗得发白的旧布，布角随风轻扬。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "背对静立、旧布轻扬",
+      "dialogue": "",
+      "camera": "大全景固定，逆光剪影",
+      "emotion": "神秘、苍老",
+      "duration": 3.0,
+      "sound_cue": "风过布角",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S37",
+      "shot_type": "closeup",
+      "scene": "林昭在十步外停住，盯着那块旧布，眉头一点点拧紧，脚步再不肯向前。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "停步、盯视旧布",
+      "dialogue": "",
+      "camera": "近景固定，轻推",
+      "emotion": "警惕、困惑",
+      "duration": 3.0,
+      "sound_cue": "脚步止息",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S38",
+      "shot_type": "extreme_closeup",
+      "scene": "老墨枯瘦的手指抬起，捏住旧布一角，指节粗糙，指甲缝里嵌着经年的暗色污垢。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "抬手指捏住布角",
+      "dialogue": "",
+      "camera": "微距固定，焦点在指尖",
+      "emotion": "沉缓、郑重",
+      "duration": 3.0,
+      "sound_cue": "布料轻响",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S39",
+      "shot_type": "closeup",
+      "scene": "旧布被缓缓解下，从眼前滑落，露出老墨紧闭的双眼，眼睑上布满细密皱纹。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "解下眼布",
+      "dialogue": "",
+      "camera": "近景，慢推",
+      "emotion": "肃穆、悬疑",
+      "duration": 3.0,
+      "sound_cue": "布帛滑落",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S40",
+      "shot_type": "medium",
+      "scene": "林昭下意识后退半步，手按在腰间，目光死死锁住老墨的脸，呼吸放得极轻。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "后退半步、按腰",
+      "dialogue": "你……眼睛怎么了？",
+      "camera": "中景，轻微手持",
+      "emotion": "紧张、防备",
+      "duration": 3.0,
+      "sound_cue": "心跳加重",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S41",
+      "shot_type": "extreme_closeup",
+      "scene": "老墨的眼皮缓缓掀开一条缝，缝隙里透出一线金光，如雷弧在暗处游走。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "睁眼露微光",
+      "dialogue": "",
+      "camera": "眼部大特写，急推",
+      "emotion": "诡秘、压迫",
+      "duration": 3.0,
+      "sound_cue": "细微雷鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S42",
+      "shot_type": "closeup",
+      "scene": "双眼完全睁开，瞳孔中盘绕着与林昭相同的雷纹，金光在纹路里缓缓流动。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "睁眼、雷纹流转",
+      "dialogue": "",
+      "camera": "近景固定，焦点在瞳孔",
+      "emotion": "震撼、宿命",
+      "duration": 3.0,
+      "sound_cue": "雷纹低鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S43",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭的瞳孔骤然收缩，画面切至他眼中，同样的雷纹一闪而逝，与老墨遥相呼应。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "瞳孔收缩、雷纹闪现",
+      "dialogue": "",
+      "camera": "眼部大特写，急推",
+      "emotion": "震惊、共鸣",
+      "duration": 3.0,
+      "sound_cue": "雷音骤起",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S44",
+      "shot_type": "medium",
+      "scene": "两人隔十步对峙，一老一少，眼中雷纹同时亮起，长廊里的金霞被牵动得微微偏转。",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "雷纹同亮",
+      "dialogue": "",
+      "camera": "中景对切，缓慢横移",
+      "emotion": "对峙、共振",
+      "duration": 3.0,
+      "sound_cue": "金光嗡鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S45",
+      "shot_type": "closeup",
+      "scene": "老墨嘴角牵起一丝极淡的笑，皱纹堆叠，那笑意里没有恶意，只有疲惫。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "淡笑",
+      "dialogue": "",
+      "camera": "近景固定",
+      "emotion": "沧桑、释然",
+      "duration": 3.0,
+      "sound_cue": "轻叹",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S46",
+      "shot_type": "medium",
+      "scene": "林昭的手从腰间松开，却没有完全放下，声音发紧，问出压在心里的那句话。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "松手、开口",
+      "dialogue": "你到底是谁？",
+      "camera": "中景，慢推",
+      "emotion": "质问、急切",
+      "duration": 3.0,
+      "sound_cue": "声音回响",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S47",
+      "shot_type": "closeup",
+      "scene": "老墨不答，只是抬起手，指向身后那排白骨，指尖从第一具缓缓划到最后一具。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "抬手划指白骨",
+      "dialogue": "",
+      "camera": "近景，跟拍手指移动",
+      "emotion": "沉痛、告解",
+      "duration": 3.0,
+      "sound_cue": "衣袖轻响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S48",
+      "shot_type": "environment",
+      "scene": "长廊两侧白骨在金光里投下长长影子，影子齐齐朝向入口，像在等待后来者。",
+      "characters": [],
+      "action": "白骨投影",
+      "dialogue": "",
+      "camera": "低角度空镜，缓慢摇移",
+      "emotion": "肃杀、宿命",
+      "duration": 3.0,
+      "sound_cue": "空旷低鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S49",
+      "shot_type": "closeup",
+      "scene": "老墨收回手，垂在身侧，指节轻轻蜷起，像是攥住了什么看不见的东西。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "垂手、蜷指",
+      "dialogue": "",
+      "camera": "手部近景，微推",
+      "emotion": "隐忍、沉重",
+      "duration": 3.0,
+      "sound_cue": "骨节轻响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S50",
+      "shot_type": "medium",
+      "scene": "他抬眼直视林昭，雷纹在瞳孔里转了一圈，声音沙哑，像很久没有开口说话。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "直视、开口",
+      "dialogue": "我等了你很久。",
+      "camera": "中景，慢推至面部",
+      "emotion": "苍凉、期待",
+      "duration": 3.0,
+      "sound_cue": "沙哑嗓音",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S51",
+      "shot_type": "closeup",
+      "scene": "林昭一怔，眉心拧起，脚下不自觉向前挪了半步，又硬生生停住。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "一怔、挪步又停",
+      "dialogue": "",
+      "camera": "近景，轻微晃动",
+      "emotion": "错愕、迟疑",
+      "duration": 3.0,
+      "sound_cue": "呼吸一滞",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S52",
+      "shot_type": "extreme_closeup",
+      "scene": "老墨瞳孔里的雷纹骤然加速流转，金光溢出眼眶，在眼角拉出细如发丝的雷弧。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "雷纹加速、雷弧溢出",
+      "dialogue": "这雷纹……跟我一样？",
+      "camera": "眼部大特写，急推",
+      "emotion": "爆发前兆、炽烈",
+      "duration": 3.0,
+      "sound_cue": "雷弧噼啪",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S53",
+      "shot_type": "medium",
+      "scene": "长廊里的金霞被雷纹牵动，化作细流朝老墨汇聚，白骨胸口的锁链残片齐齐震颤。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "金霞汇聚、锁链震颤",
+      "dialogue": "",
+      "camera": "中景环绕，缓慢摇移",
+      "emotion": "异变、压迫",
+      "duration": 3.0,
+      "sound_cue": "金属共振",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S54",
+      "shot_type": "closeup",
+      "scene": "林昭被气浪逼得抬臂遮面，指缝间看见老墨的身影在金光里一点点挺直。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抬臂遮面",
+      "dialogue": "",
+      "camera": "近景，手持晃动",
+      "emotion": "震动、戒备",
+      "duration": 3.0,
+      "sound_cue": "气浪呼啸",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S55",
+      "shot_type": "wide",
+      "scene": "整条骸骨长廊被雷光映亮，数十具白骨的锁链同时发出微光，如星河缀在壁上。",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "长廊雷光通明",
+      "dialogue": "",
+      "camera": "大全景固定，仰角",
+      "emotion": "恢弘、诡谲",
+      "duration": 3.0,
+      "sound_cue": "雷光嗡鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S56",
+      "shot_type": "closeup",
+      "scene": "老墨缓缓抬起右手，掌心朝上，一段断裂的锁链自袖中滑出，悬在掌心上空。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "抬掌、锁链悬空",
+      "dialogue": "",
+      "camera": "近景，慢推",
+      "emotion": "庄重、揭示",
+      "duration": 3.0,
+      "sound_cue": "锁链轻鸣",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S57",
+      "shot_type": "extreme_closeup",
+      "scene": "那段锁链的断口与白骨胸口的断口一模一样，链身刻着细密雷纹，金光沿纹路游走。",
+      "characters": [],
+      "action": "锁链雷纹流转",
+      "dialogue": "",
+      "camera": "微距固定，焦点游移",
+      "emotion": "宿命、震撼",
+      "duration": 3.0,
+      "sound_cue": "雷纹低吟",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S58",
+      "shot_type": "medium",
+      "scene": "林昭盯着那段锁链，脸色一点点发白，手下意识按上自己胸口，那里隐隐发烫。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "按胸、脸色发白",
+      "dialogue": "胸口……怎么在发烫？",
+      "camera": "中景，慢推",
+      "emotion": "惊骇、恍然",
+      "duration": 3.0,
+      "sound_cue": "心跳如鼓",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S59",
+      "shot_type": "closeup",
+      "scene": "老墨看着他的动作，缓缓点头，眼中雷纹暗了一瞬，像是确认了什么。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "点头、雷纹微暗",
+      "dialogue": "",
+      "camera": "近景固定",
+      "emotion": "了然、悲悯",
+      "duration": 3.0,
+      "sound_cue": "轻叹",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S60",
+      "shot_type": "medium",
+      "scene": "林昭喉头滚动，声音干涩，问出的话在长廊里撞出回音，一遍遍折返。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "开口发问",
+      "dialogue": "他们……都是这么死的？",
+      "camera": "中景，轻推",
+      "emotion": "沉重、不忍",
+      "duration": 3.0,
+      "sound_cue": "回音重叠",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S61",
+      "shot_type": "closeup",
+      "scene": "老墨沉默片刻，目光扫过那些白骨，眼底掠过一丝极深的痛，随即压了下去。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "扫视白骨、压痛",
+      "dialogue": "",
+      "camera": "近景，缓慢摇移",
+      "emotion": "悲怆、隐忍",
+      "duration": 3.0,
+      "sound_cue": "风声低回",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S62",
+      "shot_type": "extreme_closeup",
+      "scene": "老墨的嘴唇动了动，雷纹在瞳孔深处猛地一亮，金光几乎要灼穿画面。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "唇动、雷纹骤亮",
+      "dialogue": "",
+      "camera": "面部大特写，急推",
+      "emotion": "决绝、爆发",
+      "duration": 3.0,
+      "sound_cue": "雷音轰鸣",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S63",
+      "shot_type": "medium",
+      "scene": "他向前踏出一步，锁链在掌心绷直，雷光顺链身窜起，照亮他半张枯瘦的脸。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "踏前一步、锁链绷直",
+      "dialogue": "",
+      "camera": "中景跟拍，侧向推进",
+      "emotion": "凌厉、压迫",
+      "duration": 3.0,
+      "sound_cue": "锁链铮鸣",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S64",
+      "shot_type": "closeup",
+      "scene": "林昭不退，反而迎上一步，眼中雷纹同样亮起，两人目光在半空撞出细碎金光。",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "迎上一步、目光相撞",
+      "dialogue": "",
+      "camera": "近景对切，快速交替",
+      "emotion": "对峙、炽烈",
+      "duration": 3.0,
+      "sound_cue": "雷光轻爆",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S65",
+      "shot_type": "wide",
+      "scene": "一老一少立于长廊中央，雷光自两人眼中漫出，将满地白骨照得纤毫毕现。",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "雷光漫溢",
+      "dialogue": "",
+      "camera": "大全景固定，缓慢拉远",
+      "emotion": "宿命、壮烈",
+      "duration": 3.0,
+      "sound_cue": "雷光嗡鸣",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S66",
+      "shot_type": "closeup",
+      "scene": "老墨收回一步，雷光稍敛，他看着林昭，声音低而稳，一字一顿。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "收步、开口",
+      "dialogue": "我是第一个。",
+      "camera": "近景固定，慢推",
+      "emotion": "沉重、宣告",
+      "duration": 3.0,
+      "sound_cue": "话音落定",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S67",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭瞳孔剧震，画面里只剩那双映着雷纹的眼睛，金光在其中翻涌如潮。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "瞳孔剧震",
+      "dialogue": "",
+      "camera": "眼部大特写，急推",
+      "emotion": "震撼、失语",
+      "duration": 3.0,
+      "sound_cue": "耳鸣骤起",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S68",
+      "shot_type": "medium",
+      "scene": "老墨转身，背对林昭，锁链拖在地上发出轻响，他朝长廊最深处走去。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "转身、拖链前行",
+      "dialogue": "",
+      "camera": "中景跟拍，缓慢后拉",
+      "emotion": "苍凉、孤绝",
+      "duration": 3.0,
+      "sound_cue": "锁链拖地",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S69",
+      "shot_type": "closeup",
+      "scene": "他走出数步，侧过头，半张脸浸在阴影里，雷纹在暗处明明灭灭。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "侧头回望",
+      "dialogue": "跟上，第九个。",
+      "camera": "近景，慢推",
+      "emotion": "邀请、压迫",
+      "duration": 3.0,
+      "sound_cue": "低语回荡",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S70",
+      "shot_type": "wide",
+      "scene": "长廊深处黑暗如口，老墨的身影没入其中，只剩两点雷光悬在暗处，林昭独立原地。",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "身影没入黑暗、雷光悬停",
+      "dialogue": "",
+      "camera": "大全景固定，缓慢推入黑暗",
+      "emotion": "悬疑、钩子",
+      "duration": 3.0,
+      "sound_cue": "雷光低鸣渐远",
+      "act_id": "truth",
+      "priority": "high"
+    }
+  ]
+}

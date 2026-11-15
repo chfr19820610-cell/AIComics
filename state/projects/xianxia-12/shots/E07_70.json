@@ -1,0 +1,1109 @@
+{
+  "episode_code": "E07",
+  "shot_count": 70,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "extreme_closeup",
+      "scene": "火把焰尖在雨幕中嘶嘶冒烟，火星被雨滴打灭",
+      "characters": [],
+      "action": "火舌舔舐雨帘，白烟腾起",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "压抑",
+      "duration": 3.0,
+      "sound_cue": "雨声+火把噼啪",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "closeup",
+      "scene": "严崇握剑的手背青筋暴起，雨水顺指缝流下",
+      "characters": [
+        "严崇"
+      ],
+      "action": "五指收拢剑柄，剑身震颤",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "杀意",
+      "duration": 3.0,
+      "sound_cue": "剑鸣低吟",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "medium",
+      "scene": "严崇立于山门石狮旁，剑尖斜指地面",
+      "characters": [
+        "严崇"
+      ],
+      "action": "抬剑，剑锋划破雨线",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "威压",
+      "duration": 3.0,
+      "sound_cue": "衣袍猎猎",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "full",
+      "scene": "火把长龙沿山道蜿蜒而上，将山门围成半圆",
+      "characters": [],
+      "action": "火光连成弧线，雨幕被映成橙红",
+      "dialogue": "",
+      "camera": "俯拍摇移",
+      "emotion": "肃杀",
+      "duration": 3.0,
+      "sound_cue": "雨声渐强",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "wide",
+      "scene": "严崇一剑劈下，剑气撕开雨幕直压石阶",
+      "characters": [
+        "严崇"
+      ],
+      "action": "剑光如白练破雨而下",
+      "dialogue": "严崇：灾星，留下命。",
+      "camera": "急推",
+      "emotion": "暴烈",
+      "duration": 3.0,
+      "sound_cue": "剑气破空巨响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "extreme_closeup",
+      "scene": "剑气白光映亮石阶上林昭的侧脸",
+      "characters": [
+        "林昭"
+      ],
+      "action": "林昭瞳孔骤缩，发丝被气浪掀起",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "惊觉",
+      "duration": 3.0,
+      "sound_cue": "气浪呼啸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S07",
+      "shot_type": "closeup",
+      "scene": "林昭脚下青石台阶被剑气削出白痕",
+      "characters": [
+        "林昭"
+      ],
+      "action": "石屑飞溅，他侧身避让",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "紧张",
+      "duration": 3.0,
+      "sound_cue": "石裂声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S08",
+      "shot_type": "medium",
+      "scene": "剑气擦过林昭肩头，衣料裂开一道口",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他踉跄半步，抬手护面",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "狼狈",
+      "duration": 3.0,
+      "sound_cue": "布帛撕裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S09",
+      "shot_type": "full",
+      "scene": "雨夜青冥剑宗石阶全景，火把绕山如龙",
+      "characters": [],
+      "action": "数百弟子持剑合围，雨水砸剑溅白雾",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "压迫",
+      "duration": 3.0,
+      "sound_cue": "雨打剑身密集声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S10",
+      "shot_type": "wide",
+      "scene": "石阶两侧弟子列阵，剑锋齐齐朝下",
+      "characters": [],
+      "action": "剑林如墙，雨雾弥漫",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "森严",
+      "duration": 3.0,
+      "sound_cue": "甲胄轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S11",
+      "shot_type": "medium",
+      "scene": "三名弟子踏前一步，剑尖对准林昭",
+      "characters": [],
+      "action": "三人同步拔剑出鞘半寸",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "敌意",
+      "duration": 3.0,
+      "sound_cue": "三声剑鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S12",
+      "shot_type": "closeup",
+      "scene": "雨水沿剑锋汇成细流滴落石阶",
+      "characters": [],
+      "action": "水珠坠地碎成小雾",
+      "dialogue": "",
+      "camera": "大特写慢推",
+      "emotion": "冷冽",
+      "duration": 3.0,
+      "sound_cue": "滴水声放大",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S13",
+      "shot_type": "full",
+      "scene": "山门匾额在火光中忽明忽暗，雨帘遮字",
+      "characters": [],
+      "action": "匾上“青冥”二字被雨冲刷",
+      "dialogue": "",
+      "camera": "仰拍固定",
+      "emotion": "苍凉",
+      "duration": 3.0,
+      "sound_cue": "雷声远滚",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S14",
+      "shot_type": "closeup",
+      "scene": "苏璃立在人群最前，雨水顺剑锋滴落",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "她抿唇，指节泛白握剑",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "挣扎",
+      "duration": 3.0,
+      "sound_cue": "心跳声轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S15",
+      "shot_type": "extreme_closeup",
+      "scene": "苏璃眼底映着火光，睫毛挂雨珠",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "眼神微颤，视线偏向石阶下",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "动摇",
+      "duration": 3.0,
+      "sound_cue": "雨声压低",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S16",
+      "shot_type": "medium",
+      "scene": "火光照亮苏璃半张脸，另半沉在暗处",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "她微微侧首，唇线绷紧",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "隐忍",
+      "duration": 3.0,
+      "sound_cue": "火把噼啪",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S17",
+      "shot_type": "full",
+      "scene": "苏璃背影立于剑阵前，与林昭隔阶相望",
+      "characters": [
+        "苏璃",
+        "林昭"
+      ],
+      "action": "两人视线在雨幕中短暂相接",
+      "dialogue": "",
+      "camera": "过肩固定",
+      "emotion": "牵挂",
+      "duration": 3.0,
+      "sound_cue": "雨声连绵",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S18",
+      "shot_type": "closeup",
+      "scene": "林昭抬头，雨水糊住眉眼",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他抹了把脸，扯出苦笑",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "倔强",
+      "duration": 3.0,
+      "sound_cue": "粗重呼吸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S19",
+      "shot_type": "medium",
+      "scene": "三道剑气从不同方向切向林昭",
+      "characters": [
+        "林昭"
+      ],
+      "action": "林昭旋身闪避，衣角被削落",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "危急",
+      "duration": 3.0,
+      "sound_cue": "三道破空声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S20",
+      "shot_type": "closeup",
+      "scene": "林昭后背旧伤崩裂，血渗湿衣衫",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他闷哼，肩背一弓",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "痛楚",
+      "duration": 3.0,
+      "sound_cue": "闷哼+布裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S21",
+      "shot_type": "extreme_closeup",
+      "scene": "血珠混着雨水沿脊背滑落",
+      "characters": [
+        "林昭"
+      ],
+      "action": "血线被雨冲淡成粉雾",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "惨烈",
+      "duration": 3.0,
+      "sound_cue": "水滴混血声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S22",
+      "shot_type": "medium",
+      "scene": "林昭脚跟踏碎青石台阶，碎石四溅",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他后仰卸力，脚底石裂",
+      "dialogue": "",
+      "camera": "跟拍下压",
+      "emotion": "硬撑",
+      "duration": 3.0,
+      "sound_cue": "石阶碎裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S23",
+      "shot_type": "closeup",
+      "scene": "林昭掌心雷纹忽明忽暗，电弧游走",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他攥拳，雷光从指缝溢出",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "隐忍",
+      "duration": 3.0,
+      "sound_cue": "电弧滋滋",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S24",
+      "shot_type": "full",
+      "scene": "林昭被逼退至石阶中段，三面剑光逼近",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他背抵石栏，无路可退",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "绝境",
+      "duration": 3.0,
+      "sound_cue": "雨声骤密",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S25",
+      "shot_type": "closeup",
+      "scene": "严崇缓步踏下石阶，剑拖地划出火星",
+      "characters": [
+        "严崇"
+      ],
+      "action": "剑尖擦石，火花溅起",
+      "dialogue": "严崇：跪下受死。",
+      "camera": "跟拍",
+      "emotion": "傲慢",
+      "duration": 3.0,
+      "sound_cue": "剑石摩擦声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S26",
+      "shot_type": "medium",
+      "scene": "林昭咬牙直起腰，雷纹亮了一瞬",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他抬掌，雷光聚而未发",
+      "dialogue": "林昭：我没错。",
+      "camera": "急推",
+      "emotion": "不屈",
+      "duration": 3.0,
+      "sound_cue": "雷声闷响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S27",
+      "shot_type": "extreme_closeup",
+      "scene": "严崇眼中寒光一闪，杀意凝实",
+      "characters": [
+        "严崇"
+      ],
+      "action": "他手腕一转，剑势蓄满",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "狠厉",
+      "duration": 3.0,
+      "sound_cue": "剑鸣拔高",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S28",
+      "shot_type": "full",
+      "scene": "严崇身形暴起，一剑直刺林昭后心",
+      "characters": [
+        "严崇",
+        "林昭"
+      ],
+      "action": "剑光如毒蛇吐信，雨幕被刺穿",
+      "dialogue": "",
+      "camera": "甩镜跟拍",
+      "emotion": "惊险",
+      "duration": 3.0,
+      "sound_cue": "尖啸破空",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S29",
+      "shot_type": "closeup",
+      "scene": "林昭察觉背后剑风，回身已迟",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他瞳孔放大，雷纹骤然一暗",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊惧",
+      "duration": 3.0,
+      "sound_cue": "心跳骤停感",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S30",
+      "shot_type": "medium",
+      "scene": "一道身影横插而入，剑锋斜挡",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "苏璃横剑，剑身撞上严崇剑尖",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "决然",
+      "duration": 3.0,
+      "sound_cue": "金铁交鸣前奏",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S31",
+      "shot_type": "extreme_closeup",
+      "scene": "两剑相交处火星炸开，映亮交错剑身",
+      "characters": [
+        "苏璃",
+        "严崇"
+      ],
+      "action": "火星四溅，雨滴被震成雾",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "爆裂",
+      "duration": 3.0,
+      "sound_cue": "金属炸响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S32",
+      "shot_type": "closeup",
+      "scene": "苏璃虎口震裂，血顺剑柄流下",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "她咬牙不退，剑身压低",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "坚忍",
+      "duration": 3.0,
+      "sound_cue": "血滴落地",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S33",
+      "shot_type": "medium",
+      "scene": "严崇收剑后退半步，眯眼盯住苏璃",
+      "characters": [
+        "严崇",
+        "苏璃"
+      ],
+      "action": "他剑尖微抬，指向苏璃",
+      "dialogue": "严崇：你要护这灾星？",
+      "camera": "摇移",
+      "emotion": "质问",
+      "duration": 3.0,
+      "sound_cue": "雨声压低",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S34",
+      "shot_type": "full",
+      "scene": "四周弟子哗然，剑阵出现松动",
+      "characters": [],
+      "action": "数人交头接耳，剑尖下垂",
+      "dialogue": "",
+      "camera": "俯拍摇移",
+      "emotion": "骚动",
+      "duration": 3.0,
+      "sound_cue": "窃语声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S35",
+      "shot_type": "closeup",
+      "scene": "苏璃侧脸被火光照亮，唇线紧抿",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "她深吸一口气，握剑更紧",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "蓄力",
+      "duration": 3.0,
+      "sound_cue": "吸气声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S36",
+      "shot_type": "extreme_closeup",
+      "scene": "苏璃剑尖缓缓转向宗门方向",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "剑锋划出一道弧线，雨珠沿剑脊滚落",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "决断",
+      "duration": 3.0,
+      "sound_cue": "剑身轻鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S37",
+      "shot_type": "medium",
+      "scene": "苏璃横剑挡在林昭身前，背对宗门",
+      "characters": [
+        "苏璃",
+        "林昭"
+      ],
+      "action": "她一步跨出，将林昭护在身后",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "守护",
+      "duration": 3.0,
+      "sound_cue": "脚步踏水",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S38",
+      "shot_type": "closeup",
+      "scene": "林昭怔怔看着苏璃背影，雷纹微亮",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他张了张嘴，未出声",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "震动",
+      "duration": 3.0,
+      "sound_cue": "雨声柔和一瞬",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S39",
+      "shot_type": "full",
+      "scene": "苏璃剑尖转向，雨幕被剑气撕开一道口子",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "剑气裂雨，露出短暂晴空",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "凌厉",
+      "duration": 3.0,
+      "sound_cue": "剑气裂空",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S40",
+      "shot_type": "wide",
+      "scene": "雨幕裂口两侧水墙悬停，众人仰头",
+      "characters": [],
+      "action": "水墙如帘，火光穿隙而过",
+      "dialogue": "",
+      "camera": "仰拍摇移",
+      "emotion": "震撼",
+      "duration": 3.0,
+      "sound_cue": "水幕轰鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S41",
+      "shot_type": "medium",
+      "scene": "严崇脸色一沉，剑指苏璃",
+      "characters": [
+        "严崇"
+      ],
+      "action": "他踏前一步，气势压来",
+      "dialogue": "严崇：你疯了。",
+      "camera": "跟拍",
+      "emotion": "怒意",
+      "duration": 3.0,
+      "sound_cue": "脚步沉重",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S42",
+      "shot_type": "closeup",
+      "scene": "苏璃迎上严崇目光，毫不退让",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "她抬下巴，剑身横稳",
+      "dialogue": "苏璃：我没疯。",
+      "camera": "固定",
+      "emotion": "坚定",
+      "duration": 3.0,
+      "sound_cue": "雨声清晰",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S43",
+      "shot_type": "extreme_closeup",
+      "scene": "苏璃唇齿轻启，一字一句",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "雨珠沿她下颌滴落",
+      "dialogue": "苏璃：我守的是他，",
+      "camera": "慢推",
+      "emotion": "郑重",
+      "duration": 3.0,
+      "sound_cue": "雨滴特写声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S44",
+      "shot_type": "closeup",
+      "scene": "苏璃眼神扫过宗门众人，最后落回严崇",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "她剑尖微抬，指向山门匾额",
+      "dialogue": "苏璃：不是封印。",
+      "camera": "摇移",
+      "emotion": "凛然",
+      "duration": 3.0,
+      "sound_cue": "剑鸣清越",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S45",
+      "shot_type": "full",
+      "scene": "全场死寂，雨声忽然清晰可闻",
+      "characters": [],
+      "action": "数百弟子僵立，火把噼啪",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "凝固",
+      "duration": 3.0,
+      "sound_cue": "雨声放大",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S46",
+      "shot_type": "medium",
+      "scene": "严崇面色铁青，握剑的手微微发抖",
+      "characters": [
+        "严崇"
+      ],
+      "action": "他剑尖下压，蓄势待发",
+      "dialogue": "严崇：那就一起死。",
+      "camera": "急推",
+      "emotion": "暴怒",
+      "duration": 3.0,
+      "sound_cue": "剑鸣骤起",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S47",
+      "shot_type": "closeup",
+      "scene": "林昭掌心雷纹猛然大亮，电弧缠臂",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他踏前一步，与苏璃并肩",
+      "dialogue": "林昭：苏璃，退后。",
+      "camera": "跟拍",
+      "emotion": "决绝",
+      "duration": 3.0,
+      "sound_cue": "雷弧爆响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S48",
+      "shot_type": "medium",
+      "scene": "苏璃摇头，剑不离手，挡在林昭侧前",
+      "characters": [
+        "苏璃",
+        "林昭"
+      ],
+      "action": "两人背靠背，剑与雷光相映",
+      "dialogue": "苏璃：一起。",
+      "camera": "环绕摇移",
+      "emotion": "并肩",
+      "duration": 3.0,
+      "sound_cue": "雷声与剑鸣交织",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S49",
+      "shot_type": "full",
+      "scene": "严崇挥剑下令，剑阵重新合拢",
+      "characters": [
+        "严崇"
+      ],
+      "action": "他剑指前方，弟子蜂拥而上",
+      "dialogue": "严崇：拿下！",
+      "camera": "甩镜",
+      "emotion": "围攻",
+      "duration": 3.0,
+      "sound_cue": "喊杀声起",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S50",
+      "shot_type": "wide",
+      "scene": "火把长龙骤然收紧，向石阶中段压来",
+      "characters": [],
+      "action": "火光如潮水合围，雨雾翻涌",
+      "dialogue": "",
+      "camera": "俯拍急推",
+      "emotion": "危急",
+      "duration": 3.0,
+      "sound_cue": "脚步声如雷",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S51",
+      "shot_type": "closeup",
+      "scene": "林昭雷纹全开，电弧绕身成环",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他双掌一合，雷光炸开",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "爆发",
+      "duration": 3.0,
+      "sound_cue": "雷鸣轰响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S52",
+      "shot_type": "medium",
+      "scene": "雷光震退第一波弟子，剑阵一滞",
+      "characters": [],
+      "action": "数人被气浪掀翻，剑脱手飞出",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "逆转",
+      "duration": 3.0,
+      "sound_cue": "气浪呼啸",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S53",
+      "shot_type": "closeup",
+      "scene": "苏璃趁隙挑开侧面刺来的两剑",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "她旋身连挡，剑花如雨",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "凌厉",
+      "duration": 3.0,
+      "sound_cue": "双剑交击",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S54",
+      "shot_type": "full",
+      "scene": "两人配合撕开缺口，朝山门侧廊退去",
+      "characters": [
+        "林昭",
+        "苏璃"
+      ],
+      "action": "林昭开路，苏璃断后",
+      "dialogue": "",
+      "camera": "摇移跟拍",
+      "emotion": "突围",
+      "duration": 3.0,
+      "sound_cue": "脚步急促",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S55",
+      "shot_type": "medium",
+      "scene": "严崇跃起，一剑劈向两人之间",
+      "characters": [
+        "严崇"
+      ],
+      "action": "剑光落地，石阶炸裂",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "阻截",
+      "duration": 3.0,
+      "sound_cue": "石阶爆裂",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S56",
+      "shot_type": "extreme_closeup",
+      "scene": "碎石飞溅中，林昭一把拽住苏璃手腕",
+      "characters": [
+        "林昭",
+        "苏璃"
+      ],
+      "action": "他用力将她拉向侧廊",
+      "dialogue": "林昭：走！",
+      "camera": "甩镜",
+      "emotion": "急切",
+      "duration": 3.0,
+      "sound_cue": "碎石落地",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S57",
+      "shot_type": "closeup",
+      "scene": "苏璃被拽得踉跄，回头望了一眼宗门",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "她眼神复杂，终是转身",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "决绝",
+      "duration": 3.0,
+      "sound_cue": "衣袂翻飞",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S58",
+      "shot_type": "full",
+      "scene": "两人冲入侧廊，火把长龙在身后合拢",
+      "characters": [
+        "林昭",
+        "苏璃"
+      ],
+      "action": "身影没入廊柱阴影",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "紧迫",
+      "duration": 3.0,
+      "sound_cue": "追兵脚步声",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S59",
+      "shot_type": "medium",
+      "scene": "严崇落在廊口，剑指黑暗",
+      "characters": [
+        "严崇"
+      ],
+      "action": "他面色阴沉，剑尖颤抖",
+      "dialogue": "严崇：追！一个不留。",
+      "camera": "固定",
+      "emotion": "狠绝",
+      "duration": 3.0,
+      "sound_cue": "剑入鞘声",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S60",
+      "shot_type": "wide",
+      "scene": "火把长龙分出一股，涌入侧廊",
+      "characters": [],
+      "action": "火光在廊道中拉成长线",
+      "dialogue": "",
+      "camera": "俯拍跟拍",
+      "emotion": "追杀",
+      "duration": 3.0,
+      "sound_cue": "杂乱脚步声",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S61",
+      "shot_type": "closeup",
+      "scene": "侧廊深处，林昭扶墙喘息，雷纹渐暗",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他单膝跪地，血滴石面",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "虚弱",
+      "duration": 3.0,
+      "sound_cue": "粗喘声",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S62",
+      "shot_type": "medium",
+      "scene": "苏璃回身扶他，剑仍朝外警戒",
+      "characters": [
+        "苏璃",
+        "林昭"
+      ],
+      "action": "她一手架住他臂膀",
+      "dialogue": "苏璃：还能走吗？",
+      "camera": "跟拍",
+      "emotion": "关切",
+      "duration": 3.0,
+      "sound_cue": "雨声渐远",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S63",
+      "shot_type": "closeup",
+      "scene": "林昭抬头，雷纹在暗处闪了一下",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他扯出笑，点头",
+      "dialogue": "林昭：死不了。",
+      "camera": "固定",
+      "emotion": "倔强",
+      "duration": 3.0,
+      "sound_cue": "轻笑",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S64",
+      "shot_type": "extreme_closeup",
+      "scene": "苏璃掌心伤口渗血，滴在林昭手背",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "血珠混着雨水滑落",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "无声",
+      "duration": 3.0,
+      "sound_cue": "血滴轻响",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S65",
+      "shot_type": "full",
+      "scene": "廊道尽头出现岔路，火光从后方逼近",
+      "characters": [
+        "林昭",
+        "苏璃"
+      ],
+      "action": "两人对视一眼，朝左奔去",
+      "dialogue": "",
+      "camera": "甩镜跟拍",
+      "emotion": "紧迫",
+      "duration": 3.0,
+      "sound_cue": "追兵逼近",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S66",
+      "shot_type": "medium",
+      "scene": "追兵火把映亮廊壁，影子乱晃",
+      "characters": [],
+      "action": "数名弟子提剑疾追",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "压迫",
+      "duration": 3.0,
+      "sound_cue": "喊声回荡",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S67",
+      "shot_type": "closeup",
+      "scene": "林昭忽然停步，盯住廊壁暗格",
+      "characters": [
+        "林昭"
+      ],
+      "action": "他伸手按上壁面，雷纹一亮",
+      "dialogue": "林昭：这里。",
+      "camera": "急推",
+      "emotion": "发现",
+      "duration": 3.0,
+      "sound_cue": "机关轻响",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S68",
+      "shot_type": "medium",
+      "scene": "暗格弹开，露出一条窄道，冷风灌出",
+      "characters": [
+        "林昭",
+        "苏璃"
+      ],
+      "action": "两人侧身挤入，石门开始合拢",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "转机",
+      "duration": 3.0,
+      "sound_cue": "石门摩擦声",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S69",
+      "shot_type": "full",
+      "scene": "石门合拢前，火光照进窄道一瞬",
+      "characters": [],
+      "action": "追兵扑到，石门轰然闭合",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊险",
+      "duration": 3.0,
+      "sound_cue": "石门巨响",
+      "act_id": "truth",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S70",
+      "shot_type": "extreme_closeup",
+      "scene": "黑暗中，林昭掌心雷纹映亮两人脸，纹路中浮出陌生符文",
+      "characters": [
+        "林昭",
+        "苏璃"
+      ],
+      "action": "雷纹符文流转，林昭瞳孔一缩",
+      "dialogue": "林昭：这纹……在变。",
+      "camera": "慢推",
+      "emotion": "悬念",
+      "duration": 3.0,
+      "sound_cue": "低鸣渐起",
+      "act_id": "truth",
+      "priority": "normal"
+    }
+  ]
+}

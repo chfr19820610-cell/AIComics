@@ -14,8 +14,13 @@ for ep in E01 E02 E03 E04 E05 E06 E07 E08 E09 E10 E11 E12; do
   dur=$(echo "$info" | grep -oE 'Duration: [0-9:.]+' | head -1 | sed 's/Duration: //')
   [ "$has_v" -lt 1 ] && { echo "FAIL $ep: 无视频轨"; fail=1; continue; }
   [ "$has_a" -lt 1 ] && { echo "FAIL $ep: 无音频轨"; fail=1; continue; }
+  # 时长检查（P6 目标 3-4 分钟 = 180-240 秒）
+  dur_sec=$(echo "$dur" | awk -F: '{ if (NF==3) print int($1*3600+$2*60+$3); else if (NF==2) print int($1*60+$2); else print 0 }')
+  if [ "${dur_sec:-0}" -lt 180 ] || [ "${dur_sec:-0}" -gt 240 ]; then
+    echo "FAIL $ep: 时长 ${dur_sec}s 不在 180-240s 区间"; fail=1; continue
+  fi
   sz=$(ls -lh "$f" | awk '{print $5}')
-  echo "PASS $ep: $sz / $res / $dur / v+a"
+  echo "PASS $ep: $sz / $res / $dur (${dur_sec}s) / v+a"
 done
 [ $fail -eq 0 ] && echo "=== G6 导出门: PASS ===" || echo "=== G6 导出门: FAIL ==="
 exit $fail

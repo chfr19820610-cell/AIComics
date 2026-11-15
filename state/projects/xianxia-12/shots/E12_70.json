@@ -1,0 +1,1082 @@
+{
+  "episode_code": "E12",
+  "shot_count": 70,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "大特写",
+      "scene": "漆黑水面倒映星河，波纹细碎",
+      "characters": [],
+      "action": "水面微光闪动",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "死寂",
+      "duration": 3.0,
+      "sound_cue": "低频嗡鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "近景",
+      "scene": "金袍衣角垂落水面，不沾一滴",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "衣袍轻晃",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "神秘",
+      "duration": 3.0,
+      "sound_cue": "布料摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "中景",
+      "scene": "金袍人形立于水中央，星河倒影环身",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "缓缓抬头",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "压迫",
+      "duration": 3.0,
+      "sound_cue": "水波轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "全景",
+      "scene": "虚无之境无天无地，黑水如镜",
+      "characters": [],
+      "action": "星河倒影铺满水面",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "空旷",
+      "duration": 3.0,
+      "sound_cue": "绝对静音",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "大特写",
+      "scene": "金袍人形双眼映出星河",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "目光微动",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "审视",
+      "duration": 3.0,
+      "sound_cue": "心跳一记",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "近景",
+      "scene": "林昭身影出现在水面对岸",
+      "characters": [
+        "林昭"
+      ],
+      "action": "负手而立",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "戒备",
+      "duration": 3.0,
+      "sound_cue": "衣摆轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S07",
+      "shot_type": "中景",
+      "scene": "两人隔水对峙，水面平静如镜",
+      "characters": [
+        "林昭",
+        "金袍人形"
+      ],
+      "action": "彼此凝视",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "紧绷",
+      "duration": 3.0,
+      "sound_cue": "低频渐强",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S08",
+      "shot_type": "全景",
+      "scene": "黑水倒映整条星河，两人如棋",
+      "characters": [
+        "林昭",
+        "金袍人形"
+      ],
+      "action": "静立不动",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "对峙",
+      "duration": 3.0,
+      "sound_cue": "水声回荡",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S09",
+      "shot_type": "大特写",
+      "scene": "金袍人形嘴唇微启",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "开口说话",
+      "dialogue": "我不是来杀你",
+      "camera": "慢推",
+      "emotion": "平静",
+      "duration": 3.0,
+      "sound_cue": "话音荡开",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S10",
+      "shot_type": "近景",
+      "scene": "水面随话音荡开一圈涟漪",
+      "characters": [],
+      "action": "涟漪扩散",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "余波",
+      "duration": 3.0,
+      "sound_cue": "水波声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S11",
+      "shot_type": "中景",
+      "scene": "林昭眉头微皱，衣袍无风自动",
+      "characters": [
+        "林昭"
+      ],
+      "action": "握拳",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "警觉",
+      "duration": 3.0,
+      "sound_cue": "骨节轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S12",
+      "shot_type": "全景",
+      "scene": "虚无之境远处星河缓缓旋转",
+      "characters": [],
+      "action": "星河流动",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "苍茫",
+      "duration": 3.0,
+      "sound_cue": "星辉低鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S13",
+      "shot_type": "大特写",
+      "scene": "金袍人形眼中闪过残影",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "瞳孔收缩",
+      "dialogue": "我是来拦你",
+      "camera": "慢推",
+      "emotion": "笃定",
+      "duration": 3.0,
+      "sound_cue": "心跳加速",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S14",
+      "shot_type": "近景",
+      "scene": "林昭冷笑，水面对岸倒影扭曲",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抬眸",
+      "dialogue": "拦我？",
+      "camera": "固定",
+      "emotion": "不屑",
+      "duration": 3.0,
+      "sound_cue": "冷笑声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S15",
+      "shot_type": "中景",
+      "scene": "金袍人形抬手，水面泛起黑雾",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "袖袍一挥",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "凝重",
+      "duration": 3.0,
+      "sound_cue": "雾气翻涌",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S16",
+      "shot_type": "全景",
+      "scene": "黑雾在水面铺开成镜面",
+      "characters": [
+        "林昭",
+        "金袍人形"
+      ],
+      "action": "雾中浮现画面",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "不祥",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣渐强",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S17",
+      "shot_type": "大特写",
+      "scene": "雾镜中映出废墟一角",
+      "characters": [],
+      "action": "残垣断壁",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惨烈",
+      "duration": 3.0,
+      "sound_cue": "火焰噼啪",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S18",
+      "shot_type": "近景",
+      "scene": "林昭盯着雾镜，呼吸一滞",
+      "characters": [
+        "林昭"
+      ],
+      "action": "后退半步",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "震动",
+      "duration": 3.0,
+      "sound_cue": "呼吸声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S19",
+      "shot_type": "中景",
+      "scene": "水面炸开，闪回画面迸裂",
+      "characters": [],
+      "action": "水花四溅",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "冲击",
+      "duration": 3.0,
+      "sound_cue": "炸裂声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S20",
+      "shot_type": "全景",
+      "scene": "闪回：废墟中央林昭独立",
+      "characters": [
+        "林昭"
+      ],
+      "action": "浑身黑气缠绕",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "失控",
+      "duration": 3.0,
+      "sound_cue": "狂风呼啸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S21",
+      "shot_type": "大特写",
+      "scene": "林昭双眼漆黑无光",
+      "characters": [
+        "林昭"
+      ],
+      "action": "黑气从眼角溢出",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "暴戾",
+      "duration": 3.0,
+      "sound_cue": "低吼",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S22",
+      "shot_type": "近景",
+      "scene": "山河成灰，天空赤红",
+      "characters": [],
+      "action": "灰烬飘落",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "末日",
+      "duration": 3.0,
+      "sound_cue": "风声呜咽",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S23",
+      "shot_type": "中景",
+      "scene": "九位大能悬空合力铸锁",
+      "characters": [],
+      "action": "锁链交织成网",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "壮烈",
+      "duration": 3.0,
+      "sound_cue": "锁链碰撞",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S24",
+      "shot_type": "全景",
+      "scene": "锁链从天而降罩住林昭",
+      "characters": [
+        "林昭"
+      ],
+      "action": "林昭仰头嘶吼",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "绝望",
+      "duration": 3.0,
+      "sound_cue": "雷霆轰鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S25",
+      "shot_type": "大特写",
+      "scene": "金袍人形声音从画外传来",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "金袍人形声音从画外传来的动作延续",
+      "dialogue": "那一世，你吞了半个人间",
+      "camera": "慢推",
+      "emotion": "沉重",
+      "duration": 3.0,
+      "sound_cue": "回声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S26",
+      "shot_type": "近景",
+      "scene": "林昭从闪回中回神，面色苍白",
+      "characters": [
+        "林昭"
+      ],
+      "action": "攥紧胸口",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "痛苦",
+      "duration": 3.0,
+      "sound_cue": "心跳沉重",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S27",
+      "shot_type": "中景",
+      "scene": "金袍人形静立水面，等待回应",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "垂眸",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "悲悯",
+      "duration": 3.0,
+      "sound_cue": "水声轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S28",
+      "shot_type": "全景",
+      "scene": "虚无之境星河黯淡几分",
+      "characters": [],
+      "action": "星光微弱",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "压抑",
+      "duration": 3.0,
+      "sound_cue": "低频嗡鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S29",
+      "shot_type": "大特写",
+      "scene": "林昭掌心浮现锁链虚影",
+      "characters": [
+        "林昭"
+      ],
+      "action": "五指张开",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "决然",
+      "duration": 3.0,
+      "sound_cue": "金属鸣响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S30",
+      "shot_type": "近景",
+      "scene": "锁链从体内被一寸寸抽出",
+      "characters": [
+        "林昭"
+      ],
+      "action": "咬牙抽链",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "剧痛",
+      "duration": 3.0,
+      "sound_cue": "锁链摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S31",
+      "shot_type": "中景",
+      "scene": "雷海在身后倒卷翻涌",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雷光缠身",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "狂暴",
+      "duration": 3.0,
+      "sound_cue": "雷声滚滚",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S32",
+      "shot_type": "全景",
+      "scene": "雷海倒卷回身，锁链横空",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链回钉",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "壮烈",
+      "duration": 3.0,
+      "sound_cue": "雷霆炸响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S33",
+      "shot_type": "大特写",
+      "scene": "锁链钉入胸口，血花溅出",
+      "characters": [
+        "林昭"
+      ],
+      "action": "身体一颤",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "隐忍",
+      "duration": 3.0,
+      "sound_cue": "闷响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S34",
+      "shot_type": "近景",
+      "scene": "林昭咬紧牙关，不出声",
+      "characters": [
+        "林昭"
+      ],
+      "action": "额头青筋暴起",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "倔强",
+      "duration": 3.0,
+      "sound_cue": "牙关紧咬",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S35",
+      "shot_type": "中景",
+      "scene": "金袍人形注视，衣袍轻动",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "微微颔首",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "了然",
+      "duration": 3.0,
+      "sound_cue": "衣料轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S36",
+      "shot_type": "全景",
+      "scene": "雷海与黑水交界，光暗撕裂",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链根根回钉",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "转折",
+      "duration": 3.0,
+      "sound_cue": "轰鸣交织",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S37",
+      "shot_type": "大特写",
+      "scene": "林昭胸口锁链缝金光隐现",
+      "characters": [
+        "林昭"
+      ],
+      "action": "金光一明一暗",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "异样",
+      "duration": 3.0,
+      "sound_cue": "心跳声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S38",
+      "shot_type": "近景",
+      "scene": "林昭低头看胸口，眼神复杂",
+      "characters": [
+        "林昭"
+      ],
+      "action": "伸手按住",
+      "dialogue": "这次，我自己锁",
+      "camera": "慢推",
+      "emotion": "坚定",
+      "duration": 3.0,
+      "sound_cue": "低语",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S39",
+      "shot_type": "中景",
+      "scene": "金袍人形后退半步，拱手",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "袖袍拢起",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "敬意",
+      "duration": 3.0,
+      "sound_cue": "水波轻响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S40",
+      "shot_type": "全景",
+      "scene": "封印光纹从林昭脚下蔓延",
+      "characters": [
+        "林昭"
+      ],
+      "action": "光纹合拢",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "肃穆",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣上扬",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S41",
+      "shot_type": "大特写",
+      "scene": "锁链末端嵌入皮肉",
+      "characters": [
+        "林昭"
+      ],
+      "action": "血珠渗出",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "痛楚",
+      "duration": 3.0,
+      "sound_cue": "皮肉撕裂",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S42",
+      "shot_type": "近景",
+      "scene": "林昭闭眼，雷海渐息",
+      "characters": [
+        "林昭"
+      ],
+      "action": "缓缓吐气",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "释然",
+      "duration": 3.0,
+      "sound_cue": "雷声远去",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S43",
+      "shot_type": "中景",
+      "scene": "金袍人形微笑，立于岸边",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "拱手一礼",
+      "dialogue": "下次见",
+      "camera": "固定",
+      "emotion": "温和",
+      "duration": 3.0,
+      "sound_cue": "话音轻落",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S44",
+      "shot_type": "全景",
+      "scene": "虚无之境星河重归平静",
+      "characters": [
+        "林昭",
+        "金袍人形"
+      ],
+      "action": "两人身影渐远",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "寂寥",
+      "duration": 3.0,
+      "sound_cue": "水声回荡",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S45",
+      "shot_type": "大特写",
+      "scene": "封印合拢，光纹封死胸口",
+      "characters": [
+        "林昭"
+      ],
+      "action": "最后一缕光没入",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "尘埃落定",
+      "duration": 3.0,
+      "sound_cue": "咔哒一声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S46",
+      "shot_type": "近景",
+      "scene": "金袍人形转身，衣袍没入黑暗",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "身影淡去",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "神秘",
+      "duration": 3.0,
+      "sound_cue": "雾气消散",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S47",
+      "shot_type": "中景",
+      "scene": "画面转黑，只剩胸口轮廓",
+      "characters": [
+        "林昭"
+      ],
+      "action": "黑暗中微光闪烁",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "不安",
+      "duration": 3.0,
+      "sound_cue": "寂静",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S48",
+      "shot_type": "全景",
+      "scene": "漆黑一片，锁链缝金光一明一暗",
+      "characters": [],
+      "action": "金光脉动",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "心跳般脉动",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S49",
+      "shot_type": "大特写",
+      "scene": "锁链缝隙里金光如眼",
+      "characters": [],
+      "action": "金光收缩",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊悚",
+      "duration": 3.0,
+      "sound_cue": "敲击声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S50",
+      "shot_type": "近景",
+      "scene": "金光一明一暗，像有人在敲",
+      "characters": [],
+      "action": "节奏加快",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "紧张",
+      "duration": 3.0,
+      "sound_cue": "叩击声渐急",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S51",
+      "shot_type": "中景",
+      "scene": "黑暗中锁链微微震颤",
+      "characters": [],
+      "action": "锁链抖动",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "不祥",
+      "duration": 3.0,
+      "sound_cue": "金属颤鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S52",
+      "shot_type": "全景",
+      "scene": "虚无之境尽头一点金光亮起",
+      "characters": [],
+      "action": "金光扩大",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "悬念",
+      "duration": 3.0,
+      "sound_cue": "低频渐强",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S53",
+      "shot_type": "大特写",
+      "scene": "金光中浮现模糊人影",
+      "characters": [],
+      "action": "人影抬手",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊愕",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣骤起",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S54",
+      "shot_type": "近景",
+      "scene": "人影手指轻叩锁链",
+      "characters": [],
+      "action": "指尖触碰",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "叩击清脆",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S55",
+      "shot_type": "中景",
+      "scene": "锁链应声裂开一道细缝",
+      "characters": [],
+      "action": "缝隙渗出金光",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "转折",
+      "duration": 3.0,
+      "sound_cue": "裂纹声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S56",
+      "shot_type": "全景",
+      "scene": "裂缝金光暴涨，照亮黑暗",
+      "characters": [],
+      "action": "光芒四射",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "爆发",
+      "duration": 3.0,
+      "sound_cue": "轰然炸响",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S57",
+      "shot_type": "大特写",
+      "scene": "林昭胸口锁链剧烈震颤",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链绷紧",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "剧震",
+      "duration": 3.0,
+      "sound_cue": "金属嘶鸣",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S58",
+      "shot_type": "近景",
+      "scene": "林昭猛然睁眼，瞳孔映出金光",
+      "characters": [
+        "林昭"
+      ],
+      "action": "惊醒",
+      "dialogue": "谁？",
+      "camera": "固定",
+      "emotion": "惊骇",
+      "duration": 3.0,
+      "sound_cue": "急促呼吸",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S59",
+      "shot_type": "中景",
+      "scene": "金光中传来低沉画外音",
+      "characters": [],
+      "action": "光芒脉动",
+      "dialogue": "找到你了",
+      "camera": "慢推",
+      "emotion": "森然",
+      "duration": 3.0,
+      "sound_cue": "低语回荡",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S60",
+      "shot_type": "全景",
+      "scene": "虚无之境被金光撕开一道口子",
+      "characters": [],
+      "action": "空间崩裂",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "震撼",
+      "duration": 3.0,
+      "sound_cue": "空间碎裂",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S61",
+      "shot_type": "大特写",
+      "scene": "裂缝中伸出一只苍白的手",
+      "characters": [],
+      "action": "五指张开",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "恐怖",
+      "duration": 3.0,
+      "sound_cue": "骨节咔响",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S62",
+      "shot_type": "近景",
+      "scene": "林昭锁链回缩护体",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链缠身",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "戒备",
+      "duration": 3.0,
+      "sound_cue": "锁链碰撞",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S63",
+      "shot_type": "中景",
+      "scene": "苍白之手按在封印上",
+      "characters": [],
+      "action": "缓缓用力",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "压迫",
+      "duration": 3.0,
+      "sound_cue": "封印吱嘎",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S64",
+      "shot_type": "全景",
+      "scene": "封印光纹寸寸崩裂",
+      "characters": [
+        "林昭"
+      ],
+      "action": "金光与黑气交织",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "危急",
+      "duration": 3.0,
+      "sound_cue": "崩裂轰鸣",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S65",
+      "shot_type": "大特写",
+      "scene": "林昭胸口锁链缝里金光刺目",
+      "characters": [
+        "林昭"
+      ],
+      "action": "金光爆闪",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "爆发",
+      "duration": 3.0,
+      "sound_cue": "尖啸",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S66",
+      "shot_type": "近景",
+      "scene": "林昭咬牙，双手结印",
+      "characters": [
+        "林昭"
+      ],
+      "action": "印诀成形",
+      "dialogue": "休想！",
+      "camera": "固定",
+      "emotion": "决绝",
+      "duration": 3.0,
+      "sound_cue": "印诀嗡鸣",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S67",
+      "shot_type": "中景",
+      "scene": "锁链重新收紧，金光被压回",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链回钉",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "顽强",
+      "duration": 3.0,
+      "sound_cue": "锁链铮鸣",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S68",
+      "shot_type": "全景",
+      "scene": "裂缝缓缓闭合，金光不甘退去",
+      "characters": [],
+      "action": "空间弥合",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "暂歇",
+      "duration": 3.0,
+      "sound_cue": "余音渐弱",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S69",
+      "shot_type": "大特写",
+      "scene": "锁链缝里金光最后一闪",
+      "characters": [],
+      "action": "金光隐没",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "余悸",
+      "duration": 3.0,
+      "sound_cue": "一声轻叩",
+      "act_id": "truth",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S70",
+      "shot_type": "近景",
+      "scene": "黑暗中林昭睁眼，目光如刀",
+      "characters": [
+        "林昭"
+      ],
+      "action": "凝视前方",
+      "dialogue": "来吧。",
+      "camera": "急推",
+      "emotion": "战意",
+      "duration": 3.0,
+      "sound_cue": "心跳重击",
+      "act_id": "truth",
+      "priority": "normal"
+    }
+  ]
+}

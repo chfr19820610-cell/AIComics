@@ -1,0 +1,1101 @@
+{
+  "episode_code": "E08",
+  "title": "以雷炼剑",
+  "shot_count": 70,
+  "total_seconds": 210,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "environment",
+      "scene": "铅灰云层低垂，焦黑荒原尽头一道紫光在云腹中游走，像有什么东西要破壳。",
+      "characters": [],
+      "action": "紫光在云层中游走蓄势",
+      "dialogue": "",
+      "camera": "固定远景，云层缓慢翻涌",
+      "emotion": "压抑、不祥",
+      "duration": 3.0,
+      "sound_cue": "低频闷雷、风声",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "extreme_closeup",
+      "scene": "干裂焦土缝隙里一粒火星被风卷起，映出地面碳化的纹路。",
+      "characters": [],
+      "action": "火星被风卷起",
+      "dialogue": "",
+      "camera": "微距跟拍火星上升",
+      "emotion": "死寂、余温",
+      "duration": 3.0,
+      "sound_cue": "细碎噼啪",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "medium",
+      "scene": "林昭独自站在荒原中央，衣袍破旧，仰头盯着云层，双手缓缓握紧。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "仰头望天，双手握拳",
+      "dialogue": "",
+      "camera": "中景慢推，推向林昭背影",
+      "emotion": "决绝、孤注",
+      "duration": 3.0,
+      "sound_cue": "风声渐强",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S04",
+      "shot_id_dup": "",
+      "shot_type": "closeup",
+      "scene": "林昭侧脸，额角有旧伤，睫毛被风吹得发抖，眼神却一动不动。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "凝视天空，眼神定住",
+      "dialogue": "",
+      "camera": "近景固定，浅景深",
+      "emotion": "沉静、坚定",
+      "duration": 3.0,
+      "sound_cue": "心跳声起",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "wide",
+      "scene": "荒原雷泽全景，紫色闪电如林立在焦黑大地上，天空低垂翻涌，空气里全是焦味。",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "电林明灭、云层翻卷",
+      "dialogue": "",
+      "camera": "广角摇移，从左至右扫过雷林",
+      "emotion": "宏大、肃杀",
+      "duration": 3.0,
+      "sound_cue": "远处雷声连响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "extreme_closeup",
+      "scene": "一滴汗从林昭鬓角滑到下巴，悬着，被静电吸得微微发亮。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "汗珠悬在下巴",
+      "dialogue": "",
+      "camera": "微距固定",
+      "emotion": "紧绷、蓄势",
+      "duration": 3.0,
+      "sound_cue": "静电嗡鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S07",
+      "shot_type": "medium",
+      "scene": "老墨拄着断杖站在远处雷光里，破旧衣袍被风掀起，他眯眼看向林昭。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "拄杖立在雷光中",
+      "dialogue": "",
+      "camera": "中景固定，雷光作背光",
+      "emotion": "审视、期待",
+      "duration": 3.0,
+      "sound_cue": "风撕衣袍",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S08",
+      "shot_type": "closeup",
+      "scene": "老墨的手死死攥住断杖，指节发白，杖头裂口里透出一点暗红。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "攥紧断杖",
+      "dialogue": "",
+      "camera": "近景微推到手部",
+      "emotion": "紧张、押注",
+      "duration": 3.0,
+      "sound_cue": "木杖轻裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S09",
+      "shot_type": "environment",
+      "scene": "一道紫雷从云腹垂直劈下，照亮整片焦土，地面碎屑被气浪掀飞。",
+      "characters": [],
+      "action": "紫雷垂直劈落",
+      "dialogue": "",
+      "camera": "仰拍急推雷柱",
+      "emotion": "暴烈、震撼",
+      "duration": 3.0,
+      "sound_cue": "炸雷、气浪",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S10",
+      "shot_type": "action",
+      "scene": "林昭站在雷坑中央张开双臂，紫雷正砸在他头顶，衣袍瞬间烧焦卷起。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "张臂承雷",
+      "dialogue": "",
+      "camera": "中景环绕跟拍半圈",
+      "emotion": "痛苦、硬扛",
+      "duration": 3.0,
+      "sound_cue": "雷击爆响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S11",
+      "shot_type": "extreme_closeup",
+      "scene": "雷光顺着林昭胸口灌进去，皮肤下亮起蛛网般的紫色纹路。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雷光灌入胸口",
+      "dialogue": "",
+      "camera": "大特写固定，胸口为焦点",
+      "emotion": "灼痛、异变",
+      "duration": 3.0,
+      "sound_cue": "电流入肉",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S12",
+      "shot_type": "closeup",
+      "scene": "林昭咬紧牙关，面部肌肉抽搐，嘴角溢出一丝血，眼睛却睁着。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "咬牙忍痛",
+      "dialogue": "",
+      "camera": "近景慢推至双眼",
+      "emotion": "剧痛、不屈",
+      "duration": 3.0,
+      "sound_cue": "牙关紧咬",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S13",
+      "shot_type": "wide",
+      "scene": "雷坑四周焦土呈放射状裂开，老墨站在裂缝外沿，衣袍被冲击波吹得猎猎作响。",
+      "characters": [
+        "老墨",
+        "林昭"
+      ],
+      "action": "冲击波扩散，老墨稳住身形",
+      "dialogue": "",
+      "camera": "全景固定，广角",
+      "emotion": "压迫、危急",
+      "duration": 3.0,
+      "sound_cue": "地面开裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S14",
+      "shot_type": "medium",
+      "scene": "老墨抬手指天，断杖插进土里，对着雷坑方向扯开嗓子。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "抬手指天",
+      "dialogue": "老墨：别躲。吞下去！",
+      "camera": "中景固定，仰角",
+      "emotion": "急切、命令",
+      "duration": 3.0,
+      "sound_cue": "喊声穿风",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S15",
+      "shot_type": "closeup",
+      "scene": "林昭听见喊声，偏头看向老墨，雷光在他瞳孔里炸开一片白。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "偏头看向老墨",
+      "dialogue": "",
+      "camera": "近景甩镜至侧脸",
+      "emotion": "震动、恍然",
+      "duration": 3.0,
+      "sound_cue": "雷声余响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S16",
+      "shot_type": "environment",
+      "scene": "第二道紫雷在云层中蓄势，云腹鼓起一个亮包，像巨兽张口。",
+      "characters": [],
+      "action": "云层蓄雷",
+      "dialogue": "",
+      "camera": "仰拍慢推云腹",
+      "emotion": "危险、逼近",
+      "duration": 3.0,
+      "sound_cue": "低沉轰鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S17",
+      "shot_type": "action",
+      "scene": "第二道雷轰然落下，比第一道更粗，直接砸进林昭胸口。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "第二雷砸落",
+      "dialogue": "",
+      "camera": "急推雷柱落点",
+      "emotion": "暴烈、致命",
+      "duration": 3.0,
+      "sound_cue": "双雷叠加",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S18",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭喉结剧烈滚动，喉间发出低吼，脖颈青筋暴起。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "喉间低吼",
+      "dialogue": "",
+      "camera": "大特写固定喉部",
+      "emotion": "嘶吼、挣扎",
+      "duration": 3.0,
+      "sound_cue": "低吼、电流",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S19",
+      "shot_type": "closeup",
+      "scene": "林昭仰头，雷光从口鼻灌入，他整个人被紫白光芒包裹。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "仰头吞雷",
+      "dialogue": "",
+      "camera": "近景仰拍，光晕扩散",
+      "emotion": "决绝、疯狂",
+      "duration": 3.0,
+      "sound_cue": "吞雷闷响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S20",
+      "shot_type": "medium",
+      "scene": "老墨在雷光外眯起眼，嘴角微微一动，像是松了口气又像更紧张。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "眯眼观察",
+      "dialogue": "",
+      "camera": "中景固定，前景雷光虚化",
+      "emotion": "紧张、期许",
+      "duration": 3.0,
+      "sound_cue": "风声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S21",
+      "shot_type": "environment",
+      "scene": "雷泽中无数电林同时亮起又暗下，整片荒原像呼吸一样明灭。",
+      "characters": [],
+      "action": "电林集体明灭",
+      "dialogue": "",
+      "camera": "全景摇移，横向扫过",
+      "emotion": "诡异、壮观",
+      "duration": 3.0,
+      "sound_cue": "电流合唱",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S22",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭胸口第一道锁链纹在雷光中发红，链节一寸寸裂开。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "第一道锁链纹崩裂",
+      "dialogue": "",
+      "camera": "微距固定，锁链纹特写",
+      "emotion": "崩解、释放",
+      "duration": 3.0,
+      "sound_cue": "锁链断裂",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S23",
+      "shot_type": "closeup",
+      "scene": "林昭眉头猛地一皱，第一道锁断裂的冲击让他单膝一软。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "单膝微弯",
+      "dialogue": "",
+      "camera": "近景跟拍下坠",
+      "emotion": "冲击、咬牙",
+      "duration": 3.0,
+      "sound_cue": "膝撞焦土",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S24",
+      "shot_type": "medium",
+      "scene": "老墨把断杖往地上一顿，杖头暗红亮起，替林昭挡开一道偏雷。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "顿杖挡偏雷",
+      "dialogue": "",
+      "camera": "中景固定，侧逆光",
+      "emotion": "守护、果断",
+      "duration": 3.0,
+      "sound_cue": "杖击雷光",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S25",
+      "shot_type": "closeup",
+      "scene": "林昭膝盖重新撑起，焦黑的衣袍碎成片往下掉，露出底下发光的皮肤。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "重新站起",
+      "dialogue": "",
+      "camera": "近景慢推，衣片飘落",
+      "emotion": "倔强、重生",
+      "duration": 3.0,
+      "sound_cue": "碎布落地",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S26",
+      "shot_type": "environment",
+      "scene": "第三道雷在云中翻卷，紫色里混进一丝金白，云层被撕开一道口子。",
+      "characters": [],
+      "action": "云层撕口，雷色变化",
+      "dialogue": "",
+      "camera": "仰拍固定，云口特写",
+      "emotion": "异变、升级",
+      "duration": 3.0,
+      "sound_cue": "雷色变调",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S27",
+      "shot_type": "action",
+      "scene": "第三道雷不再是直劈，而是绕着林昭盘旋，像在试探。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雷光绕身盘旋",
+      "dialogue": "",
+      "camera": "环绕跟拍，中景",
+      "emotion": "诡异、对峙",
+      "duration": 3.0,
+      "sound_cue": "电流绕行",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S28",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭瞳孔里映出盘旋的雷光，虹膜边缘开始泛起紫色。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "瞳孔染紫",
+      "dialogue": "",
+      "camera": "大特写固定瞳孔",
+      "emotion": "异化、觉醒",
+      "duration": 3.0,
+      "sound_cue": "细微嗡鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S29",
+      "shot_type": "closeup",
+      "scene": "林昭咬牙仰头，喉间低吼，第二道锁在雷光里显出完整轮廓。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "仰头低吼",
+      "dialogue": "",
+      "camera": "近景仰拍，锁链纹发光",
+      "emotion": "蓄力、嘶吼",
+      "duration": 3.0,
+      "sound_cue": "低吼、锁鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S30",
+      "shot_type": "extreme_closeup",
+      "scene": "第二道锁链纹从胸口延伸到肩胛，链节在雷光中一颗颗炸裂。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "第二道锁崩断",
+      "dialogue": "",
+      "camera": "微距跟拍链节炸裂",
+      "emotion": "崩解、痛快",
+      "duration": 3.0,
+      "sound_cue": "连环锁断",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S31",
+      "shot_type": "medium",
+      "scene": "锁链纹炸开的瞬间，一圈紫色气浪从林昭身上荡开，焦土被压出浅坑。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "气浪荡开",
+      "dialogue": "",
+      "camera": "中景固定，广角气浪",
+      "emotion": "爆发、压迫",
+      "duration": 3.0,
+      "sound_cue": "气浪轰鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S32",
+      "shot_type": "closeup",
+      "scene": "林昭嘴角的血被气浪吹散，他低声吐出一句，声音沙哑。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低声开口",
+      "dialogue": "林昭：第二道……也断了。",
+      "camera": "近景固定，嘴部微距",
+      "emotion": "疲惫、释然",
+      "duration": 3.0,
+      "sound_cue": "沙哑低语",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S33",
+      "shot_type": "medium",
+      "scene": "老墨听见这话，眼睛猛地睁大，断杖差点脱手。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "睁大眼，杖身一晃",
+      "dialogue": "",
+      "camera": "中景急推至老墨脸",
+      "emotion": "震惊、狂喜",
+      "duration": 3.0,
+      "sound_cue": "杖头磕地",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S34",
+      "shot_type": "environment",
+      "scene": "雷泽上空云层开始逆向旋转，紫色雷光被吸向林昭头顶，形成漩涡。",
+      "characters": [],
+      "action": "雷光汇成漩涡",
+      "dialogue": "",
+      "camera": "仰拍广角，缓慢拉远",
+      "emotion": "宏大、汇聚",
+      "duration": 3.0,
+      "sound_cue": "雷流汇聚",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S35",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭的瞳孔彻底变成雷色，里面像有闪电在游动。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "瞳孔变作雷色",
+      "dialogue": "",
+      "camera": "大特写固定，瞳孔内闪电",
+      "emotion": "觉醒、非人",
+      "duration": 3.0,
+      "sound_cue": "雷瞳嗡鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S36",
+      "shot_type": "closeup",
+      "scene": "林昭缓缓抬起右手，掌心朝上，雷光从四面八方涌进掌心。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抬掌聚雷",
+      "dialogue": "",
+      "camera": "近景慢推掌心",
+      "emotion": "掌控、冷静",
+      "duration": 3.0,
+      "sound_cue": "雷光聚拢",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S37",
+      "shot_type": "extreme_closeup",
+      "scene": "掌心雷光越聚越密，凝成一柄长刀的刀尖，紫白相间。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雷光凝成刀尖",
+      "dialogue": "",
+      "camera": "微距固定，刀尖成形",
+      "emotion": "凝练、锋利",
+      "duration": 3.0,
+      "sound_cue": "金属凝鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S38",
+      "shot_type": "medium",
+      "scene": "林昭手腕一翻，整把雷刀从掌心拉出，刀身噼啪作响。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "翻腕拉出雷刀",
+      "dialogue": "",
+      "camera": "中景跟拍手腕翻转",
+      "emotion": "利落、威压",
+      "duration": 3.0,
+      "sound_cue": "刀身电弧",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S39",
+      "shot_type": "closeup",
+      "scene": "老墨看着那把雷刀，喉结动了动，低声嘟囔了一句。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "看着雷刀低语",
+      "dialogue": "老墨：成了……真成了。",
+      "camera": "近景固定，背景雷光",
+      "emotion": "欣慰、震撼",
+      "duration": 3.0,
+      "sound_cue": "低声喃喃",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S40",
+      "shot_type": "wide",
+      "scene": "林昭持刀立在雷坑中央，四周电林齐齐朝他倾斜，像在朝拜。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "持刀而立，电林倾斜",
+      "dialogue": "",
+      "camera": "全景环绕慢摇",
+      "emotion": "威严、异象",
+      "duration": 3.0,
+      "sound_cue": "电林低鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S41",
+      "shot_type": "environment",
+      "scene": "头顶雷云压得更低，云底裂开无数细缝，紫光从缝里漏下。",
+      "characters": [],
+      "action": "雷云压顶，裂缝漏光",
+      "dialogue": "",
+      "camera": "仰拍急推云底",
+      "emotion": "压迫、临界",
+      "duration": 3.0,
+      "sound_cue": "云层撕裂",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S42",
+      "shot_type": "action",
+      "scene": "林昭双脚蹬地，焦土炸开，他整个人朝雷云方向跃起。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "蹬地跃起",
+      "dialogue": "",
+      "camera": "跟拍仰角，随人上升",
+      "emotion": "爆发、决绝",
+      "duration": 3.0,
+      "sound_cue": "蹬地爆响",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S43",
+      "shot_type": "medium",
+      "scene": "半空中林昭双手握刀，刀身雷光暴涨，照亮他半张脸。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "双手握刀蓄力",
+      "dialogue": "",
+      "camera": "中景固定，仰拍",
+      "emotion": "专注、凌厉",
+      "duration": 3.0,
+      "sound_cue": "雷刀嗡鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S44",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭握刀的手背青筋暴起，雷光从指缝间溢出。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "手背青筋暴起",
+      "dialogue": "",
+      "camera": "微距固定手部",
+      "emotion": "用力、紧绷",
+      "duration": 3.0,
+      "sound_cue": "指骨轻响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S45",
+      "shot_type": "closeup",
+      "scene": "林昭眼中雷光一闪，他低喝一声，刀锋开始下压。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "眼中雷闪，刀锋下压",
+      "dialogue": "林昭：给我开！",
+      "camera": "近景急推至眼",
+      "emotion": "爆发、怒吼",
+      "duration": 3.0,
+      "sound_cue": "短促爆喝",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S46",
+      "shot_type": "action",
+      "scene": "雷刀斜劈而出，一道紫白刀光切开空气，直冲雷云。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "斜劈雷刀",
+      "dialogue": "",
+      "camera": "甩镜跟拍刀光",
+      "emotion": "凌厉、破空",
+      "duration": 3.0,
+      "sound_cue": "刀光破空",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S47",
+      "shot_type": "wide",
+      "scene": "刀光没入雷云，整片云层被从中劈开，裂缝里透出天光。",
+      "characters": [],
+      "action": "雷云被劈开",
+      "dialogue": "",
+      "camera": "全景固定，广角",
+      "emotion": "震撼、开天",
+      "duration": 3.0,
+      "sound_cue": "云层炸裂",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S48",
+      "shot_type": "environment",
+      "scene": "被劈开的云层向两侧翻卷，紫色雷光四散溃逃，天空露出灰白底色。",
+      "characters": [],
+      "action": "云层翻卷溃散",
+      "dialogue": "",
+      "camera": "仰拍摇移，随云开",
+      "emotion": "消散、明朗",
+      "duration": 3.0,
+      "sound_cue": "雷声渐远",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S49",
+      "shot_type": "medium",
+      "scene": "林昭从半空落下，单膝着地，雷刀拄地，刀身电弧渐弱。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "落地单膝跪，刀拄地",
+      "dialogue": "",
+      "camera": "中景跟拍落地",
+      "emotion": "脱力、沉稳",
+      "duration": 3.0,
+      "sound_cue": "落地闷响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S50",
+      "shot_type": "closeup",
+      "scene": "林昭低头喘气，汗和血混在一起滴到焦土上，滋滋冒烟。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低头喘气，血汗滴落",
+      "dialogue": "",
+      "camera": "近景固定，浅景深",
+      "emotion": "疲惫、余痛",
+      "duration": 3.0,
+      "sound_cue": "粗重喘息",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S51",
+      "shot_type": "medium",
+      "scene": "老墨快步走近，断杖拖在地上划出一道痕，他在三步外停下。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "走近停下",
+      "dialogue": "",
+      "camera": "中景跟拍老墨脚步",
+      "emotion": "关切、克制",
+      "duration": 3.0,
+      "sound_cue": "杖拖焦土",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S52",
+      "shot_type": "closeup",
+      "scene": "老墨张了张嘴，最后只吐出一句，声音比平时轻。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "张嘴又抿住",
+      "dialogue": "老墨：疼就喊出来。",
+      "camera": "近景固定",
+      "emotion": "心疼、别扭",
+      "duration": 3.0,
+      "sound_cue": "风声轻",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S53",
+      "shot_type": "closeup",
+      "scene": "林昭没抬头，只是摇了摇头，肩膀微微发抖。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "摇头，肩膀发抖",
+      "dialogue": "林昭：不疼。",
+      "camera": "近景微推",
+      "emotion": "倔强、隐忍",
+      "duration": 3.0,
+      "sound_cue": "轻微抽气",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S54",
+      "shot_type": "environment",
+      "scene": "云开天晴，第一缕阳光穿过云缝，照在焦黑荒原上，焦土冒起细烟。",
+      "characters": [],
+      "action": "阳光穿云照落",
+      "dialogue": "",
+      "camera": "全景慢摇，逆光",
+      "emotion": "温暖、重生",
+      "duration": 3.0,
+      "sound_cue": "风声转柔",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S55",
+      "shot_type": "extreme_closeup",
+      "scene": "一缕残余雷光在阳光里游动，像一条找不到家的小鱼。",
+      "characters": [],
+      "action": "残余雷光游动",
+      "dialogue": "",
+      "camera": "微距跟拍雷光",
+      "emotion": "灵动、温柔",
+      "duration": 3.0,
+      "sound_cue": "细微电流",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S56",
+      "shot_type": "closeup",
+      "scene": "那缕雷光飘到林昭肩头，绕了一圈，慢慢蜷缩下来。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雷光落肩蜷缩",
+      "dialogue": "",
+      "camera": "近景慢推肩头",
+      "emotion": "意外、柔软",
+      "duration": 3.0,
+      "sound_cue": "轻嗡一声",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S57",
+      "shot_type": "extreme_closeup",
+      "scene": "雷光蜷成一只巴掌大的小兽形状，耳朵尾巴都清清楚楚。",
+      "characters": [],
+      "action": "雷光凝成小兽",
+      "dialogue": "",
+      "camera": "微距固定，小兽特写",
+      "emotion": "惊奇、可爱",
+      "duration": 3.0,
+      "sound_cue": "细碎噼啪",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S58",
+      "shot_type": "closeup",
+      "scene": "小兽用雷光脑袋蹭了蹭林昭的脖子，林昭整个人僵了一下。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "小兽蹭颈，林昭僵住",
+      "dialogue": "",
+      "camera": "近景固定，侧脸",
+      "emotion": "错愕、触动",
+      "duration": 3.0,
+      "sound_cue": "轻蹭电流",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S59",
+      "shot_type": "medium",
+      "scene": "老墨看着那只雷光小兽，胡子抖了抖，别过脸去假装看天。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "别过脸看天",
+      "dialogue": "",
+      "camera": "中景固定",
+      "emotion": "欣慰、嘴硬",
+      "duration": 3.0,
+      "sound_cue": "轻咳一声",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S60",
+      "shot_type": "closeup",
+      "scene": "林昭低头看着肩头的小兽，嘴角先是抽动，然后慢慢弯起来。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "嘴角慢慢弯起",
+      "dialogue": "",
+      "camera": "近景慢推至嘴角",
+      "emotion": "松动、温暖",
+      "duration": 3.0,
+      "sound_cue": "呼吸放缓",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S61",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭眼角滑下一滴泪，泪里映着雷光小兽的轮廓。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "眼角落泪",
+      "dialogue": "",
+      "camera": "微距固定泪珠",
+      "emotion": "释然、酸楚",
+      "duration": 3.0,
+      "sound_cue": "泪落轻响",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S62",
+      "shot_type": "closeup",
+      "scene": "他第一次真正笑起来，眼角的泪还没干，笑容有点笨拙。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "笑起来",
+      "dialogue": "",
+      "camera": "近景固定，正面",
+      "emotion": "释然、温柔",
+      "duration": 3.0,
+      "sound_cue": "轻笑声",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S63",
+      "shot_type": "medium",
+      "scene": "林昭抬手，小心地碰了碰肩头的小兽，小兽眯眼蹭他指尖。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "指尖碰小兽",
+      "dialogue": "",
+      "camera": "中景固定，柔和光",
+      "emotion": "亲昵、珍惜",
+      "duration": 3.0,
+      "sound_cue": "轻电流",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S64",
+      "shot_type": "closeup",
+      "scene": "林昭看着小兽，轻声开口，像怕把它吓跑。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "轻声开口",
+      "dialogue": "林昭：原来雷，也会认人。",
+      "camera": "近景慢推",
+      "emotion": "感慨、温柔",
+      "duration": 3.0,
+      "sound_cue": "轻声低语",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S65",
+      "shot_type": "environment",
+      "scene": "阳光铺满荒原，焦土上竟钻出一点绿芽，雷泽的电林已经安静下来。",
+      "characters": [],
+      "action": "绿芽破土，电林安静",
+      "dialogue": "",
+      "camera": "全景慢摇，低角度",
+      "emotion": "新生、宁静",
+      "duration": 3.0,
+      "sound_cue": "风声鸟鸣",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S66",
+      "shot_type": "medium",
+      "scene": "老墨走到林昭身边，把断杖往肩上一扛，朝荒原外抬了抬下巴。",
+      "characters": [
+        "老墨",
+        "林昭"
+      ],
+      "action": "扛杖抬下巴",
+      "dialogue": "老墨：走吧，小子。",
+      "camera": "中景跟拍并肩",
+      "emotion": "轻松、认可",
+      "duration": 3.0,
+      "sound_cue": "杖碰肩头",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S67",
+      "shot_type": "closeup",
+      "scene": "林昭点头，肩头小兽竖起耳朵，雷光尾巴轻轻一甩。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "点头，小兽甩尾",
+      "dialogue": "",
+      "camera": "近景固定",
+      "emotion": "轻快、同行",
+      "duration": 3.0,
+      "sound_cue": "尾巴噼啪",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S68",
+      "shot_type": "wide",
+      "scene": "两人一前一后走在焦黑荒原上，背影被拉长，远处天边还有残雷闪了一下。",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "并肩走远",
+      "dialogue": "",
+      "camera": "全景固定，背影拉远",
+      "emotion": "辽阔、余韵",
+      "duration": 3.0,
+      "sound_cue": "脚步、远雷",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S69",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭肩头的小兽忽然抬头，望向天边残雷，雷光眼睛里闪过一丝不属于它的金纹。",
+      "characters": [],
+      "action": "小兽抬头，眼中金纹",
+      "dialogue": "",
+      "camera": "微距急推小兽眼",
+      "emotion": "诡异、伏笔",
+      "duration": 3.0,
+      "sound_cue": "一声异响",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S70",
+      "shot_type": "environment",
+      "scene": "天边残雷里隐约浮出一道巨大锁链虚影，一闪即逝，荒原重归平静。",
+      "characters": [],
+      "action": "锁链虚影闪现",
+      "dialogue": "",
+      "camera": "远景固定，天边特写",
+      "emotion": "悬念、不安",
+      "duration": 3.0,
+      "sound_cue": "低沉锁鸣",
+      "act_id": "truth",
+      "priority": "high"
+    }
+  ]
+}

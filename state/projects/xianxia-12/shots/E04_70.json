@@ -1,0 +1,1115 @@
+{
+  "episode_code": "E04",
+  "title": "测灵石炸了",
+  "shot_count": 70,
+  "total_seconds": 210,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "environment",
+      "scene": "执法堂外长廊，暴雨冲刷青石地面，铁链拖地声由远及近，两侧灯笼在风里摇晃。",
+      "characters": [],
+      "action": "雨幕中灯笼晃动",
+      "dialogue": "",
+      "camera": "固定，雨丝前景",
+      "emotion": "压抑、阴冷",
+      "duration": 3.0,
+      "sound_cue": "雨声、铁链",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "extreme_closeup",
+      "scene": "铁链环扣特写，锈迹斑斑，链节摩擦出刺耳声响，水珠从环上震落。",
+      "characters": [],
+      "action": "铁链绷紧震动",
+      "dialogue": "",
+      "camera": "微距，浅景深",
+      "emotion": "粗粝、紧张",
+      "duration": 3.0,
+      "sound_cue": "金属摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "closeup",
+      "scene": "林昭手腕被铁链勒出血痕，指节发白，双臂被向前拽直。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "手腕被拽紧",
+      "dialogue": "",
+      "camera": "固定特写",
+      "emotion": "隐忍、疼痛",
+      "duration": 3.0,
+      "sound_cue": "锁链哗啦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "medium",
+      "scene": "两名执法弟子各拽一条铁链，大步前行，林昭被拖得身体前倾，几乎扑倒。",
+      "characters": [
+        "林昭",
+        "执法弟子"
+      ],
+      "action": "拖行、前倾",
+      "dialogue": "",
+      "camera": "跟拍，侧向移动",
+      "emotion": "狼狈、屈辱",
+      "duration": 3.0,
+      "sound_cue": "脚步、拖拽",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "wide",
+      "scene": "长廊全景，林昭跪地被拖过青石，身后留下两道淡红水痕，两侧弟子列队低头。",
+      "characters": [
+        "林昭",
+        "执法弟子"
+      ],
+      "action": "跪行拖过石面",
+      "dialogue": "",
+      "camera": "低角度横移",
+      "emotion": "肃杀、冷漠",
+      "duration": 3.0,
+      "sound_cue": "雨声、窃笑",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭膝盖压在石面上，粗布裤腿磨破，血痕在湿石上拖开一道红线。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "膝盖擦出血痕",
+      "dialogue": "",
+      "camera": "微距跟移",
+      "emotion": "刺痛、屈辱",
+      "duration": 3.0,
+      "sound_cue": "布料磨地",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S07",
+      "shot_type": "closeup",
+      "scene": "左侧一名弟子低头，嘴角压不住地翘起，眼神斜瞟林昭。",
+      "characters": [
+        "执法弟子"
+      ],
+      "action": "低头窃笑",
+      "dialogue": "",
+      "camera": "固定近景",
+      "emotion": "轻蔑、幸灾乐祸",
+      "duration": 3.0,
+      "sound_cue": "低低嗤笑",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S08",
+      "shot_type": "closeup",
+      "scene": "右侧弟子用袖口掩嘴，与旁人交换眼神，肩膀微微抖动。",
+      "characters": [
+        "执法弟子"
+      ],
+      "action": "掩嘴交谈",
+      "dialogue": "弟子：活该。",
+      "camera": "固定近景",
+      "emotion": "讥讽、冷漠",
+      "duration": 3.0,
+      "sound_cue": "窃窃私语",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S09",
+      "shot_type": "medium",
+      "scene": "林昭抬头，雨水混着额角血水滑下，目光扫过两侧低头的脸，牙关紧咬。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抬头扫视",
+      "dialogue": "",
+      "camera": "慢推，面部居中",
+      "emotion": "倔强、隐忍",
+      "duration": 3.0,
+      "sound_cue": "雨声渐弱",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S10",
+      "shot_type": "action",
+      "scene": "执法弟子猛拽铁链，林昭一个踉跄扑倒在石阶前，铁链砸地溅起水花。",
+      "characters": [
+        "林昭",
+        "执法弟子"
+      ],
+      "action": "猛拽、扑倒",
+      "dialogue": "",
+      "camera": "甩镜跟随",
+      "emotion": "冲击、痛楚",
+      "duration": 3.0,
+      "sound_cue": "铁链砸地",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S11",
+      "shot_type": "environment",
+      "scene": "执法堂大门洞开，门内漆黑，只有深处一点冷光，雨帘在门槛外垂落。",
+      "characters": [],
+      "action": "大门洞开",
+      "dialogue": "",
+      "camera": "固定，由外向内",
+      "emotion": "森然、压迫",
+      "duration": 3.0,
+      "sound_cue": "门轴闷响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S12",
+      "shot_type": "wide",
+      "scene": "林昭被拖过门槛，铁链在门槛上刮出一串火星，身影没入大殿黑暗。",
+      "characters": [
+        "林昭",
+        "执法弟子"
+      ],
+      "action": "拖过门槛",
+      "dialogue": "",
+      "camera": "后拉全景",
+      "emotion": "沉入深渊",
+      "duration": 3.0,
+      "sound_cue": "铁链刮石",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S13",
+      "shot_type": "environment",
+      "scene": "执法堂大殿穹顶，九根黑铁巨柱拔地而起，柱身铸满符文，幽光隐隐。",
+      "characters": [],
+      "action": "巨柱矗立",
+      "dialogue": "",
+      "camera": "仰拍慢摇",
+      "emotion": "恢宏、威压",
+      "duration": 3.0,
+      "sound_cue": "低沉嗡鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S14",
+      "shot_type": "environment",
+      "scene": "天窗光柱斜落大殿中央，尘埃在光里缓缓浮动，光柱边缘泛着冷白。",
+      "characters": [],
+      "action": "光柱缓移",
+      "dialogue": "",
+      "camera": "固定，尘埃前景",
+      "emotion": "静谧、肃穆",
+      "duration": 3.0,
+      "sound_cue": "空旷回响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S15",
+      "shot_type": "medium",
+      "scene": "光柱正中，测灵石半人高，通体灰白，表面布满旧裂纹，静静矗立。",
+      "characters": [],
+      "action": "测灵石静立",
+      "dialogue": "",
+      "camera": "慢推至石面",
+      "emotion": "神秘、不祥",
+      "duration": 3.0,
+      "sound_cue": "细微嗡声",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S16",
+      "shot_type": "closeup",
+      "scene": "测灵石表面一道旧裂纹特写，裂纹深处似有暗红沉淀，像干涸的血。",
+      "characters": [],
+      "action": "裂纹隐现暗红",
+      "dialogue": "",
+      "camera": "微距固定",
+      "emotion": "诡异、压抑",
+      "duration": 3.0,
+      "sound_cue": "心跳般闷响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S17",
+      "shot_type": "wide",
+      "scene": "大殿两侧弟子分列，黑压压站满，中央空出一条道，尽头铁椅高踞。",
+      "characters": [
+        "执法弟子"
+      ],
+      "action": "列队肃立",
+      "dialogue": "",
+      "camera": "对称构图横移",
+      "emotion": "森严、压抑",
+      "duration": 3.0,
+      "sound_cue": "衣料摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S18",
+      "shot_type": "medium",
+      "scene": "严崇高坐铁椅，一手支颐，眼皮半垂，居高临下俯视殿中。",
+      "characters": [
+        "严崇"
+      ],
+      "action": "支颐俯视",
+      "dialogue": "",
+      "camera": "仰拍慢推",
+      "emotion": "倨傲、冷漠",
+      "duration": 3.0,
+      "sound_cue": "铁椅轻响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S19",
+      "shot_type": "closeup",
+      "scene": "严崇手指在铁椅扶手上轻敲，指节粗大，袖口绣暗金纹。",
+      "characters": [
+        "严崇"
+      ],
+      "action": "手指轻敲",
+      "dialogue": "",
+      "camera": "固定特写",
+      "emotion": "不耐、威压",
+      "duration": 3.0,
+      "sound_cue": "指甲叩铁",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S20",
+      "shot_type": "action",
+      "scene": "执法弟子将林昭按跪在光柱里，双膝砸地，铁链绕上手腕锁死。",
+      "characters": [
+        "林昭",
+        "执法弟子"
+      ],
+      "action": "按跪、锁链",
+      "dialogue": "",
+      "camera": "俯拍急推",
+      "emotion": "强制、屈辱",
+      "duration": 3.0,
+      "sound_cue": "膝盖撞地",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S21",
+      "shot_type": "closeup",
+      "scene": "林昭双手被铁链锁在身前，链子绷直，手腕血痕在光柱里格外刺目。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "双手被锁",
+      "dialogue": "",
+      "camera": "固定近景",
+      "emotion": "紧绷、压抑",
+      "duration": 3.0,
+      "sound_cue": "锁扣咔哒",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S22",
+      "shot_type": "medium",
+      "scene": "两侧弟子交头接耳，有人伸手指点林昭，有人摇头冷笑。",
+      "characters": [
+        "执法弟子"
+      ],
+      "action": "交头接耳",
+      "dialogue": "弟子：废脉也配测？",
+      "camera": "摇移扫过人群",
+      "emotion": "轻蔑、喧杂",
+      "duration": 3.0,
+      "sound_cue": "低声议论",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S23",
+      "shot_type": "closeup",
+      "scene": "林昭侧脸，光柱照亮半张脸，另半张沉在阴影里，下颌线绷紧。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "侧脸紧绷",
+      "dialogue": "",
+      "camera": "固定侧近景",
+      "emotion": "隐忍、冷峻",
+      "duration": 3.0,
+      "sound_cue": "呼吸声",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S24",
+      "shot_type": "medium",
+      "scene": "严崇身体前倾，抬手朝测灵石一指，袖袍垂落。",
+      "characters": [
+        "严崇"
+      ],
+      "action": "前倾、抬手",
+      "dialogue": "严崇：把手放上去。",
+      "camera": "慢推中景",
+      "emotion": "命令、压迫",
+      "duration": 3.0,
+      "sound_cue": "袖袍轻响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S25",
+      "shot_type": "closeup",
+      "scene": "林昭抬眼看向严崇，眼神平静得反常，瞳孔里映着光柱。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抬眼直视",
+      "dialogue": "",
+      "camera": "固定特写",
+      "emotion": "冷静、暗涌",
+      "duration": 3.0,
+      "sound_cue": "殿内回音",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S26",
+      "shot_type": "medium",
+      "scene": "执法弟子上前解开林昭右手铁链，只留左手锁着，将他右臂拽向测灵石。",
+      "characters": [
+        "林昭",
+        "执法弟子"
+      ],
+      "action": "解链、拽臂",
+      "dialogue": "",
+      "camera": "跟移中景",
+      "emotion": "被迫、紧张",
+      "duration": 3.0,
+      "sound_cue": "铁链松脱",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S27",
+      "shot_type": "closeup",
+      "scene": "林昭右手悬在测灵石上方，掌心朝下，指尖微微发颤。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "悬掌、微颤",
+      "dialogue": "",
+      "camera": "微距固定",
+      "emotion": "迟疑、蓄势",
+      "duration": 3.0,
+      "sound_cue": "细微嗡鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S28",
+      "shot_type": "extreme_closeup",
+      "scene": "测灵石表面映出林昭手掌的倒影，石面旧裂纹里暗红微微一亮。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "石面映影",
+      "dialogue": "",
+      "camera": "微距慢推",
+      "emotion": "诡异、预兆",
+      "duration": 3.0,
+      "sound_cue": "低频嗡声",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S29",
+      "shot_type": "closeup",
+      "scene": "严崇眼睛微眯，盯住测灵石，敲击扶手的手指停住。",
+      "characters": [
+        "严崇"
+      ],
+      "action": "眯眼、停指",
+      "dialogue": "",
+      "camera": "固定近景",
+      "emotion": "警觉、审视",
+      "duration": 3.0,
+      "sound_cue": "静默",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S30",
+      "shot_type": "environment",
+      "scene": "天窗光柱忽然轻微偏移，尘埃旋动加快，殿内烛火齐齐一暗。",
+      "characters": [],
+      "action": "光柱偏移、烛暗",
+      "dialogue": "",
+      "camera": "固定全景",
+      "emotion": "异变、不安",
+      "duration": 3.0,
+      "sound_cue": "烛火噼啪",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S31",
+      "shot_type": "action",
+      "scene": "林昭手掌落下，按上测灵石，石面发出一声沉闷的贴合声。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "按掌贴石",
+      "dialogue": "",
+      "camera": "急推至手掌",
+      "emotion": "决然、临界",
+      "duration": 3.0,
+      "sound_cue": "沉闷贴合",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S32",
+      "shot_type": "extreme_closeup",
+      "scene": "掌心与石面接触处，一丝血丝状裂纹自掌下亮起，如活物般蔓延。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "裂纹亮起蔓延",
+      "dialogue": "",
+      "camera": "微距跟移",
+      "emotion": "惊异、诡谲",
+      "duration": 3.0,
+      "sound_cue": "细碎裂纹声",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S33",
+      "shot_type": "closeup",
+      "scene": "林昭下颌被石中红光映亮，嘴唇紧抿，眼神从平静转为凝重。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "下颌绷紧",
+      "dialogue": "",
+      "camera": "固定特写",
+      "emotion": "凝重、隐痛",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣渐强",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S34",
+      "shot_type": "medium",
+      "scene": "裂纹爬满测灵石半边，红光透石而出，前排弟子不自觉后退半步。",
+      "characters": [
+        "执法弟子"
+      ],
+      "action": "后退、惊望",
+      "dialogue": "",
+      "camera": "后拉中景",
+      "emotion": "惊疑、骚动",
+      "duration": 3.0,
+      "sound_cue": "脚步挪动",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S35",
+      "shot_type": "closeup",
+      "scene": "严崇霍然起身，铁椅向后一滑，他死死盯住测灵石，脸色骤变。",
+      "characters": [
+        "严崇"
+      ],
+      "action": "起身、盯视",
+      "dialogue": "",
+      "camera": "甩镜急推",
+      "emotion": "震惊、失态",
+      "duration": 3.0,
+      "sound_cue": "铁椅刮地",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S36",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭掌心下，血丝裂纹汇成一道扭曲纹路，纹路深处透出暗金微光。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路成形",
+      "dialogue": "",
+      "camera": "微距慢推",
+      "emotion": "神秘、觉醒",
+      "duration": 3.0,
+      "sound_cue": "低频轰鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S37",
+      "shot_type": "closeup",
+      "scene": "林昭眉头一皱，掌心传来灼痛，他想抽手却被一股力吸住。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "皱眉、抽手不得",
+      "dialogue": "",
+      "camera": "固定近景",
+      "emotion": "痛楚、惊愕",
+      "duration": 3.0,
+      "sound_cue": "吸力嗡响",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S38",
+      "shot_type": "medium",
+      "scene": "测灵石整体开始震颤，石屑簌簌落下，光柱被石中红光染成血色。",
+      "characters": [],
+      "action": "石震、光染红",
+      "dialogue": "",
+      "camera": "手持微晃中景",
+      "emotion": "失控、惊骇",
+      "duration": 3.0,
+      "sound_cue": "石屑簌落",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S39",
+      "shot_type": "closeup",
+      "scene": "一名前排弟子张口欲喊，脸上红光乱闪，眼中满是恐惧。",
+      "characters": [
+        "执法弟子"
+      ],
+      "action": "张口、后退",
+      "dialogue": "弟子：不对劲——",
+      "camera": "固定近景",
+      "emotion": "恐惧、慌乱",
+      "duration": 3.0,
+      "sound_cue": "惊呼半声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S40",
+      "shot_type": "extreme_closeup",
+      "scene": "测灵石内部裂纹疯狂扩张，红光与暗金交织，石心出现一点刺目白芒。",
+      "characters": [],
+      "action": "裂纹扩张、白芒现",
+      "dialogue": "",
+      "camera": "微距急推",
+      "emotion": "临界、爆裂前",
+      "duration": 3.0,
+      "sound_cue": "尖锐嗡鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S41",
+      "shot_type": "closeup",
+      "scene": "严崇抬袖遮面，另一手撑住铁椅扶手，身体后仰。",
+      "characters": [
+        "严崇"
+      ],
+      "action": "抬袖、后仰",
+      "dialogue": "",
+      "camera": "固定近景",
+      "emotion": "惊惧、防御",
+      "duration": 3.0,
+      "sound_cue": "衣袖破风",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S42",
+      "shot_type": "action",
+      "scene": "测灵石轰然炸成齑粉，白色气浪从石心炸开，向四周横扫。",
+      "characters": [],
+      "action": "炸裂、气浪扩散",
+      "dialogue": "",
+      "camera": "急推后拉",
+      "emotion": "爆裂、震撼",
+      "duration": 3.0,
+      "sound_cue": "轰然炸响",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S43",
+      "shot_type": "action",
+      "scene": "气浪掀翻前排弟子，数人腾空后仰，衣袍翻飞，兵器脱手。",
+      "characters": [
+        "执法弟子"
+      ],
+      "action": "被气浪掀翻",
+      "dialogue": "",
+      "camera": "甩镜横移",
+      "emotion": "混乱、冲击",
+      "duration": 3.0,
+      "sound_cue": "气浪呼啸",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S44",
+      "shot_type": "action",
+      "scene": "碎石四射，击在黑铁巨柱上迸出火星，柱身符文被震得明灭不定。",
+      "characters": [],
+      "action": "碎石击柱",
+      "dialogue": "",
+      "camera": "快速摇移",
+      "emotion": "狂暴、失控",
+      "duration": 3.0,
+      "sound_cue": "碎石迸溅",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S45",
+      "shot_type": "closeup",
+      "scene": "严崇袖袍被气浪撕开一道口子，他踉跄半步，眼中惊怒交加。",
+      "characters": [
+        "严崇"
+      ],
+      "action": "踉跄、惊怒",
+      "dialogue": "",
+      "camera": "固定近景",
+      "emotion": "惊怒、狼狈",
+      "duration": 3.0,
+      "sound_cue": "布帛撕裂",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S46",
+      "shot_type": "wide",
+      "scene": "大殿烟尘弥漫，弟子东倒西歪，光柱被冲散成乱光，测灵石原处只剩一个浅坑。",
+      "characters": [
+        "执法弟子"
+      ],
+      "action": "烟尘、乱光",
+      "dialogue": "",
+      "camera": "固定全景",
+      "emotion": "狼藉、震撼",
+      "duration": 3.0,
+      "sound_cue": "烟尘簌簌",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S47",
+      "shot_type": "closeup",
+      "scene": "一名弟子趴在地上，抬头望向坑中，脸上全是石粉。",
+      "characters": [
+        "执法弟子"
+      ],
+      "action": "抬头、满脸石粉",
+      "dialogue": "弟子：他……没死？",
+      "camera": "固定近景",
+      "emotion": "难以置信",
+      "duration": 3.0,
+      "sound_cue": "呛咳声",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S48",
+      "shot_type": "medium",
+      "scene": "烟尘缓缓散开，坑中央一个跪姿轮廓渐渐显形，纹丝不动。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "轮廓显现",
+      "dialogue": "",
+      "camera": "慢推中景",
+      "emotion": "悬念、肃穆",
+      "duration": 3.0,
+      "sound_cue": "烟尘落定",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S49",
+      "shot_type": "closeup",
+      "scene": "林昭跪在坑中，衣袍破碎，脸上血污与石粉混杂，双眼却睁着。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "跪姿、睁眼",
+      "dialogue": "",
+      "camera": "固定近景",
+      "emotion": "沉静、异样",
+      "duration": 3.0,
+      "sound_cue": "呼吸声",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S50",
+      "shot_type": "extreme_closeup",
+      "scene": "一粒碎石悬在林昭脸侧一寸处，静止不动，边缘泛着微光。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "碎石悬停",
+      "dialogue": "",
+      "camera": "微距固定",
+      "emotion": "诡谲、超常",
+      "duration": 3.0,
+      "sound_cue": "细微嗡鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S51",
+      "shot_type": "medium",
+      "scene": "林昭身周，数十块碎片悬停半空，缓缓绕他旋转，像一圈静止的星。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "碎片环绕旋转",
+      "dialogue": "",
+      "camera": "环绕跟拍",
+      "emotion": "神秘、震撼",
+      "duration": 3.0,
+      "sound_cue": "低频回响",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S52",
+      "shot_type": "closeup",
+      "scene": "林昭低头看自己的手，掌心那道血丝纹路已隐入皮肤，只剩淡痕。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低头看掌",
+      "dialogue": "",
+      "camera": "固定特写",
+      "emotion": "困惑、警觉",
+      "duration": 3.0,
+      "sound_cue": "静默",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S53",
+      "shot_type": "medium",
+      "scene": "严崇稳住身形，指着林昭，嘴唇哆嗦，一时竟说不出完整的话。",
+      "characters": [
+        "严崇"
+      ],
+      "action": "指认、哆嗦",
+      "dialogue": "严崇：你——妖法！",
+      "camera": "固定中景",
+      "emotion": "惊怒、失措",
+      "duration": 3.0,
+      "sound_cue": "颤声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S54",
+      "shot_type": "environment",
+      "scene": "殿门处光线一暗，一道修长身影逆光而立，衣摆被穿堂风掀起。",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "逆光而立",
+      "dialogue": "",
+      "camera": "固定全景",
+      "emotion": "威压、转折",
+      "duration": 3.0,
+      "sound_cue": "风声骤起",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S55",
+      "shot_type": "closeup",
+      "scene": "玄尘子垂在身侧的手，指间捏着一块碎石，断指处玉扳指反着冷光。",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "捏石、扳指反光",
+      "dialogue": "",
+      "camera": "微距固定",
+      "emotion": "冷峻、深不可测",
+      "duration": 3.0,
+      "sound_cue": "玉石轻响",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S56",
+      "shot_type": "medium",
+      "scene": "玄尘子缓步走入大殿，两侧弟子慌忙让道跪伏，无人敢抬头。",
+      "characters": [
+        "玄尘子",
+        "执法弟子"
+      ],
+      "action": "缓步、弟子跪伏",
+      "dialogue": "",
+      "camera": "跟拍中景",
+      "emotion": "肃穆、敬畏",
+      "duration": 3.0,
+      "sound_cue": "衣摆拖地",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S57",
+      "shot_type": "closeup",
+      "scene": "玄尘子目光落在悬停的碎片上，瞳孔微缩，脚步顿了一瞬。",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "顿步、凝视",
+      "dialogue": "",
+      "camera": "固定近景",
+      "emotion": "震动、凝重",
+      "duration": 3.0,
+      "sound_cue": "脚步停顿",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S58",
+      "shot_type": "extreme_closeup",
+      "scene": "玄尘子指间碎石表面，隐约浮现与林昭掌心相同的血丝纹路。",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "碎石纹路浮现",
+      "dialogue": "",
+      "camera": "微距慢推",
+      "emotion": "惊疑、宿命",
+      "duration": 3.0,
+      "sound_cue": "细微嗡鸣",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S59",
+      "shot_type": "medium",
+      "scene": "林昭与玄尘子隔着一圈悬停碎片对视，一跪一立，烟尘在两人之间缓缓沉降。",
+      "characters": [
+        "林昭",
+        "玄尘子"
+      ],
+      "action": "隔碎片对视",
+      "dialogue": "",
+      "camera": "对称构图固定",
+      "emotion": "对峙、暗涌",
+      "duration": 3.0,
+      "sound_cue": "尘埃落定",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S60",
+      "shot_type": "closeup",
+      "scene": "玄尘子捏紧碎石，指节泛白，玉扳指冷光一闪。",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "捏紧碎石",
+      "dialogue": "",
+      "camera": "固定特写",
+      "emotion": "决断、沉重",
+      "duration": 3.0,
+      "sound_cue": "石屑轻碎",
+      "act_id": "truth",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S61",
+      "shot_type": "medium",
+      "scene": "严崇上前一步，朝玄尘子拱手，脸上惊怒未消，欲开口辩解。",
+      "characters": [
+        "严崇",
+        "玄尘子"
+      ],
+      "action": "拱手、欲言",
+      "dialogue": "严崇：掌门，此子——",
+      "camera": "固定中景",
+      "emotion": "急切、不安",
+      "duration": 3.0,
+      "sound_cue": "衣袍窸窣",
+      "act_id": "truth",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S62",
+      "shot_type": "closeup",
+      "scene": "玄尘子抬手止住严崇，目光始终没离开林昭，神色晦暗难辨。",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "抬手、凝视",
+      "dialogue": "",
+      "camera": "固定近景",
+      "emotion": "深沉、不容置疑",
+      "duration": 3.0,
+      "sound_cue": "静默",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S63",
+      "shot_type": "extreme_closeup",
+      "scene": "玄尘子嘴唇微动，声音压得极低，几乎只有自己能听见。",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "低声开口",
+      "dialogue": "玄尘子：这个纹……",
+      "camera": "微距固定",
+      "emotion": "凝重、忌惮",
+      "duration": 3.0,
+      "sound_cue": "低语",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S64",
+      "shot_type": "closeup",
+      "scene": "林昭抬眼，正对上玄尘子的目光，碎片在他眼前缓缓转过一瞬。",
+      "characters": [
+        "林昭",
+        "玄尘子"
+      ],
+      "action": "对视、碎片转过",
+      "dialogue": "",
+      "camera": "固定特写",
+      "emotion": "警觉、探究",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣一颤",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S65",
+      "shot_type": "medium",
+      "scene": "玄尘子将碎石收入袖中，转身半侧，殿门外的天光落在他肩头。",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "收石、转身",
+      "dialogue": "玄尘子：不该还在。",
+      "camera": "慢推中景",
+      "emotion": "沉重、悬念",
+      "duration": 3.0,
+      "sound_cue": "袖口轻响",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S66",
+      "shot_type": "wide",
+      "scene": "大殿全景，林昭跪在碎片环中，玄尘子立于光里，满殿弟子伏地无声。",
+      "characters": [
+        "林昭",
+        "玄尘子",
+        "执法弟子"
+      ],
+      "action": "对峙全景",
+      "dialogue": "",
+      "camera": "后拉全景",
+      "emotion": "肃杀、宿命",
+      "duration": 3.0,
+      "sound_cue": "空旷回响",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S67",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭掌心淡痕忽然一热，皮下血丝纹路一闪而逝，快得几乎看不清。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "掌心纹路闪现",
+      "dialogue": "",
+      "camera": "微距急推",
+      "emotion": "暗涌、觉醒",
+      "duration": 3.0,
+      "sound_cue": "心跳一记",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S68",
+      "shot_type": "closeup",
+      "scene": "林昭缓缓握拳，指缝间漏出一粒悬停的碎石，眼神沉了下来。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "握拳、眼神沉下",
+      "dialogue": "",
+      "camera": "固定近景",
+      "emotion": "决然、隐忍",
+      "duration": 3.0,
+      "sound_cue": "碎石轻响",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S69",
+      "shot_type": "environment",
+      "scene": "天窗光柱重新聚拢，落在空坑与碎片上，尘埃再次缓缓浮动，仿佛什么都没发生。",
+      "characters": [],
+      "action": "光柱聚拢、尘埃浮动",
+      "dialogue": "",
+      "camera": "固定全景",
+      "emotion": "平静、余悸",
+      "duration": 3.0,
+      "sound_cue": "空旷余音",
+      "act_id": "truth",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S70",
+      "shot_type": "key_moment",
+      "scene": "玄尘子背影没入殿门逆光，林昭跪在光柱边缘，碎片同时坠地，画面定格。",
+      "characters": [
+        "林昭",
+        "玄尘子"
+      ],
+      "action": "背影远去、碎片坠地",
+      "dialogue": "",
+      "camera": "固定，画面定格",
+      "emotion": "悬念、钩子",
+      "duration": 3.0,
+      "sound_cue": "碎片落地、余响",
+      "act_id": "truth",
+      "priority": "high"
+    }
+  ]
+}

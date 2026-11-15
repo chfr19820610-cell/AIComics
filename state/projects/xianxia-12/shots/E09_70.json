@@ -1,0 +1,1127 @@
+{
+  "episode_code": "E09",
+  "shot_count": 70,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "establishing",
+      "scene": "晨雾漫过青冥剑宗山门，千级石阶隐入云海，云边镀金",
+      "characters": [],
+      "action": "云海翻涌，石阶尽头山门轮廓渐显",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "肃穆",
+      "duration": 3.0,
+      "sound_cue": "晨风与远钟",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "closeup",
+      "scene": "石阶缝中一株野草被靴尖踩断，露珠溅开",
+      "characters": [
+        "林昭"
+      ],
+      "action": "靴底碾过石阶，草叶折断",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "冷峻",
+      "duration": 3.0,
+      "sound_cue": "草茎脆断",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "medium",
+      "scene": "百名弟子列阵山门，白衣如潮，剑光未出鞘",
+      "characters": [
+        "众弟子"
+      ],
+      "action": "弟子们齐步上前，手按剑柄",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "压迫",
+      "duration": 3.0,
+      "sound_cue": "整齐脚步声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "closeup",
+      "scene": "一名弟子咬牙拔剑，剑身映出晨光",
+      "characters": [
+        "弟子甲"
+      ],
+      "action": "剑出鞘三寸，寒光一闪",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "紧张",
+      "duration": 3.0,
+      "sound_cue": "剑鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "full",
+      "scene": "百柄长剑同时出鞘，剑尖齐指石阶下方",
+      "characters": [
+        "众弟子"
+      ],
+      "action": "百剑齐指，寒芒连成一片",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "敌意",
+      "duration": 3.0,
+      "sound_cue": "百剑出鞘轰鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "closeup",
+      "scene": "林昭半张脸在晨光里，睫毛不动，眼神平静",
+      "characters": [
+        "林昭"
+      ],
+      "action": "林昭抬眼看向剑阵",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "淡漠",
+      "duration": 3.0,
+      "sound_cue": "呼吸声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S07",
+      "shot_type": "medium",
+      "scene": "林昭一步踏上第一级石阶，衣摆被风掀起",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抬脚，踏阶",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "坚定",
+      "duration": 3.0,
+      "sound_cue": "靴落石阶",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S08",
+      "shot_type": "closeup",
+      "scene": "剑尖在晨光中抖动，寒芒碎成细线",
+      "characters": [
+        "众弟子"
+      ],
+      "action": "剑尖微颤，光斑跳动",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "紧绷",
+      "duration": 3.0,
+      "sound_cue": "金属细鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S09",
+      "shot_type": "full",
+      "scene": "林昭孤身面对百剑，石阶如天梯压在身后",
+      "characters": [
+        "林昭",
+        "众弟子"
+      ],
+      "action": "他继续向上走，剑阵随之后仰",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "孤勇",
+      "duration": 3.0,
+      "sound_cue": "风声渐紧",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S10",
+      "shot_type": "closeup",
+      "scene": "长老席间，一只茶盏被捏出裂纹",
+      "characters": [
+        "长老甲"
+      ],
+      "action": "手指收紧，茶盏裂开",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "震怒",
+      "duration": 3.0,
+      "sound_cue": "瓷裂轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S11",
+      "shot_type": "medium",
+      "scene": "数十名长老从两侧廊柱后走出，袍袖翻飞",
+      "characters": [
+        "众长老"
+      ],
+      "action": "长老们结印，踏步成阵",
+      "dialogue": "长老：布阵！",
+      "camera": "跟拍",
+      "emotion": "杀意",
+      "duration": 3.0,
+      "sound_cue": "衣袍猎猎",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S12",
+      "shot_type": "full",
+      "scene": "剑阵光纹从地面升起，罩住整段石阶",
+      "characters": [
+        "众长老",
+        "林昭"
+      ],
+      "action": "光纹交织成网，剑影悬空",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "威压",
+      "duration": 3.0,
+      "sound_cue": "阵纹嗡鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S13",
+      "shot_type": "closeup",
+      "scene": "林昭脚下光纹锁住靴底，他低头看了一眼",
+      "characters": [
+        "林昭"
+      ],
+      "action": "停步，垂眸",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "不屑",
+      "duration": 3.0,
+      "sound_cue": "阵纹尖啸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S14",
+      "shot_type": "medium",
+      "scene": "长老们齐声喝令，剑阵收拢如牢笼",
+      "characters": [
+        "众长老"
+      ],
+      "action": "双手下压，剑影合围",
+      "dialogue": "长老：镇压！",
+      "camera": "急推",
+      "emotion": "狠厉",
+      "duration": 3.0,
+      "sound_cue": "齐喝震山",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S15",
+      "shot_type": "full",
+      "scene": "剑阵如巨碗倒扣，将林昭困在中央",
+      "characters": [
+        "林昭",
+        "众长老"
+      ],
+      "action": "光罩合拢，剑影密布",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "窒息",
+      "duration": 3.0,
+      "sound_cue": "光罩轰鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S16",
+      "shot_type": "closeup",
+      "scene": "林昭右手抬起，指间有雷丝游走",
+      "characters": [
+        "林昭"
+      ],
+      "action": "五指张开，雷光聚拢",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "蓄势",
+      "duration": 3.0,
+      "sound_cue": "电弧噼啪",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S17",
+      "shot_type": "medium",
+      "scene": "雷光在他掌心拉长成刀形，照亮半张脸",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雷刀成形，斜指地面",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "冷酷",
+      "duration": 3.0,
+      "sound_cue": "雷声低鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S18",
+      "shot_type": "full",
+      "scene": "林昭挥刀上撩，雷光劈入剑阵光罩",
+      "characters": [
+        "林昭"
+      ],
+      "action": "一记雷刀斩出",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "爆发",
+      "duration": 3.0,
+      "sound_cue": "雷爆巨响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S19",
+      "shot_type": "closeup",
+      "scene": "剑阵光罩裂纹如蛛网扩散，光屑飞溅",
+      "characters": [],
+      "action": "光罩碎裂",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "震撼",
+      "duration": 3.0,
+      "sound_cue": "琉璃碎裂声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S20",
+      "shot_type": "full",
+      "scene": "整座剑阵如琉璃崩解，光屑四散如雪",
+      "characters": [
+        "林昭",
+        "众长老"
+      ],
+      "action": "光阵炸开，长老们被震退",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "溃败",
+      "duration": 3.0,
+      "sound_cue": "轰然崩解",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S21",
+      "shot_type": "medium",
+      "scene": "长老们踉跄后退，袖口被光屑割破",
+      "characters": [
+        "众长老"
+      ],
+      "action": "掩面后退，阵印崩散",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "惊骇",
+      "duration": 3.0,
+      "sound_cue": "脚步杂乱",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S22",
+      "shot_type": "closeup",
+      "scene": "严崇铁面映出碎裂剑阵，面具下瞳孔一缩",
+      "characters": [
+        "严崇"
+      ],
+      "action": "铁面微转，看向林昭",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "震动",
+      "duration": 3.0,
+      "sound_cue": "铁面轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S23",
+      "shot_type": "full",
+      "scene": "碎剑堆散落石阶，严崇跌坐其中",
+      "characters": [
+        "严崇"
+      ],
+      "action": "跌坐，手撑碎石",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "狼狈",
+      "duration": 3.0,
+      "sound_cue": "碎石滑落",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S24",
+      "shot_type": "closeup",
+      "scene": "铁面正中裂开一道细缝，缝里透出惊惶的眼",
+      "characters": [
+        "严崇"
+      ],
+      "action": "面具裂缝扩大",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "恐惧",
+      "duration": 3.0,
+      "sound_cue": "金属裂响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S25",
+      "shot_type": "medium",
+      "scene": "严崇撑地往后退，碎剑在掌下打滑",
+      "characters": [
+        "严崇"
+      ],
+      "action": "手脚并用后挪",
+      "dialogue": "严崇：不可能……",
+      "camera": "跟拍",
+      "emotion": "崩溃",
+      "duration": 3.0,
+      "sound_cue": "碎石摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S26",
+      "shot_type": "closeup",
+      "scene": "严崇瞳孔放大，映出林昭逼近的靴影",
+      "characters": [
+        "严崇",
+        "林昭"
+      ],
+      "action": "瞳孔收缩，喉结滚动",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "绝望",
+      "duration": 3.0,
+      "sound_cue": "急促呼吸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S27",
+      "shot_type": "full",
+      "scene": "林昭越过严崇身侧，没有停步",
+      "characters": [
+        "林昭",
+        "严崇"
+      ],
+      "action": "径直走过，衣摆扫过碎剑",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "漠然",
+      "duration": 3.0,
+      "sound_cue": "衣摆拂过",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S28",
+      "shot_type": "medium",
+      "scene": "赵乾从人群里跌出，膝盖砸在石阶上",
+      "characters": [
+        "赵乾"
+      ],
+      "action": "跪爬向前，双手乱抓",
+      "dialogue": "赵乾：饶命！",
+      "camera": "急推",
+      "emotion": "惶恐",
+      "duration": 3.0,
+      "sound_cue": "膝盖撞石",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S29",
+      "shot_type": "closeup",
+      "scene": "赵乾额头磕出血印，手指抓住林昭靴边",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "磕头，手抓靴沿",
+      "dialogue": "赵乾：饶命！饶命！",
+      "camera": "固定",
+      "emotion": "卑微",
+      "duration": 3.0,
+      "sound_cue": "额头撞地",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S30",
+      "shot_type": "medium",
+      "scene": "林昭目不斜视，抬脚跨过赵乾肩头",
+      "characters": [
+        "林昭",
+        "赵乾"
+      ],
+      "action": "跨步越过",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "冷绝",
+      "duration": 3.0,
+      "sound_cue": "风声掠过",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S31",
+      "shot_type": "closeup",
+      "scene": "靴底碾过一片碎玉，玉屑嵌进石缝",
+      "characters": [
+        "林昭"
+      ],
+      "action": "靴底碾转",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "轻蔑",
+      "duration": 3.0,
+      "sound_cue": "碎玉碾响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S32",
+      "shot_type": "full",
+      "scene": "赵乾伏在地上发抖，身后弟子无人敢动",
+      "characters": [
+        "赵乾",
+        "众弟子"
+      ],
+      "action": "伏地不起，弟子低头",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "死寂",
+      "duration": 3.0,
+      "sound_cue": "压抑呼吸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S33",
+      "shot_type": "medium",
+      "scene": "掌门玄尘子立于山门最高处，拂尘垂地",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "拂尘微颤，目光下望",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "凝重",
+      "duration": 3.0,
+      "sound_cue": "山风呼啸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S34",
+      "shot_type": "closeup",
+      "scene": "玄尘子手指松开，拂尘滑落半寸",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "手指颤抖，拂尘下滑",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "动摇",
+      "duration": 3.0,
+      "sound_cue": "拂尘轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S35",
+      "shot_type": "full",
+      "scene": "林昭停在石阶中段，仰头与掌门对视",
+      "characters": [
+        "林昭",
+        "玄尘子"
+      ],
+      "action": "停步，仰头",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "对峙",
+      "duration": 3.0,
+      "sound_cue": "风声骤停",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S36",
+      "shot_type": "closeup",
+      "scene": "玄尘子膝盖一弯，道袍下摆触地",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "屈膝，缓缓跪下",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "屈辱",
+      "duration": 3.0,
+      "sound_cue": "衣料摩擦",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S37",
+      "shot_type": "medium",
+      "scene": "掌门双膝跪在石阶上，满场弟子哗然",
+      "characters": [
+        "玄尘子",
+        "众弟子"
+      ],
+      "action": "双膝落地，弟子抬头",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "震惊",
+      "duration": 3.0,
+      "sound_cue": "人群低哗",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S38",
+      "shot_type": "closeup",
+      "scene": "玄尘子额头磕在石阶上，发出闷响",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "额头触地",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "臣服",
+      "duration": 3.0,
+      "sound_cue": "额头磕石",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S39",
+      "shot_type": "medium",
+      "scene": "长老们面面相觑，有人跟着跪倒",
+      "characters": [
+        "众长老"
+      ],
+      "action": "陆续跪地，低头",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "溃散",
+      "duration": 3.0,
+      "sound_cue": "膝盖落地声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S40",
+      "shot_type": "closeup",
+      "scene": "玄尘子抬头，晨光直刺双眼，他眯起眼",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "抬头，眯眼",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "敬畏",
+      "duration": 3.0,
+      "sound_cue": "晨光嗡鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S41",
+      "shot_type": "medium",
+      "scene": "玄尘子跪在光里，嘴唇发抖",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "张口，声音发颤",
+      "dialogue": "玄尘子：你不是天弃之子……",
+      "camera": "固定",
+      "emotion": "颤栗",
+      "duration": 3.0,
+      "sound_cue": "声音发抖",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S42",
+      "shot_type": "closeup",
+      "scene": "林昭垂眼看他，雷刀余烬在指间明灭",
+      "characters": [
+        "林昭"
+      ],
+      "action": "指尖雷光一闪而逝",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "平静",
+      "duration": 3.0,
+      "sound_cue": "电弧轻响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S43",
+      "shot_type": "full",
+      "scene": "满山弟子跪伏如浪，石阶上只剩林昭站立",
+      "characters": [
+        "林昭",
+        "众弟子"
+      ],
+      "action": "众人跪伏，林昭独立",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "逆转",
+      "duration": 3.0,
+      "sound_cue": "山风回荡",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S44",
+      "shot_type": "closeup",
+      "scene": "玄尘子眼中映出林昭身影，如见天威",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "瞳孔里倒映人影",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "骇然",
+      "duration": 3.0,
+      "sound_cue": "心跳声",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S45",
+      "shot_type": "medium",
+      "scene": "玄尘子伏低身体，声音压得极轻",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "俯身，低声开口",
+      "dialogue": "玄尘子：你是天道的备份。",
+      "camera": "固定",
+      "emotion": "敬畏",
+      "duration": 3.0,
+      "sound_cue": "低语回响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S46",
+      "shot_type": "closeup",
+      "scene": "林昭眉梢微动，第一次露出异色",
+      "characters": [
+        "林昭"
+      ],
+      "action": "眉梢轻挑，目光一凝",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "错愕",
+      "duration": 3.0,
+      "sound_cue": "静默",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S47",
+      "shot_type": "full",
+      "scene": "云海翻涌，金光从云缝里泼下",
+      "characters": [],
+      "action": "云层裂开，光柱落下",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "异变",
+      "duration": 3.0,
+      "sound_cue": "云海轰鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S48",
+      "shot_type": "medium",
+      "scene": "林昭脚下石阶浮现古老纹路，与雷光呼应",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路亮起，缠绕靴边",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "神秘",
+      "duration": 3.0,
+      "sound_cue": "古纹嗡鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S49",
+      "shot_type": "closeup",
+      "scene": "玄尘子瞪大眼，看着纹路爬上林昭衣角",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "瞪眼，手指颤抖",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "惊惧",
+      "duration": 3.0,
+      "sound_cue": "倒吸冷气",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S50",
+      "shot_type": "full",
+      "scene": "整座山门震动，碎石从檐角滚落",
+      "characters": [
+        "众弟子",
+        "林昭"
+      ],
+      "action": "山门震颤，众人伏低",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "动荡",
+      "duration": 3.0,
+      "sound_cue": "山石滚落",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S51",
+      "shot_type": "medium",
+      "scene": "长老们惊慌抬头，剑阵残光四散",
+      "characters": [
+        "众长老"
+      ],
+      "action": "抬头四望，残光乱窜",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "慌乱",
+      "duration": 3.0,
+      "sound_cue": "光屑呼啸",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S52",
+      "shot_type": "closeup",
+      "scene": "林昭掌心雷纹与石阶古纹连成一线",
+      "characters": [
+        "林昭"
+      ],
+      "action": "掌心亮起，纹路贯通",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "觉醒",
+      "duration": 3.0,
+      "sound_cue": "雷纹共鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S53",
+      "shot_type": "full",
+      "scene": "光柱罩住林昭，衣袍猎猎翻飞",
+      "characters": [
+        "林昭"
+      ],
+      "action": "立于光柱中，发丝飞扬",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "威仪",
+      "duration": 3.0,
+      "sound_cue": "光柱低鸣",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S54",
+      "shot_type": "medium",
+      "scene": "玄尘子伏地更深，额头不敢离石",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "伏地，肩背发抖",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "臣服",
+      "duration": 3.0,
+      "sound_cue": "衣袍摩擦",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S55",
+      "shot_type": "closeup",
+      "scene": "林昭低头看自己的手，雷光顺纹路游走",
+      "characters": [
+        "林昭"
+      ],
+      "action": "翻掌，雷光绕指",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "了然",
+      "duration": 3.0,
+      "sound_cue": "雷丝细响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S56",
+      "shot_type": "full",
+      "scene": "林昭抬脚继续登阶，光柱随他移动",
+      "characters": [
+        "林昭"
+      ],
+      "action": "迈步向上，光柱跟随",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "从容",
+      "duration": 3.0,
+      "sound_cue": "靴踏石阶",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S57",
+      "shot_type": "medium",
+      "scene": "跪伏的弟子们自动分开一条路",
+      "characters": [
+        "众弟子"
+      ],
+      "action": "向两侧挪开，低头",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "敬畏",
+      "duration": 3.0,
+      "sound_cue": "衣料窸窣",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S58",
+      "shot_type": "closeup",
+      "scene": "赵乾伏在路边，脸贴石阶不敢抬",
+      "characters": [
+        "赵乾"
+      ],
+      "action": "脸贴地，浑身发抖",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "恐惧",
+      "duration": 3.0,
+      "sound_cue": "牙齿打颤",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S59",
+      "shot_type": "medium",
+      "scene": "严崇靠在碎剑堆里，铁面裂缝里眼神空洞",
+      "characters": [
+        "严崇"
+      ],
+      "action": "呆坐，手垂落",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "失神",
+      "duration": 3.0,
+      "sound_cue": "碎剑轻碰",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S60",
+      "shot_type": "full",
+      "scene": "林昭走到山门之前，千级石阶已在脚下",
+      "characters": [
+        "林昭"
+      ],
+      "action": "停在山门前，回望",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "睥睨",
+      "duration": 3.0,
+      "sound_cue": "风声开阔",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S61",
+      "shot_type": "closeup",
+      "scene": "林昭眼中映出云海金光，神色不动",
+      "characters": [
+        "林昭"
+      ],
+      "action": "目光扫过众人",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "冷傲",
+      "duration": 3.0,
+      "sound_cue": "静默",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S62",
+      "shot_type": "medium",
+      "scene": "玄尘子仍跪在原地，声音远远传来",
+      "characters": [
+        "玄尘子"
+      ],
+      "action": "跪伏，抬头喊话",
+      "dialogue": "玄尘子：天道……在看着你。",
+      "camera": "固定",
+      "emotion": "警告",
+      "duration": 3.0,
+      "sound_cue": "声音回荡",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S63",
+      "shot_type": "closeup",
+      "scene": "林昭脚步一顿，侧过半张脸",
+      "characters": [
+        "林昭"
+      ],
+      "action": "侧脸，眼神微冷",
+      "dialogue": "林昭：那就看着。",
+      "camera": "急推",
+      "emotion": "桀骜",
+      "duration": 3.0,
+      "sound_cue": "话音落定",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S64",
+      "shot_type": "full",
+      "scene": "林昭跨过山门，光柱冲散晨雾",
+      "characters": [
+        "林昭"
+      ],
+      "action": "跨门而入，雾散",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "决然",
+      "duration": 3.0,
+      "sound_cue": "雾散风起",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S65",
+      "shot_type": "medium",
+      "scene": "山门匾额在光中裂开一道细纹",
+      "characters": [],
+      "action": "匾额裂纹蔓延",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "不祥",
+      "duration": 3.0,
+      "sound_cue": "木裂轻响",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S66",
+      "shot_type": "closeup",
+      "scene": "裂纹里渗出一点金光，如眼瞳睁开",
+      "characters": [],
+      "action": "金光在裂缝中亮起",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "诡秘",
+      "duration": 3.0,
+      "sound_cue": "低鸣渐起",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S67",
+      "shot_type": "full",
+      "scene": "云海深处一道巨大光柱冲天而起，与林昭呼应",
+      "characters": [
+        "林昭"
+      ],
+      "action": "远处光柱升起，云层翻卷",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "宏大",
+      "duration": 3.0,
+      "sound_cue": "天地轰鸣",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S68",
+      "shot_type": "closeup",
+      "scene": "林昭停步，掌心雷纹剧烈跳动",
+      "characters": [
+        "林昭"
+      ],
+      "action": "握拳，雷纹灼亮",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "警觉",
+      "duration": 3.0,
+      "sound_cue": "雷纹爆鸣",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S69",
+      "shot_type": "medium",
+      "scene": "云层里隐约浮现一只巨眼轮廓，转瞬隐去",
+      "characters": [],
+      "action": "巨眼开合，云层合拢",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "压迫",
+      "duration": 3.0,
+      "sound_cue": "天穹低吟",
+      "act_id": "truth",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S70",
+      "shot_type": "closeup",
+      "scene": "林昭抬眼望天，嘴角微扬，雷光映亮眼底",
+      "characters": [
+        "林昭"
+      ],
+      "action": "仰头，微微一笑",
+      "dialogue": "林昭：来吧。",
+      "camera": "急推",
+      "emotion": "挑衅",
+      "duration": 3.0,
+      "sound_cue": "雷声远去",
+      "act_id": "truth",
+      "priority": "normal"
+    }
+  ]
+}

@@ -1,33 +1,67 @@
 {
   "episode_code": "E01",
-  "shot_sec": 3.0,
   "tracks": [
     {
-      "shot_id": "S03",
+      "shot_id": "S10",
+      "text": "弟子甲：又来了。",
+      "start": 27.375,
+      "end": 29.0,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S16",
       "text": "赵乾：废物的手，也只配擦地。",
-      "start": 6,
-      "end": 9,
+      "start": 44.208,
+      "end": 47.25,
       "voice": "zh_CN-chaowen-medium"
     },
     {
-      "shot_id": "S04",
+      "shot_id": "S20",
+      "text": "赵乾：脏了我的手。",
+      "start": 56.375,
+      "end": 58.0,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S24",
       "text": "赵乾：爬起来啊，杂役。",
-      "start": 9,
-      "end": 12,
+      "start": 67.125,
+      "end": 69.458,
       "voice": "zh_CN-chaowen-medium"
     },
     {
-      "shot_id": "S05",
-      "text": "（画外）看那废物，又在装死。",
-      "start": 12,
-      "end": 15,
+      "shot_id": "S30",
+      "text": "赵乾：没意思。",
+      "start": 84.667,
+      "end": 86.292,
       "voice": "zh_CN-chaowen-medium"
     },
     {
-      "shot_id": "S06",
-      "text": "林昭：……第三次了。",
-      "start": 15,
-      "end": 18,
+      "shot_id": "S31",
+      "text": "弟子乙：废物就是废物。",
+      "start": 86.292,
+      "end": 88.625,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S59",
+      "text": "林昭：……又裂了。",
+      "start": 170.75,
+      "end": 172.375,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S64",
+      "text": "弟子丙：哟，还活着？",
+      "start": 184.542,
+      "end": 186.875,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S66",
+      "text": "弟子丁：躲什么躲。",
+      "start": 189.917,
+      "end": 191.542,
       "voice": "zh_CN-chaowen-medium"
     }
   ]

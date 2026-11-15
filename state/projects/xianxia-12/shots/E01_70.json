@@ -1,0 +1,1113 @@
+{
+  "episode_code": "E01",
+  "title": "废柴有锁",
+  "shot_count": 70,
+  "total_seconds": 210,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "environment",
+      "scene": "青冥剑宗山门远景，云海翻涌，晨光从峰峦间刺出，山门石匾半隐在雾里。",
+      "characters": [],
+      "action": "云海缓慢流动，晨光渐亮",
+      "dialogue": "",
+      "camera": "固定慢推",
+      "emotion": "清冷、辽阔",
+      "duration": 3.0,
+      "sound_cue": "山风、晨鸟",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "wide",
+      "scene": "演武场青石板地面，一盆脏水从画外泼入，水线在晨光中拉出弧线。",
+      "characters": [],
+      "action": "脏水泼出",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "突兀、压抑",
+      "duration": 3.0,
+      "sound_cue": "泼水声",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "closeup",
+      "scene": "林昭跪在青石板上，脏水兜头浇下，黑发贴住额头，水珠挂满睫毛。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "被脏水泼中，头微低",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "屈辱、隐忍",
+      "duration": 3.0,
+      "sound_cue": "水花溅落",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "extreme_closeup",
+      "scene": "水珠沿林昭下颌线滚落，滴在青石板上，石面映出他模糊的倒影。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "水珠滴落",
+      "dialogue": "",
+      "camera": "固定微距",
+      "emotion": "冰冷、沉默",
+      "duration": 3.0,
+      "sound_cue": "滴答水声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "medium",
+      "scene": "林昭抬手抹脸，袖口磨破，露出手腕旧布条，晨光刺得他眯起眼。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抹脸、眯眼",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "疲惫、忍耐",
+      "duration": 3.0,
+      "sound_cue": "衣料摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "environment",
+      "scene": "演武场四周石栏，远处弟子三三两两聚拢，晨雾未散，旗幡轻晃。",
+      "characters": [],
+      "action": "弟子围拢",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "围观、冷漠",
+      "duration": 3.0,
+      "sound_cue": "脚步、低语",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S07",
+      "shot_type": "wide",
+      "scene": "演武场全景，弟子围成一圈，林昭跪在圈心，赵乾锦袍负手立在中央。",
+      "characters": [
+        "林昭",
+        "赵乾",
+        "青冥弟子"
+      ],
+      "action": "弟子窃笑，赵乾踱步",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "压迫、孤立",
+      "duration": 3.0,
+      "sound_cue": "窃笑声",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S08",
+      "shot_type": "medium",
+      "scene": "赵乾锦袍下摆扫过青石，靴尖停在林昭面前，身后弟子交头接耳。",
+      "characters": [
+        "赵乾",
+        "青冥弟子"
+      ],
+      "action": "赵乾停步",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "傲慢、轻蔑",
+      "duration": 3.0,
+      "sound_cue": "靴声、低语",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S09",
+      "shot_type": "closeup",
+      "scene": "林昭低垂的脸，水珠从鼻尖坠落，嘴唇紧抿，眼神藏在湿发后。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低头不语",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "隐忍、倔强",
+      "duration": 3.0,
+      "sound_cue": "呼吸声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S10",
+      "shot_type": "medium",
+      "scene": "两名弟子捂嘴窃笑，一人用胳膊肘捅同伴，眼神瞟向圈心。",
+      "characters": [
+        "青冥弟子"
+      ],
+      "action": "窃笑、指点",
+      "dialogue": "弟子甲：又来了。",
+      "camera": "摇移",
+      "emotion": "幸灾乐祸",
+      "duration": 3.0,
+      "sound_cue": "压低的笑",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S11",
+      "shot_type": "closeup",
+      "scene": "赵乾侧脸，嘴角挑起，目光斜睨林昭，晨光在他锦袍金线上反光。",
+      "characters": [
+        "赵乾"
+      ],
+      "action": "嘴角上扬",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "得意、刻薄",
+      "duration": 3.0,
+      "sound_cue": "衣料轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S12",
+      "shot_type": "environment",
+      "scene": "远处山门浮在云海里，飞檐挑出雾面，一只孤鸟掠过，天地安静。",
+      "characters": [],
+      "action": "云海流动、孤鸟飞过",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "空寂、渺小",
+      "duration": 3.0,
+      "sound_cue": "远风声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S13",
+      "shot_type": "medium",
+      "scene": "林昭膝前摊着一块脏抹布，他手指刚碰到布角，赵乾的靴子踏上来。",
+      "characters": [
+        "林昭",
+        "赵乾"
+      ],
+      "action": "赵乾踩住抹布",
+      "dialogue": "",
+      "camera": "俯拍急推",
+      "emotion": "羞辱、压制",
+      "duration": 3.0,
+      "sound_cue": "靴底碾地",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S14",
+      "shot_type": "closeup",
+      "scene": "靴底碾住抹布，林昭的手指被挤在布边，指节发白，微微发抖。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "手指被压",
+      "dialogue": "",
+      "camera": "固定微距",
+      "emotion": "疼痛、屈辱",
+      "duration": 3.0,
+      "sound_cue": "布料摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S15",
+      "shot_type": "medium",
+      "scene": "赵乾俯身，伸手捏住林昭下巴，逆光下他的脸压成暗影，尘土在光柱里翻。",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "俯身捏下巴",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "居高临下",
+      "duration": 3.0,
+      "sound_cue": "衣袍窸窣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S16",
+      "shot_type": "extreme_closeup",
+      "scene": "赵乾手指捏紧林昭下巴，林昭脸颊被挤变形，眼神被迫抬起迎光。",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "捏脸抬起",
+      "dialogue": "赵乾：废物的手，也只配擦地。",
+      "camera": "固定",
+      "emotion": "羞辱、刺痛",
+      "duration": 3.0,
+      "sound_cue": "骨节轻响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S17",
+      "shot_type": "wide",
+      "scene": "围观弟子哄笑成片，有人前仰后合，尘土在斜射光柱里翻滚。",
+      "characters": [
+        "青冥弟子"
+      ],
+      "action": "哄笑",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "嘲弄、喧闹",
+      "duration": 3.0,
+      "sound_cue": "哄笑声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S18",
+      "shot_type": "closeup",
+      "scene": "林昭被捏着脸，喉结微动，眼底压着一线冷光，转瞬又垂下。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "眼神一冷即隐",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "暗怒、克制",
+      "duration": 3.0,
+      "sound_cue": "呼吸一滞",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S19",
+      "shot_type": "environment",
+      "scene": "演武场边旗幡被风扯动，影子在青石上扫过，尘土贴着地面跑。",
+      "characters": [],
+      "action": "旗影扫过",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "肃杀、不安",
+      "duration": 3.0,
+      "sound_cue": "旗布猎猎",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S20",
+      "shot_type": "medium",
+      "scene": "赵乾松手直身，退半步，掌心在锦袍上蹭了蹭，像嫌脏。",
+      "characters": [
+        "赵乾"
+      ],
+      "action": "松手、蹭掌",
+      "dialogue": "赵乾：脏了我的手。",
+      "camera": "固定",
+      "emotion": "嫌恶、傲慢",
+      "duration": 3.0,
+      "sound_cue": "衣料摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S21",
+      "shot_type": "closeup",
+      "scene": "林昭下巴留下红指印，他慢慢低头，把被踩住的抹布往回收。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低头收抹布",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "麻木、隐忍",
+      "duration": 3.0,
+      "sound_cue": "布料轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S22",
+      "shot_type": "medium",
+      "scene": "赵乾抬掌，掌心聚起淡青灵光，袖口鼓荡，围观弟子笑声骤停。",
+      "characters": [
+        "赵乾"
+      ],
+      "action": "抬掌蓄力",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "危险、骤紧",
+      "duration": 3.0,
+      "sound_cue": "灵气嗡鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S23",
+      "shot_type": "closeup",
+      "scene": "林昭瞳孔一缩，本能侧身，湿发甩起，水珠在光里散成细雾。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "侧身闪避",
+      "dialogue": "",
+      "camera": "跟拍甩镜",
+      "emotion": "惊觉、紧张",
+      "duration": 3.0,
+      "sound_cue": "水珠炸散",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S24",
+      "shot_type": "action",
+      "scene": "赵乾一掌拍出，青光轰在林昭胸口，衣袍向后炸开，人离地飞出。",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "一掌击中",
+      "dialogue": "赵乾：爬起来啊，杂役。",
+      "camera": "急推+甩",
+      "emotion": "暴烈、冲击",
+      "duration": 3.0,
+      "sound_cue": "闷响、破风",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S25",
+      "shot_type": "wide",
+      "scene": "林昭横飞撞断木栏，木屑四溅，身体翻滚着摔下石阶，尘土炸开。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "撞栏滚落",
+      "dialogue": "",
+      "camera": "跟拍下摇",
+      "emotion": "失控、惨烈",
+      "duration": 3.0,
+      "sound_cue": "木裂、滚落",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S26",
+      "shot_type": "medium",
+      "scene": "林昭在石阶上翻滚两圈，衣袍翻卷缠住手臂，最终仰躺在碎石上。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "翻滚停住",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "狼狈、脱力",
+      "duration": 3.0,
+      "sound_cue": "碎石摩擦",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S27",
+      "shot_type": "environment",
+      "scene": "断木栏斜插在石阶边，木刺参差，尘土在斜光里缓缓沉降。",
+      "characters": [],
+      "action": "尘土沉降",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "残破、静滞",
+      "duration": 3.0,
+      "sound_cue": "细尘落地",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S28",
+      "shot_type": "closeup",
+      "scene": "林昭仰面，胸口衣襟裂开一道口子，呼吸急促，喉间压着痛哼。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "仰躺喘息",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "痛楚、虚弱",
+      "duration": 3.0,
+      "sound_cue": "急促呼吸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S29",
+      "shot_type": "medium",
+      "scene": "石阶上方，赵乾负手而立，居高临下俯视，弟子们探头往下看。",
+      "characters": [
+        "赵乾",
+        "青冥弟子"
+      ],
+      "action": "俯视、探头",
+      "dialogue": "",
+      "camera": "仰拍慢推",
+      "emotion": "高高在上",
+      "duration": 3.0,
+      "sound_cue": "低语声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S30",
+      "shot_type": "closeup",
+      "scene": "赵乾嘴角一撇，转身拂袖，锦袍下摆扫过石阶边缘。",
+      "characters": [
+        "赵乾"
+      ],
+      "action": "转身拂袖",
+      "dialogue": "赵乾：没意思。",
+      "camera": "固定",
+      "emotion": "轻蔑、无趣",
+      "duration": 3.0,
+      "sound_cue": "袖风",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S31",
+      "shot_type": "medium",
+      "scene": "围观弟子陆续散去，有人回头指指点点，脚步踩得青石作响。",
+      "characters": [
+        "青冥弟子"
+      ],
+      "action": "散去、指点",
+      "dialogue": "弟子乙：废物就是废物。",
+      "camera": "摇移",
+      "emotion": "冷漠、散漫",
+      "duration": 3.0,
+      "sound_cue": "杂乱脚步",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S32",
+      "shot_type": "environment",
+      "scene": "演武场空下来，只剩断栏和碎石，晨光拉长影子，风卷起一张废纸。",
+      "characters": [],
+      "action": "风卷废纸",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "荒凉、孤寂",
+      "duration": 3.0,
+      "sound_cue": "风声、纸响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S33",
+      "shot_type": "closeup",
+      "scene": "林昭右腕旧布条被碎石磨松，布头散开，垂在腕侧随风轻晃。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "布条松开",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "隐秘、预兆",
+      "duration": 3.0,
+      "sound_cue": "布条轻响",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S34",
+      "shot_type": "extreme_closeup",
+      "scene": "布条滑落，腕内皮肤下隐约透出一线暗金，像有什么在皮下缓缓游动。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "暗金微光浮现",
+      "dialogue": "",
+      "camera": "固定微距",
+      "emotion": "神秘、悸动",
+      "duration": 3.0,
+      "sound_cue": "低频嗡鸣",
+      "act_id": "underdog",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S35",
+      "shot_type": "medium",
+      "scene": "林昭皱眉撑起半身，碎石从衣襟滑落，他低头看向自己右腕。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "撑起、低头看腕",
+      "dialogue": "",
+      "camera": "跟拍慢推",
+      "emotion": "疑惑、警觉",
+      "duration": 3.0,
+      "sound_cue": "碎石滑落",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S36",
+      "shot_type": "closeup",
+      "scene": "暗金锁链纹从腕骨下浮出，一环扣一环，贴着血管缓缓延伸。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链纹浮现",
+      "dialogue": "",
+      "camera": "固定微距",
+      "emotion": "诡异、震撼",
+      "duration": 3.0,
+      "sound_cue": "金属低鸣",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S37",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭瞳孔里映出暗金纹路，他呼吸一滞，手指不自觉地蜷起。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "瞳孔收缩",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊愕、紧张",
+      "duration": 3.0,
+      "sound_cue": "心跳声",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S38",
+      "shot_type": "medium",
+      "scene": "他猛地用左手捂住右腕，抬头四望，四周空荡，无人注意这边。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "捂腕四望",
+      "dialogue": "",
+      "camera": "甩镜环视",
+      "emotion": "警惕、慌乱",
+      "duration": 3.0,
+      "sound_cue": "衣料急响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S39",
+      "shot_type": "environment",
+      "scene": "石阶高处两名弟子背影走远，拐过廊柱消失，演武场只剩风声。",
+      "characters": [
+        "青冥弟子"
+      ],
+      "action": "背影消失",
+      "dialogue": "",
+      "camera": "固定远焦",
+      "emotion": "安全、孤立",
+      "duration": 3.0,
+      "sound_cue": "远脚步",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S40",
+      "shot_type": "closeup",
+      "scene": "林昭松开左手，锁链纹已隐回皮下，只余腕上一圈淡金痕迹。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "松手、纹路隐去",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "疑惑、压抑",
+      "duration": 3.0,
+      "sound_cue": "低鸣渐止",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S41",
+      "shot_type": "medium",
+      "scene": "他试着活动右腕，指节咔咔作响，掌心竟浮起一丝极淡的金光。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "活动手腕",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "试探、微惊",
+      "duration": 3.0,
+      "sound_cue": "骨节轻响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S42",
+      "shot_type": "closeup",
+      "scene": "金光在掌心一闪即灭，林昭猛地握拳，指缝间漏出几粒光尘。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "握拳、光灭",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "震动、克制",
+      "duration": 3.0,
+      "sound_cue": "灵气轻爆",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S43",
+      "shot_type": "medium",
+      "scene": "胸口一阵剧痛袭来，林昭弯腰捂住胸口，脸色瞬间惨白。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "弯腰捂胸",
+      "dialogue": "",
+      "camera": "跟拍下摇",
+      "emotion": "剧痛、虚弱",
+      "duration": 3.0,
+      "sound_cue": "闷哼",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S44",
+      "shot_type": "closeup",
+      "scene": "他撑住地面，喉头滚动，嘴角渗出一线黑血，滴在碎石上。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "撑地、渗血",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "痛苦、压抑",
+      "duration": 3.0,
+      "sound_cue": "喘息",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S45",
+      "shot_type": "extreme_closeup",
+      "scene": "黑血珠落在青石上，表面迸出几缕细小电弧，噼啪一闪即灭。",
+      "characters": [],
+      "action": "血珠迸电弧",
+      "dialogue": "",
+      "camera": "固定微距",
+      "emotion": "诡异、危险",
+      "duration": 3.0,
+      "sound_cue": "电弧噼啪",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S46",
+      "shot_type": "medium",
+      "scene": "林昭盯着那点电弧，瞳孔放大，手指在碎石上慢慢收紧。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "盯血、收指",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "震惊、恍然",
+      "duration": 3.0,
+      "sound_cue": "心跳加快",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S47",
+      "shot_type": "closeup",
+      "scene": "他低头看自己右腕，淡金痕迹又隐隐亮了一下，随即暗下去。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "看腕、微光闪",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "确认、凝重",
+      "duration": 3.0,
+      "sound_cue": "低鸣一响",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S48",
+      "shot_type": "environment",
+      "scene": "一阵风卷过石阶，吹动断栏边的碎布，远处传来钟声一记。",
+      "characters": [],
+      "action": "风卷碎布、钟响",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "肃穆、转折",
+      "duration": 3.0,
+      "sound_cue": "风、远钟",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S49",
+      "shot_type": "medium",
+      "scene": "林昭深吸一口气，用袖口擦掉嘴角黑血，慢慢跪坐起来。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "擦血、跪坐",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "镇定、隐忍",
+      "duration": 3.0,
+      "sound_cue": "衣料摩擦",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S50",
+      "shot_type": "closeup",
+      "scene": "他把散开的旧布条一圈圈缠回右腕，动作很慢，指节用力。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "缠布条",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "谨慎、决意",
+      "duration": 3.0,
+      "sound_cue": "布条缠绕",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S51",
+      "shot_type": "extreme_closeup",
+      "scene": "最后一圈布条压紧，遮住淡金痕迹，他指尖在结上按了一下。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "按紧布结",
+      "dialogue": "",
+      "camera": "固定微距",
+      "emotion": "隐藏、坚定",
+      "duration": 3.0,
+      "sound_cue": "布料绷紧",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S52",
+      "shot_type": "medium",
+      "scene": "林昭抬头望向石阶上方，晨光刺眼，他眯起眼，目光不再低垂。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抬头望阶",
+      "dialogue": "",
+      "camera": "仰拍慢推",
+      "emotion": "不甘、蓄势",
+      "duration": 3.0,
+      "sound_cue": "晨风",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S53",
+      "shot_type": "closeup",
+      "scene": "他眼底映着晨光，唇线抿紧，先前那点麻木已被压成冷意。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "眼神转冷",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "冷冽、觉醒",
+      "duration": 3.0,
+      "sound_cue": "呼吸沉稳",
+      "act_id": "awaken",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S54",
+      "shot_type": "environment",
+      "scene": "演武场尽头廊柱下，一个扫地的老仆远远望来，又低头继续扫地。",
+      "characters": [],
+      "action": "老仆远望、低头",
+      "dialogue": "",
+      "camera": "固定远焦",
+      "emotion": "旁观、隐晦",
+      "duration": 3.0,
+      "sound_cue": "扫帚沙沙",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S55",
+      "shot_type": "medium",
+      "scene": "林昭扶着断栏站起，膝盖一软又撑住，碎石从衣摆滚落。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "扶栏站起",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "踉跄、倔强",
+      "duration": 3.0,
+      "sound_cue": "碎石滚落",
+      "act_id": "awaken",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S56",
+      "shot_type": "closeup",
+      "scene": "他站直身子，胸口衣襟裂口透风，右腕布条在光里显得格外旧。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "站直、垂手",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "沉默、决然",
+      "duration": 3.0,
+      "sound_cue": "风声",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S57",
+      "shot_type": "medium",
+      "scene": "林昭弯腰捡起那块脏抹布，抖了抖灰，叠好塞进腰间。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "捡布、叠好",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "隐忍、蓄力",
+      "duration": 3.0,
+      "sound_cue": "抖布声",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S58",
+      "shot_type": "extreme_closeup",
+      "scene": "他右手按在腰间抹布上，腕内布条下暗金微光透出一线，随即隐没。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "按腰、微光透出",
+      "dialogue": "",
+      "camera": "固定微距",
+      "emotion": "暗涌、隐秘",
+      "duration": 3.0,
+      "sound_cue": "低鸣一响",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S59",
+      "shot_type": "closeup",
+      "scene": "林昭低声开口，唇几乎不动，声音压在喉咙里，眼神盯着石阶上方。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低声自语",
+      "dialogue": "林昭：……又裂了。",
+      "camera": "慢推",
+      "emotion": "凝重、隐痛",
+      "duration": 3.0,
+      "sound_cue": "低语",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S60",
+      "shot_type": "medium",
+      "scene": "他抬起左手抹掉下巴残水，转身朝演武场外走去，脚步一深一浅。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "转身走开",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "疲惫、坚定",
+      "duration": 3.0,
+      "sound_cue": "脚步拖沓",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S61",
+      "shot_type": "environment",
+      "scene": "晨光铺满青石阶，断栏影子斜长，风把碎木屑吹得打旋。",
+      "characters": [],
+      "action": "光影移动、木屑打旋",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "清冷、余烬",
+      "duration": 3.0,
+      "sound_cue": "风声",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S62",
+      "shot_type": "closeup",
+      "scene": "林昭走过廊柱阴影，半张脸没入暗处，右腕布条被风掀起一角。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "走入阴影",
+      "dialogue": "",
+      "camera": "摇移跟拍",
+      "emotion": "沉郁、神秘",
+      "duration": 3.0,
+      "sound_cue": "衣角翻动",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S63",
+      "shot_type": "extreme_closeup",
+      "scene": "布条掀起处，暗金锁链纹一闪，像有活物在皮下轻轻一缩。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "纹路一闪",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "诡秘、悸动",
+      "duration": 3.0,
+      "sound_cue": "金属低鸣",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S64",
+      "shot_type": "medium",
+      "scene": "廊柱后转出两名杂役弟子，看见林昭，故意伸脚绊他。",
+      "characters": [
+        "林昭",
+        "青冥弟子"
+      ],
+      "action": "伸脚绊人",
+      "dialogue": "弟子丙：哟，还活着？",
+      "camera": "固定",
+      "emotion": "挑衅、恶意",
+      "duration": 3.0,
+      "sound_cue": "脚步、嗤笑",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S65",
+      "shot_type": "closeup",
+      "scene": "林昭脚下一顿，堪堪避开那只脚，侧身让过，没有抬头。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "侧身避开",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "克制、冷静",
+      "duration": 3.0,
+      "sound_cue": "脚步错开",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S66",
+      "shot_type": "medium",
+      "scene": "两名杂役弟子愣住，互看一眼，没料到他会避开，悻悻收回脚。",
+      "characters": [
+        "青冥弟子"
+      ],
+      "action": "愣住、互看",
+      "dialogue": "弟子丁：躲什么躲。",
+      "camera": "固定",
+      "emotion": "意外、不快",
+      "duration": 3.0,
+      "sound_cue": "低语",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S67",
+      "shot_type": "closeup",
+      "scene": "林昭继续前行，嘴角极轻地动了一下，眼底压着一点冷光。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "前行、嘴角微动",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "隐忍、锋芒",
+      "duration": 3.0,
+      "sound_cue": "脚步",
+      "act_id": "rise",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S68",
+      "shot_type": "wide",
+      "scene": "林昭背影穿过长廊，晨光在他前方铺开，身后演武场空荡。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "背影远去",
+      "dialogue": "",
+      "camera": "固定远景",
+      "emotion": "孤行、蓄势",
+      "duration": 3.0,
+      "sound_cue": "远风",
+      "act_id": "rise",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S69",
+      "shot_type": "extreme_closeup",
+      "scene": "他右腕布条缝隙里，暗金锁链纹缓缓转动一环，发出极细微的光。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链纹转动",
+      "dialogue": "",
+      "camera": "固定微距",
+      "emotion": "神秘、预示",
+      "duration": 3.0,
+      "sound_cue": "低频锁响",
+      "act_id": "truth",
+      "priority": "high"
+    },
+    {
+      "shot_id": "S70",
+      "shot_type": "environment",
+      "scene": "镜头拉远，青冥剑宗山门浮在云海，晨光如剑劈开雾层，画面定格。",
+      "characters": [],
+      "action": "云海翻涌、画面定格",
+      "dialogue": "",
+      "camera": "拉远定格",
+      "emotion": "辽阔、悬念",
+      "duration": 3.0,
+      "sound_cue": "山风、远钟",
+      "act_id": "truth",
+      "priority": "high"
+    }
+  ]
+}
