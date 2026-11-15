@@ -120,15 +120,30 @@ def main():
     consecutive_fail = 0
     same_shot_checks = 0
     last_shot = None
+    loop_errors = 0
 
     while True:
+        try:
+            _tick(consecutive_fail, same_shot_checks, last_shot)
+        except Exception as exc:
+            loop_errors += 1
+            log(f"🔴 主循环异常 #{loop_errors}: {type(exc).__name__}: {exc}")
+            if loop_errors >= 5:
+                log("🔴 连续 5 次循环异常，退出（让外部重启）")
+                raise
+            time.sleep(60)
+            continue
+        loop_errors = 0
+
+
+def _tick(consecutive_fail, same_shot_checks, last_shot):
         total, per_ep = count_done()
         shot = current_shot()
 
         # 全完成？
         if total >= 840:
             log("🎉 全部 840 镜完成！")
-            break
+            raise SystemExit(0)
 
         # 记录
         if shot != last_shot:
