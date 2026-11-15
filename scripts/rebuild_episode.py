@@ -125,7 +125,14 @@ def build_episode(ep):
 
 
 if __name__ == "__main__":
-    eps = sys.argv[1:] if len(sys.argv) > 1 else ["E01"]
+    args = sys.argv[1:]
+    # 支持 -h / --help（否则会把 --help 当成 episode 名去读文件）
+    if any(a in ("-h", "--help") for a in args):
+        print(__doc__)
+        print("依赖：runs/{ep}/alignment.json（由 align_episode.py 生成）")
+        print("产物：runs/{ep}/cut/final_r2.mp4（烧字幕+混音）")
+        sys.exit(0)
+    eps = args if args else ["E01"]
     ok = 0
     for ep in eps:
         if build_episode(ep):
