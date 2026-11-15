@@ -59,18 +59,31 @@ def batch_running():
 
 
 def current_shot():
-    """从日志尾部找当前正在生成的镜"""
-    if not Path("/tmp/p6_align.log").exists():
-        return None
+    """从 h3stream 进程的 --run-dir 参数找当前镜（最可靠）
+
+    进程命令行含: --run-dir runs/p6_E01_S05
+    """
     try:
-        lines = Path("/tmp/p6_align.log").read_text(encoding="utf-8", errors="ignore").splitlines()
-        for line in reversed(lines[-200:]):
-            if "🎬" in line:
-                # [11-15 23:19:12] 🎬 E01/S01 (1/70)
-                parts = line.split("🎬")
-                if len(parts) > 1:
-                    shot = parts[1].strip().split()[0]
-                    return shot
+        r = subprocess.run(["pgrep", "-a", "-f", "h3stream generate"],
+                           capture_output=True, text=True)
+        for line in r.stdout.splitlines():
+            # runs/p6_E01_S05 → E01/S05
+            import re
+            m = re.search(r"p6_(E\d{2})_(S\d{2,3})", line)
+            if m:
+                return f"{m.group(1)}/{m.group(2)}"
+    except Exception:
+        pass
+    # 回退：从日志找
+    try:
+        log = Path("/tmp/p6_align.log")
+        if log.exists():
+            lines = log.read_text(encoding="utf-8", errors="ignore").splitlines()
+            for line in reversed(lines[-300:]):
+                if "🎬" in line:
+                    parts = line.split("🎬")
+                    if len(parts) > 1:
+                        return parts[1].strip().split()[0]
     except Exception:
         pass
     return None
