@@ -1,0 +1,127 @@
+{
+  "episode_code": "E08",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "action",
+      "visual": "一道紫雷劈落焦土，林昭站在雷坑中央张开双臂，衣袍烧焦，雷光顺着胸口灌进去。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "紫雷劈落、张臂承雷",
+      "dialogue": "",
+      "camera": "中景/低机位广角",
+      "emotion": "痛苦/爆发",
+      "duration": 7.0,
+      "sound_cue": "炸雷/电流",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "purple lightning bolt striking scorched earth, Lin Zhao standing in center of lightning crater, arms spread wide, burnt robes, lightning energy surging into chest, cracked blackened ground, glowing purple light, dramatic lighting"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "荒原雷泽全景，紫色闪电如林立在焦黑大地上，天空低垂翻涌，空气里全是焦味。",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "电林明灭、云层翻卷",
+      "dialogue": "",
+      "camera": "大远景/航拍横移",
+      "emotion": "压抑/敬畏",
+      "duration": 7.0,
+      "sound_cue": "雷鸣/风声",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "panoramic wasteland thunder marsh, purple lightning bolts standing like forest over scorched black earth, low churning stormy sky, drifting ash haze, harsh violet glow, ominous atmosphere"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "dialogue",
+      "visual": "老墨拄着断杖站在雷光里，抬手指天，对林昭大声喊话，衣袍被狂风撕开。",
+      "characters": [
+        "老墨",
+        "林昭"
+      ],
+      "action": "抬手指天、衣袍被风撕开",
+      "dialogue": "老墨：别躲。吞下去！",
+      "camera": "中景/背光剪影",
+      "emotion": "急切/狂烈",
+      "duration": 7.0,
+      "sound_cue": "狂风/雷吼",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "old man leaning on broken staff, pointing at sky, shouting, torn robes whipping in wind, standing amid crackling lightning, stormy night sky, dramatic rim lighting"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "closeup",
+      "visual": "林昭咬牙仰头，喉间低吼，第二道锁在雷光里崩断，锁链纹把雷光收进骨血，瞳孔变作雷色。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "仰头低吼、第二道锁崩断、雷光入体",
+      "dialogue": "林昭：第二道……也断了。",
+      "camera": "大特写/推近",
+      "emotion": "痛苦/觉醒",
+      "duration": 7.0,
+      "sound_cue": "锁链崩断/电流",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao, head thrown back, teeth clenched, roaring, second seal shattering in lightning, chains absorbing thunder into bones, pupils glowing lightning-colored, stormy sky, crackling electric arcs, dramatic backlight"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "action",
+      "visual": "他抬手一挥，掌心雷光凝成一把长刀斜劈出去，整片雷云被从中劈开。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "抬手凝刀、斜劈雷云",
+      "dialogue": "",
+      "camera": "全景/仰拍甩镜",
+      "emotion": "暴烈/释放",
+      "duration": 7.0,
+      "sound_cue": "雷刀破空/轰鸣",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "male cultivator, raising hand, lightning gathering into long saber in palm, diagonal slash, splitting thundercloud apart, stormy sky, electric arcs, dramatic backlight, high contrast"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "key_moment",
+      "visual": "云开天晴，一缕残余雷光落在他肩头蜷成小兽形状，他第一次笑了，眼角挂着泪。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雷光落肩蜷成兽形、他笑起来",
+      "dialogue": "林昭：原来雷，也会认人。",
+      "camera": "特写/浅景深固定",
+      "emotion": "释然/感动",
+      "duration": 7.0,
+      "sound_cue": "微风/余雷",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "clouds parting, clear sky, man, first smile, tears at eye corners, residual lightning curling into small beast shape on his shoulder, glowing sparks, soft sunlight, emotional moment"
+    }
+  ]
+}

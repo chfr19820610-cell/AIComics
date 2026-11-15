@@ -1,0 +1,129 @@
+{
+  "episode_code": "E06",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "action",
+      "visual": "九十九盏魂灯同时点燃，火浪扑向祭柱，被铁链绑住的林昭在火光里缓缓抬头。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "魂灯齐燃、火浪扑向祭柱",
+      "dialogue": "",
+      "camera": "中景/逆光仰拍",
+      "emotion": "决绝/压抑",
+      "duration": 7.0,
+      "sound_cue": "火焰腾起/铁链绷紧",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "99 soul lanterns igniting simultaneously, blazing fire wave surging toward sacrificial pillar, Lin Zhao bound by iron chains, slowly raising head amid firelight, night altar, dramatic orange glow"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "祭天台全景，魂灯围成圆阵，雷云压顶翻涌，众弟子持剑列阵，火光在风里摇晃。",
+      "characters": [
+        "林昭",
+        "严崇",
+        "苏璃"
+      ],
+      "action": "雷云翻卷、火焰摇曳",
+      "dialogue": "",
+      "camera": "大远景/航拍环绕",
+      "emotion": "肃杀/压迫",
+      "duration": 7.0,
+      "sound_cue": "闷雷滚动/旗帜猎猎",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "panoramic view of sacrificial altar, soul lamps forming circular array, surging thunderclouds overhead, disciples holding swords in formation, flickering firelight in wind, dramatic storm lighting"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "closeup",
+      "visual": "苏璃握剑的手部特写，指节泛白，剑柄缠绳被攥出褶皱，背景是严崇在高台宣令的虚化身影。",
+      "characters": [
+        "苏璃",
+        "严崇"
+      ],
+      "action": "手指收紧、缠绳起褶",
+      "dialogue": "严崇（画外）：解封献祭，全宗同证。",
+      "camera": "大特写/浅景深",
+      "emotion": "紧张/隐忍",
+      "duration": 7.0,
+      "sound_cue": "剑柄轻响/宣令回音",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "close-up of Su Li's hand gripping sword hilt, whitened knuckles, wrinkled cord-wrapped handle, blurred figure of Yan Chong proclaiming decree on high platform in background, cold dim lighting"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "action",
+      "visual": "七名长老合力挥剑斩向林昭胸口锁链，金光迸裂，第一道锁应声而断，气浪掀飞魂灯。",
+      "characters": [
+        "七位长老",
+        "林昭"
+      ],
+      "action": "齐剑斩落、锁链断裂",
+      "dialogue": "长老：断！",
+      "camera": "中景/高速摄影",
+      "emotion": "爆发/凌厉",
+      "duration": 7.0,
+      "sound_cue": "剑鸣齐斩/锁链崩断",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "seven elders, swinging swords together, slashing chains on Lin Zhao's chest, golden light bursting, first chain snapping apart, shockwave blowing away soul lamps, dark hall, glowing golden light"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "action",
+      "visual": "天雷如瀑布砸落，锁链虚影暴涨成穹顶护住全宗，反震之力把三名长老震得倒飞出去。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "天雷砸落、锁链成穹顶、长老被震飞",
+      "dialogue": "",
+      "camera": "全景/广角俯拍",
+      "emotion": "震撼/威压",
+      "duration": 7.0,
+      "sound_cue": "天雷轰鸣/气浪炸裂",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "heavenly lightning crashing down like waterfall, giant chain phantom expanding into dome barrier protecting sect, three elders blasted backward mid-air, recoil shockwave, night sky, harsh lightning glow"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "key_moment",
+      "visual": "林昭跪在焦土中央毫发无伤，四周横七竖八倒着焦黑的人影，他低头看胸口；云层裂开一只金瞳。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低头看锁链、金瞳睁开",
+      "dialogue": "林昭：原来……一直在护我的，是它。",
+      "camera": "中景/仰拍缓慢拉远",
+      "emotion": "震惊/恍然",
+      "duration": 7.0,
+      "sound_cue": "余雷低鸣/风声死寂",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao kneeling unharmed at center of scorched earth, charred black silhouettes sprawled around him, looking down at his own chest, cracked clouds revealing a giant golden eye, dim ember glow"
+    }
+  ]
+}

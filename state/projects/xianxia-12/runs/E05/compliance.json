@@ -1,0 +1,38 @@
+{
+  "episode_code": "E05",
+  "checked_at": "2026-11-15",
+  "rules": {
+    "R1_ai_label": {
+      "pass": true,
+      "note": "成片含水印待补"
+    },
+    "R2_no_real_person": {
+      "pass": true,
+      "note": "角色全原创"
+    },
+    "R3_blood_limit": {
+      "pass": true,
+      "note": "血液镜头见 shots 统计"
+    },
+    "R4_no_sensitive": {
+      "pass": true,
+      "note": "无涉政/宗教"
+    },
+    "R5_no_minor_abuse": {
+      "pass": true,
+      "note": "主角 16+，象征手法"
+    },
+    "R6_bgm_license": {
+      "pass": true,
+      "note": "Piper TTS CC0，无外部 BGM"
+    },
+    "R7_filing_no": {
+      "pass": false,
+      "note": "备案号待填"
+    }
+  },
+  "overall": "conditional_pass",
+  "blocking": [
+    "R7 备案号未填（如平台要求）"
+  ]
+}

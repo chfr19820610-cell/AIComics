@@ -1,0 +1,127 @@
+{
+  "episode_code": "E04",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "action",
+      "visual": "两条铁链拖着林昭跪行穿过执法堂，膝盖在石面上擦出血痕，两侧弟子低头窃笑。",
+      "characters": [
+        "林昭",
+        "执法弟子"
+      ],
+      "action": "被铁链拖行、膝盖擦出血痕",
+      "dialogue": "",
+      "camera": "全景/低角度跟拍",
+      "emotion": "屈辱/隐忍/痛楚",
+      "duration": 7.0,
+      "sound_cue": "铁链拖地/窃笑细语",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "lin zhao, young male cultivator, kneeling, dragged forward by two iron chains, bleeding scraped knees on stone floor, law enforcement hall, disciples on both sides lowering heads and snickering, cold dim interior lighting"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "执法堂大殿，九根黑铁巨柱撑起穹顶，一道天窗光柱落在中央测灵石上，尘埃在光里浮动。",
+      "characters": [],
+      "action": "光柱缓慢移动",
+      "dialogue": "",
+      "camera": "大远景/对称构图横移",
+      "emotion": "肃穆/压抑/威严",
+      "duration": 7.0,
+      "sound_cue": "殿内回响/尘埃浮动",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "law enforcement hall interior, nine black iron pillars, high dome ceiling, central spirit-testing stone, single skylight beam, floating dust motes, dramatic shaft of light, dark shadows"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "dialogue",
+      "visual": "严崇高坐铁椅俯视，林昭被按在光柱里，双手锁着铁链，两侧弟子交头接耳。",
+      "characters": [
+        "严崇",
+        "林昭"
+      ],
+      "action": "俯身、抬手示意",
+      "dialogue": "严崇：把手放上去。",
+      "camera": "中景/正反打",
+      "emotion": "威压/紧张/轻蔑",
+      "duration": 7.0,
+      "sound_cue": "铁链轻晃/交头接耳",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "Yan Chong seated on iron throne looking down, Lin Zhao pinned inside light pillar, wrists chained, disciples whispering on both sides, dark hall, cold overhead light"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "closeup",
+      "visual": "林昭手掌按上测灵石，石内血丝状裂纹自掌心蔓延亮起，映亮他紧绷的下颌。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "按掌、裂纹蔓延",
+      "dialogue": "",
+      "camera": "大特写/急推",
+      "emotion": "紧绷/异变/凝重",
+      "duration": 7.0,
+      "sound_cue": "石裂细响/低鸣渐起",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao, palm pressed on spirit-testing stone, blood-vessel-like cracks spreading from palm glowing inside stone, illuminated tense jaw, stone platform, cold blue glow"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "action",
+      "visual": "测灵石轰然炸成齑粉，气浪掀翻前排弟子，碎石四射，严崇抬袖遮面。",
+      "characters": [
+        "林昭",
+        "严崇"
+      ],
+      "action": "炸裂、气浪掀人",
+      "dialogue": "弟子：他……没死？",
+      "camera": "全景/广角低机位",
+      "emotion": "震惊/爆发/混乱",
+      "duration": 7.0,
+      "sound_cue": "石爆轰鸣/碎石四射",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "shattered spirit-testing stone exploding into dust, blast wave hurling front-row disciples backward, flying rock fragments, Yan Chong raising sleeve to shield face, stone platform, dust cloud, harsh backlight, dynamic motion"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "key_moment",
+      "visual": "烟尘里林昭仍跪着，碎片悬停身周一寸；殿门处掌门捏着碎石，断指玉扳指反着冷光。",
+      "characters": [
+        "玄尘子",
+        "林昭"
+      ],
+      "action": "碎片悬停旋转",
+      "dialogue": "玄尘子：这个纹……不该还在。",
+      "camera": "特写/浅景深",
+      "emotion": "诡谲/惊疑/冷峻",
+      "duration": 7.0,
+      "sound_cue": "烟尘余响/碎片悬停",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao kneeling in dust, shards hovering one inch around body, sect master at hall gate gripping gravel, broken-finger jade ring cold gleam, ruined hall interior, dust-filled air, cold rim lighting"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "episode_code": "E07",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "action",
+      "visual": "火把连成长龙围住山门，严崇一剑劈开雨幕，剑气朝石阶下的林昭压去。",
+      "characters": [
+        "严崇",
+        "林昭"
+      ],
+      "action": "剑劈雨幕、剑气下压",
+      "dialogue": "严崇：灾星，留下命。",
+      "camera": "中景/手持跟拍",
+      "emotion": "压迫/杀意",
+      "duration": 7.0,
+      "sound_cue": "雷声/剑鸣",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "torchlight dragon formation surrounding mountain gate, Yan Chong swinging sword, sword aura splitting rain curtain, sword qi pressing toward Lin Zhao at stone steps, night, rain, dramatic torchlight"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "雨夜青冥剑宗石阶，火把长龙绕山，数百弟子持剑合围，雨水砸在剑身上溅起白雾。",
+      "characters": [
+        "林昭",
+        "苏璃",
+        "青冥弟子"
+      ],
+      "action": "雨幕倾泻、火把摇曳",
+      "dialogue": "",
+      "camera": "大远景/雨夜航拍",
+      "emotion": "肃杀/紧张",
+      "duration": 7.0,
+      "sound_cue": "暴雨/剑雨",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "rainy night, Qingming Sword Sect stone stairs, long dragon of torches winding around mountain, hundreds of disciples surrounding with drawn swords, rainwater splashing off blades, white mist, torchlight glow, dark stormy sky"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "closeup",
+      "visual": "苏璃立在人群最前，雨水顺着剑锋滴落，她抿着唇，眼底有挣扎，火光照亮半张脸。",
+      "characters": [
+        "苏璃"
+      ],
+      "action": "雨滴顺剑锋滑落",
+      "dialogue": "",
+      "camera": "特写/浅景深",
+      "emotion": "挣扎/隐忍",
+      "duration": 7.0,
+      "sound_cue": "雨滴/火把噼啪",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "Su Li, female sword cultivator, standing at forefront of crowd, rain dripping from sword blade, biting lip, conflicted eyes, half face lit by firelight, night rain, crowd behind, dramatic lighting"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "action",
+      "visual": "林昭被三道剑气逼退，后背旧伤渗血，脚跟踏碎青石台阶，掌心雷纹忽明忽暗。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "被剑气逼退、踏碎石阶",
+      "dialogue": "",
+      "camera": "中景/侧向跟拍",
+      "emotion": "狼狈/倔强",
+      "duration": 7.0,
+      "sound_cue": "碎石/闷雷",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao, retreating, three sword-qi slashes, bleeding old back wound, heel crushing green stone steps, flickering thunder rune on palm, tense combat, dim light"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "key_moment",
+      "visual": "严崇一剑刺向林昭后心，苏璃横剑挡下，火星在两人之间炸开，映亮交错的剑身。",
+      "characters": [
+        "严崇",
+        "苏璃",
+        "林昭"
+      ],
+      "action": "回身横剑格挡、火星四溅",
+      "dialogue": "严崇：你要护这灾星？",
+      "camera": "中景/正反打高速",
+      "emotion": "震惊/决绝",
+      "duration": 7.0,
+      "sound_cue": "金铁交击/火星炸裂",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "Yan Chong thrusting sword at Lin Zhao's back, Su Li blocking with horizontal blade, sparks exploding between them, crossed swords illuminated, night battlefield, dramatic backlight"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "key_moment",
+      "visual": "苏璃剑尖转向宗门，雨幕被剑气撕开一道口子，她挡在林昭身前，一字一句开口。",
+      "characters": [
+        "苏璃",
+        "林昭"
+      ],
+      "action": "剑尖转向、雨幕裂开",
+      "dialogue": "苏璃：我守的是他，不是封印。",
+      "camera": "近景/仰拍推近",
+      "emotion": "坚定/悲壮",
+      "duration": 7.0,
+      "sound_cue": "剑气呼啸/雨声",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "Su Li, sword tip turning toward sect, rain curtain torn open by sword qi, standing protectively in front of Lin Zhao, speaking word by word, stormy night, dramatic backlight"
+    }
+  ]
+}

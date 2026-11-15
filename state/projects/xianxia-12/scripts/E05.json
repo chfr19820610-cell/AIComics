@@ -1,0 +1,141 @@
+{
+  "episode_code": "E05",
+  "title": "九锁只剩三道",
+  "act": "第二幕 觉醒",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "outline": {
+    "logline": "老人说：那锁不是锁你，是锁天",
+    "creator_goal": "揭开千年前铸锁的真相，把「枷锁」在观众心里重新定义为「护盾」。",
+    "emotional_curve": "压抑→爆发",
+    "duration_total": 42.0,
+    "shot_count": 6
+  },
+  "act_table": {
+    "act_id": "E05",
+    "act_name": "第二幕 觉醒",
+    "position": "中段"
+  },
+  "scene_table": [
+    {
+      "shot_id": "S01",
+      "scene_desc": "磷火在断碑间亮起，映出一只枯手按住林昭肩膀，他猛地回头，瞳孔里映着幽蓝的火。",
+      "shot_type": "closeup",
+      "camera": "特写/浅景深手持",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S02",
+      "scene_desc": "葬灵渊底碑林，数百块断碑斜插黑土，蓝绿磷火在碑间漂浮，冷光笼罩整片洼地。",
+      "shot_type": "establishing",
+      "camera": "大远景/缓慢推轨",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S03",
+      "scene_desc": "老墨抡起铁杖重砸石碑，碑面荡开波纹，浮出九位大能围坐铸锁的古老壁画。",
+      "shot_type": "action",
+      "camera": "中景/低角度固定",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S04",
+      "scene_desc": "壁画特写，一条锁链从婴儿胸口生出，一圈圈缠住翻涌的黑雾，黑雾里浮出一张模糊的脸。",
+      "shot_type": "closeup",
+      "camera": "大特写/微距推近",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S05",
+      "scene_desc": "老墨掀开衣襟，胸口也有暗金锁链只剩一道未断，他平静地看着林昭，磷火映亮两张脸。",
+      "shot_type": "dialogue",
+      "camera": "中景/正面平视",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S06",
+      "scene_desc": "林昭胸口传来一声脆响，他低头，第二道锁正裂开一道金缝，金光漏出照亮他的下巴。",
+      "shot_type": "key_moment",
+      "camera": "大特写/急速推近",
+      "duration": 7.0
+    }
+  ],
+  "character_table": [
+    {
+      "character": "林昭",
+      "shot_ids": [
+        "S01",
+        "S02",
+        "S04",
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "character": "老墨",
+      "shot_ids": [
+        "S01",
+        "S02",
+        "S03",
+        "S05"
+      ]
+    }
+  ],
+  "hook_table": {
+    "opening_hook": {
+      "shot_id": "S01",
+      "description": "磷火在断碑间亮起，映出一只枯手按住林昭肩膀，他猛地回头，瞳孔里映着幽蓝的火。",
+      "type": "悬念"
+    },
+    "ending_hook": {
+      "shot_id": "S06",
+      "description": "老墨说九道锁只剩三道，话音未落，第二道锁裂了。"
+    }
+  },
+  "dialogue_table": [
+    {
+      "shot_id": "S03",
+      "line": "老墨：看清楚，这是你出生那天。",
+      "emotion": ""
+    },
+    {
+      "shot_id": "S04",
+      "line": "林昭：那团黑雾……是我？",
+      "emotion": ""
+    },
+    {
+      "shot_id": "S05",
+      "line": "老墨：九道锁，只剩三道。",
+      "emotion": ""
+    },
+    {
+      "shot_id": "S06",
+      "line": "林昭：又裂了。",
+      "emotion": ""
+    }
+  ],
+  "ccv_findings": {
+    "round": 1,
+    "verdict": "CONCERNS",
+    "scores": {
+      "hook": 4,
+      "curve": 3,
+      "cliffhanger": 4
+    },
+    "issues": [
+      "18秒6镜信息密度过高，S03-S04壁画解释性镜头偏静态，容易在中段掉节奏",
+      "情绪曲线缺少明确爆发点：S05老墨展示锁链是信息揭示而非情绪释放，S06裂锁是悬念推进但主角被动，压抑有余、爆发不足",
+      "S02纯环境镜在18秒短剧里性价比低，可能稀释S01钩子势能",
+      "台词'那团黑雾……是我？'与S04画面重复解释，浪费秒数",
+      "S06'又裂了'台词情绪偏平，未强化危机感"
+    ],
+    "suggestions": [
+      "将S02环境信息压缩进S01背景或S03碑面波纹中，省出2秒给S05-S06情绪放大",
+      "S05老墨掀衣襟时加一个林昭后退半步或握拳的肢体反应，制造'压抑→震动'的微爆发",
+      "S04黑雾人脸可做0.5秒闪切林昭同角度面部，用视觉对位替代台词提问，删掉'是我？'",
+      "S06裂锁瞬间加金光扫过林昭瞳孔+老墨铁杖脱手落地音效，把'又裂了'改为老墨低声'比上一世……快了十年'，提升危机与信息钩",
+      "S03铁杖砸碑可加一次回弹震退老墨半步，暗示锁的反噬，为结尾裂锁埋物理因果"
+    ],
+    "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  }
+}

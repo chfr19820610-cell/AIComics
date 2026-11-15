@@ -1,0 +1,149 @@
+{
+  "episode_code": "E11",
+  "title": "第三道锁",
+  "act": "第四幕 真相",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "outline": {
+    "logline": "最后一道锁断的时候，天道亲自来了",
+    "creator_goal": "决战与牺牲，主角主动解封以身为饵，天道第一次以人形降世。",
+    "emotional_curve": "碾压→震撼",
+    "duration_total": 42.0,
+    "shot_count": 6
+  },
+  "act_table": {
+    "act_id": "E11",
+    "act_name": "第四幕 真相",
+    "position": "中段"
+  },
+  "scene_table": [
+    {
+      "shot_id": "S01",
+      "scene_desc": "天穹裂开巨大缺口，金色雨水倒灌人间，白衣无面的天道使者从裂缝里缓缓垂落。",
+      "shot_type": "action",
+      "camera": "远景/仰拍",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S02",
+      "scene_desc": "天穹裂口下方，金雨落在焦土上冒起白烟，云层被撕成碎片，光柱贯穿天地。",
+      "shot_type": "establishing",
+      "camera": "大远景/垂直俯拍",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S03",
+      "scene_desc": "使者抬手一指，金光贯穿老墨胸口，铁杖断成两截落地，老人跪倒，血滴在焦土上。",
+      "shot_type": "action",
+      "camera": "中景/高速",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S04",
+      "scene_desc": "林昭低头看胸口，第三道锁正在崩解，金光从裂缝里漏出，映亮他半张脸和发红的眼眶。",
+      "shot_type": "closeup",
+      "camera": "大特写/推近",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S05",
+      "scene_desc": "他抬手捏碎最后一道锁，雷海冲天而起，把白衣使者撕成漫天金屑，云层当场退开。",
+      "shot_type": "action",
+      "camera": "全景/仰拍环绕",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S06",
+      "scene_desc": "雷海散尽，天穹金眼闭合又睁开，金光凝成一个金袍人形落在他面前，单膝跪下低头行礼。",
+      "shot_type": "key_moment",
+      "camera": "中景/仰拍缓推",
+      "duration": 7.0
+    }
+  ],
+  "character_table": [
+    {
+      "character": "天道使者",
+      "shot_ids": [
+        "S01",
+        "S03",
+        "S05"
+      ]
+    },
+    {
+      "character": "老墨",
+      "shot_ids": [
+        "S03"
+      ]
+    },
+    {
+      "character": "林昭",
+      "shot_ids": [
+        "S03",
+        "S04",
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "character": "金袍人形",
+      "shot_ids": [
+        "S06"
+      ]
+    }
+  ],
+  "hook_table": {
+    "opening_hook": {
+      "shot_id": "S01",
+      "description": "天穹裂开巨大缺口，金色雨水倒灌人间，白衣无面的天道使者从裂缝里缓缓垂落。",
+      "type": "悬念"
+    },
+    "ending_hook": {
+      "shot_id": "S06",
+      "description": "封印全崩，天穹金眼化作人形落地，单膝跪在他面前。"
+    }
+  },
+  "dialogue_table": [
+    {
+      "shot_id": "S01",
+      "line": "天道使者：天弃之子，归位。",
+      "emotion": ""
+    },
+    {
+      "shot_id": "S03",
+      "line": "老墨：锁……是门。别开太久。",
+      "emotion": ""
+    },
+    {
+      "shot_id": "S05",
+      "line": "林昭：那就都别活了。",
+      "emotion": ""
+    },
+    {
+      "shot_id": "S06",
+      "line": "金袍人形：终于，见到你了。",
+      "emotion": ""
+    }
+  ],
+  "ccv_findings": {
+    "round": 1,
+    "verdict": "CONCERNS",
+    "scores": {
+      "hook": 4,
+      "curve": 4,
+      "cliffhanger": 5
+    },
+    "issues": [
+      "18秒6镜信息密度过高，S03老墨被贯穿与S05捏碎锁之间缺少林昭的情绪反应镜，导致'压抑→爆发'的转折靠台词硬撑",
+      "S04'第三道锁崩解'与S05'捏碎最后一道锁'逻辑重复，观众会困惑到底还有几道锁",
+      "S06天道单膝跪地是强钩子，但'金袍人形'与S01'白衣无面使者'造型割裂，缺少视觉关联，观众可能认不出是同一存在",
+      "台词'那就都别活了'出现在S05爆发点，但S03老墨刚死，缺少林昭看到老墨死的反应，情绪跳跃"
+    ],
+    "suggestions": [
+      "S04改为林昭目睹老墨倒地后低头看胸口锁裂，加一个0.5秒手抖特写，把'怒'的动机钉在老墨之死上",
+      "合并S04/S05的锁设定：S04展示'最后一道锁'裂开金光漏出，S05直接捏碎，删掉'第三道锁'表述避免计数混乱",
+      "S06金袍人形落地时保留一缕白衣碎片或金色雨滴残留，视觉上呼应S01使者，让观众秒懂'天道本体降临'",
+      "S05台词'那就都别活了'前加半秒静默+林昭抬眼特写，给爆发一个呼吸点，强化压抑到爆发的曲线"
+    ],
+    "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  }
+}

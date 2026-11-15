@@ -1,0 +1,124 @@
+{
+  "episode_code": "E02",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "closeup",
+      "visual": "黑暗中林昭猛地睁眼，胸口锁链纹炸亮，金光从衣襟缝里透出，映亮他扭曲的脸和滚落的汗珠。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "猛然睁眼、锁链纹炸亮",
+      "dialogue": "",
+      "camera": "大特写/固定加急推",
+      "emotion": "剧痛/惊觉",
+      "duration": 7.0,
+      "sound_cue": "锁链嗡鸣/急促呼吸",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao, eyes snapping open in darkness, glowing chain tattoo on chest, golden light bursting through robe seams, distorted face, rolling sweat droplets, dark environment, intense golden glow lighting"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "深夜杂役柴房全景，月光从破窗漏进来，草席散乱，墙角立着几把锈剑，梁上挂着蛛网。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "月光在地面缓慢移动",
+      "dialogue": "",
+      "camera": "全景/缓慢横移",
+      "emotion": "寂静/压抑",
+      "duration": 7.0,
+      "sound_cue": "夜风/虫鸣",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "night, full view of shabby servant woodshed, moonlight leaking through broken window, scattered straw mats, several rusty swords leaning in corner, cobwebs hanging from rafters, dim blue moonlight, dusty interior"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "action",
+      "visual": "他痛得蜷缩着抓挠木板，指甲刮出木屑，油灯被气劲震灭，只剩月光勾出他绷紧的侧脸。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "蜷缩抓挠、油灯震灭",
+      "dialogue": "林昭：啊——！",
+      "camera": "中景/手持俯拍",
+      "emotion": "剧痛/挣扎",
+      "duration": 7.0,
+      "sound_cue": "指甲刮木/油灯熄灭",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "boy curled up in pain, clawing wooden floor, fingernails scraping wood splinters, oil lamp blown out by qi burst, darkness, moonlight outlining tense side profile, night"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "key_moment",
+      "visual": "窗纸被雷光映得惨白，一道无声天雷破窗劈入，锁链纹腾空化作虚影，在半空把整条雷光吞下去。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链虚影腾空吞雷",
+      "dialogue": "",
+      "camera": "远景/固定长焦",
+      "emotion": "震撼/异变",
+      "duration": 7.0,
+      "sound_cue": "无声天雷/锁链轰鸣",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "white paper window lit by lightning, silent heavenly thunder breaking through window, chain-pattern runes rising into air as phantom, devouring entire lightning bolt midair, dark interior, harsh lightning glow"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "transition",
+      "visual": "雷光散尽，屋内陈设安然无恙，只有地面焦出一圈人形轮廓，窗外竹林还在冒青烟。",
+      "characters": [],
+      "action": "青烟上升、焦痕余烬明灭",
+      "dialogue": "",
+      "camera": "全景/缓慢横摇",
+      "emotion": "余悸/诡异",
+      "duration": 7.0,
+      "sound_cue": "焦土余响/竹叶轻爆",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "aftermath of lightning strike, human-shaped scorch mark on floor, intact room interior, furniture unharmed, smoke rising from bamboo forest outside window, faint embers, dim indoor lighting, eerie calm"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "dialogue",
+      "visual": "门口站着瞎眼灰袍老人老墨，铁杖点地，枯手攥住林昭手腕，月光照亮他空洞的眼窝。",
+      "characters": [
+        "老墨",
+        "林昭"
+      ],
+      "action": "铁杖点地、攥住手腕",
+      "dialogue": "老墨：想活命，就别解开它。",
+      "camera": "中近景/背光低机位",
+      "emotion": "警告/神秘",
+      "duration": 7.0,
+      "sound_cue": "铁杖点地/夜风",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "blind old man, grey robe, standing at doorway, iron staff touching ground, withered hand gripping young man's wrist, empty eye sockets, moonlight illuminating face, night, tense atmosphere"
+    }
+  ]
+}

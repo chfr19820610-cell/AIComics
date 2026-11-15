@@ -1,0 +1,129 @@
+{
+  "episode_code": "E09",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "action",
+      "visual": "山门前百名弟子拔剑齐指，林昭一步踏上石阶，剑尖在晨光里抖成一片寒芒。",
+      "characters": [
+        "林昭",
+        "青冥弟子"
+      ],
+      "action": "拔剑齐指、踏阶而上",
+      "dialogue": "",
+      "camera": "中景/低角度推轨",
+      "emotion": "肃杀/压迫",
+      "duration": 7.0,
+      "sound_cue": "拔剑齐鸣/晨风",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "100 disciples drawing swords, pointing blades forward, mountain gate, stone stairs, Lin Zhao stepping up, sword tip trembling, cold gleam, morning light, back view, tense standoff"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "清晨青冥剑宗山门，晨雾未散，千级石阶直上云端，云海翻着金边。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "云雾流动、金边浮动",
+      "dialogue": "",
+      "camera": "大远景/航拍上升",
+      "emotion": "空灵/庄严",
+      "duration": 7.0,
+      "sound_cue": "晨鸟/云海流动",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "Qingming Sword Sect mountain gate at dawn, thousand stone steps ascending into clouds, sea of clouds with golden edges, lingering morning mist, soft dawn light"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "action",
+      "visual": "数十名长老联手布下剑阵镇压，林昭抬手一记雷刀，剑阵如琉璃碎裂，光屑四散。",
+      "characters": [
+        "长老",
+        "林昭"
+      ],
+      "action": "剑阵展开、雷刀劈碎",
+      "dialogue": "长老：镇压！",
+      "camera": "全景/高速摄影",
+      "emotion": "震撼/爆发",
+      "duration": 7.0,
+      "sound_cue": "雷鸣炸裂/琉璃碎裂",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "many elders, sword formation, suppressing, Lin Zhao, raising hand, single lightning blade strike, sword array shattering like glass, light shards scattering, night battlefield, dramatic lightning glow"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "closeup",
+      "visual": "严崇跌坐在碎剑堆里，铁面裂开一道缝，瞳孔放大，手撑着地面往后退。",
+      "characters": [
+        "严崇"
+      ],
+      "action": "跌坐、撑地后退",
+      "dialogue": "严崇：不可能……",
+      "camera": "特写/俯拍",
+      "emotion": "惊恐/崩溃",
+      "duration": 7.0,
+      "sound_cue": "碎剑落地/急促喘息",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "Yan Chong collapsed among shattered sword shards, iron mask cracked with a fissure, dilated pupils, hand pressing ground while retreating backward, dim cold light, dusty debris"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "action",
+      "visual": "赵乾跪爬着扑到林昭脚边磕头，林昭目不斜视跨过他，靴底碾过一片碎玉。",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "跪爬磕头、跨步越过",
+      "dialogue": "赵乾：饶命！饶命！",
+      "camera": "中景/侧跟",
+      "emotion": "屈辱/冷漠",
+      "duration": 7.0,
+      "sound_cue": "磕头闷响/碎玉碾碎",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "zhao qian kneeling crawling lunging at lin zhao's feet kowtowing, lin zhao striding past without looking, boot sole crushing shattered jade shards, stone courtyard, cold harsh light"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "key_moment",
+      "visual": "掌门玄尘子双膝跪地，额头磕在石阶上，抬头说话，晨光刺得他睁不开眼。",
+      "characters": [
+        "玄尘子",
+        "林昭"
+      ],
+      "action": "双膝跪地、额头触石",
+      "dialogue": "玄尘子：你不是天弃之子……你是天道的备份。",
+      "camera": "特写/浅景深俯拍",
+      "emotion": "震撼/敬畏",
+      "duration": 7.0,
+      "sound_cue": "额头撞石/晨风",
+      "act_id": "confrontation",
+      "priority": "normal",
+      "prompt_en": "sect leader Xuan Chenzi, kneeling on both knees, forehead touching stone steps, looking up, speaking, squinting against light, stone staircase, morning sunlight, harsh glare"
+    }
+  ]
+}

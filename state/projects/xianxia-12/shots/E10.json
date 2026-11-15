@@ -1,0 +1,124 @@
+{
+  "episode_code": "E10",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "action",
+      "visual": "林昭抬脚踏上第一级白玉阶，脚下云海轰然炸开，衣袍被罡风猛地掀起。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "踏阶、云海炸开",
+      "dialogue": "",
+      "camera": "中景/仰拍",
+      "emotion": "决绝/霸气",
+      "duration": 7.0,
+      "sound_cue": "云海炸开/罡风呼啸",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao, stepping onto first white jade stair, robes violently billowing in fierce wind, exploding sea of clouds beneath feet, swirling mist, dramatic backlight, cold ethereal glow"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "云海之上白玉天梯直插天穹，看不到尽头，金霞铺满台阶，风把云吹成河流。",
+      "characters": [],
+      "action": "云河奔涌、金霞流动",
+      "dialogue": "",
+      "camera": "大远景/航拍拉升",
+      "emotion": "壮阔/神圣",
+      "duration": 7.0,
+      "sound_cue": "风声/云河奔涌",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "white jade heavenly staircase above sea of clouds, reaching into sky, endless, golden sunset glow covering steps, wind blowing clouds into flowing river, vast sky, ethereal lighting"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "action",
+      "visual": "他一步步踏阶而上，玉阶被踩出裂纹，身后宗门缩成一个黑点，脚下云层翻涌。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "拾级而上、玉阶开裂",
+      "dialogue": "",
+      "camera": "全景/背后跟拍",
+      "emotion": "孤绝/坚定",
+      "duration": 7.0,
+      "sound_cue": "玉阶碎裂/脚步回响",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "young man ascending jade stairs, foot cracking stone steps, sect shrinking to black dot behind, churning sea of clouds below, swirling mist, cold dim light, wide shot"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "key_moment",
+      "visual": "天梯尽头的骸骨长廊，数十具白骨靠壁而坐，每具胸口都嵌着一段断裂的锁链。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "穿行长廊、锁链残片轻晃",
+      "dialogue": "林昭：第九个……我是第九个？",
+      "camera": "全景/缓慢横移",
+      "emotion": "诡异/悚然",
+      "duration": 7.0,
+      "sound_cue": "锁链轻响/阴风",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "skeletal corridor at heavenly stair summit, dozens of skeletons sitting against walls, broken chains embedded in each chest, bone-lined passage, dim eerie glow, cold blue light, deep shadows"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "closeup",
+      "visual": "一具白骨的手骨攥着一块残碑，碑上刻着「第九个」三字，指骨已经嵌进石缝。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "手骨攥碑、尘屑掉落",
+      "dialogue": "",
+      "camera": "大特写/微距",
+      "emotion": "惊悚/疑惑",
+      "duration": 7.0,
+      "sound_cue": "石屑摩擦/心跳",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "skeletal hand gripping broken stone tablet, carved chinese characters, finger bones embedded in stone cracks, ancient ruins, dim eerie light, close-up"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "closeup",
+      "visual": "老墨在长廊尽头解下蒙眼的旧布，睁开眼，瞳孔是与林昭相同的雷纹，金光在纹路里流动。",
+      "characters": [
+        "老墨",
+        "林昭"
+      ],
+      "action": "解下眼布、睁眼露雷纹",
+      "dialogue": "老墨：我是第一个。",
+      "camera": "特写/正面推近",
+      "emotion": "震惊/宿命",
+      "duration": 7.0,
+      "sound_cue": "布帛滑落/雷纹嗡鸣",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "old man untying blindfold at end of long corridor, opening eyes, lightning-pattern pupils, flowing golden light in eye veins, dark hall, dramatic glow"
+    }
+  ]
+}

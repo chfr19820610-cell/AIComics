@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "note": "金样 = 已验收的最高质量镜，后续生成应向这些看齐。",
+  "samples": [
+    {
+      "episode": "E06",
+      "shot": "S02",
+      "type": "大全景",
+      "why": "祭坛俯视，99 魂灯+火海+云涡，电影级构图，无角色可漂移",
+      "path": "assets/E06/h3video/E06_S02_h3.mp4"
+    },
+    {
+      "episode": "E05",
+      "shot": "S01",
+      "type": "中景",
+      "why": "碑林+蓝磷火+枯手搭肩，氛围最到位，写实动漫风",
+      "path": "assets/E05/h3video/E05_S01_h3.mp4"
+    },
+    {
+      "episode": "E03",
+      "shot": "S02",
+      "type": "巨兽特写",
+      "why": "墨鳞蛟金竖瞳+獠牙，气势足，风格稳定",
+      "path": "assets/E03/h3video/E03_S02_h3.mp4"
+    },
+    {
+      "episode": "E01",
+      "shot": "S02",
+      "type": "全景",
+      "why": "演武场+围观弟子，构图完整",
+      "path": "assets/E01/h3video/E01_S02_h3.mp4"
+    },
+    {
+      "episode": "E03",
+      "shot": "S06",
+      "type": "手部特写",
+      "why": "手掌金色锁链纹，特效干净，字幕对位准确",
+      "path": "assets/E03/h3video/E03_S06_h3.mp4"
+    }
+  ],
+  "anti_golden": [
+    {
+      "episode": "E04",
+      "shot": "S01",
+      "reason": "Q 版卡通，圆脸夸张表情",
+      "type": "反例"
+    },
+    {
+      "episode": "E05",
+      "shot": "S06",
+      "reason": "脸部大特写变 Q 版",
+      "type": "反例"
+    },
+    {
+      "episode": "E03",
+      "shot": "S01",
+      "reason": "群像 Q 版化",
+      "type": "反例"
+    }
+  ]
+}

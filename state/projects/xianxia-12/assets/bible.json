@@ -1,0 +1,299 @@
+{
+  "project_id": "xianxia-12",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "source_of_truth": true,
+  "note": "本文件是角色/场景/道具的唯一真相源（SSOT）。任何 prompt 必须引用此处的 id。",
+  "characters": [
+    {
+      "id": "LC-001",
+      "name": "林昭",
+      "role": "主角",
+      "age": 16,
+      "function": "承载观众代入与反转升级",
+      "hair": "black, short messy, low ponytail",
+      "costume": "tattered grey hemp robe over deep blue silk inner robe",
+      "key_features": [
+        "nine golden chain runes on chest",
+        "thin, wiry build"
+      ],
+      "visual_anchor": "16-year-old xianxia boy, black hair low ponytail, grey hemp robe, blue inner lining",
+      "voice": "zh_CN-chaowen-medium",
+      "image_refs": {
+        "front": "assets/characters/林昭/front.png"
+      },
+      "appears_in": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "E05",
+        "E06",
+        "E07",
+        "E08",
+        "E09",
+        "E10",
+        "E11",
+        "E12"
+      ]
+    },
+    {
+      "id": "LC-002",
+      "name": "严崇",
+      "role": "反派/执法长老",
+      "age": 55,
+      "function": "制造压迫感、执行规则",
+      "hair": "white, long beard",
+      "costume": "iron-grey daoist robe, iron crown",
+      "key_features": [
+        "cold eyes",
+        "iron mask fragments"
+      ],
+      "visual_anchor": "stern 55-year-old enforcer elder, white hair long beard, iron-grey robe, iron crown",
+      "voice": "zh_CN-chaowen-medium",
+      "image_refs": {},
+      "appears_in": [
+        "E04",
+        "E07",
+        "E09"
+      ]
+    },
+    {
+      "id": "LC-003",
+      "name": "赵乾",
+      "role": "对手/阻力源",
+      "age": 18,
+      "function": "制造冲突与羞辱",
+      "hair": "black, tied up",
+      "costume": "fine brocade robe",
+      "key_features": [
+        "arrogant expression"
+      ],
+      "visual_anchor": "arrogant 18-year-old disciple, black tied hair, brocade robe",
+      "voice": "zh_CN-chaowen-medium",
+      "image_refs": {},
+      "appears_in": [
+        "E01",
+        "E03",
+        "E09"
+      ]
+    },
+    {
+      "id": "LC-004",
+      "name": "墨鳞蛟",
+      "role": "巨兽/试炼",
+      "age": null,
+      "function": "绝境压迫与力量展示",
+      "hair": null,
+      "costume": null,
+      "key_features": [
+        "black scales",
+        "golden vertical pupils",
+        "fanged maw"
+      ],
+      "visual_anchor": "giant black-scaled flood dragon, golden vertical pupils, fanged maw",
+      "voice": "zh_CN-chaowen-medium",
+      "image_refs": {},
+      "appears_in": [
+        "E03"
+      ]
+    },
+    {
+      "id": "LC-005",
+      "name": "老墨",
+      "role": "关键助推/信息源",
+      "age": 70,
+      "function": "承担反转落点与身份揭示",
+      "hair": "white, messy",
+      "costume": "ragged robe",
+      "key_features": [
+        "hollow eye sockets",
+        "broken staff"
+      ],
+      "visual_anchor": "blind 70-year-old man, hollow eye sockets, ragged robe, broken staff",
+      "voice": "zh_CN-chaowen-medium",
+      "image_refs": {},
+      "appears_in": [
+        "E05",
+        "E08",
+        "E10",
+        "E11"
+      ]
+    },
+    {
+      "id": "LC-006",
+      "name": "苏清音",
+      "role": "盟友/剑仙",
+      "age": 20,
+      "function": "关键时点救援与情感线",
+      "hair": "black, high ponytail",
+      "costume": "white sword-maiden robe",
+      "key_features": [
+        "holds a long sword"
+      ],
+      "visual_anchor": "20-year-old sword maiden, black high ponytail, white robe, long sword",
+      "voice": "zh_CN-chaowen-medium",
+      "image_refs": {},
+      "appears_in": [
+        "E06",
+        "E07"
+      ]
+    },
+    {
+      "id": "LC-007",
+      "name": "玄尘子",
+      "role": "掌门/权威",
+      "age": 60,
+      "function": "权威象征与最终审判",
+      "hair": "black, daoist topknot",
+      "costume": "purple-gold daoist robe",
+      "key_features": [
+        "broken jade thumb ring"
+      ],
+      "visual_anchor": "60-year-old sect leader, daoist topknot, purple-gold robe, broken jade thumb ring",
+      "voice": "zh_CN-chaowen-medium",
+      "image_refs": {},
+      "appears_in": [
+        "E04",
+        "E09"
+      ]
+    },
+    {
+      "id": "LC-008",
+      "name": "金袍人形",
+      "role": "终极反派/天门使者",
+      "age": null,
+      "function": "揭示世界真相",
+      "hair": null,
+      "costume": "golden robe, faceless",
+      "key_features": [
+        "no face",
+        "golden robe"
+      ],
+      "visual_anchor": "faceless golden-robed figure, no facial features",
+      "voice": "zh_CN-chaowen-medium",
+      "image_refs": {},
+      "appears_in": [
+        "E11",
+        "E12"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "SC-001",
+      "name": "演武场",
+      "desc": "青石板+晨光+围观弟子"
+    },
+    {
+      "id": "SC-002",
+      "name": "下仆柴房",
+      "desc": "破窗+月华+锈剑"
+    },
+    {
+      "id": "SC-003",
+      "name": "悬崖",
+      "desc": "云雾+深渊+磷火"
+    },
+    {
+      "id": "SC-004",
+      "name": "律法堂",
+      "desc": "九根黑铁柱+天光柱"
+    },
+    {
+      "id": "SC-005",
+      "name": "碑林",
+      "desc": "断碑+蓝磷火"
+    },
+    {
+      "id": "SC-006",
+      "name": "祭台",
+      "desc": "99 魂灯+雷云"
+    },
+    {
+      "id": "SC-007",
+      "name": "白玉阶",
+      "desc": "云海+金光"
+    },
+    {
+      "id": "SC-008",
+      "name": "骨廊",
+      "desc": "骸骨+断裂锁链"
+    },
+    {
+      "id": "SC-009",
+      "name": "天门裂缝",
+      "desc": "金雨倒灌+光柱"
+    },
+    {
+      "id": "SC-010",
+      "name": "虚空黑水",
+      "desc": "镜面水面+星河倒影"
+    }
+  ],
+  "props": [
+    {
+      "id": "PR-001",
+      "name": "金锁链纹",
+      "desc": "胸前金色符文，锁链状蔓延"
+    },
+    {
+      "id": "PR-002",
+      "name": "断玉扳指",
+      "desc": "掌门佩戴的断裂玉扳指"
+    },
+    {
+      "id": "PR-003",
+      "name": "铁冠",
+      "desc": "严崇的铁制道冠"
+    },
+    {
+      "id": "PR-004",
+      "name": "断碑",
+      "desc": "刻着第九个字的断碑"
+    },
+    {
+      "id": "PR-005",
+      "name": "魂灯",
+      "desc": "99 盏祭祀魂灯"
+    }
+  ],
+  "effects": [
+    {
+      "id": "FX-001",
+      "name": "金色锁链",
+      "desc": "从胸口爆发，锁链状金色光纹"
+    },
+    {
+      "id": "FX-002",
+      "name": "紫色雷电",
+      "desc": "紫白电弧，掌心爆发"
+    },
+    {
+      "id": "FX-003",
+      "name": "蓝色磷火",
+      "desc": "幽蓝火焰，浮空"
+    },
+    {
+      "id": "FX-004",
+      "name": "金色雨",
+      "desc": "倒灌的金色液体"
+    },
+    {
+      "id": "FX-005",
+      "name": "云海翻涌",
+      "desc": "翻涌白云+金光"
+    }
+  ],
+  "style_constants": {
+    "prompt_prefix": "2d anime, flat cel shading, bold black outlines, hand-drawn animation, Japanese anime style, xianxia wuxia, animation frames",
+    "anti_chibi_suffix": "serious tone, dramatic, not chibi, realistic proportional anatomy",
+    "aspect_ratio": "9:16",
+    "resolution": [
+      512,
+      384
+    ],
+    "fps": 24,
+    "shot_seconds": 3
+  }
+}

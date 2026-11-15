@@ -1,0 +1,128 @@
+{
+  "episode_code": "E05",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "closeup",
+      "visual": "磷火在断碑间亮起，映出一只枯手按住林昭肩膀，他猛地回头，瞳孔里映着幽蓝的火。",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "枯手按肩、猛回头",
+      "dialogue": "",
+      "camera": "特写/浅景深手持",
+      "emotion": "惊悚/警觉",
+      "duration": 7.0,
+      "sound_cue": "磷火噼啪/衣料摩擦",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "will-o'-wisp flames among broken stone tablets, withered hand gripping Lin Zhao's shoulder, young man turning head sharply, wide eyes reflecting eerie blue fire, night graveyard, cold blue glow"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "葬灵渊底碑林，数百块断碑斜插黑土，蓝绿磷火在碑间漂浮，冷光笼罩整片洼地。",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "磷火漂浮、雾气流动",
+      "dialogue": "",
+      "camera": "大远景/缓慢推轨",
+      "emotion": "阴森/压抑",
+      "duration": 7.0,
+      "sound_cue": "风声呜咽/鬼火飘忽",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "tombstone forest at abyss bottom, hundreds of broken steles slanting in black soil, blue-green will-o-wisps floating between stones, cold glow over sunken hollow, eerie stillness"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "action",
+      "visual": "老墨抡起铁杖重砸石碑，碑面荡开波纹，浮出九位大能围坐铸锁的古老壁画。",
+      "characters": [
+        "老墨"
+      ],
+      "action": "铁杖砸碑、碑面波纹扩散",
+      "dialogue": "老墨：看清楚，这是你出生那天。",
+      "camera": "中景/低角度固定",
+      "emotion": "震撼/凝重",
+      "duration": 7.0,
+      "sound_cue": "铁杖砸碑/闷响回荡",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "old man swinging iron staff, heavy strike on stone stele, ripples spreading across stele surface, ancient mural emerging, nine powerful cultivators seated in circle forging a lock, stone chamber, dramatic lighting"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "closeup",
+      "visual": "壁画特写，一条锁链从婴儿胸口生出，一圈圈缠住翻涌的黑雾，黑雾里浮出一张模糊的脸。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链缠绕、黑雾翻涌",
+      "dialogue": "林昭：那团黑雾……是我？",
+      "camera": "大特写/微距推近",
+      "emotion": "困惑/不安",
+      "duration": 7.0,
+      "sound_cue": "锁链轻响/低鸣",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "mural close-up, chain growing from infant chest, coiling around churning black mist, vague face emerging from mist, ancient fresco wall, dim candlelight"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "dialogue",
+      "visual": "老墨掀开衣襟，胸口也有暗金锁链只剩一道未断，他平静地看着林昭，磷火映亮两张脸。",
+      "characters": [
+        "老墨",
+        "林昭"
+      ],
+      "action": "掀开衣襟、露出锁链",
+      "dialogue": "老墨：九道锁，只剩三道。",
+      "camera": "中景/正面平视",
+      "emotion": "沉重/坦然",
+      "duration": 7.0,
+      "sound_cue": "衣襟窸窣/磷火微响",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "old man Mo, opening robe, bare chest, dark gold chains, one chain link intact, calm expression, looking at Lin Zhao, facing each other, ghost fire lighting both faces, dark night, eerie glow"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "key_moment",
+      "visual": "林昭胸口传来一声脆响，他低头，第二道锁正裂开一道金缝，金光漏出照亮他的下巴。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低头、金缝裂开、金光漏出",
+      "dialogue": "林昭：又裂了。",
+      "camera": "大特写/急速推近",
+      "emotion": "紧张/心悸",
+      "duration": 7.0,
+      "sound_cue": "锁链脆裂/心跳声",
+      "act_id": "awakening",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao looking down at his chest, second seal cracking with a golden fissure, golden light leaking out illuminating his chin, close-up, dark surroundings, glowing golden rim light"
+    }
+  ]
+}

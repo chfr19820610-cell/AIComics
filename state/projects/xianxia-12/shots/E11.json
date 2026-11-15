@@ -1,0 +1,127 @@
+{
+  "episode_code": "E11",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "action",
+      "visual": "天穹裂开巨大缺口，金色雨水倒灌人间，白衣无面的天道使者从裂缝里缓缓垂落。",
+      "characters": [
+        "天道使者"
+      ],
+      "action": "裂口张开、金雨倒灌",
+      "dialogue": "天道使者：天弃之子，归位。",
+      "camera": "远景/仰拍",
+      "emotion": "压迫/威严",
+      "duration": 7.0,
+      "sound_cue": "天裂轰鸣/金雨淅沥",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "giant crack in the sky, golden rain pouring upward into the heavens, faceless celestial envoy in white robes descending slowly from the rift, vast sky, glowing golden light"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "天穹裂口下方，金雨落在焦土上冒起白烟，云层被撕成碎片，光柱贯穿天地。",
+      "characters": [],
+      "action": "金雨落土冒烟、光柱摇晃",
+      "dialogue": "",
+      "camera": "大远景/垂直俯拍",
+      "emotion": "末日/肃杀",
+      "duration": 7.0,
+      "sound_cue": "金雨灼烧/云层撕裂",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "giant crack in sky, golden rain falling on scorched earth, white smoke rising, shattered clouds, pillar of light piercing heaven and earth, dramatic lighting"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "action",
+      "visual": "使者抬手一指，金光贯穿老墨胸口，铁杖断成两截落地，老人跪倒，血滴在焦土上。",
+      "characters": [
+        "天道使者",
+        "老墨",
+        "林昭"
+      ],
+      "action": "一指贯穿、铁杖断裂",
+      "dialogue": "老墨：锁……是门。别开太久。",
+      "camera": "中景/高速",
+      "emotion": "悲壮/痛楚",
+      "duration": 7.0,
+      "sound_cue": "金光贯穿/铁杖断裂",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "messenger raising hand pointing, golden light beam piercing old man's chest, iron staff broken in two falling, old man kneeling, blood dripping on scorched earth, dark battlefield, harsh golden glow"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "closeup",
+      "visual": "林昭低头看胸口，第三道锁正在崩解，金光从裂缝里漏出，映亮他半张脸和发红的眼眶。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "低头、锁链崩解、金光漏出",
+      "dialogue": "",
+      "camera": "大特写/推近",
+      "emotion": "震惊/隐痛",
+      "duration": 7.0,
+      "sound_cue": "锁链崩裂/心跳沉闷",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao, looking down at his chest, third seal cracking apart, golden light leaking from fissures, illuminating half his face, reddened eyes, dark surroundings, dramatic glow"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "action",
+      "visual": "他抬手捏碎最后一道锁，雷海冲天而起，把白衣使者撕成漫天金屑，云层当场退开。",
+      "characters": [
+        "林昭",
+        "天道使者"
+      ],
+      "action": "捏碎锁链、雷海冲天",
+      "dialogue": "林昭：那就都别活了。",
+      "camera": "全景/仰拍环绕",
+      "emotion": "暴怒/爆发",
+      "duration": 7.0,
+      "sound_cue": "雷海炸裂/金屑碎裂",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "male cultivator, raising hand, crushing final seal, thunder sea erupting skyward, white-robed envoy shredded into golden dust, clouds parting, stormy sky, intense lightning glow, dramatic backlighting"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "key_moment",
+      "visual": "雷海散尽，天穹金眼闭合又睁开，金光凝成一个金袍人形落在他面前，单膝跪下低头行礼。",
+      "characters": [
+        "金袍人形",
+        "林昭"
+      ],
+      "action": "金光凝聚成形、单膝跪地",
+      "dialogue": "金袍人形：终于，见到你了。",
+      "camera": "中景/仰拍缓推",
+      "emotion": "震撼/敬畏",
+      "duration": 7.0,
+      "sound_cue": "雷声渐息/金光嗡鸣",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "thunder sea dissipating, giant golden eye in sky closing and reopening, golden light condensing into humanoid figure in golden robes, landing before him, kneeling on one knee, bowing head in salute, golden radiance, dramatic lighting"
+    }
+  ]
+}

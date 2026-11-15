@@ -1,0 +1,130 @@
+{
+  "episode_code": "E03",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "action",
+      "visual": "赵乾把林昭死死按在葬灵渊崖边，黑雾从脚下翻涌上来，众弟子围在身后抱臂冷笑。",
+      "characters": [
+        "赵乾",
+        "林昭",
+        "青冥弟子"
+      ],
+      "action": "按肩压向崖边、黑雾上涌",
+      "dialogue": "",
+      "camera": "近景/手持跟拍",
+      "emotion": "屈辱/压迫/阴冷",
+      "duration": 7.0,
+      "sound_cue": "黑雾翻涌/众人冷笑",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "Zhao Qian pinning Lin Zhao down at the cliff edge of Burial Spirit Abyss, black mist surging up from below, disciples standing behind with crossed arms and cold smirks, dark cliff, eerie glow"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "葬灵渊全景，巨大地坑翻涌黑雾，铁链吊桥横跨渊上，渊底透出阴绿磷光，风声呜咽。",
+      "characters": [
+        "林昭",
+        "赵乾"
+      ],
+      "action": "黑雾翻卷、铁链轻晃",
+      "dialogue": "赵乾：下去喂蛟吧，废物。",
+      "camera": "大远景/航拍俯冲",
+      "emotion": "绝望/肃杀/压抑",
+      "duration": 7.0,
+      "sound_cue": "风声呜咽/铁链轻响",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "panoramic view of Burial Spirit Abyss, massive crater, churning black mist, iron chain suspension bridge spanning the abyss, eerie green phosphorescent glow from the bottom, howling wind, dark atmosphere, dim ominous lighting"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "action",
+      "visual": "林昭坠入黑雾，墨鳞蛟自雾中探头张口扑来，赤红瞳孔亮起，鳞片反着幽绿光。",
+      "characters": [
+        "林昭",
+        "墨鳞蛟"
+      ],
+      "action": "坠落、蛟首扑咬",
+      "dialogue": "",
+      "camera": "全景/水下感仰拍",
+      "emotion": "恐惧/惊险/凶戾",
+      "duration": 7.0,
+      "sound_cue": "蛟吼/破雾疾扑",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao falling into black mist, ink-scaled jiao dragon emerging from fog, head lunging forward open-mouthed, crimson pupils glowing, scales reflecting eerie green light, dark swirling fog, dramatic rim lighting"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "action",
+      "visual": "半空中林昭本能抬手，暗金锁链虚影自掌心炸开，如长枪贯穿蛟首，血雾在黑雾里炸散。",
+      "characters": [
+        "林昭",
+        "墨鳞蛟"
+      ],
+      "action": "抬手、锁链虚影贯穿蛟首",
+      "dialogue": "林昭：别过来！",
+      "camera": "中景/慢动作侧拍",
+      "emotion": "惊怒/爆发/决绝",
+      "duration": 7.0,
+      "sound_cue": "锁链炸响/血雾迸散",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao, raising hand, dark gold chain phantom bursting from palm, piercing dragon snake head like spear, blood mist scattering in black fog, midair, dark misty sky, dramatic backlight"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "key_moment",
+      "visual": "蛟血如雨落下，林昭悬停在渊口上空，锁链纹顺着右臂爬到颈侧，眼底泛起一层金光。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "悬停、锁链纹爬升",
+      "dialogue": "",
+      "camera": "中景/仰拍环绕",
+      "emotion": "震撼/异变/肃穆",
+      "duration": 7.0,
+      "sound_cue": "血雨滴落/金光嗡鸣",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao hovering above abyss mouth, dragon blood raining down like rain, chain tattoos crawling up right arm to neck, golden light glowing in eyes, dark abyss below, dramatic backlight"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "closeup",
+      "visual": "他摊开手掌，掌心浮着一枚雷纹，与方才劈落的天雷纹路相同，眼里一半恐惧一半兴奋。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "摊掌、雷纹在掌心亮起",
+      "dialogue": "林昭：这纹……和那道雷一样。",
+      "camera": "大特写/固定",
+      "emotion": "惊疑/恐惧/兴奋",
+      "duration": 7.0,
+      "sound_cue": "雷纹低鸣/心跳加速",
+      "act_id": "breakthrough",
+      "priority": "normal",
+      "prompt_en": "young man, open palm, floating thunder-pattern rune in hand, matching lightning bolt marks, half fear half excitement in eyes, stormy night sky, crackling lightning, dramatic glow"
+    }
+  ]
+}

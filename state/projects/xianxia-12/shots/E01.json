@@ -1,0 +1,129 @@
+{
+  "episode_code": "E01",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "closeup",
+      "visual": "一盆脏水兜头泼在少年脸上，林昭跪在演武场青石板上，水珠顺下颌滴落，晨光刺得他睁不开眼。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "脏水泼出、水珠沿下巴滴落",
+      "dialogue": "",
+      "camera": "大特写/固定机位俯拍",
+      "emotion": "屈辱/麻木",
+      "duration": 7.0,
+      "sound_cue": "泼水声/水珠滴落",
+      "act_id": "underdog",
+      "priority": "normal",
+      "prompt_en": "teen boy kneeling on bluestone training ground, basin of dirty water splashed over his face, water droplets dripping from jaw, squinting against harsh morning sunlight, wet hair, soaked clothes, stone courtyard"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "青冥剑宗演武场全景，弟子围成一圈，林昭跪在圈心，锦袍赵乾立在中央，远处山门浮在云海里。",
+      "characters": [
+        "林昭",
+        "赵乾",
+        "青冥弟子"
+      ],
+      "action": "弟子窃笑，赵乾负手踱步",
+      "dialogue": "",
+      "camera": "大远景/航拍缓降",
+      "emotion": "压迫/孤立",
+      "duration": 7.0,
+      "sound_cue": "人群低语/山风",
+      "act_id": "underdog",
+      "priority": "normal",
+      "prompt_en": "panoramic view of Qingming Sword Sect training grounds, disciples in a circle, Lin Zhao kneeling in center, Zhao Qian in brocade robe standing, distant mountain gate floating in sea of clouds, overcast daylight"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "dialogue",
+      "visual": "赵乾一脚踩住林昭手里的抹布，俯身捏起他的下巴，逆光下围观弟子哄笑，尘土在光柱里翻。",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "踩住抹布、捏下巴抬起脸",
+      "dialogue": "赵乾：废物的手，也只配擦地。",
+      "camera": "中景/低角度仰拍缓推",
+      "emotion": "羞辱/隐忍",
+      "duration": 7.0,
+      "sound_cue": "哄笑声/布料摩擦",
+      "act_id": "underdog",
+      "priority": "normal",
+      "prompt_en": "zhao qian stepping on rag, foot pinning cloth, leaning down, gripping lin zhao chin, forced eye contact, surrounded by laughing disciples, backlight, dust motes in light shafts, courtyard"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "action",
+      "visual": "赵乾一掌拍出，林昭被击飞撞断木栏，翻滚着摔下石阶，衣袍翻卷，尘土在斜光里炸开。",
+      "characters": [
+        "赵乾",
+        "林昭"
+      ],
+      "action": "被一掌击飞、撞断木栏滚落石阶",
+      "dialogue": "赵乾：爬起来啊，杂役。",
+      "camera": "全景/横向跟拍慢动作",
+      "emotion": "暴怒/痛击",
+      "duration": 7.0,
+      "sound_cue": "掌风炸响/木栏断裂",
+      "act_id": "underdog",
+      "priority": "normal",
+      "prompt_en": "Zhao Qian striking with palm, Lin Zhao knocked flying backward, breaking wooden railing, tumbling down stone steps, robes billowing, dust exploding in slanting light, dramatic impact"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "key_moment",
+      "visual": "林昭仰躺在碎石上，胸口衣襟裂开，右腕旧布条松开，暗金锁链纹浮出，周围没人注意。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁链纹从皮肤下缓缓浮现",
+      "dialogue": "",
+      "camera": "特写/俯拍下压",
+      "emotion": "虚弱/隐秘",
+      "duration": 7.0,
+      "sound_cue": "碎石轻响/心跳",
+      "act_id": "underdog",
+      "priority": "normal",
+      "prompt_en": "lin zhao, lying on back, rubble ground, torn chest clothing, loose old cloth strip on right wrist, dark gold chain tattoo emerging on skin, unnoticed, alone, dim lighting"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "closeup",
+      "visual": "他撑地呕出一口黑血，血珠落在青石上迸出几缕细小电弧，背景是模糊走过的弟子靴影。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "撑地呕血、血珠迸出电弧",
+      "dialogue": "林昭：……又裂了。",
+      "camera": "微距特写/手持轻晃",
+      "emotion": "痛苦/惊异",
+      "duration": 7.0,
+      "sound_cue": "呕血声/电弧噼啪",
+      "act_id": "underdog",
+      "priority": "normal",
+      "prompt_en": "boy on hands and knees vomiting black blood, blood droplets splashing on bluestone floor with tiny electric arcs, blurred passing disciple boots in background, dim courtyard, cold overcast light"
+    }
+  ]
+}

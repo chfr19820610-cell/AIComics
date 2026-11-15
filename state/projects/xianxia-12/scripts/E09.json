@@ -1,0 +1,163 @@
+{
+  "episode_code": "E09",
+  "title": "一剑压全宗",
+  "act": "第三幕 立威",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "outline": {
+    "logline": "他回宗那天，全宗长老跪着迎",
+    "creator_goal": "兑现最强打脸爽点，让宗门权力结构当场崩塌，抛出「天道备份」新悬念。",
+    "emotional_curve": "碾压→震撼",
+    "duration_total": 42.0,
+    "shot_count": 6
+  },
+  "act_table": {
+    "act_id": "E09",
+    "act_name": "第三幕 立威",
+    "position": "中段"
+  },
+  "scene_table": [
+    {
+      "shot_id": "S01",
+      "scene_desc": "山门前百名弟子拔剑齐指，林昭一步踏上石阶，剑尖在晨光里抖成一片寒芒。",
+      "shot_type": "action",
+      "camera": "中景/低角度推轨",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S02",
+      "scene_desc": "清晨青冥剑宗山门，晨雾未散，千级石阶直上云端，云海翻着金边。",
+      "shot_type": "establishing",
+      "camera": "大远景/航拍上升",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S03",
+      "scene_desc": "数十名长老联手布下剑阵镇压，林昭抬手一记雷刀，剑阵如琉璃碎裂，光屑四散。",
+      "shot_type": "action",
+      "camera": "全景/高速摄影",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S04",
+      "scene_desc": "严崇跌坐在碎剑堆里，铁面裂开一道缝，瞳孔放大，手撑着地面往后退。",
+      "shot_type": "closeup",
+      "camera": "特写/俯拍",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S05",
+      "scene_desc": "赵乾跪爬着扑到林昭脚边磕头，林昭目不斜视跨过他，靴底碾过一片碎玉。",
+      "shot_type": "action",
+      "camera": "中景/侧跟",
+      "duration": 7.0
+    },
+    {
+      "shot_id": "S06",
+      "scene_desc": "掌门玄尘子双膝跪地，额头磕在石阶上，抬头说话，晨光刺得他睁不开眼。",
+      "shot_type": "key_moment",
+      "camera": "特写/浅景深俯拍",
+      "duration": 7.0
+    }
+  ],
+  "character_table": [
+    {
+      "character": "林昭",
+      "shot_ids": [
+        "S01",
+        "S02",
+        "S03",
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "character": "青冥弟子",
+      "shot_ids": [
+        "S01"
+      ]
+    },
+    {
+      "character": "长老",
+      "shot_ids": [
+        "S03"
+      ]
+    },
+    {
+      "character": "严崇",
+      "shot_ids": [
+        "S04"
+      ]
+    },
+    {
+      "character": "赵乾",
+      "shot_ids": [
+        "S05"
+      ]
+    },
+    {
+      "character": "玄尘子",
+      "shot_ids": [
+        "S06"
+      ]
+    }
+  ],
+  "hook_table": {
+    "opening_hook": {
+      "shot_id": "S01",
+      "description": "山门前百名弟子拔剑齐指，林昭一步踏上石阶，剑尖在晨光里抖成一片寒芒。",
+      "type": "悬念"
+    },
+    "ending_hook": {
+      "shot_id": "S06",
+      "description": "掌门跪地说出：「你不是天弃之子，你是天道的备份。」"
+    }
+  },
+  "dialogue_table": [
+    {
+      "shot_id": "S03",
+      "line": "长老：镇压！",
+      "emotion": ""
+    },
+    {
+      "shot_id": "S04",
+      "line": "严崇：不可能……",
+      "emotion": ""
+    },
+    {
+      "shot_id": "S05",
+      "line": "赵乾：饶命！饶命！",
+      "emotion": ""
+    },
+    {
+      "shot_id": "S06",
+      "line": "玄尘子：你不是天弃之子……你是天道的备份。",
+      "emotion": ""
+    }
+  ],
+  "ccv_findings": {
+    "round": 1,
+    "verdict": "CONCERNS",
+    "scores": {
+      "hook": 4,
+      "curve": 3,
+      "cliffhanger": 5
+    },
+    "issues": [
+      "18秒6镜节奏过密，S02纯环境镜（晨雾石阶云海）在短剧里是致命拖速，前3秒后立刻泄气",
+      "情绪曲线缺'压抑'段：S01直接百人拔剑已是高点，S03雷刀碎阵、S04严崇崩溃、S05赵乾磕头连续三个'打脸'同质爆发，没有下压蓄力，张力扁平",
+      "S05赵乾跪爬磕头与S06掌门跪地功能重复，两镜都在'跪'，浪费18秒里宝贵的2秒",
+      "S01'剑尖抖成寒芒'是群像描写，缺少林昭本人的表情/动作特写，观众代入锚点弱",
+      "台词'长老：镇压！'无主语无面孔，喊话者不出镜会显得廉价"
+    ],
+    "suggestions": [
+      "删S02或将其压缩为S01背景板（0.5秒空镜叠化），把省下的2秒给S06掌门抬头特写",
+      "S01改为：先0.5秒林昭靴底踏碎'天弃'石碑特写，再拉出百剑齐指，用'碎碑'做压抑符号，钩子更狠",
+      "S03雷刀前加0.5秒林昭垂眼不动、剑阵压到眉睫的静止帧，制造'压抑→爆发'的呼吸口",
+      "合并S04/S05：严崇跌坐与赵乾磕头同框一镜，赵乾磕头时严崇在背景瞳孔放大，一镜双打脸，省1镜",
+      "S06掌门台词前加半句气声'等等——'再磕头，让'天道的备份'落在抬头瞬间，悬念更炸",
+      "给'长老：镇压！'配一张具体面孔（如三长老挥令旗特写），喊话有主"
+    ],
+    "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  }
+}

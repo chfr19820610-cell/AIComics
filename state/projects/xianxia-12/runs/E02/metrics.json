@@ -1,0 +1,18 @@
+{
+  "episode_code": "E02",
+  "generated_at": "2026-11-15",
+  "shot_count": 6,
+  "total_duration_sec": 42.0,
+  "estimated_minutes": 72.0,
+  "actual_minutes": 68.4,
+  "cost_usd": 0.0,
+  "video_attempts": 6,
+  "image_attempts": 6,
+  "tts_lines": 2,
+  "models_used": {
+    "video": "MiniMax-H3-FL2VA-MLX-Serve-4bit",
+    "image": "sd_xl_base_1.0 + anime-cel-shaded",
+    "tts": "zh_CN-chaowen-medium"
+  },
+  "hardware": "Apple M4 / 32GB"
+}

@@ -1,0 +1,127 @@
+{
+  "episode_code": "E12",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "field_spec": [
+    "shot_id",
+    "shot_type",
+    "visual",
+    "characters",
+    "action",
+    "dialogue",
+    "camera",
+    "emotion",
+    "duration",
+    "sound_cue",
+    "act_id",
+    "priority"
+  ],
+  "shot_count": 6,
+  "total_duration": 42.0,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "action",
+      "visual": "黑水倒映星河，金袍人形在水中央缓缓抬头，衣袍不沾一滴水，四周静得听不见风。",
+      "characters": [
+        "金袍人形",
+        "林昭"
+      ],
+      "action": "缓缓抬头、水面涟漪扩散",
+      "dialogue": "",
+      "camera": "中景/对称构图",
+      "emotion": "诡异/静谧",
+      "duration": 7.0,
+      "sound_cue": "水波轻响/死寂无声",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "black water reflecting starry river, golden-robed humanoid figure at water center, slowly raising head, robe untouched by water droplets, windless dead silence, still surroundings, dim starlight, eerie calm, cinematic lighting"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "establishing",
+      "visual": "虚无之境全景，黑色水面如镜倒映整条星河，四周无天无地，只剩一片死寂。",
+      "characters": [],
+      "action": "星河倒影缓慢流动",
+      "dialogue": "",
+      "camera": "大远景/缓慢横移",
+      "emotion": "空寂/苍茫",
+      "duration": 7.0,
+      "sound_cue": "虚无回响/星河低鸣",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "panoramic void realm, black mirror-like water surface, reflecting entire galaxy, starry river reflection, no sky no ground, boundless emptiness, dead silence, lone figure standing on water, dim starlight, eerie glow"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "dialogue",
+      "visual": "金袍人形与林昭隔水对峙，他抬起头开口，水面随话音荡开一圈圈涟漪。",
+      "characters": [
+        "金袍人形",
+        "林昭"
+      ],
+      "action": "抬头开口、涟漪荡开",
+      "dialogue": "金袍人形：我不是来杀你，我是来拦你。",
+      "camera": "中景/正反打",
+      "emotion": "对峙/凝重",
+      "duration": 7.0,
+      "sound_cue": "涟漪荡开/低语回荡",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "gold-robed humanoid figure, facing Lin Zhao across water, head raised, speaking, ripples spreading across water surface, tense standoff, misty surroundings, soft ambient light"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "key_moment",
+      "visual": "水面炸开一段闪回：失控的林昭立在废墟中央，山河成灰，九位大能才合力铸锁。",
+      "characters": [
+        "林昭"
+      ],
+      "action": "闪回画面翻涌、废墟崩塌",
+      "dialogue": "金袍人形：那一世，你吞了半个人间。",
+      "camera": "全景/闪回手持",
+      "emotion": "惨烈/恐惧",
+      "duration": 7.0,
+      "sound_cue": "水面炸裂/废墟轰鸣",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "water surface exploding, flashback scene, out-of-control Lin Zhao standing in ruins center, mountains and rivers turned to ash, nine powerful cultivators joining forces to forge a lock, dark ash-filled sky, dramatic lighting"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "action",
+      "visual": "林昭抬手从体内抽出锁链，一根根回钉进胸口，雷海倒卷回身，他咬紧牙没出声。",
+      "characters": [
+        "林昭",
+        "金袍人形"
+      ],
+      "action": "抽出锁链、回钉胸口",
+      "dialogue": "林昭：这次，我自己锁。",
+      "camera": "中景/侧拍",
+      "emotion": "决绝/隐忍",
+      "duration": 7.0,
+      "sound_cue": "锁链入肉/雷海倒卷",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "Lin Zhao, pulling chains from his body, nailing chains back into his chest one by one, lightning sea surging backward around him, clenched teeth, silent endurance, stormy thunder realm, harsh lightning glow"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "closeup",
+      "visual": "封印合拢，金袍人形在岸边拱手微笑；画面转黑，只剩他封死的胸口特写，锁链缝里金光一明一暗，像有人在敲。",
+      "characters": [
+        "林昭",
+        "金袍人形"
+      ],
+      "action": "封印合拢、画面转黑、胸口起伏",
+      "dialogue": "金袍人形：下次见。画外音：找到你了。",
+      "camera": "大特写/固定",
+      "emotion": "诡秘/不安",
+      "duration": 7.0,
+      "sound_cue": "画面转黑/敲击闷响",
+      "act_id": "ascension",
+      "priority": "normal",
+      "prompt_en": "sealed golden-robed humanoid figure, cupped-hand salute, smiling, standing on shore, seal closing, scene fading to black, close-up of sealed chest, chains, flickering golden light through chain gaps, pulsing glow, dim lighting"
+    }
+  ]
+}

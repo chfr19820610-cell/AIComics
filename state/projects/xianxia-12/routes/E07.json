@@ -1,0 +1,145 @@
+{
+  "episode_code": "E07",
+  "version": "1.0",
+  "updated_at": "2026-11-15",
+  "model_matrix": {
+    "image": {
+      "primary": {
+        "provider": "local_comfyui_image",
+        "model": "sd_xl_base_1.0.safetensors + anime-cel-shaded.safetensors",
+        "lora_strength": 0.8,
+        "resolution": [
+          512,
+          384
+        ],
+        "steps": 8,
+        "unit_cost": 0.0,
+        "unit_time_sec": 300
+      },
+      "fallback": {
+        "provider": "local_comfyui_image",
+        "model": "sd_xl_base_1.0.safetensors",
+        "lora_strength": 0.0,
+        "resolution": [
+          512,
+          384
+        ]
+      }
+    },
+    "video": {
+      "primary": {
+        "provider": "h3stream",
+        "model": "MiniMax-H3-FL2VA-MLX-Serve-4bit",
+        "resolution": [
+          512,
+          384
+        ],
+        "seconds": 3,
+        "steps": 8,
+        "fps": 24,
+        "unit_cost": 0.0,
+        "unit_time_sec": 720
+      },
+      "fallback": {
+        "provider": "local_comfyui_video",
+        "model": "Wan2.2-TI2V-5B-Q4_K_M.gguf",
+        "resolution": [
+          512,
+          384
+        ],
+        "seconds": 2,
+        "note": "31 分钟/2秒，仅备用"
+      }
+    },
+    "tts": {
+      "primary": {
+        "provider": "local_piper_tts",
+        "model": "zh_CN-chaowen-medium",
+        "license": "CC0",
+        "unit_cost": 0.0,
+        "unit_time_sec_per_line": 5
+      }
+    },
+    "llm": {
+      "primary": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "unit_cost": 0.0005
+      }
+    }
+  },
+  "budget": {
+    "max_video_attempts": 8,
+    "max_image_attempts": 12,
+    "max_cost_usd": 0.0,
+    "max_time_minutes": 120,
+    "circuit_break_at_pct": 150
+  },
+  "shot_routes": [
+    {
+      "shot_id": "S01",
+      "priority": "normal",
+      "max_attempts": 1,
+      "image_route": "local_comfyui_image",
+      "video_route": "h3stream",
+      "tts_route": "local_piper_tts",
+      "estimated_seconds": 720,
+      "estimated_cost_usd": 0.0
+    },
+    {
+      "shot_id": "S02",
+      "priority": "normal",
+      "max_attempts": 1,
+      "image_route": "local_comfyui_image",
+      "video_route": "h3stream",
+      "tts_route": null,
+      "estimated_seconds": 720,
+      "estimated_cost_usd": 0.0
+    },
+    {
+      "shot_id": "S03",
+      "priority": "normal",
+      "max_attempts": 1,
+      "image_route": "local_comfyui_image",
+      "video_route": "h3stream",
+      "tts_route": null,
+      "estimated_seconds": 720,
+      "estimated_cost_usd": 0.0
+    },
+    {
+      "shot_id": "S04",
+      "priority": "normal",
+      "max_attempts": 1,
+      "image_route": "local_comfyui_image",
+      "video_route": "h3stream",
+      "tts_route": null,
+      "estimated_seconds": 720,
+      "estimated_cost_usd": 0.0
+    },
+    {
+      "shot_id": "S05",
+      "priority": "normal",
+      "max_attempts": 1,
+      "image_route": "local_comfyui_image",
+      "video_route": "h3stream",
+      "tts_route": "local_piper_tts",
+      "estimated_seconds": 720,
+      "estimated_cost_usd": 0.0
+    },
+    {
+      "shot_id": "S06",
+      "priority": "normal",
+      "max_attempts": 1,
+      "image_route": "local_comfyui_image",
+      "video_route": "h3stream",
+      "tts_route": "local_piper_tts",
+      "estimated_seconds": 720,
+      "estimated_cost_usd": 0.0
+    }
+  ],
+  "summary": {
+    "shot_count": 6,
+    "estimated_total_seconds": 4320,
+    "estimated_total_minutes": 72.0
+  }
+}
