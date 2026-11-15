@@ -1,21 +1,21 @@
 # Gate 验收报告
 
-> 生成时间: 2026-11-15 19:27:09
-> 项目: xianxia-12（12 集 × 6 镜）
+> 生成时间: 2026-11-16 02:10:48
+> 项目: xianxia-12（12 集 × 70 镜 × 3-4 分钟）
 
 | Gate | 结果 | 详情 |
 |---|---|---|
 | g1_script | ✅ PASS | FAIL=0 WARN=0 |
 | g2_asset | ✅ PASS | FAIL=0 WARN=0 |
 | g3_storyboard | ✅ PASS | FAIL=0 WARN=0 |
-| g4_generation | ✅ PASS | FAIL=0 WARN=0 |
+| g4_generation | ❌ FAIL | FAIL=12 WARN=0 |
 | g5_audio | ✅ PASS | FAIL=0 WARN=0 |
-| g6_export | ✅ PASS | FAIL=0 WARN=0 |
+| g6_export | ❌ FAIL | FAIL=12 WARN=0 |
 | g7_compliance | ⚠️ CONDITIONAL | FAIL=0 WARN=12 |
 
 ## 总结
 
-**7/7 gate 通过**（含 G7 的备案号软警告，需人工填 filing_no）
+**存在失败 gate，见上表**
 
 ## 已知软警告
 
