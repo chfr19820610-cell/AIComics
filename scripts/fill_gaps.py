@@ -26,10 +26,14 @@ EPS = ["E01", "E02", "E03", "E04", "E05", "E06",
        "E07", "E08", "E09", "E10", "E11", "E12"]
 
 
-def find_missing():
-    """返回 [(ep, sid, frames, prompt_en), ...]"""
+def find_missing(only_ep=None):
+    """返回 [(ep, sid, frames, prompt_en), ...]
+
+    only_ep: 只检查指定集（如 "E01"）
+    """
     missing = []
-    for ep in EPS:
+    eps = [only_ep] if only_ep else EPS
+    for ep in eps:
         align_path = D / "runs" / ep / "alignment.json"
         prompts_path = D / "prompts" / f"{ep}_70_en.json"
         if not align_path.exists():
@@ -57,8 +61,14 @@ def find_missing():
 
 def main():
     do_run = "--run" in sys.argv
-    print("=== 检查 12 集缺失镜 ===")
-    missing = find_missing()
+    only_ep = None
+    if "--ep" in sys.argv:
+        idx = sys.argv.index("--ep")
+        if idx + 1 < len(sys.argv):
+            only_ep = sys.argv[idx + 1]
+    scope = only_ep or "12 集"
+    print(f"=== 检查{scope}缺失镜 ===")
+    missing = find_missing(only_ep)
 
     if not missing:
         print("✅ 全部齐全（840 镜）")

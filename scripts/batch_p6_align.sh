@@ -75,6 +75,12 @@ print(f\"{p['shot_id']}\t{p['frames']}\t{pr.get(p['shot_id'],'')}\")
       fi
     done
 
+    # 2.5) 合成前补漏（本集缺失镜补跑）
+    log "===== $ep 补漏检查 ====="
+    $PY "$B/scripts/fill_gaps.py" --ep "$ep" --run >> "$LOG" 2>&1
+    local gap_rc=$?
+    [ $gap_rc -ne 0 ] && log "  ⚠️ 补漏后仍有缺失（继续合成，缺镜会被跳过）"
+
     # 3) 合成
     log "===== $ep 合成 ====="
     $PY "$B/scripts/rebuild_episode.py" "$ep" >> "$LOG" 2>&1
