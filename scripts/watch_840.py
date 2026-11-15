@@ -102,9 +102,22 @@ def last_output_mtime(shot):
 
 
 def kill_h3():
-    subprocess.run(["pkill", "-9", "-f", "h3stream generate"],
-                   capture_output=True)
-    time.sleep(3)
+    """先优雅 SIGTERM（保住 checkpoint），5 秒后还在才 SIGKILL
+
+    2026-11-16 实测：
+    - kill -9（SIGKILL）→ checkpoint 损坏 → 重启从头跑（Round 15 压力测试）
+    - kill（SIGTERM）→ h3stream 保存 state.json → 续传生效（Round 17 重启）
+    """
+    log("⚠️ kill h3stream（先优雅 SIGTERM）")
+    subprocess.run(["pkill", "-f", "h3stream generate"], capture_output=True)
+    time.sleep(5)
+    r = subprocess.run(["pgrep", "-f", "h3stream generate"],
+                       capture_output=True, text=True)
+    if r.stdout.strip():
+        log("  ⚠️ 优雅退出失败，强制 kill -9（checkpoint 可能损坏）")
+        subprocess.run(["pkill", "-9", "-f", "h3stream generate"],
+                       capture_output=True)
+    time.sleep(2)
 
 
 def start_batch():
