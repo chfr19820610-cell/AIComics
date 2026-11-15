@@ -98,3 +98,42 @@
 - 2.33s 对多数镜够用
 
 **但"3 秒/镜"是漫剧的行业惯例**（观众节奏感），不建议降。
+
+---
+
+## 2026-11-16 01:57 · 续传验证（优雅 kill 修复的实证）
+
+### 实验设计
+Round 15 压力测试（`kill -9`）→ S11 从 step 1 重跑
+Round 17 重启（`kill` SIGTERM）→ 预期从 checkpoint 续传
+
+### 实证数据（S11 的 checkpoint 时间线）
+
+| 文件 | 时间 | 阶段 |
+|---|---|---|
+| latents-step-0001.npz | 01:41 | kill 前 |
+| latents-step-0002.npz | 01:42 | kill 前 |
+| **latents-step-0003.npz** | **01:45** | **kill 时状态** |
+| **latents-step-0004.npz** | **01:51** | **✅ 重启后从 step 4 继续** |
+| latents-step-0005.npz | 01:52 | 续传中 |
+| latents-step-0006.npz | 01:53 | 续传中 |
+| latents-step-0007.npz | 01:54 | 续传中 |
+| latents-step-0008.npz | 01:55 | 完成 |
+
+### 结论
+
+**✅ 续传生效**：step 4-8 的时间（01:51-01:55）明显晚于 step 1-3（01:41-01:45），
+证明新进程从 step 4 继续，而非从 step 1 重跑。
+
+**节省**：3 步 × 71s = **3.5 分钟**
+
+### 为什么 kill -9 不行
+
+h3stream 的续传依赖 `state.json` 的 `completed_step` 字段。
+`kill -9`（SIGKILL）无法捕获，进程立即死 → `state.json` 停留在旧值或损坏。
+`kill`（SIGTERM）可捕获 → 写入最新 state → 续传成功。
+
+### 硬规则（新增）
+
+> **重启 h3stream 必须用 SIGTERM（`kill`/`pkill`），禁止直接 `kill -9`。**
+> 只有在 SIGTERM 等 5 秒后进程仍在时才用 `-9`（并接受丢 checkpoint 的代价）。
