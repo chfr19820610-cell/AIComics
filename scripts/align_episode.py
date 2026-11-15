@@ -38,16 +38,22 @@ SPEAK_OK_TYPES = {"wide", "medium", "over_shoulder", "hand", "environment", "act
 DOWNGRADE = {"closeup": "medium", "extreme_closeup": "medium"}
 
 
-def frames_for_seconds(sec):
-    """h3stream 的帧网格 17*n+5，返回最接近的合法帧数"""
+def frames_for_seconds(sec, mode="nearest"):
+    """h3stream 的帧网格 17*n+5
+
+    mode="nearest": 取最接近（默认）
+    mode="up": 向上取整（保证不短于请求秒数，用于有台词镜防台词被裁）
+    """
+    cands = [(17 * n + 5, (17 * n + 5) / 24) for n in range(1, 30)]
+    if mode == "up":
+        for f, d in cands:
+            if d >= sec:
+                return (f, d)
+        return cands[-1]
     best = None
-    for n in range(1, 30):
-        f = 17 * n + 5
-        d = f / 24
+    for f, d in cands:
         if best is None or abs(d - sec) < abs(best[1] - sec):
             best = (f, d)
-        if d > sec + 1:
-            break
     return best
 
 
@@ -95,13 +101,21 @@ def build_alignment(ep, do_tts=False):
 
         if is_speaking and sid in tts_dur:
             speech = tts_dur[sid]
-            sec = min(MAX_SHOT_SEC, max(MIN_SHOT_SEC, speech + PADDING))
+            # 基础：台词 + padding
+            sec = max(MIN_SHOT_SEC, speech + PADDING)
+            # 约束：台词占比 ≤85%（保证呼吸感）
+            sec = max(sec, speech / 0.85)
+            sec = min(MAX_SHOT_SEC, sec)
+            frame_mode = "up"   # 有台词镜向上取帧，防止台词被裁
         elif is_speaking:
-            # 没跑 TTS 时按字数估算（中文约 5 字/秒）
             est = max(1.2, len(line) / 5.0)
-            sec = min(MAX_SHOT_SEC, max(MIN_SHOT_SEC, est + PADDING))
+            sec = max(MIN_SHOT_SEC, est + PADDING)
+            sec = max(sec, est / 0.85)
+            sec = min(MAX_SHOT_SEC, sec)
+            frame_mode = "up"
         else:
             sec = SILENT_SEC
+            frame_mode = "nearest"
 
         # 口型处理：有台词的镜禁止正脸特写
         final_type = shot_type
@@ -109,7 +123,7 @@ def build_alignment(ep, do_tts=False):
             final_type = DOWNGRADE[shot_type]
             changed_type.append((sid, shot_type, final_type))
 
-        f, actual = frames_for_seconds(sec)
+        f, actual = frames_for_seconds(sec, mode=frame_mode)
 
         plan.append({
             "shot_id": sid,
