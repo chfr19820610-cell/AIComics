@@ -93,19 +93,19 @@
   },
   "dialogue_table": [
     {
-      "shot_id": "S03",
-      "line": "老墨：别躲。吞下去！",
-      "emotion": ""
+      "shot_id": "S01",
+      "line": "（画外）老墨：别躲。吞下去！",
+      "emotion": "痛苦/爆发"
     },
     {
       "shot_id": "S04",
-      "line": "林昭：第二道……也断了。",
-      "emotion": ""
+      "line": "林昭：（喘息）第三道……在哪",
+      "emotion": "痛苦/觉醒"
     },
     {
       "shot_id": "S06",
-      "line": "林昭：原来雷，也会认人。",
-      "emotion": ""
+      "line": "林昭：（盯掌心）……它，睁开眼睛了。",
+      "emotion": "释然/感动"
     }
   ],
   "ccv_findings": {
@@ -130,5 +130,54 @@
       "S05劈开雷云后加0.5秒林昭握刀的手在抖/虎口裂血的细节，爆发后留一丝代价，情绪曲线更可信"
     ],
     "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  },
+  "ccv_round2": {
+    "applied": true,
+    "changes": [
+      {
+        "shot_id": "S01",
+        "dialogue": "（画外）老墨：别躲。吞下去！",
+        "changed": true,
+        "reason": "前置老墨画外音'别躲。吞下去！'，并加字幕锚定'拿天雷当饭吃'设定"
+      },
+      {
+        "shot_id": "S02",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无改动"
+      },
+      {
+        "shot_id": "S03",
+        "dialogue": "",
+        "changed": true,
+        "reason": "原台词移至S01画外音，本镜留空"
+      },
+      {
+        "shot_id": "S04",
+        "dialogue": "林昭：（喘息）第三道……在哪",
+        "changed": true,
+        "reason": "删'第二道……也断了'改为林昭喘息说'第三道……在哪'"
+      },
+      {
+        "shot_id": "S05",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无改动"
+      },
+      {
+        "shot_id": "S06",
+        "dialogue": "林昭：原来雷，也会认人。",
+        "changed": false,
+        "reason": "无改动"
+      }
+    ],
+    "changed_shots": 3,
+    "applied_at": "2026-11-15"
+  },
+  "ccv_round2_fix": {
+    "hook_rewritten": {
+      "S06": "林昭：（盯掌心）……它在看我们。"
+    },
+    "hook_rewritten_r3": "它，睁开眼睛了"
   }
 }

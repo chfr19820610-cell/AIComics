@@ -1,0 +1,20 @@
+{
+  "episode_code": "E10",
+  "track_count": 2,
+  "tracks": [
+    {
+      "shot_id": "S04",
+      "text": "林昭：第九个……我是第九个？",
+      "start": 21,
+      "end": 28,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S06",
+      "text": "老墨：我是第一个。",
+      "start": 35,
+      "end": 42,
+      "voice": "local_piper_tts"
+    }
+  ]
+}

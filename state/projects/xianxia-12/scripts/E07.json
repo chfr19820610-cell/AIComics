@@ -108,18 +108,23 @@
   "dialogue_table": [
     {
       "shot_id": "S01",
-      "line": "严崇：灾星，留下命。",
-      "emotion": ""
+      "line": "（画外）严崇：灾星，留下命。",
+      "emotion": "压迫/杀意"
+    },
+    {
+      "shot_id": "S04",
+      "line": "林昭：……我认。",
+      "emotion": "狼狈/倔强"
     },
     {
       "shot_id": "S05",
-      "line": "严崇：你要护这灾星？",
-      "emotion": ""
+      "line": "严崇：你要护他？",
+      "emotion": "震惊/决绝"
     },
     {
       "shot_id": "S06",
       "line": "苏璃：我守的是他，不是封印。",
-      "emotion": ""
+      "emotion": "坚定/悲壮"
     }
   ],
   "ccv_findings": {
@@ -145,5 +150,48 @@
       "S06苏璃台词后加林昭一个反应镜头或雷纹暴亮的半秒画面作为最后一帧，把悬念从'苏璃表态'升级为'林昭要爆发'，强化下一集钩子"
     ],
     "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  },
+  "ccv_round2": {
+    "applied": true,
+    "changes": [
+      {
+        "shot_id": "S01",
+        "dialogue": "（画外）严崇：灾星，留下命。",
+        "changed": true,
+        "reason": "严崇台词移作S01画外音"
+      },
+      {
+        "shot_id": "S02",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词"
+      },
+      {
+        "shot_id": "S03",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词"
+      },
+      {
+        "shot_id": "S04",
+        "dialogue": "林昭：……我认。",
+        "changed": true,
+        "reason": "给林昭加一句台词作为动作声音锚点"
+      },
+      {
+        "shot_id": "S05",
+        "dialogue": "严崇：你要护他？",
+        "changed": true,
+        "reason": "精简严崇台词，去掉'这灾星'"
+      },
+      {
+        "shot_id": "S06",
+        "dialogue": "苏璃：我守的是他，不是封印。",
+        "changed": false,
+        "reason": "保留原台词"
+      }
+    ],
+    "changed_shots": 3,
+    "applied_at": "2026-11-15"
   }
 }

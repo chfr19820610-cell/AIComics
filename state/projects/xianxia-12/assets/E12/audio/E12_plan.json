@@ -1,0 +1,34 @@
+{
+  "episode_code": "E12",
+  "track_count": 4,
+  "tracks": [
+    {
+      "shot_id": "S03",
+      "text": "金袍人形：我不是来杀你，我是来拦你。",
+      "start": 14,
+      "end": 21,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S04",
+      "text": "金袍人形：那一世，你吞了半个人间。",
+      "start": 21,
+      "end": 28,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S05",
+      "text": "林昭：这次，我自己锁。",
+      "start": 28,
+      "end": 35,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S06",
+      "text": "金袍人形：下次见。画外音：找到你了。",
+      "start": 35,
+      "end": 42,
+      "voice": "local_piper_tts"
+    }
+  ]
+}

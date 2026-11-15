@@ -1,0 +1,27 @@
+{
+  "episode_code": "E05",
+  "shot_sec": 3.0,
+  "tracks": [
+    {
+      "shot_id": "S03",
+      "text": "老墨：看清楚，这是你出生那天。",
+      "start": 6,
+      "end": 9,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S05",
+      "text": "老墨：九道锁，只剩三道。",
+      "start": 12,
+      "end": 15,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S06",
+      "text": "林昭：撑不住了！",
+      "start": 15,
+      "end": 18,
+      "voice": "zh_CN-chaowen-medium"
+    }
+  ]
+}

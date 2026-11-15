@@ -1,0 +1,27 @@
+{
+  "episode_code": "E06",
+  "shot_sec": 3.0,
+  "tracks": [
+    {
+      "shot_id": "S03",
+      "text": "严崇（画外）：解封献祭，全宗同证。",
+      "start": 6,
+      "end": 9,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S04",
+      "text": "长老：断！",
+      "start": 9,
+      "end": 12,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S06",
+      "text": "林昭：原来……护我的，从来不是他们。",
+      "start": 15,
+      "end": 18,
+      "voice": "zh_CN-chaowen-medium"
+    }
+  ]
+}

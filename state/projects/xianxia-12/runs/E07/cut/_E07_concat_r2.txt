@@ -1,0 +1,6 @@
+file '/Users/eric/Desktop/hermes/AlComics/state/projects/xianxia-12/assets/E07/h3video/E07_S01_h3.mp4'
+file '/Users/eric/Desktop/hermes/AlComics/state/projects/xianxia-12/assets/E07/h3video/E07_S02_h3.mp4'
+file '/Users/eric/Desktop/hermes/AlComics/state/projects/xianxia-12/assets/E07/h3video/E07_S03_h3.mp4'
+file '/Users/eric/Desktop/hermes/AlComics/state/projects/xianxia-12/assets/E07/h3video/E07_S04_h3.mp4'
+file '/Users/eric/Desktop/hermes/AlComics/state/projects/xianxia-12/assets/E07/h3video/E07_S05_h3.mp4'
+file '/Users/eric/Desktop/hermes/AlComics/state/projects/xianxia-12/assets/E07/h3video/E07_S06_h3.mp4'

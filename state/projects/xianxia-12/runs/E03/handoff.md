@@ -38,6 +38,8 @@
 | G7 合规 | ⚠️ CONDITIONAL（备案号待填） |
 
 ## 已知问题
+- **CCV R2**: 台词已按剧本医生建议修改（详见 `reviews/ccv_r2/E03_r2.json`）
+- **成片版本**: `final_r2.mp4`（旧版备份 `assets/_backup_r1/`）
 
 - R7 备案号未填（如平台要求）
 - **CCV 判决：CONCERNS**（详见 `reviews/ccv/E03_review.json`）

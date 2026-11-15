@@ -28,7 +28,7 @@
         "林昭"
       ],
       "action": "剑劈雨幕、剑气下压",
-      "dialogue": "严崇：灾星，留下命。",
+      "dialogue": "（画外）严崇：灾星，留下命。",
       "camera": "中景/手持跟拍",
       "emotion": "压迫/杀意",
       "duration": 7.0,
@@ -81,7 +81,7 @@
         "林昭"
       ],
       "action": "被剑气逼退、踏碎石阶",
-      "dialogue": "",
+      "dialogue": "林昭：……我认。",
       "camera": "中景/侧向跟拍",
       "emotion": "狼狈/倔强",
       "duration": 7.0,
@@ -100,7 +100,7 @@
         "林昭"
       ],
       "action": "回身横剑格挡、火星四溅",
-      "dialogue": "严崇：你要护这灾星？",
+      "dialogue": "严崇：你要护他？",
       "camera": "中景/正反打高速",
       "emotion": "震惊/决绝",
       "duration": 7.0,

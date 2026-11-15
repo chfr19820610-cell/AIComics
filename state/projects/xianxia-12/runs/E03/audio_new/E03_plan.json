@@ -1,0 +1,27 @@
+{
+  "episode_code": "E03",
+  "shot_sec": 3.0,
+  "tracks": [
+    {
+      "shot_id": "S02",
+      "text": "赵乾：下去喂蛟吧，废物。",
+      "start": 3,
+      "end": 6,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S04",
+      "text": "林昭：赵乾——你不得好死！",
+      "start": 9,
+      "end": 12,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S06",
+      "text": "林昭：这纹……和那道雷一样。",
+      "start": 15,
+      "end": 18,
+      "voice": "zh_CN-chaowen-medium"
+    }
+  ]
+}

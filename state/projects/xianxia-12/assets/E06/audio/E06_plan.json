@@ -1,0 +1,27 @@
+{
+  "episode_code": "E06",
+  "track_count": 3,
+  "tracks": [
+    {
+      "shot_id": "S03",
+      "text": "严崇（画外）：解封献祭，全宗同证。",
+      "start": 14,
+      "end": 21,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S04",
+      "text": "长老：断！",
+      "start": 21,
+      "end": 28,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S06",
+      "text": "林昭：原来……一直在护我的，是它。",
+      "start": 35,
+      "end": 42,
+      "voice": "local_piper_tts"
+    }
+  ]
+}

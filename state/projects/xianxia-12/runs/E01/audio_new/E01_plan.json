@@ -1,0 +1,34 @@
+{
+  "episode_code": "E01",
+  "shot_sec": 3.0,
+  "tracks": [
+    {
+      "shot_id": "S03",
+      "text": "赵乾：废物的手，也只配擦地。",
+      "start": 6,
+      "end": 9,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S04",
+      "text": "赵乾：爬起来啊，杂役。",
+      "start": 9,
+      "end": 12,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S05",
+      "text": "（画外）看那废物，又在装死。",
+      "start": 12,
+      "end": 15,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S06",
+      "text": "林昭：……第三次了。",
+      "start": 15,
+      "end": 18,
+      "voice": "zh_CN-chaowen-medium"
+    }
+  ]
+}

@@ -93,12 +93,12 @@
     {
       "shot_id": "S03",
       "line": "林昭：啊——！",
-      "emotion": ""
+      "emotion": "剧痛/挣扎"
     },
     {
       "shot_id": "S06",
-      "line": "老墨：想活命，就别解开它。",
-      "emotion": ""
+      "line": "老墨：想活命，就别解开它。\n老墨：解开，它就醒了。",
+      "emotion": "警告/神秘"
     }
   ],
   "ccv_findings": {
@@ -126,5 +126,48 @@
       "S01汗珠改为『汗珠刚滚到下巴就被金光蒸成白气』，一个镜头同时给痛感+超自然感，信息密度更高"
     ],
     "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  },
+  "ccv_round2": {
+    "applied": true,
+    "changes": [
+      {
+        "shot_id": "S01",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改动"
+      },
+      {
+        "shot_id": "S02",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改动"
+      },
+      {
+        "shot_id": "S03",
+        "dialogue": "林昭：啊——！",
+        "changed": false,
+        "reason": "保留原台词，未改动"
+      },
+      {
+        "shot_id": "S04",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改动"
+      },
+      {
+        "shot_id": "S05",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改动"
+      },
+      {
+        "shot_id": "S06",
+        "dialogue": "老墨：想活命，就别解开它。\n老墨：解开，它就醒了。",
+        "changed": true,
+        "reason": "按建议补充点明'解开'后果的短句，强化悬念；替换为新台词文本，需重做TTS与SRT"
+      }
+    ],
+    "changed_shots": 1,
+    "applied_at": "2026-11-15"
   }
 }

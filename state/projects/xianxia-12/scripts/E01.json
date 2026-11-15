@@ -102,17 +102,22 @@
     {
       "shot_id": "S03",
       "line": "赵乾：废物的手，也只配擦地。",
-      "emotion": ""
+      "emotion": "羞辱/隐忍"
     },
     {
       "shot_id": "S04",
       "line": "赵乾：爬起来啊，杂役。",
-      "emotion": ""
+      "emotion": "暴怒/痛击"
+    },
+    {
+      "shot_id": "S05",
+      "line": "（画外）看那废物，又在装死。",
+      "emotion": "虚弱/隐秘"
     },
     {
       "shot_id": "S06",
-      "line": "林昭：……又裂了。",
-      "emotion": ""
+      "line": "林昭：……第三次了。",
+      "emotion": "痛苦/惊异"
     }
   ],
   "ccv_findings": {
@@ -138,5 +143,48 @@
       "S01可加一个独特细节：脏水里混着碎菜叶/符纸灰，暗示泼水者身份或宗门背景，提升开场记忆点"
     ],
     "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  },
+  "ccv_round2": {
+    "applied": true,
+    "changes": [
+      {
+        "shot_id": "S01",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改"
+      },
+      {
+        "shot_id": "S02",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改"
+      },
+      {
+        "shot_id": "S03",
+        "dialogue": "赵乾：废物的手，也只配擦地。",
+        "changed": false,
+        "reason": "保留原台词，未改"
+      },
+      {
+        "shot_id": "S04",
+        "dialogue": "赵乾：爬起来啊，杂役。",
+        "changed": false,
+        "reason": "保留原台词，未改"
+      },
+      {
+        "shot_id": "S05",
+        "dialogue": "（画外）看那废物，又在装死。",
+        "changed": true,
+        "reason": "按建议加围观弟子画外音"
+      },
+      {
+        "shot_id": "S06",
+        "dialogue": "林昭：……第三次了。",
+        "changed": true,
+        "reason": "按建议改为低声'……第三次了'"
+      }
+    ],
+    "changed_shots": 2,
+    "applied_at": "2026-11-15"
   }
 }

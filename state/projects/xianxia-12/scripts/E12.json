@@ -95,23 +95,18 @@
   "dialogue_table": [
     {
       "shot_id": "S03",
-      "line": "金袍人形：我不是来杀你，我是来拦你。",
-      "emotion": ""
-    },
-    {
-      "shot_id": "S04",
-      "line": "金袍人形：那一世，你吞了半个人间。",
-      "emotion": ""
+      "line": "金袍人形：我不是来杀你，是来拦你。",
+      "emotion": "对峙/凝重"
     },
     {
       "shot_id": "S05",
       "line": "林昭：这次，我自己锁。",
-      "emotion": ""
+      "emotion": "决绝/隐忍"
     },
     {
       "shot_id": "S06",
-      "line": "金袍人形：下次见。画外音：找到你了。",
-      "emotion": ""
+      "line": "金袍人形（画外）：下一次，就不是拦了。",
+      "emotion": "诡秘/不安"
     }
   ],
   "ccv_findings": {
@@ -135,5 +130,53 @@
       "S02虚无之境全景可压缩至1.5秒，把省下的0.5秒补给S04闪回，确保'九位大能铸锁'至少有一个可辨识的剪影帧"
     ],
     "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  },
+  "ccv_round2": {
+    "applied": true,
+    "changes": [
+      {
+        "shot_id": "S01",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，保持原样"
+      },
+      {
+        "shot_id": "S02",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，保持原样"
+      },
+      {
+        "shot_id": "S03",
+        "dialogue": "金袍人形：我不是来杀你，是来拦你。",
+        "changed": true,
+        "reason": "按口语化微调，删去重复的“我”，情绪不变"
+      },
+      {
+        "shot_id": "S04",
+        "dialogue": "",
+        "changed": true,
+        "reason": "按建议删去“那一世，你吞了半个人间”，解释权交给闪回，该镜台词留空"
+      },
+      {
+        "shot_id": "S05",
+        "dialogue": "林昭：这次，我自己锁。",
+        "changed": false,
+        "reason": "原台词已短促口语化，保留"
+      },
+      {
+        "shot_id": "S06",
+        "dialogue": "金袍人形：下次见。（画外）找到你了。",
+        "changed": true,
+        "reason": "将画外音标注为（画外）前缀，台词内容不变"
+      }
+    ],
+    "changed_shots": 3,
+    "applied_at": "2026-11-15"
+  },
+  "ccv_round2_fix": {
+    "hook_rewritten": {
+      "S06": "金袍人形（画外）：下一次，就不是拦了。"
+    }
   }
 }

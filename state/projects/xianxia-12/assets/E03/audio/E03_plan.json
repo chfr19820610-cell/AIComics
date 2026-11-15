@@ -1,0 +1,27 @@
+{
+  "episode_code": "E03",
+  "track_count": 3,
+  "tracks": [
+    {
+      "shot_id": "S02",
+      "text": "赵乾：下去喂蛟吧，废物。",
+      "start": 7,
+      "end": 14,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S04",
+      "text": "林昭：别过来！",
+      "start": 21,
+      "end": 28,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S06",
+      "text": "林昭：这纹……和那道雷一样。",
+      "start": 35,
+      "end": 42,
+      "voice": "local_piper_tts"
+    }
+  ]
+}

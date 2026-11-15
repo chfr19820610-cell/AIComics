@@ -1,0 +1,27 @@
+{
+  "episode_code": "E08",
+  "track_count": 3,
+  "tracks": [
+    {
+      "shot_id": "S03",
+      "text": "老墨：别躲。吞下去！",
+      "start": 14,
+      "end": 21,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S04",
+      "text": "林昭：第二道……也断了。",
+      "start": 21,
+      "end": 28,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S06",
+      "text": "林昭：原来雷，也会认人。",
+      "start": 35,
+      "end": 42,
+      "voice": "local_piper_tts"
+    }
+  ]
+}

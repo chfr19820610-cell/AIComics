@@ -1,0 +1,27 @@
+{
+  "episode_code": "E07",
+  "track_count": 3,
+  "tracks": [
+    {
+      "shot_id": "S01",
+      "text": "严崇：灾星，留下命。",
+      "start": 0,
+      "end": 7,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S05",
+      "text": "严崇：你要护这灾星？",
+      "start": 28,
+      "end": 35,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S06",
+      "text": "苏璃：我守的是他，不是封印。",
+      "start": 35,
+      "end": 42,
+      "voice": "local_piper_tts"
+    }
+  ]
+}

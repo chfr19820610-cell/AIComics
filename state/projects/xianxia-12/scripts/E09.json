@@ -117,22 +117,22 @@
     {
       "shot_id": "S03",
       "line": "长老：镇压！",
-      "emotion": ""
+      "emotion": "震撼/爆发"
     },
     {
       "shot_id": "S04",
       "line": "严崇：不可能……",
-      "emotion": ""
+      "emotion": "惊恐/崩溃"
     },
     {
       "shot_id": "S05",
       "line": "赵乾：饶命！饶命！",
-      "emotion": ""
+      "emotion": "屈辱/冷漠"
     },
     {
       "shot_id": "S06",
-      "line": "玄尘子：你不是天弃之子……你是天道的备份。",
-      "emotion": ""
+      "line": "玄尘子：等等——你不是天弃之子……你是天道的备份。",
+      "emotion": "震撼/敬畏"
     }
   ],
   "ccv_findings": {
@@ -159,5 +159,48 @@
       "给'长老：镇压！'配一张具体面孔（如三长老挥令旗特写），喊话有主"
     ],
     "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  },
+  "ccv_round2": {
+    "applied": true,
+    "changes": [
+      {
+        "shot_id": "S01",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改"
+      },
+      {
+        "shot_id": "S02",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改"
+      },
+      {
+        "shot_id": "S03",
+        "dialogue": "长老：镇压！",
+        "changed": false,
+        "reason": "未改"
+      },
+      {
+        "shot_id": "S04",
+        "dialogue": "严崇：不可能……",
+        "changed": false,
+        "reason": "未改"
+      },
+      {
+        "shot_id": "S05",
+        "dialogue": "赵乾：饶命！饶命！",
+        "changed": false,
+        "reason": "未改"
+      },
+      {
+        "shot_id": "S06",
+        "dialogue": "玄尘子：等等——你不是天弃之子……你是天道的备份。",
+        "changed": true,
+        "reason": "按建议在掌门台词前加气声'等等——'，重做TTS与字幕"
+      }
+    ],
+    "changed_shots": 1,
+    "applied_at": "2026-11-15"
   }
 }

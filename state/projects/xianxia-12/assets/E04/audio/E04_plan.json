@@ -1,0 +1,27 @@
+{
+  "episode_code": "E04",
+  "track_count": 3,
+  "tracks": [
+    {
+      "shot_id": "S03",
+      "text": "严崇：把手放上去。",
+      "start": 14,
+      "end": 21,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S05",
+      "text": "弟子：他……没死？",
+      "start": 28,
+      "end": 35,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S06",
+      "text": "玄尘子：这个纹……不该还在。",
+      "start": 35,
+      "end": 42,
+      "voice": "local_piper_tts"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "episode_code": "E01",
+  "track_count": 3,
+  "tracks": [
+    {
+      "shot_id": "S03",
+      "text": "赵乾：废物的手，也只配擦地。",
+      "start": 14,
+      "end": 21,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S04",
+      "text": "赵乾：爬起来啊，杂役。",
+      "start": 21,
+      "end": 28,
+      "voice": "local_piper_tts"
+    },
+    {
+      "shot_id": "S06",
+      "text": "林昭：……又裂了。",
+      "start": 35,
+      "end": 42,
+      "voice": "local_piper_tts"
+    }
+  ]
+}

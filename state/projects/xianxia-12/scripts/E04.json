@@ -106,17 +106,22 @@
     {
       "shot_id": "S03",
       "line": "严崇：把手放上去。",
-      "emotion": ""
+      "emotion": "威压/紧张/轻蔑"
+    },
+    {
+      "shot_id": "S04",
+      "line": "（画外）弟子：他早该死了……",
+      "emotion": "紧绷/异变/凝重"
     },
     {
       "shot_id": "S05",
       "line": "弟子：他……没死？",
-      "emotion": ""
+      "emotion": "震惊/爆发/混乱"
     },
     {
       "shot_id": "S06",
       "line": "玄尘子：这个纹……不该还在。",
-      "emotion": ""
+      "emotion": "诡谲/惊疑/冷峻"
     }
   ],
   "ccv_findings": {
@@ -142,5 +147,48 @@
       "结尾给碎石上的‘纹’一个明确特写镜头（哪怕0.3秒），让观众看见那个不该存在的纹路，钩子从台词转为画面+台词双保险"
     ],
     "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  },
+  "ccv_round2": {
+    "applied": true,
+    "changes": [
+      {
+        "shot_id": "S01",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改动"
+      },
+      {
+        "shot_id": "S02",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改动"
+      },
+      {
+        "shot_id": "S03",
+        "dialogue": "严崇：把手放上去。",
+        "changed": false,
+        "reason": "保留原台词"
+      },
+      {
+        "shot_id": "S04",
+        "dialogue": "（画外）弟子：他早该死了……",
+        "changed": true,
+        "reason": "加画外音交代弟子认为林昭会死的前情"
+      },
+      {
+        "shot_id": "S05",
+        "dialogue": "弟子：他……没死？",
+        "changed": false,
+        "reason": "保留原台词"
+      },
+      {
+        "shot_id": "S06",
+        "dialogue": "玄尘子：这个纹……不该还在。",
+        "changed": false,
+        "reason": "保留原台词"
+      }
+    ],
+    "changed_shots": 1,
+    "applied_at": "2026-11-15"
   }
 }

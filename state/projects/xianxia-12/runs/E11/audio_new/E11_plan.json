@@ -1,0 +1,34 @@
+{
+  "episode_code": "E11",
+  "shot_sec": 3.0,
+  "tracks": [
+    {
+      "shot_id": "S01",
+      "text": "天道使者：天弃之子，归位。",
+      "start": 0,
+      "end": 3,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S03",
+      "text": "老墨：锁……是门。别开太久。",
+      "start": 6,
+      "end": 9,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S05",
+      "text": "林昭：那就都别活了。",
+      "start": 12,
+      "end": 15,
+      "voice": "zh_CN-chaowen-medium"
+    },
+    {
+      "shot_id": "S06",
+      "text": "金袍人形：终于，见到你了。",
+      "start": 15,
+      "end": 18,
+      "voice": "zh_CN-chaowen-medium"
+    }
+  ]
+}

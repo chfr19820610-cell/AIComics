@@ -92,13 +92,13 @@
   "dialogue_table": [
     {
       "shot_id": "S04",
-      "line": "林昭：第九个……我是第九个？",
-      "emotion": ""
+      "line": "林昭：第九个……前面八个呢？",
+      "emotion": "诡异/悚然"
     },
     {
       "shot_id": "S06",
       "line": "老墨：我是第一个。",
-      "emotion": ""
+      "emotion": "震惊/宿命"
     }
   ],
   "ccv_findings": {
@@ -123,5 +123,48 @@
       "若时长允许，S04骸骨中有一具骨架姿势与林昭当前站姿相同，做视觉呼应，让'同类'更刺骨"
     ],
     "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  },
+  "ccv_round2": {
+    "applied": true,
+    "changes": [
+      {
+        "shot_id": "S01",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改动"
+      },
+      {
+        "shot_id": "S02",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改动"
+      },
+      {
+        "shot_id": "S03",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改动"
+      },
+      {
+        "shot_id": "S04",
+        "dialogue": "林昭：第九个……前面八个呢？",
+        "changed": true,
+        "reason": "按建议改为低声质问'第九个……前面八个呢？'，保留原情绪强度，并标注锁链轻响/指骨碎裂音效"
+      },
+      {
+        "shot_id": "S05",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，未改动"
+      },
+      {
+        "shot_id": "S06",
+        "dialogue": "老墨：我是第一个。",
+        "changed": false,
+        "reason": "无修改建议，保留原台词"
+      }
+    ],
+    "changed_shots": 1,
+    "applied_at": "2026-11-15"
   }
 }

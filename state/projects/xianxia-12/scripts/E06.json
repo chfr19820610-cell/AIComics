@@ -107,17 +107,17 @@
     {
       "shot_id": "S03",
       "line": "严崇（画外）：解封献祭，全宗同证。",
-      "emotion": ""
+      "emotion": "紧张/隐忍"
     },
     {
       "shot_id": "S04",
       "line": "长老：断！",
-      "emotion": ""
+      "emotion": "爆发/凌厉"
     },
     {
       "shot_id": "S06",
-      "line": "林昭：原来……一直在护我的，是它。",
-      "emotion": ""
+      "line": "林昭：原来……护我的，从来不是他们。",
+      "emotion": "震惊/恍然"
     }
   ],
   "ccv_findings": {
@@ -141,5 +141,48 @@
       "S01林昭抬头时加一个眼部特写或瞳孔反光魂灯的细节，把规模悬念转成人物质疑，提升前3秒停留率"
     ],
     "status": "已记录，视频未同步修改（重拍代价大，待峰哥决策）"
+  },
+  "ccv_round2": {
+    "applied": true,
+    "changes": [
+      {
+        "shot_id": "S01",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，保持原样"
+      },
+      {
+        "shot_id": "S02",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，保持原样"
+      },
+      {
+        "shot_id": "S03",
+        "dialogue": "严崇（画外）：解封献祭，全宗同证。",
+        "changed": false,
+        "reason": "未涉及修改建议，保持原样"
+      },
+      {
+        "shot_id": "S04",
+        "dialogue": "长老：断！",
+        "changed": false,
+        "reason": "未涉及修改建议，保持原样"
+      },
+      {
+        "shot_id": "S05",
+        "dialogue": "",
+        "changed": false,
+        "reason": "无台词，保持原样"
+      },
+      {
+        "shot_id": "S06",
+        "dialogue": "林昭：原来……护我的，从来不是他们。",
+        "changed": true,
+        "reason": "按剧本医生建议改为“原来……护我的，从来不是他们”，将“它”的悬念留到S06，避免提前泄底"
+      }
+    ],
+    "changed_shots": 1,
+    "applied_at": "2026-11-15"
   }
 }
