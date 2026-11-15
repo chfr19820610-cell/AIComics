@@ -40,6 +40,29 @@ FIX_MAP = {
 MIN_LEN = 20
 MAX_LEN = 600
 
+# 【§20 数据流一致性】有台词的 closeup 镜必须降级为 medium
+DOWNGRADE = {"closeup": "medium", "extreme_closeup": "medium"}
+
+# 期望的 prompt 前缀（与 effective_type 对应）
+PREFIX = {
+    "closeup": "Close-up of ",
+    "extreme_closeup": "Extreme close-up of ",
+    "medium": "Medium shot of ",
+    "wide": "Wide shot of ",
+    "environment": "Environment shot of ",
+    "action": "Action shot of ",
+    "hand": "Close-up of ",
+    "over_shoulder": "Medium shot of ",
+}
+
+
+def effective_type(shot):
+    """返回该镜实际应使用的景别（有台词 closeup 降级为 medium）"""
+    st = shot["shot_type"]
+    if (shot.get("dialogue") or "").strip() and st in DOWNGRADE:
+        return DOWNGRADE[st]
+    return st
+
 
 def has_cn(s):
     return any('\u4e00' <= ch <= '\u9fff' for ch in str(s))
@@ -105,8 +128,22 @@ def validate_one(ep, fix=False):
         elif len(en) > MAX_LEN:
             long_list.append((sid, len(en)))
 
+    # 【§20】prompt 前缀 vs effective_type（最隐蔽的 bug）
+    bad_prefix = []
+    shot_map = {s["shot_id"]: s for s in shots}
+    for sid, en in prompts.items():
+        if sid not in shot_map or not en:
+            continue
+        want = effective_type(shot_map[sid])
+        want_prefix = PREFIX.get(want, "")
+        if want_prefix and not en.startswith(want_prefix):
+            bad_prefix.append((sid, want, en[:35]))
+
     if cn_list:
         issues.append(f"含中文: {cn_list[:5]}{'...' if len(cn_list) > 5 else ''} ({len(cn_list)} 条)")
+    if bad_prefix:
+        issues.append(f"前缀不匹配({len(bad_prefix)}条): " +
+                      "; ".join(f"{sid}[want={w}]='{en}'" for sid, w, en in bad_prefix[:3]))
     if empty_list:
         issues.append(f"空 prompt: {empty_list[:5]}")
     if short_list:
