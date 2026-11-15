@@ -19,8 +19,8 @@ BASE = Path("/Users/eric/Desktop/hermes/AlComics")
 D = BASE / "state" / "projects" / "xianxia-12"
 H3 = Path("/Users/eric/Desktop/hermes/tools/minimax-h3-stream-mac")
 PY = BASE / ".venv" / "bin" / "python"
-LOG = Path("/tmp/p6_watch.log")
-BATCH_SCRIPT = Path("/tmp/batch_p6_align.sh")
+LOG = Path("/Users/eric/Desktop/hermes/AlComics/state/projects/xianxia-12/logs/watch.log")
+BATCH_SCRIPT = Path("/Users/eric/Desktop/hermes/AlComics/scripts/batch_p6_align.sh")
 STALL_MINUTES = 40
 CHECK_INTERVAL = 300
 
@@ -76,7 +76,7 @@ def current_shot():
         pass
     # 回退：从日志找
     try:
-        log = Path("/tmp/p6_align.log")
+        log = Path("/Users/eric/Desktop/hermes/AlComics/state/projects/xianxia-12/logs/p6_align.log")
         if log.exists():
             lines = log.read_text(encoding="utf-8", errors="ignore").splitlines()
             for line in reversed(lines[-300:]):
