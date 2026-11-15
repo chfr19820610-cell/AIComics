@@ -31,8 +31,13 @@ def fmt_srt_time(t):
 def build_episode(ep, skip_tts=False):
     print(f"\n=== {ep} ===", flush=True)
     run_dir = D / "runs" / ep
-    shots_doc = json.loads((D / "shots" / f"{ep}.json").read_text(encoding="utf-8"))
+    # 优先用 70 镜版本（P5 扩写版），回退到 6 镜版本
+    shots_path = D / "shots" / f"{ep}_70.json"
+    if not shots_path.exists():
+        shots_path = D / "shots" / f"{ep}.json"
+    shots_doc = json.loads(shots_path.read_text(encoding="utf-8"))
     shots = shots_doc["shots"]
+    print(f"  使用分镜: {shots_path.name} ({len(shots)} 镜)", flush=True)
 
     audio_dir = run_dir / "audio_new"
     cut_dir = run_dir / "cut"
