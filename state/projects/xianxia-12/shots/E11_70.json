@@ -1,0 +1,1102 @@
+{
+  "episode_code": "E11",
+  "shot_count": 70,
+  "shots": [
+    {
+      "shot_id": "S01",
+      "shot_type": "extreme_closeup",
+      "scene": "焦土上一滴血渗入裂缝",
+      "characters": [],
+      "action": "血滴落",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "压抑",
+      "duration": 3.0,
+      "sound_cue": "滴答",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S02",
+      "shot_type": "closeup",
+      "scene": "老墨断杖半截插在土里",
+      "characters": [
+        "老墨"
+      ],
+      "action": "杖头冒烟",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "悲凉",
+      "duration": 3.0,
+      "sound_cue": "金属余响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S03",
+      "shot_type": "medium",
+      "scene": "林昭跪在老墨身旁扶他",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "手按胸口",
+      "dialogue": "老墨！撑住！",
+      "camera": "慢推",
+      "emotion": "焦急",
+      "duration": 3.0,
+      "sound_cue": "风声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S04",
+      "shot_type": "full",
+      "scene": "焦土旷野两人渺小如尘",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "远处金光逼近",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "压迫",
+      "duration": 3.0,
+      "sound_cue": "低频轰鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S05",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭瞳孔映出金色天裂",
+      "characters": [
+        "林昭"
+      ],
+      "action": "瞳孔收缩",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊恐",
+      "duration": 3.0,
+      "sound_cue": "心跳",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S06",
+      "shot_type": "closeup",
+      "scene": "天穹裂口边缘云层翻卷",
+      "characters": [],
+      "action": "裂缝扩张",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "不祥",
+      "duration": 3.0,
+      "sound_cue": "撕裂声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S07",
+      "shot_type": "medium",
+      "scene": "金雨如瀑倒灌人间",
+      "characters": [],
+      "action": "雨线贯穿画面",
+      "dialogue": "天上……在下金雨？",
+      "camera": "固定",
+      "emotion": "震撼",
+      "duration": 3.0,
+      "sound_cue": "雨啸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S08",
+      "shot_type": "full",
+      "scene": "金雨落地冒起大片白烟",
+      "characters": [],
+      "action": "焦土被灼烧",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "荒凉",
+      "duration": 3.0,
+      "sound_cue": "滋滋声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S09",
+      "shot_type": "extreme_closeup",
+      "scene": "白烟中焦土裂出细纹",
+      "characters": [],
+      "action": "裂纹蔓延",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "紧张",
+      "duration": 3.0,
+      "sound_cue": "碎裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S10",
+      "shot_type": "closeup",
+      "scene": "白衣无面使者垂落半空",
+      "characters": [
+        "天道使者"
+      ],
+      "action": "衣袂翻飞",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "神圣",
+      "duration": 3.0,
+      "sound_cue": "钟鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S11",
+      "shot_type": "medium",
+      "scene": "使者无面之脸正对镜头",
+      "characters": [
+        "天道使者"
+      ],
+      "action": "缓缓抬头",
+      "dialogue": "天弃之子，归位。",
+      "camera": "固定",
+      "emotion": "冰冷",
+      "duration": 3.0,
+      "sound_cue": "回响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S12",
+      "shot_type": "full",
+      "scene": "光柱贯穿天地照在使者身上",
+      "characters": [
+        "天道使者"
+      ],
+      "action": "光柱收束",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "威严",
+      "duration": 3.0,
+      "sound_cue": "低频",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S13",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭攥紧的拳头指节发白",
+      "characters": [
+        "林昭"
+      ],
+      "action": "拳头颤抖",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "愤怒",
+      "duration": 3.0,
+      "sound_cue": "骨响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S14",
+      "shot_type": "closeup",
+      "scene": "老墨抬头望天眼神浑浊",
+      "characters": [
+        "老墨"
+      ],
+      "action": "嘴角溢血",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "决绝",
+      "duration": 3.0,
+      "sound_cue": "喘息",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S15",
+      "shot_type": "medium",
+      "scene": "使者抬手一指金光凝聚",
+      "characters": [
+        "天道使者"
+      ],
+      "action": "指尖亮起",
+      "dialogue": "别碰他！",
+      "camera": "固定",
+      "emotion": "杀意",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S16",
+      "shot_type": "full",
+      "scene": "金光贯穿老墨胸口",
+      "characters": [
+        "老墨",
+        "天道使者"
+      ],
+      "action": "光柱穿透",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "暴烈",
+      "duration": 3.0,
+      "sound_cue": "爆响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S17",
+      "shot_type": "extreme_closeup",
+      "scene": "铁杖断口迸出火星",
+      "characters": [],
+      "action": "断成两截",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惨烈",
+      "duration": 3.0,
+      "sound_cue": "断裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S18",
+      "shot_type": "closeup",
+      "scene": "老墨膝盖砸进焦土",
+      "characters": [
+        "老墨"
+      ],
+      "action": "跪倒",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "悲壮",
+      "duration": 3.0,
+      "sound_cue": "闷响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S19",
+      "shot_type": "medium",
+      "scene": "血滴落在焦土上冒烟",
+      "characters": [
+        "老墨"
+      ],
+      "action": "血渗入土",
+      "dialogue": "锁……是门。别开太久。",
+      "camera": "慢推",
+      "emotion": "哀伤",
+      "duration": 3.0,
+      "sound_cue": "低语",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S20",
+      "shot_type": "full",
+      "scene": "林昭扑向老墨身后金雨如幕",
+      "characters": [
+        "林昭",
+        "老墨"
+      ],
+      "action": "伸手去扶",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "崩溃",
+      "duration": 3.0,
+      "sound_cue": "雨声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S21",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭胸口第三道锁裂开",
+      "characters": [
+        "林昭"
+      ],
+      "action": "金光漏出",
+      "dialogue": "第三道锁……碎了？",
+      "camera": "急推",
+      "emotion": "惊愕",
+      "duration": 3.0,
+      "sound_cue": "锁链响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S22",
+      "shot_type": "closeup",
+      "scene": "金光映亮林昭半张脸",
+      "characters": [
+        "林昭"
+      ],
+      "action": "眼眶发红",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "悲愤",
+      "duration": 3.0,
+      "sound_cue": "心跳",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S23",
+      "shot_type": "medium",
+      "scene": "林昭低头看胸口锁链崩解",
+      "characters": [
+        "林昭"
+      ],
+      "action": "锁纹碎裂",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "震动",
+      "duration": 3.0,
+      "sound_cue": "碎裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S24",
+      "shot_type": "full",
+      "scene": "金雨中的林昭孤身跪地",
+      "characters": [
+        "林昭"
+      ],
+      "action": "仰头望天",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "孤绝",
+      "duration": 3.0,
+      "sound_cue": "风啸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S25",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭眼中倒映金眼天穹",
+      "characters": [
+        "林昭"
+      ],
+      "action": "泪光闪动",
+      "dialogue": "原来你一直在看着我。",
+      "camera": "急推",
+      "emotion": "决然",
+      "duration": 3.0,
+      "sound_cue": "耳鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S26",
+      "shot_type": "closeup",
+      "scene": "老墨的手垂落焦土",
+      "characters": [
+        "老墨"
+      ],
+      "action": "手指松开",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "死寂",
+      "duration": 3.0,
+      "sound_cue": "静默",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S27",
+      "shot_type": "medium",
+      "scene": "使者悬空俯视林昭",
+      "characters": [
+        "天道使者",
+        "林昭"
+      ],
+      "action": "无面微偏",
+      "dialogue": "代价，我自己来付。",
+      "camera": "固定",
+      "emotion": "冷漠",
+      "duration": 3.0,
+      "sound_cue": "钟鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S28",
+      "shot_type": "full",
+      "scene": "天穹金眼缓缓睁开",
+      "characters": [],
+      "action": "巨眼凝视",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "威压",
+      "duration": 3.0,
+      "sound_cue": "轰鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S29",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭嘴角扯出冷笑",
+      "characters": [
+        "林昭"
+      ],
+      "action": "咬牙",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "疯狂",
+      "duration": 3.0,
+      "sound_cue": "齿响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S30",
+      "shot_type": "closeup",
+      "scene": "林昭抬手按向胸口最后锁",
+      "characters": [
+        "林昭"
+      ],
+      "action": "五指扣住",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "决绝",
+      "duration": 3.0,
+      "sound_cue": "锁鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S31",
+      "shot_type": "medium",
+      "scene": "锁链金光在指缝间暴涨",
+      "characters": [
+        "林昭"
+      ],
+      "action": "光溢出",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "紧绷",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S32",
+      "shot_type": "full",
+      "scene": "地面碎石被气浪掀飞",
+      "characters": [
+        "林昭"
+      ],
+      "action": "尘土冲天",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "蓄势",
+      "duration": 3.0,
+      "sound_cue": "气浪",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S33",
+      "shot_type": "extreme_closeup",
+      "scene": "锁链在掌心碎成光屑",
+      "characters": [
+        "林昭"
+      ],
+      "action": "捏碎",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "爆发",
+      "duration": 3.0,
+      "sound_cue": "脆响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S34",
+      "shot_type": "closeup",
+      "scene": "林昭抬头双目雷光乍现",
+      "characters": [
+        "林昭"
+      ],
+      "action": "睁眼",
+      "dialogue": "雷，听我号令！",
+      "camera": "慢推",
+      "emotion": "狂怒",
+      "duration": 3.0,
+      "sound_cue": "雷爆",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S35",
+      "shot_type": "full",
+      "scene": "雷海从林昭脚下冲天而起",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雷柱贯天",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "震撼",
+      "duration": 3.0,
+      "sound_cue": "雷鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S36",
+      "shot_type": "extreme_closeup",
+      "scene": "雷光撕裂白衣使者衣角",
+      "characters": [
+        "天道使者"
+      ],
+      "action": "衣料崩碎",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "暴烈",
+      "duration": 3.0,
+      "sound_cue": "撕裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S37",
+      "shot_type": "closeup",
+      "scene": "使者无面之脸被雷光贯穿",
+      "characters": [
+        "天道使者"
+      ],
+      "action": "身体龟裂",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "惊变",
+      "duration": 3.0,
+      "sound_cue": "崩裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S38",
+      "shot_type": "medium",
+      "scene": "使者炸成漫天金屑飘散",
+      "characters": [
+        "天道使者"
+      ],
+      "action": "碎成光点",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "畅快",
+      "duration": 3.0,
+      "sound_cue": "爆散",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S39",
+      "shot_type": "full",
+      "scene": "雷海席卷云层当场退开",
+      "characters": [],
+      "action": "云层翻涌退散",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "壮阔",
+      "duration": 3.0,
+      "sound_cue": "风雷",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S40",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭雷光中嘶吼的侧脸",
+      "characters": [
+        "林昭"
+      ],
+      "action": "张口怒吼",
+      "dialogue": "那就都别活了。",
+      "camera": "急推",
+      "emotion": "癫狂",
+      "duration": 3.0,
+      "sound_cue": "怒吼",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S41",
+      "shot_type": "closeup",
+      "scene": "金屑落在老墨断杖上",
+      "characters": [],
+      "action": "光点熄灭",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "哀悼",
+      "duration": 3.0,
+      "sound_cue": "轻响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S42",
+      "shot_type": "medium",
+      "scene": "雷海渐散露出破败天穹",
+      "characters": [
+        "林昭"
+      ],
+      "action": "雷光收束",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "余悸",
+      "duration": 3.0,
+      "sound_cue": "余雷",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S43",
+      "shot_type": "full",
+      "scene": "天穹金眼闭合又缓缓睁开",
+      "characters": [],
+      "action": "巨眼眨动",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "低鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S44",
+      "shot_type": "extreme_closeup",
+      "scene": "金眼瞳孔中映出林昭身影",
+      "characters": [
+        "林昭"
+      ],
+      "action": "倒影清晰",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "不祥",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S45",
+      "shot_type": "closeup",
+      "scene": "金光从金眼垂落凝成人形",
+      "characters": [],
+      "action": "光柱下坠",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "神圣",
+      "duration": 3.0,
+      "sound_cue": "钟鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S46",
+      "shot_type": "medium",
+      "scene": "金袍人形落地衣袍翻卷",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "双足触地",
+      "dialogue": "又一个来送死的？",
+      "camera": "固定",
+      "emotion": "威严",
+      "duration": 3.0,
+      "sound_cue": "落地",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S47",
+      "shot_type": "full",
+      "scene": "金袍人形立于焦土与林昭对峙",
+      "characters": [
+        "金袍人形",
+        "林昭"
+      ],
+      "action": "相距十步",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "紧张",
+      "duration": 3.0,
+      "sound_cue": "风声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S48",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭瞳孔骤缩",
+      "characters": [
+        "林昭"
+      ],
+      "action": "后退半步",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "震惊",
+      "duration": 3.0,
+      "sound_cue": "心跳",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S49",
+      "shot_type": "closeup",
+      "scene": "金袍人形缓缓抬头露脸",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "面容浮现",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "莫测",
+      "duration": 3.0,
+      "sound_cue": "低鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S50",
+      "shot_type": "medium",
+      "scene": "金袍人形单膝跪地低头",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "屈膝行礼",
+      "dialogue": "终于，见到你了。",
+      "camera": "固定",
+      "emotion": "虔诚",
+      "duration": 3.0,
+      "sound_cue": "衣袍声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S51",
+      "shot_type": "full",
+      "scene": "林昭呆立原地雷光余烬未散",
+      "characters": [
+        "林昭",
+        "金袍人形"
+      ],
+      "action": "僵住",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "茫然",
+      "duration": 3.0,
+      "sound_cue": "静默",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S52",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭嘴唇微颤",
+      "characters": [
+        "林昭"
+      ],
+      "action": "欲言又止",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "动摇",
+      "duration": 3.0,
+      "sound_cue": "呼吸",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S53",
+      "shot_type": "closeup",
+      "scene": "金袍人形掌心托起一枚金锁",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "金光流转",
+      "dialogue": "你的名字，早写在锁上。",
+      "camera": "慢推",
+      "emotion": "神秘",
+      "duration": 3.0,
+      "sound_cue": "锁鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S54",
+      "shot_type": "medium",
+      "scene": "林昭盯着金锁后退一步",
+      "characters": [
+        "林昭"
+      ],
+      "action": "戒备",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "警惕",
+      "duration": 3.0,
+      "sound_cue": "脚步",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S55",
+      "shot_type": "full",
+      "scene": "天穹金眼在两人头顶缓缓闭合",
+      "characters": [],
+      "action": "巨眼合拢",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "压抑",
+      "duration": 3.0,
+      "sound_cue": "轰鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S56",
+      "shot_type": "extreme_closeup",
+      "scene": "金锁表面浮现林昭的名字",
+      "characters": [],
+      "action": "字迹亮起",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "惊悚",
+      "duration": 3.0,
+      "sound_cue": "嗡鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S57",
+      "shot_type": "closeup",
+      "scene": "林昭一把攥住金锁",
+      "characters": [
+        "林昭"
+      ],
+      "action": "夺过",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "愤怒",
+      "duration": 3.0,
+      "sound_cue": "金属碰撞",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S58",
+      "shot_type": "medium",
+      "scene": "金袍人形不躲不闪仍跪着",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "低头不起",
+      "dialogue": "跪着……就想让我收下？",
+      "camera": "固定",
+      "emotion": "顺从",
+      "duration": 3.0,
+      "sound_cue": "静默",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S59",
+      "shot_type": "full",
+      "scene": "林昭将金锁狠狠砸向地面",
+      "characters": [
+        "林昭"
+      ],
+      "action": "金锁坠地",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "暴怒",
+      "duration": 3.0,
+      "sound_cue": "砸响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S60",
+      "shot_type": "extreme_closeup",
+      "scene": "金锁落地弹起裂成两半",
+      "characters": [],
+      "action": "裂开",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "决绝",
+      "duration": 3.0,
+      "sound_cue": "碎裂",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S61",
+      "shot_type": "closeup",
+      "scene": "裂缝中涌出黑色雾气",
+      "characters": [],
+      "action": "黑雾升腾",
+      "dialogue": "",
+      "camera": "慢推",
+      "emotion": "诡异",
+      "duration": 3.0,
+      "sound_cue": "嘶鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S62",
+      "shot_type": "medium",
+      "scene": "黑雾凝成一道门形轮廓",
+      "characters": [
+        "林昭"
+      ],
+      "action": "门影浮现",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "惊疑",
+      "duration": 3.0,
+      "sound_cue": "低鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S63",
+      "shot_type": "full",
+      "scene": "金袍人形抬头望向门影",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "起身",
+      "dialogue": "",
+      "camera": "摇移",
+      "emotion": "狂热",
+      "duration": 3.0,
+      "sound_cue": "衣袍",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S64",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭眼中倒映门影",
+      "characters": [
+        "林昭"
+      ],
+      "action": "瞳孔放大",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "震撼",
+      "duration": 3.0,
+      "sound_cue": "心跳",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S65",
+      "shot_type": "closeup",
+      "scene": "门影中伸出一只苍白的手",
+      "characters": [],
+      "action": "手指抓出",
+      "dialogue": "门后……是谁？",
+      "camera": "慢推",
+      "emotion": "恐怖",
+      "duration": 3.0,
+      "sound_cue": "抓挠",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S66",
+      "shot_type": "medium",
+      "scene": "林昭被气浪逼退三步",
+      "characters": [
+        "林昭"
+      ],
+      "action": "踉跄后退",
+      "dialogue": "",
+      "camera": "跟拍",
+      "emotion": "惊骇",
+      "duration": 3.0,
+      "sound_cue": "气浪",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S67",
+      "shot_type": "full",
+      "scene": "门影暴涨吞没半片焦土",
+      "characters": [
+        "林昭",
+        "金袍人形"
+      ],
+      "action": "黑雾扩散",
+      "dialogue": "",
+      "camera": "甩镜",
+      "emotion": "失控",
+      "duration": 3.0,
+      "sound_cue": "轰鸣",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S68",
+      "shot_type": "extreme_closeup",
+      "scene": "林昭咬牙伸手迎向门影",
+      "characters": [
+        "林昭"
+      ],
+      "action": "五指张开",
+      "dialogue": "",
+      "camera": "急推",
+      "emotion": "决死",
+      "duration": 3.0,
+      "sound_cue": "雷声",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S69",
+      "shot_type": "closeup",
+      "scene": "金袍人形在门影前再度跪拜",
+      "characters": [
+        "金袍人形"
+      ],
+      "action": "叩首",
+      "dialogue": "门开了。",
+      "camera": "慢推",
+      "emotion": "阴森",
+      "duration": 3.0,
+      "sound_cue": "回响",
+      "act_id": "underdog",
+      "priority": "normal"
+    },
+    {
+      "shot_id": "S70",
+      "shot_type": "full",
+      "scene": "黑门吞天林昭孤影立于门前",
+      "characters": [
+        "林昭"
+      ],
+      "action": "定格",
+      "dialogue": "",
+      "camera": "固定",
+      "emotion": "悬念",
+      "duration": 3.0,
+      "sound_cue": "骤停",
+      "act_id": "underdog",
+      "priority": "normal"
+    }
+  ]
+}
