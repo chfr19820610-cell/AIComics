@@ -19,8 +19,8 @@ BASE = Path("/Users/eric/Desktop/hermes/AlComics")
 D = BASE / "state" / "projects" / "xianxia-12"
 H3 = Path("/Users/eric/Desktop/hermes/tools/minimax-h3-stream-mac")
 PY = BASE / ".venv" / "bin" / "python"
-LOG = Path("/tmp/p5_watch.log")
-BATCH_SCRIPT = Path("/tmp/batch_840_final.sh")
+LOG = Path("/tmp/p6_watch.log")
+BATCH_SCRIPT = Path("/tmp/batch_p6_align.sh")
 STALL_MINUTES = 40
 CHECK_INTERVAL = 300
 
@@ -53,17 +53,17 @@ def h3_running():
 
 
 def batch_running():
-    r = subprocess.run(["pgrep", "-f", "batch_840_final"],
+    r = subprocess.run(["pgrep", "-f", "batch_p6_align"],
                        capture_output=True, text=True)
     return bool(r.stdout.strip())
 
 
 def current_shot():
     """从日志尾部找当前正在生成的镜"""
-    if not Path("/tmp/p5_840.log").exists():
+    if not Path("/tmp/p6_align.log").exists():
         return None
     try:
-        lines = Path("/tmp/p5_840.log").read_text(encoding="utf-8", errors="ignore").splitlines()
+        lines = Path("/tmp/p6_align.log").read_text(encoding="utf-8", errors="ignore").splitlines()
         for line in reversed(lines[-200:]):
             if "🎬" in line:
                 # [11-15 23:19:12] 🎬 E01/S01 (1/70)
@@ -81,7 +81,7 @@ def last_output_mtime(shot):
     if not shot:
         return None
     ep, sid = shot.split("/")
-    rundir = H3 / "runs" / f"p5_{ep}_{sid}"
+    rundir = H3 / "runs" / f"p6_{ep}_{sid}"
     if not rundir.exists():
         return None
     mtimes = [f.stat().st_mtime for f in rundir.rglob("*") if f.is_file()]
