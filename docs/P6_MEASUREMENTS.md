@@ -895,3 +895,66 @@ S08 S13 S20 S22 S24 S26 S29 S31 S38 S41
 - **0 Q版、0 写实**
 
 **符合预期，无风格事故。**
+
+---
+
+## 2026-11-16 07:57 · E01 42 镜「台词↔景别↔prompt」三层一致性验证
+
+### 验证方法
+
+对每镜检查三个属性是否一致：
+1. **分镜表原始景别**（`shots/E01_70.json` 的 `shot_type`）
+2. **对齐计划的最终景别**（`alignment.json` 的 `shot_type_final`）
+3. **prompt 的前缀**（`prompts/E01_70_en.json`）
+
+判定规则：
+- 有台词 + 最终景别是 closeup/extreme_closeup → **失败**（口型暴露）
+- prompt 前缀 ≠ 最终景别对应的前缀 → **失败**（§20 断裂）
+
+### 验证结果
+
+| 项 | 值 |
+|---|---|
+| 验证镜数 | **42** |
+| 有台词镜 | **5** |
+| **问题镜** | **0** |
+
+**✅ 全部 42 镜三层完全一致。**
+
+### 5 个有台词镜（全部正确）
+
+| 镜 | 原景别 | 最终景别 | 台词 |
+|---|---|---|---|
+| S10 | medium | medium | 弟子甲：又来了。 |
+| S20 | medium | medium | 赵乾：脏了我的手。 |
+| S24 | action | action | 赵乾：爬起来啊，杂役。 |
+| S30 | closeup | **medium** | 赵乾：没意思。 |
+| S31 | medium | medium | 弟子甲/乙：废物就是废物。 |
+
+**S30 是唯一需要降级的（closeup→medium），验证正确。**
+
+### 意义
+
+**这是 §20（数据流一致性）的端到端验证**：
+
+```
+shots/E01_70.json (shot_type)
+  ↓ align_episode.py (DOWNGRADE + effective_type)
+alignment.json (shot_type_final)
+  ↓ validate_prompts.py (前缀对齐)
+prompts/E01_70_en.json (prompt 前缀)
+  ↓ h3stream
+实际画面 (medium)
+```
+
+**四层全部一致，偏差 0。**
+
+### 与之前的验证对比
+
+| 时间点 | 已生成镜 | 有台词镜 | 问题 |
+|---|---|---|---|
+| Round 86（S30 验证） | 29 | 4 | 0 |
+| Round 91（全体台词镜） | 30 | 5 | 0 |
+| **Round 135（42 镜）** | **42** | **5** | **0** |
+
+**持续无问题。**
