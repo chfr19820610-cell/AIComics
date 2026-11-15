@@ -777,3 +777,62 @@ runs/E01/cut/
 **旧产物的符号链接会造成混淆**（看起来像文件，实际是链接）。
 
 **清理时用 `ls -la` 看真实类型，不只看大小。**
+
+---
+
+## 2026-11-16 07:56 · h3stream checkpoint 目录分析
+
+### 现状
+
+| 项 | 值 |
+|---|---|
+| checkpoint 目录数 | **31 个** |
+| 每个大小 | **12M** |
+| 总大小 | **362M** |
+| h3stream 目录总量 | 38G（模型 37.6G + checkpoint 362M） |
+| 系统可用磁盘 | 429G |
+
+### checkpoint 的作用
+
+h3stream 每步保存原子 checkpoint（`--run-dir` 指定），用于：
+- 断点续传（进程被杀后从最后一步恢复）
+- 节省重跑时间（实测 S11 从 step 4 恢复，省 3.5 分钟）
+
+### 是否应该清理？
+
+**已完成镜的 checkpoint 理论上可删**（视频已生成），但有风险：
+
+| 场景 | 影响 |
+|---|---|
+| 某镜生成质量不好需重跑 | 无 checkpoint → 从头跑（12 分钟 vs 从中间恢复） |
+| 某镜需要调整 prompt 重跑 | 同上 |
+
+**362M 相对于 429G 仅占 0.08%，不构成磁盘压力。**
+
+### 决策：暂不删除
+
+**理由**：
+1. 空间充足（0.08%）
+2. checkpoint 是重跑的加速器（实测省 3.5 分钟/次）
+3. 如后续需要重跑某镜（如发现质量问题），checkpoint 有价值
+
+### 全季完成后的清理计划
+
+**E01-E12 全部生成完后**，删除所有 `runs/p6_*` 目录：
+```bash
+cd /Users/eric/Desktop/hermes/tools/minimax-h3-stream-mac
+rm -rf runs/p6_*
+```
+预计释放 **840 × 12M ≈ 10GB**。
+
+### 注意
+
+**当前正在跑的镜（S44）的 checkpoint 必须保留**（进程正在用）。
+清理时要排除正在跑的：
+```bash
+# 安全做法：只删已完成的
+for d in runs/p6_*; do
+  sid=$(basename $d | sed 's/p6_\(E[0-9]*\)_\(S[0-9]*\)/\1_\2/')
+  [ -f "/Users/eric/Desktop/hermes/AlComics/state/projects/xianxia-12/assets/*/h3video/${sid}_h3.mp4" ] && rm -rf "$d"
+done
+```
