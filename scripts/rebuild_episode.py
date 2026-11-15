@@ -83,7 +83,7 @@ def build_episode(ep):
         model = BASE / "local_providers" / "piper" / "models" / "zh_CN-chaowen-medium.onnx"
         r = subprocess.run([str(BASE / ".venv/bin/python"), str(bp),
                             "--plan", str(plan_path), "--output", str(mixed),
-                            "--model", str(model), "--total-seconds", str(int(total))],
+                            "--model", str(model), "--total-seconds", str(int(total) + 1)],  # +1 防 int() 截断丢尾音
                            capture_output=True, text=True, timeout=1800)
         print(r.stdout[-300:] if r.stdout else "", flush=True)
 
