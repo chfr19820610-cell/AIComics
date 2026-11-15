@@ -49,8 +49,13 @@ def classify_shot(shot):
     if st in ("wide", "environment"):
         return "CG", f"{st} + 无人物"
     if st in ("closeup", "extreme_closeup"):
+        # 修正：材质词 + 动作/情绪词 → 仍是动漫（动作词能压过材质词）
+        # 证据：S14「靴底碾住抹布，指节发白，微微发抖」→ 赛璐璐动漫
+        # 而 S11「晨光在锦袍金线上反光」（纯材质）→ 3D 写实
+        if has_material and has_emotion:
+            return "ANIME", "closeup + 材质+动作（动作压过材质）"
         if has_material:
-            return "REALISTIC", f"closeup + 材质词({[w for w in MATERIAL_WORDS if w in scene][:2]})"
+            return "REALISTIC", f"closeup + 纯材质词({[w for w in MATERIAL_WORDS if w in scene][:2]})"
         if has_emotion:
             return "ANIME", "closeup + 情绪词"
         return "ANIME?", "closeup（无标记）"
