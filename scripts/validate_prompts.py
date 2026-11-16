@@ -37,6 +37,18 @@ FIX_MAP = {
     "光明": "light",
 }
 
+# 【§23】元语言禁忌：这些词会让模型"画"出对应内容
+# 实测：speaking → 假字幕；memory → 分屏闪回；sound of → 声音符号
+META_LANGUAGE = {
+    "speaking/voice（会画假字幕）": r"\b(speaking|speaks|talks|saying|whispers|murmurs|voice)\b",
+    "subtitle/text（会画字）": r"\b(subtitle|caption|text on|title|logo|watermark)\b",
+    "lips moving（会画嘴部特写）": r"\blips? (?:barely )?moving\b",
+    "memory（会画分屏闪回）": r"\b(thinking|remembers?|remembering|recalling|memory)\b",
+    "sound（会画声音符号）": r"\b(sound of|music|melody|echoes? of)\b",
+    "time concept（会画时间标注）": r"\b(earlier|later|before this|previously|flashback to)\b",
+    "dream/vision（会画梦境效果）": r"\b(dream|vision|hallucinat)\b",
+}
+
 MIN_LEN = 20
 MAX_LEN = 600
 
@@ -160,11 +172,20 @@ def validate_one(ep, fix=False):
             if PREFIX.get(w, "") and not prompts[sid].startswith(PREFIX.get(w, ""))
         ]
 
+    # 【§23】元语言检查
+    meta_hits = []
+    for sid, en in prompts.items():
+        for label, pat in META_LANGUAGE.items():
+            if re.search(pat, en, re.IGNORECASE):
+                meta_hits.append((sid, label))
+
     if cn_list:
         issues.append(f"含中文: {cn_list[:5]}{'...' if len(cn_list) > 5 else ''} ({len(cn_list)} 条)")
     if bad_prefix:
         issues.append(f"前缀不匹配({len(bad_prefix)}条): " +
                       "; ".join(f"{sid}[want={w}]='{en}'" for sid, w, en in bad_prefix[:3]))
+    if meta_hits:
+        issues.append(f"元语言风险({len(meta_hits)}条): " + "; ".join(f"{s}[{l}]" for s, l in meta_hits[:3]))
     if empty_list:
         issues.append(f"空 prompt: {empty_list[:5]}")
     if short_list:
