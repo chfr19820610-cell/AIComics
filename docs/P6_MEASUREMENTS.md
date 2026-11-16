@@ -1401,3 +1401,66 @@ closeup/extreme_closeup + characters 为空 + 无人脸词 → 3D 风险
 **判断风格风险时，先看"有没有人"，再看"描述什么"。**
 
 **"人"是风格的决定性因素，不是描述词。**
+
+---
+
+## 2026-11-16 08:38 · E01 景别节奏分析（45 镜）
+
+### 景别序列
+
+```
+S01 environment  S02 wide      S03 closeup    S04 extreme_closeup
+S05 medium       S06 environment  S07 wide    S08 medium
+S09 closeup      S10 medium    S11 closeup   S12 environment
+S13 medium       S14 closeup   S15 medium    S17 wide
+S18 closeup      S19 environment  S20 medium S21 closeup
+S22 medium       S23 closeup   S24 action    S25 wide
+S26 medium       S27 environment  S28 closeup  S29 medium
+S30 medium ←     S31 medium ←  S32 environment  S33 closeup
+S34 extreme_closeup  S35 medium  S36 closeup  S37 extreme_closeup
+S38 medium       S39 environment  S40 closeup  S41 medium
+S42 closeup      S43 medium    S44 closeup   S45 extreme_closeup
+S46 medium
+```
+
+### 统计
+
+| 指标 | 值 |
+|---|---|
+| 总镜数 | 45 |
+| **景别切换次数** | **42/44（95%）** |
+| **连续 3+ 镜同景别** | **1 处**（S29-S31 medium × 3） |
+
+### S29-S31 的连续性（有理由）
+
+| 镜 | 景别 | 内容 |
+|---|---|---|
+| S29 | medium | 赵乾站立 |
+| S30 | medium | 赵乾拂袖（"没意思"） |
+| S31 | medium | 弟子散去（"废物就是废物"） |
+
+**这是"赵乾离开"的连续动作段落**，用 medium 保持连贯是合理的。
+
+### 与 CCV 的 PACING 问题对比
+
+| 问题类型 | CCV 报告 | 本分析 |
+|---|---|---|
+| **环境镜打断情绪** | ✅ E01/S12/S19 | — |
+| **景别重复** | — | ✅ S29-S31（3 镜 medium） |
+
+**两者都存在，但都不严重。**
+
+### 结论
+
+**E01 的剪辑节奏良好**：
+- 95% 的镜与上镜不同（景别有变化）
+- 唯一连续段落（S29-S31）有叙事理由
+- 没有"长时间停留同一景别"的拖沓
+
+### 意义
+
+**这说明分镜表的景别设计是合理的**（避免了单调）。
+
+**CCV 报的 PACING 问题是"内容层面的空镜"**（不是景别重复）。
+
+**两者是不同的维度。**
