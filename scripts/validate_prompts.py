@@ -139,6 +139,27 @@ def validate_one(ep, fix=False):
         if want_prefix and not en.startswith(want_prefix):
             bad_prefix.append((sid, want, en[:35]))
 
+    # 【--fix】修复前缀不匹配（技术债：原代码只记录不修复）
+    if fix and bad_prefix:
+        all_prefixes = sorted(set(PREFIX.values()), key=len, reverse=True)
+        for sid, want, _ in bad_prefix:
+            want_prefix = PREFIX.get(want, "")
+            if not want_prefix:
+                continue
+            old = prompts[sid]
+            # 剥掉旧前缀（从长到短匹配，避免 "Close-up" 被 "of" 干扰）
+            for old_prefix in all_prefixes:
+                if old.startswith(old_prefix):
+                    prompts[sid] = want_prefix + old[len(old_prefix):]
+                    fixed += 1
+                    break
+        # 重新计算（已修复的不再报）
+        bad_prefix = [
+            (sid, w, prompts[sid][:35])
+            for sid, w, _ in bad_prefix
+            if PREFIX.get(w, "") and not prompts[sid].startswith(PREFIX.get(w, ""))
+        ]
+
     if cn_list:
         issues.append(f"含中文: {cn_list[:5]}{'...' if len(cn_list) > 5 else ''} ({len(cn_list)} 条)")
     if bad_prefix:
@@ -162,11 +183,20 @@ def validate_one(ep, fix=False):
 
 
 def main():
+    global D
     ap = argparse.ArgumentParser()
     ap.add_argument("episode", nargs="?")
     ap.add_argument("--fix", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")
+    ap.add_argument("--dir", help="自定义项目目录（默认 state/projects/xianxia-12），便于用临时数据测试 --fix 而不污染正式数据")
     args = ap.parse_args()
+
+    # 支持 --dir 注入测试目录（技术债修复：原代码硬编码路径，无法自测）
+    if args.dir:
+        D = Path(args.dir)
+        if not D.exists():
+            print(f"❌ 目录不存在: {D}")
+            return 2
 
     eps = [args.episode] if args.episode else EPS
     print(f"=== Prompt 格式校验（{len(eps)} 集）===")
