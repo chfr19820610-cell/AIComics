@@ -1681,3 +1681,116 @@ S46 medium
 **"文生视频"只能保证"单镜内的风格"，不能保证"跨镜的角色一致性"。**
 
 **如果需要角色一致性，必须用"图生视频"或"角色参考"能力。**
+
+---
+
+## 2026-11-16 10:57 · ⚠️ 模型"画假字幕"（重要发现）
+
+### 发现
+
+**E01/S59 的画面底部出现乱码字幕**（不是我们烧的）——**是模型自己画的**。
+
+### 对比验证（三次对照）
+
+| 镜 | prompt 有 speaking 类词？ | 假字幕？ |
+|---|---|---|
+| **S59** | ✅ `speaking low, lips barely moving, voice pressed in throat` | **❌ 有** |
+| S10 | ❌ 只有 `covering mouths`（捂嘴，非说话） | ✅ 无 |
+| S57 | ❌ 无 | ✅ 无 |
+
+**假设验证成功。**
+
+### 根因
+
+**h3stream 训练数据含字幕视频**：
+```
+训练数据里很多视频有字幕
+  ↓
+模型学到"有人说话 → 底部有字"
+  ↓
+prompt 有 "speaking/voice" → 模型"画"字幕
+```
+
+**这是"文生视频"模型的通病。**
+
+### 假字幕的位置与影响
+
+| 项 | 值 |
+|---|---|
+| 假字幕位置 | y=304-384（底部 21%） |
+| 真字幕位置 | MarginV=20（y≈340-364） |
+| **重叠** | **是** |
+
+**假字幕会与我们烧录的真字幕重叠 → 观感极差（"双重字幕"）。**
+
+### 全季风险：20 镜
+
+| 集 | 镜数 | 具体 |
+|---|---|---|
+| E01 | 1 | S59 |
+| E02 | 3 | S29, S41, S43 |
+| E04 | 1 | S63 |
+| E06 | 1 | S68 |
+| E07 | 1 | S43 |
+| E08 | 2 | S52, S64 |
+| E09 | 2 | S45, S62 |
+| **E10** | **7** | S25, S26, S46, S50, S60, S62, S66 |
+| E12 | 2 | S25, S59 |
+| **总计** | **20 镜（2.4%）** | — |
+
+### 修复
+
+**20 镜全部改为"动作描述"（不含"说"的词）**：
+
+| 镜 | 旧 | 新 |
+|---|---|---|
+| E01/S59 | `speaking low, lips barely moving, voice pressed in throat` | `standing very still, jaw tight, eyes fixed on the top of the stone stairs` |
+| E07/S43 | `lips part slightly as she speaks` | `holding a measured breath, each gesture deliberate` |
+| E09/S45 | `voice barely a whisper` | `throat working silently` |
+| E10/S25 | `lips moving silently as if tallying numbers` | `brow furrowed as if tallying numbers` |
+| E12/S59 | `a low off-screen voice emerges from` | `a low off-screen sound emerges from` |
+
+**同时修复了 12 条语法问题**（正则替换的副作用）。
+
+### 验证（4 项全过）
+
+| 检查项 | 结果 |
+|---|---|
+| speaking 词 | **0** ✅ |
+| §20 检查 | **840 条通过** ✅ |
+| 含中文 | **0** ✅ |
+| 长度异常 | **0** ✅ |
+
+### 已生成镜的处理
+
+**S59 已生成（有假字幕）** → **删除并备份**：
+
+```
+assets/_backup_s59/E01_S59_h3.mp4
+```
+
+**fill_gaps 会用新 prompt 重跑 S59。**
+
+### 教训（重要）
+
+> **"文生视频"的 prompt 要避免"元语言"（meta-language）**：
+> - `speaking` / `speaks` / `talks` / `voice` / `saying` / `whispers`
+> - `subtitle` / `text` / `caption`
+> - `lips moving`
+>
+> **模型会把这些"描述性词汇"当成"要画的内容"**，真的画出来。
+
+**正确做法**：用"身体动作"代替"语言动作"：
+- ❌ `speaking` → ✅ `jaw tight`
+- ❌ `voice` → ✅ `throat working`
+- ❌ `lips moving` → ✅ `breath held`
+
+### 为什么之前的台词镜没出问题
+
+**E01 的 5 个台词镜（S10/S20/S24/S30/S31）都没有 speaking 词**：
+- S10: `covering mouths`（捂嘴）
+- S20/S24/S30/S31: 都是动作描述（拂袖、推掌、捡东西）
+
+**只有 S59 用了 `speaking`**（因为要表现"低声说话"）。
+
+**这是"用词不当"导致的。**
