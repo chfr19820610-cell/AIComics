@@ -348,3 +348,31 @@ CG 镜承担"环境建立/气势"，动漫镜承担"人物情绪"，功能互补
 **与 §19/§20/§21 的区别**：
 前三节是"我们的代码/数据问题"（可修），
 §22 是"模型能力问题"（修不了，只能换工具或接受）。
+
+---
+
+## 2026-11-16 · §23 Prompt 元语言禁忌
+
+**触发**：E01/S59 画面出现模型自己画的假字幕
+
+**根因**：h3stream 训练数据含字幕视频 → prompt 有 speaking/voice 时画字幕
+
+**全季风险**：20 镜（2.4%）
+
+**禁忌词**：
+- 说话：speaking/speaks/talks/saying/whispers/murmurs
+- 声音：voice
+- 嘴部：lips moving/mouth opening to speak
+- 字幕：subtitle/caption/text on screen
+- 水印：title/logo/watermark
+
+**正确替代**：用身体动作代替语言动作
+- speaking → jaw tight
+- voice → throat working
+- lips moving → breath held
+
+**与 §20 的关系**：互补（§20 改景别，§23 改用词）
+
+**核心原则**：
+> 模型不理解"意图"，只理解"字面"。
+> 写 speaking，它画"说话场景（含字幕）"。
