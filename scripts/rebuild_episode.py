@@ -70,7 +70,26 @@ def build_episode(ep):
     tracks = [p for p in plan if p["has_dialogue"]]
     mixed = audio_dir / f"{ep}_mixed.wav"
 
-    if tracks:
+    # 【修复 2026-11-16】先检查 wav 是否已存在且时长正确 → 跳过 TTS
+    # 背景：原代码无条件跑 batch_piper，一旦 TTS 卡住就阻塞 rebuild（实测卡 6.5 分钟 CPU 0%）
+    skip_tts = False
+    if tracks and mixed.exists() and mixed.stat().st_size > 1000:
+        try:
+            import re as _re
+            _r = subprocess.run([FFMPEG, "-hide_banner", "-i", str(mixed)],
+                                capture_output=True, text=True, timeout=30)
+            _m = _re.search(r"Duration: (\d+):(\d+):([\d.]+)", _r.stderr)
+            if _m:
+                _dur = int(_m.group(1)) * 3600 + int(_m.group(2)) * 60 + float(_m.group(3))
+                if abs(_dur - total) < 5:  # 时长接近（±5s）则认为有效
+                    skip_tts = True
+                    print(f"  ✅ 复用现有音频 {_dur:.1f}s（跳过 TTS）", flush=True)
+                else:
+                    print(f"  ⚠️ 现有音频 {_dur:.1f}s ≠ 目标 {total:.1f}s → 重新合成", flush=True)
+        except Exception as _e:
+            print(f"  ⚠️ 检查现有音频失败: {_e} → 重新合成", flush=True)
+
+    if tracks and not skip_tts:
         # 用 batch_piper 生成（每句按 start 对位）
         plan_path = audio_dir / f"{ep}_plan.json"
         plan_path.write_text(json.dumps({
@@ -81,11 +100,15 @@ def build_episode(ep):
         }, ensure_ascii=False, indent=2), encoding="utf-8")
         bp = BASE / "scripts" / "batch_piper.py"
         model = BASE / "local_providers" / "piper" / "models" / "zh_CN-chaowen-medium.onnx"
-        r = subprocess.run([str(BASE / ".venv/bin/python"), str(bp),
-                            "--plan", str(plan_path), "--output", str(mixed),
-                            "--model", str(model), "--total-seconds", str(int(total) + 1)],  # +1 防 int() 截断丢尾音
-                           capture_output=True, text=True, timeout=1800)
-        print(r.stdout[-300:] if r.stdout else "", flush=True)
+        # 【修复 2026-11-16】加超时 600s（原 1800s 太长，卡住时白等 30 分钟）
+        try:
+            r = subprocess.run([str(BASE / ".venv/bin/python"), str(bp),
+                                "--plan", str(plan_path), "--output", str(mixed),
+                                "--model", str(model), "--total-seconds", str(int(total) + 1)],  # +1 防 int() 截断丢尾音
+                               capture_output=True, text=True, timeout=600)
+            print(r.stdout[-300:] if r.stdout else "", flush=True)
+        except subprocess.TimeoutExpired:
+            print("  ❌ TTS 超时 600s → 用现有音频或静音轨", flush=True)
 
     if not mixed.exists() or mixed.stat().st_size < 1000:
         subprocess.run([FFMPEG, "-y", "-f", "lavfi", "-i", "anullsrc=r=22050:cl=mono",
