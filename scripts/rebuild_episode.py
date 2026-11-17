@@ -9,6 +9,7 @@
 用法: python scripts/rebuild_episode.py E01 E02 ...
 """
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -100,17 +101,50 @@ def build_episode(ep):
         }, ensure_ascii=False, indent=2), encoding="utf-8")
         bp = BASE / "scripts" / "batch_piper.py"
         model = BASE / "local_providers" / "piper" / "models" / "zh_CN-chaowen-medium.onnx"
-        # 【修复 2026-11-16】加超时 600s（原 1800s 太长，卡住时白等 30 分钟）
+        # 【修复 2026-11-17】关键：HF_HUB_OFFLINE=1 让 transformers 不联网
+        # 根因：piper 的 g2pw 走 transformers，会尝试从 huggingface.co（被墙）下载 → 卡住 600s
+        # 实测：无离线标志 → 卡 600s 超时；有离线标志 → 172s 完成 23/23 条
+        tts_env = os.environ.copy()
+        tts_env["HF_HUB_OFFLINE"] = "1"
+        tts_env["TRANSFORMERS_OFFLINE"] = "1"
+        tts_ok = False
         try:
             r = subprocess.run([str(BASE / ".venv/bin/python"), str(bp),
                                 "--plan", str(plan_path), "--output", str(mixed),
                                 "--model", str(model), "--total-seconds", str(int(total) + 1)],  # +1 防 int() 截断丢尾音
-                               capture_output=True, text=True, timeout=600)
-            print(r.stdout[-300:] if r.stdout else "", flush=True)
+                               capture_output=True, text=True, timeout=900, env=tts_env)
+            print(r.stdout[-400:] if r.stdout else "", flush=True)
+            tts_ok = (r.returncode == 0)
         except subprocess.TimeoutExpired:
-            print("  ❌ TTS 超时 600s → 用现有音频或静音轨", flush=True)
+            print("  ❌ TTS 超时 900s", flush=True)
 
-    if not mixed.exists() or mixed.stat().st_size < 1000:
+        # 【修复 2026-11-17】TTS 失败/超时 → 删除残缺 wav，让下面生成静音轨
+        # 原 bug：超时后留下 18s 残缺 wav，ffmpeg --shortest 把成片截成 20s
+        if not tts_ok and mixed.exists():
+            try:
+                mixed.unlink()
+                print("  🗑️ 删除残缺音频 → 将生成静音轨", flush=True)
+            except Exception:
+                pass
+
+    # 【修复 2026-11-17】不只用 size 判断，还要验证时长是否接近 total
+    # 原 bug：775K 的 18s 残缺 wav 通过 size>1000 检查 → 成片被截成 20s
+    need_silence = True
+    if mixed.exists() and mixed.stat().st_size > 1000:
+        try:
+            import re as _re2
+            _r2 = subprocess.run([FFMPEG, "-hide_banner", "-i", str(mixed)],
+                                 capture_output=True, text=True, timeout=30)
+            _m2 = _re2.search(r"Duration: (\d+):(\d+):([\d.]+)", _r2.stderr)
+            if _m2:
+                _d2 = int(_m2.group(1)) * 3600 + int(_m2.group(2)) * 60 + float(_m2.group(3))
+                if _d2 >= total - 5:  # 时长足够
+                    need_silence = False
+                else:
+                    print(f"  ⚠️ 音频 {_d2:.1f}s < 目标 {total:.1f}s → 生成静音轨补齐", flush=True)
+        except Exception:
+            pass
+    if need_silence:
         subprocess.run([FFMPEG, "-y", "-f", "lavfi", "-i", "anullsrc=r=22050:cl=mono",
                         "-t", str(total), str(mixed)], capture_output=True, timeout=60)
         print(f"  静音轨 {total:.0f}s", flush=True)
@@ -138,7 +172,7 @@ def build_episode(ep):
            "-i", str(mixed),
            "-vf", f"subtitles='{srt_esc}':force_style='{style}'",
            "-c:v", "libx264", "-preset", "medium", "-crf", "23",
-           "-c:a", "aac", "-b:a", "128k", "-shortest", str(final)]
+           "-c:a", "aac", "-b:a", "128k", "-t", str(total), str(final)]  # 【修复 2026-11-17】--shortest 会按短流截断（音频残缺 → 成片 20s），改成 -t 强制时长
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
     if r.returncode != 0:
         print(f"  ❌ 合成失败: {r.stderr[-300:]}", flush=True)
